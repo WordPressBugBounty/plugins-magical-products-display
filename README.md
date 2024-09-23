@@ -1,0 +1,1 @@
+# plugins-magical-products-display
