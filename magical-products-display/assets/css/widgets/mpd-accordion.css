@@ -78,10 +78,19 @@
   box-shadow: 0 1px 6px 0 rgba(255, 255, 255, 0.68);
 }
 
-.mgc-icon i {
+.mgc-icon i,
+.mgc-icon svg {
   position: relative;
   top: 45%;
   transform: translateY(-55%);
+}
+.mgc-icon i{
+  font-size: 18px;
+  color: #fff;
+}
+.mgc-icon svg{
+  width: 15px;
+  fill: #fff;
 }
 
 .mgrc-title.collapsed .mgc-close {

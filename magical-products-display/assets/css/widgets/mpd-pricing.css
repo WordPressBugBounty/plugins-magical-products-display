@@ -23,6 +23,10 @@
     line-height: 60px;
     color: #826EF4;
 }
+.tbptitw-main .mpd-pricet-base .mpd-micon svg{
+    width: 50px;
+    fill: #826EF4;
+}
 .mpd-micon {
     margin-bottom: 1rem;
 }
@@ -176,6 +180,9 @@
 .tbptitw-main .style-two .mpd-exptext,
 .tbptitw-main .style-two .mpd-micon i{
     color: #FA2146;
+}
+.tbptitw-main .style-two .mpd-micon s{
+    fill: #FA2146;
 }
 .tbptitw-main .mpd-pricet-base.style-two .mpd-exptext{
     padding-bottom: 0;

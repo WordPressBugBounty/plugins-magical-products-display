@@ -2277,11 +2277,11 @@ class mgProducts_Grid extends \Elementor\Widget_Base
         }
 
 
-        $mgpdeg_cart_btn   = $settings['mgpdeg_cart_btn'];
-        $mgpdeg_badge_show    = $settings['mgpdeg_badge_show'];
-        $mgpdeg_content_align = $settings['mgpdeg_content_align'];
-        $mgpdeg_btn_type      = $settings['mgpdeg_btn_type'];
-        $mgpdeg_card_text     = $settings['mgpdeg_card_text'];
+        $mgpdeg_cart_btn   = $this->get_settings('mgpdeg_cart_btn');
+        $mgpdeg_badge_show    = $this->get_settings('mgpdeg_badge_show');
+        $mgpdeg_content_align = $this->get_settings('mgpdeg_content_align');
+        $mgpdeg_btn_type      = $this->get_settings('mgpdeg_btn_type');
+        $mgpdeg_card_text     = $this->get_settings('mgpdeg_card_text');
 
         //grid layout
         $mgpdeg_product_style = $this->get_settings('mgpdeg_product_style');
@@ -2293,22 +2293,22 @@ class mgProducts_Grid extends \Elementor\Widget_Base
 
         //pro icons 
         if (function_exists('yith_wishlist_install')) {
-            $mgpdeg_wishlist_show = $settings['mgpdeg_wishlist_show'];
-            $mgpdeg_wishlist_text = $settings['mgpdeg_wishlist_text'];
+            $mgpdeg_wishlist_show = $this->get_settings('mgpdeg_wishlist_show');
+            $mgpdeg_wishlist_text = $this->get_settings('mgpdeg_wishlist_text');
         } else {
             $mgpdeg_wishlist_show = ' ';
             $mgpdeg_wishlist_text = ' ';
         }
 
 
-        $mgpdeg_share_show = $settings['mgpdeg_share_show'];
-        $mgpdeg_share_text = $settings['mgpdeg_share_text'];
-        $mgpdeg_qrcode_show = $settings['mgpdeg_qrcode_show'];
-        $mgpdeg_qrcode_text = $settings['mgpdeg_qrcode_text'];
-        $mgpdeg_video_show = $settings['mgpdeg_video_show'];
-        $mgpdeg_video_text = $settings['mgpdeg_video_text'];
-        $after_text = $settings['mgpdeg_badge_after_text'];
-        $before_sign = $settings['mgpdeg_badge_before_sign'];
+        $mgpdeg_share_show = $this->get_settings('mgpdeg_share_show');
+        $mgpdeg_share_text = $this->get_settings('mgpdeg_share_text');
+        $mgpdeg_qrcode_show = $this->get_settings('mgpdeg_qrcode_show');
+        $mgpdeg_qrcode_text = $this->get_settings('mgpdeg_qrcode_text');
+        $mgpdeg_video_show = $this->get_settings('mgpdeg_video_show');
+        $mgpdeg_video_text = $this->get_settings('mgpdeg_video_text');
+        $after_text = $this->get_settings('mgpdeg_badge_after_text');
+        $before_sign = $this->get_settings('mgpdeg_badge_before_sign');
 
 
         if ($mgpdeg_content_align == 'center') {

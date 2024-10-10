@@ -461,7 +461,11 @@ class mgProduct_Accordion extends \Elementor\Widget_Base
                 'label' => esc_html__('Border Width', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => [
-                    'px', '%', 'em', 'rem', 'custom'
+                    'px',
+                    '%',
+                    'em',
+                    'rem',
+                    'custom'
                 ],
                 'range' => [
                     'px' => [
@@ -786,6 +790,7 @@ class mgProduct_Accordion extends \Elementor\Widget_Base
                 'type'         => \Elementor\Controls_Manager::COLOR,
                 'selectors'     => [
                     '{{WRAPPER}} .mgrc-title.collapsed .mgc-icon i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgrc-title.collapsed .mgc-icon svg' => 'fill: {{VALUE}};',
 
                 ],
             ]
@@ -806,6 +811,7 @@ class mgProduct_Accordion extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .mgrc-title.collapsed .mgc-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .mgrc-title.collapsed .mgc-icon svg' => 'width: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -826,6 +832,7 @@ class mgProduct_Accordion extends \Elementor\Widget_Base
                 'type'         => \Elementor\Controls_Manager::COLOR,
                 'selectors'     => [
                     '{{WRAPPER}} .mgrc-title .mgc-icon i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgrc-title .mgc-icon svg' => 'fill: {{VALUE}};',
 
                 ],
             ]
@@ -844,6 +851,7 @@ class mgProduct_Accordion extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .mgrc-title .mgc-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .mgrc-title .mgc-icon svg' => 'width: {{SIZE}}{{UNIT}};',
 
                 ]
             ]
@@ -1399,7 +1407,5 @@ class mgProduct_Accordion extends \Elementor\Widget_Base
 <?php
     }
 
-    protected function content_template()
-    {
-    }
+    protected function content_template() {}
 }

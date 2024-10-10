@@ -2754,8 +2754,6 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         $mgpdeg_cart_btn   = $settings['mgpdeg_cart_btn'];
         $mgpdeg_category_show = $settings['mgpdeg_category_show'];
         $mgpdeg_ratting_show  = $settings['mgpdeg_ratting_show'];
-        $mgpdeg_badge_show    = $settings['mgpdeg_badge_show'];
-        $mgpdeg_content_align = $settings['mgpdeg_content_align'];
         $mgpdeg_btn_type      = $settings['mgpdeg_btn_type'];
         $mgpdeg_card_text     = $settings['mgpdeg_card_text'];
     ?>

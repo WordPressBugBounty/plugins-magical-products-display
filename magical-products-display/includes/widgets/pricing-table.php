@@ -195,7 +195,7 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
                     ],
 
                 ],
-                'default' => '',
+                'default' => 'center',
                 'toggle' => false,
                 'selectors' => [
                     '{{WRAPPER}} .mpd-micon' => 'text-align: {{VALUE}};',
@@ -986,6 +986,7 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
                 ],
                 'selectors' => [
                     '{{WRAPPER}} .tbptitw-main .mpd-pricet-base .mpd-micon i' => 'font-size: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .tbptitw-main .mpd-pricet-base .mpd-micon svg' => 'width: {{SIZE}}{{UNIT}};',
                 ],
                 'condition' => [
                     'mpdpr_icon_type' => 'icon'
@@ -1100,6 +1101,7 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
                     '{{WRAPPER}} .tbptitw-main .mpd-pricet-base .mpd-micon i' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .tbptitw-main .mpd-pricet-base .mpd-micon svg' => 'fill: {{VALUE}}',
                 ],
 
             ]
@@ -2030,10 +2032,11 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
         if (empty($settings['mpdpr_use_icon'])) {
             return;
         }
+        $mpdpr_main_icon_position = isset($settings['mpdpr_main_icon_position']) ? $settings['mpdpr_main_icon_position'] : 'left';
     ?>
 
         <?php if ($settings['mpdpr_icon_type'] == 'icon') : ?>
-            <div class="mpd-micon <?php echo esc_attr($settings['mpdpr_main_icon_position']); ?>">
+            <div class="mpd-micon <?php echo esc_attr($mpdpr_main_icon_position); ?>">
                 <?php \Elementor\Icons_Manager::render_icon($settings['mpdpr_type_selected_icon']); ?>
             </div>
         <?php endif; ?>
@@ -2048,9 +2051,7 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
     public function desc_output($settings)
     {
 
-        $mpdpr_list_align = $settings['mpdpr_list_align'];
         $mpdpr_list_items = $settings['mpdpr_list_item'];
-        $mpdpr_desc_align = $settings['mpdpr_desc_align'];
         $mpdpr_desc = $settings['mpdpr_desc'];
         $this->add_inline_editing_attributes('mpdpr_desc');
         $mpdpr_ftitle = $settings['mpdpr_ftitle'];
@@ -2137,7 +2138,6 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
         }
         //title
         $mpdpr_title = $settings['mpdpr_title'];
-        $mpdpr_title_align = $settings['mpdpr_title_align'];
         $mpdpr_title_tag = $settings['mpdpr_title_tag'];
         $this->add_inline_editing_attributes('mpdpr_title');
         $this->add_render_attribute('mpdpr_title', 'class', 'bpto-top-heading');

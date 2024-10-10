@@ -52,7 +52,7 @@ function mpd_display_pro_want()
 //Admin notice 
 function mpd_display_pinfo_optins_texts()
 {
-    $hide_date = get_option('mpd_info_text');
+    $hide_date = get_option('mpd_info_text_output');
     $mpd_install_date = get_option('mpd_install_date');
 
 
@@ -84,7 +84,7 @@ add_action('admin_notices', 'mpd_display_pinfo_optins_texts');
 function mpd_display_proinfo_texts_init()
 {
     if (isset($_GET['dismissed']) && $_GET['dismissed'] == 1) {
-        update_option('mpd_info_text', current_time('mysql'));
+        update_option('mpd_info_text_output', current_time('mysql'));
     }
 }
 add_action('init', 'mpd_display_proinfo_texts_init');

@@ -8,7 +8,7 @@
  * Plugin Name:       Magical products Display
  * Plugin URI:        http://wpthemespace.com
  * Description:       Customizable Elementor Widgets for Beautiful WooCommerce Product Displays.
- * Version:           1.1.22
+ * Version:           1.1.23
  * Author:            Noor alam
  * Author URI:        http://wpthemespace.com
  * License:           GPL-2.0+
@@ -38,7 +38,7 @@ final class magicalProductsDisplay
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.1.21';
+	const VERSION = '1.1.23';
 
 	/**
 	 * Minimum Elementor Version

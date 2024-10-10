@@ -122,6 +122,10 @@ No, you cannot use Magical Products Display – Elementor Products Widgets For W
 
 == Changelog ==
 
+= 1.1.23 =
+* PHP error fixed 
+* svg icons issue fixed
+
 = 1.1.22 =
 * Security Updated 
 

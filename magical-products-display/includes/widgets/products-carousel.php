@@ -2863,19 +2863,11 @@ class mgProducts_carousel extends \Elementor\Widget_Base
             }
         }
 
-        $mgpcar_show_title = $settings['mgpcar_show_title'];
-        $mgpcar_crop_title = $settings['mgpcar_crop_title'];
-        $mgpcar_title_tag  = $settings['mgpcar_title_tag'];
-        $mgpcar_desc_show  = $settings['mgpcar_desc_show'];
-        $mgpcar_crop_desc  = $settings['mgpcar_crop_desc'];
-        $mgpcar_price_show = $settings['mgpcar_price_show'];
-        $mgpcar_cart_btn   = $settings['mgpcar_cart_btn'];
-        $mgpcar_category_show = $settings['mgpcar_category_show'];
-        $mgpcar_ratting_show  = $settings['mgpcar_ratting_show'];
-        $mgpcar_badge_show    = $settings['mgpcar_badge_show'];
-        $mgpcar_content_align = $settings['mgpcar_content_align'];
-        $mgpcar_btn_type      = $settings['mgpcar_btn_type'];
-        $mgpcar_card_text     = $settings['mgpcar_card_text'];
+        $mgpcar_cart_btn = $this->get_settings('mgpcar_cart_btn');
+        $mgpcar_badge_show = $this->get_settings('mgpcar_badge_show');
+        $mgpcar_content_align = $this->get_settings('mgpcar_content_align');
+        $mgpcar_btn_type = $this->get_settings('mgpcar_btn_type');
+        $mgpcar_card_text = $this->get_settings('mgpcar_card_text');
 
         //grid layout
         $mgpcar_product_style = $this->get_settings('mgpcar_product_style');
@@ -2884,21 +2876,21 @@ class mgProducts_carousel extends \Elementor\Widget_Base
 
         //pro icons 
         if (function_exists('yith_wishlist_install')) {
-            $mgpcar_wishlist_show = $settings['mgpcar_wishlist_show'];
-            $mgpcar_wishlist_text = $settings['mgpcar_wishlist_text'];
+            $mgpcar_wishlist_show = $this->get_settings('mgpcar_wishlist_show');
+            $mgpcar_wishlist_text = $this->get_settings('mgpcar_wishlist_text');
         } else {
             $mgpcar_wishlist_show = ' ';
             $mgpcar_wishlist_text = ' ';
         }
 
-        $mgpcar_share_show = $settings['mgpcar_share_show'];
-        $mgpcar_share_text = $settings['mgpcar_share_text'];
-        $mgpcar_qrcode_show = $settings['mgpcar_qrcode_show'];
-        $mgpcar_qrcode_text = $settings['mgpcar_qrcode_text'];
-        $mgpcar_video_show = $settings['mgpcar_video_show'];
-        $mgpcar_video_text = $settings['mgpcar_video_text'];
-        $after_text = $settings['mgpcar_badge_after_text'];
-        $before_sign = $settings['mgpcar_badge_before_sign'];
+        $mgpcar_share_show = $this->get_settings('mgpcar_share_show');
+        $mgpcar_share_text = $this->get_settings('mgpcar_share_text');
+        $mgpcar_qrcode_show = $this->get_settings('mgpcar_qrcode_show');
+        $mgpcar_qrcode_text = $this->get_settings('mgpcar_qrcode_text');
+        $mgpcar_video_show = $this->get_settings('mgpcar_video_show');
+        $mgpcar_video_text = $this->get_settings('mgpcar_video_text');
+        $after_text = $this->get_settings('mgpcar_badge_after_text');
+        $before_sign = $this->get_settings('mgpcar_badge_before_sign');
 
         if ($mgpcar_content_align == 'center') {
             $rating_class = 'flex-center';
@@ -2911,7 +2903,7 @@ class mgProducts_carousel extends \Elementor\Widget_Base
         if ($settings['mgpcar_img_flip_show'] == 'yes' && (get_option('mgppro_is_active', 'no') == 'yes')) {
             $img_effects = 'no-effects';
         } else {
-            $img_effects = $settings['mgpcar_img_effects'];
+            $img_effects = $this->get_settings('mgpcar_img_effects');
         }
 
         $mgpcar_products = new WP_Query($args);
@@ -3012,7 +3004,7 @@ class mgProducts_carousel extends \Elementor\Widget_Base
         </div>
     <?php
 
-    } // 
+    }
 
 
 
@@ -3030,8 +3022,6 @@ class mgProducts_carousel extends \Elementor\Widget_Base
         $mgpcar_cart_btn   = $settings['mgpcar_cart_btn'];
         $mgpcar_category_show = $settings['mgpcar_category_show'];
         $mgpcar_ratting_show  = $settings['mgpcar_ratting_show'];
-        $mgpcar_badge_show    = $settings['mgpcar_badge_show'];
-        $mgpcar_content_align = $settings['mgpcar_content_align'];
         $mgpcar_btn_type      = $settings['mgpcar_btn_type'];
         $mgpcar_card_text     = $settings['mgpcar_card_text'];
     ?>
