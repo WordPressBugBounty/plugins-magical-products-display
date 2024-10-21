@@ -329,3 +329,37 @@ if (!function_exists('mpd_goprolink')) :
         return ob_get_clean();
     }
 endif;
+
+function mpd_get_price_range()
+{
+    // Try to get cached min and max prices
+    $cached_price_range = wp_cache_get('mpd_price_range', 'mpd_cache_group');
+
+    // If cache is empty, run the database queries
+    if ($cached_price_range === false) {
+        global $wpdb;
+
+        // Query to get the minimum and maximum prices
+        $min_price = $wpdb->get_var("SELECT MIN( CAST(meta_value AS DECIMAL) ) FROM {$wpdb->postmeta} WHERE meta_key = '_price'");
+        $max_price = $wpdb->get_var("SELECT MAX( CAST(meta_value AS DECIMAL) ) FROM {$wpdb->postmeta} WHERE meta_key = '_price'");
+
+        // Fallback if no price is found
+        if (!$min_price) {
+            $min_price = 0;
+        }
+        if (!$max_price) {
+            $max_price = 1000; // Set a default max if no products exist
+        }
+
+        // Prepare the array for min and max prices
+        $price_range = array('min' => $min_price, 'max' => $max_price);
+
+        // Store the result in the cache for future use
+        wp_cache_set('mpd_price_range', $price_range, 'mpd_cache_group', 3600); // Cache for 1 hour
+    } else {
+        // Use cached data
+        $price_range = $cached_price_range;
+    }
+
+    return $price_range;
+}

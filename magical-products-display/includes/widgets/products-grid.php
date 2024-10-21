@@ -85,6 +85,7 @@ class mgProducts_Grid extends \Elementor\Widget_Base
             $style  = [
                 'bootstrap-custom',
                 'venobox.min',
+                'nouislider',
             ];
         } else {
             $style  = [
@@ -106,7 +107,9 @@ class mgProducts_Grid extends \Elementor\Widget_Base
     {
         return [
             'bootstrap-bundle',
-            'venobox.min'
+            'venobox.min',
+            'nouislider',
+            'price-range-active'
         ];
     }
     /**
@@ -844,6 +847,223 @@ class mgProducts_Grid extends \Elementor\Widget_Base
             ]
         );
         $this->end_controls_section();
+
+        // Filter settings
+        $this->start_controls_section(
+            'mgpdeg_filter_section',
+            [
+                'label' => sprintf('%s %s', __('Products Filter', 'magical-products-display'), mpd_display_pro_only_text()),
+                'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+                'default' => 'no',
+            ]
+        );
+        if (get_option('mgppro_is_active', 'no') == 'no') {
+
+            $this->add_control(
+                'mgpdeg_filter_info',
+                [
+                    'label' => sprintf('<span style="color:red">%s</span>', __('The Section only work with pro version.', 'magical-products-display')),
+                    'type' => \Elementor\Controls_Manager::HEADING,
+                    'separator' => 'before',
+                ]
+            );
+        }
+        $this->add_control(
+            'mgpdeg_filter_show',
+            [
+                'label'     => sprintf('%s %s', esc_html__('Show Products Filter ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'description'     => __('You can display products filter by this section.', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_cat_filter_active',
+            [
+                'label'     => sprintf('%s %s', esc_html__('Active Categories Filter ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'description'     => __('Visitor can filter products by categories.', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_cat_text',
+            [
+                'label'       => sprintf('%s %s', esc_html__('Categories Text ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'input_type'  => 'text',
+                'placeholder' => __('Select Category', 'magical-products-display'),
+                'default'     => __('Select Category', 'magical-products-display'),
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                    'mgpdeg_cat_filter_active' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_tag_filter_active',
+            [
+                'label'     => sprintf('%s %s', esc_html__('Active Tags Filter ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'description'     => __('Visitor can filter products by tags.', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_tag_text',
+            [
+                'label'       => sprintf('%s %s', esc_html__('Tags Text ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'input_type'  => 'text',
+                'placeholder' => __('Select tag', 'magical-products-display'),
+                'default'     => __('Select tag', 'magical-products-display'),
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                    'mgpdeg_tag_filter_active' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_price_filter_active',
+            [
+                'label'     => sprintf('%s %s', esc_html__('Active Price Filter ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'description'     => __('Visitor can filter products by price range.', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_price_range_text',
+            [
+                'label'       => sprintf('%s %s', esc_html__('Price Filter Text ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'input_type'  => 'text',
+                'placeholder' => __('Price Range', 'magical-products-display'),
+                'default'     => __('Price Range', 'magical-products-display'),
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                    'mgpdeg_price_filter_active' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_stock_filter_active',
+            [
+                'label'     => sprintf('%s %s', esc_html__('Active Stock Filter ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'description'     => __('Visitor can filter products by available stock.', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_stock_filter_text',
+            [
+                'label'       => sprintf('%s %s', esc_html__('Stock Filter Text ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'input_type'  => 'text',
+                'placeholder' => __('In Stock Only', 'magical-products-display'),
+                'default'     => __('In Stock Only', 'magical-products-display'),
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                    'mgpdeg_total_stock_show' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_featured_filter_active',
+            [
+                'label'     => sprintf('%s %s', esc_html__('Active Featured Filter ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'description'     => __('Visitor can filter products by featured products.', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_featured_text',
+            [
+                'label'       => sprintf('%s %s', esc_html__('Featured Filter Text ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'input_type'  => 'text',
+                'placeholder' => __('Featured Products', 'magical-products-display'),
+                'default'     => __('Featured Products', 'magical-products-display'),
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                    'mgpdeg_featured_filter_active' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_rating_filter_active',
+            [
+                'label'     => sprintf('%s %s', esc_html__('Active Rating Filter ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'description'     => __('Visitor can filter products by featured products.', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'yes',
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_rating_text',
+            [
+                'label'       => sprintf('%s %s', esc_html__('Rating Filter Text ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'input_type'  => 'text',
+                'placeholder' => __('Select Rating', 'magical-products-display'),
+                'default'     => __('Select Rating', 'magical-products-display'),
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                    'mgpdeg_rating_filter_active' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_btn_text',
+            [
+                'label'       => sprintf('%s %s', esc_html__('Filter Button Text ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'input_type'  => 'text',
+                'placeholder' => __('Filter', 'magical-products-display'),
+                'default'     => __('Filter', 'magical-products-display'),
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                ]
+
+            ]
+        );
+
+        $this->end_controls_section();
+
         // Stock settings
         $this->start_controls_section(
             'mgpdeg_stock_section',
@@ -944,6 +1164,7 @@ class mgProducts_Grid extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+
         $this->link_pro_added();
     }
 
@@ -1968,6 +2189,275 @@ class mgProducts_Grid extends \Elementor\Widget_Base
 
         // Products Stock Style
         $this->start_controls_section(
+            'mgpdeg_filter_style',
+            [
+                'label'     => sprintf('%s %s', esc_html__('Products Filter Style ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                ]
+            ]
+        );
+        if (get_option('mgppro_is_active', 'no') == 'no') {
+
+            $this->add_control(
+                'mgpdeg_filter_style_info',
+                [
+                    'label' => sprintf('<span style="color:red">%s</span>', __('The Section only work with pro version.', 'magical-products-display')),
+                    'type' => \Elementor\Controls_Manager::HEADING,
+                    'separator' => 'before',
+                ]
+            );
+        }
+
+        $this->add_responsive_control(
+            'mgpdeg_filter_margin',
+            [
+                'label' => __('Margin', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'mgpdeg_filter_padding',
+            [
+                'label' => __('Padding', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_filter_text_color',
+            [
+                'label' => __('Text Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form, {{WRAPPER}} form.mgf-filter-form select' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'mgpdeg_filter_text_typography',
+                'selector' => '{{WRAPPER}} form.mgf-filter-form, {{WRAPPER}} form.mgf-filter-form select',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'mgpdeg_filter_bg',
+                'label' => esc_html__('Filter Background', 'magical-products-display'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} form.mgf-filter-form',
+            ]
+        );
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'mgpdeg_filter_pricebg',
+                'label' => esc_html__('Price Range Color', 'magical-products-display'),
+                'types' => ['classic', 'gradient'],
+
+                'selector' => '{{WRAPPER}} form.mgf-filter-form .noUi-connect',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'mgpdeg_filter_border',
+                'selector' => '{{WRAPPER}} form.mgf-filter-form',
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_filter_radius',
+            [
+                'label' => __('Border Radius', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_filter_btn_style',
+            [
+                'label' =>  __('Button Style', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+        $this->add_responsive_control(
+            'mgpdeg_filter_btn_padding',
+            [
+                'label' => __('Padding', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form button.btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        $this->add_responsive_control(
+            'mgpdeg_filter_btn_margin',
+            [
+                'label' => __('Margin', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form button.btn' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'mgpdeg_filter_btn_typography',
+                'selector' => '{{WRAPPER}} form.mgf-filter-form button.btn',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'mgpdeg_filter_btn_border',
+                'selector' => '{{WRAPPER}} form.mgf-filter-form button.btn',
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_filter_btn_bradius',
+            [
+                'label' => __('Border Radius', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form button.btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'mgpdeg_filter_btn_shadow',
+                'selector' => '{{WRAPPER}} form.mgf-filter-form button.btn',
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_filter_btn_color',
+            [
+                'label' => __('Button color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        $this->start_controls_tabs('mgpdeg_filter_btn_tabs');
+
+        $this->start_controls_tab(
+            'mgpdeg_filter_btn_nstyle',
+            [
+                'label' => __('Normal', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_filterbtn_color',
+            [
+                'label' => __('Text Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form button.btn' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_filter_btn_bgcolor',
+            [
+                'label' => __('Background Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form button.btn' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'mgpdeg_filter_btn_hnstyle',
+            [
+                'label' => __('Hover', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'mgpdeg_filter_hbtn_shadow',
+                'selector' => '{{WRAPPER}} form.mgf-filter-form button.btn:hover',
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_filter_hbtn_color',
+            [
+                'label' => __('Text Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form button.btn:hover, {{WRAPPER}} .mgpdel-cart-btn a.added_to_cart:focus' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_filter_hbtn_bgcolor',
+            [
+                'label' => __('Background Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form button.btn:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_filter_hbtn_bordercolor',
+            [
+                'label' => __('Border Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'condition' => [
+                    'mgpdel_btn_border_border!' => '',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} form.mgf-filter-form button.btn:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+
+        $this->end_controls_section();
+
+        // Products Stock Style
+        $this->start_controls_section(
             'mgpdeg_pstock_style',
             [
                 'label'     => sprintf('%s %s', esc_html__('Products Stock Style ', 'magical-products-display'), mpd_display_pro_only_text()),
@@ -2120,7 +2610,7 @@ class mgProducts_Grid extends \Elementor\Widget_Base
         $this->start_controls_section(
             'mgpd_attr_sec',
             [
-                'label' => __('Magical Attributes', 'plugin-name'),
+                'label' => __('Magical Attributes', 'magical-products-display'),
                 'tab' => \Elementor\Controls_Manager::TAB_ADVANCED,
             ]
         );
@@ -2147,14 +2637,14 @@ class mgProducts_Grid extends \Elementor\Widget_Base
         $this->start_controls_section(
             'mgpd_custom_css_sec',
             [
-                'label' => __('Magical Custom CSS', 'plugin-name'),
+                'label' => __('Magical Custom CSS', 'magical-products-display'),
                 'tab' => \Elementor\Controls_Manager::TAB_ADVANCED,
             ]
         );
         $this->add_control(
             'mgpd_custom_css',
             [
-                'label' => __('Custom CSS', 'plugin-domain'),
+                'label' => __('Custom CSS', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::CODE,
                 'language' => 'css',
                 'rows' => 20,
@@ -2275,6 +2765,9 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                 }
             }
         }
+        if ($settings['mgpdeg_filter_show'] == 'yes') {
+            $args = apply_filters('mgpdeg_before_products_filter_args', $args);
+        }
 
 
         $mgpdeg_cart_btn   = $this->get_settings('mgpdeg_cart_btn');
@@ -2329,14 +2822,19 @@ class mgProducts_Grid extends \Elementor\Widget_Base
         $mgp_unque_num = wp_rand('8652397', '5832471');
 ?>
 
-        <div <?php if ($settings['mgpd_attr_id']) : ?> id="<?php echo esc_attr($settings['mgpd_attr_id']); ?>" <?php endif; ?> class="mgp-unique<?php echo esc_attr($mgp_unque_num); ?> mgproductd-grid <?php echo esc_attr($settings['mgpd_attr_calss']); ?>">
+        <div <?php if ($settings['mgpd_attr_id']) : ?> id="<?php echo esc_attr($settings['mgpd_attr_id']); ?>" <?php endif; ?> class="mgp-unique<?php echo esc_attr($mgp_unque_num); ?> mgproductd-grid <?php echo esc_attr($settings['mgpd_attr_calss']); ?> filter-s1">
             <?php if ($settings['mgpd_custom_css']) : ?>
                 <style>
                     <?php echo esc_html($settings['mgpd_custom_css']); ?>
                 </style>
             <?php endif; ?>
             <?php
+            if ($settings['mgpdeg_filter_show'] == 'yes') {
+                do_action('mgproducts_pro_filter', $settings);
+            }
+
             if ($mgpdeg_products->have_posts()) :
+
             ?>
                 <div id="mgpdeg-items" class="mgproductd mgpde-items style<?php echo esc_attr($mgpdeg_product_style); ?>">
                     <div class="row">

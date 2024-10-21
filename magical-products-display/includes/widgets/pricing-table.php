@@ -1844,7 +1844,7 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
         $this->add_control(
             'mpdpr_button_color',
             [
-                'label' => __('Button color', 'plugin-name'),
+                'label' => __('Button color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'separator' => 'before',
             ]

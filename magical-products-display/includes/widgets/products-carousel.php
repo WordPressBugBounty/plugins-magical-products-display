@@ -2707,7 +2707,7 @@ class mgProducts_carousel extends \Elementor\Widget_Base
         $this->start_controls_section(
             'mgpdc_attr_sec',
             [
-                'label' => __('Magical Attributes', 'plugin-name'),
+                'label' => __('Magical Attributes', 'magical-products-display'),
                 'tab' => \Elementor\Controls_Manager::TAB_ADVANCED,
             ]
         );
@@ -2735,14 +2735,14 @@ class mgProducts_carousel extends \Elementor\Widget_Base
         $this->start_controls_section(
             'mgpdc_custom_css_sec',
             [
-                'label' => __('Magical Custom CSS', 'plugin-name'),
+                'label' => __('Magical Custom CSS', 'magical-products-display'),
                 'tab' => \Elementor\Controls_Manager::TAB_ADVANCED,
             ]
         );
         $this->add_control(
             'mgpdc_custom_css',
             [
-                'label' => __('Custom CSS', 'plugin-domain'),
+                'label' => __('Custom CSS', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::CODE,
                 'language' => 'css',
                 'rows' => 20,

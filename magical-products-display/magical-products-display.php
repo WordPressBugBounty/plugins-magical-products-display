@@ -8,7 +8,7 @@
  * Plugin Name:       Magical products Display
  * Plugin URI:        http://wpthemespace.com
  * Description:       Customizable Elementor Widgets for Beautiful WooCommerce Product Displays.
- * Version:           1.1.23
+ * Version:           1.1.24
  * Author:            Noor alam
  * Author URI:        http://wpthemespace.com
  * License:           GPL-2.0+
@@ -38,7 +38,7 @@ final class magicalProductsDisplay
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.1.23';
+	const VERSION = '1.1.24';
 
 	/**
 	 * Minimum Elementor Version
@@ -118,8 +118,7 @@ final class magicalProductsDisplay
 	 */
 	public function i18n()
 	{
-
-		load_plugin_textdomain('magical-products-display');
+		load_plugin_textdomain('magical-products-display', false, dirname(plugin_basename(__FILE__)) . '/languages');
 	}
 
 	public function define_constants()
@@ -157,11 +156,6 @@ final class magicalProductsDisplay
 			add_action('admin_notices', [$this, 'admin_notice_missing_woo_plugin']);
 			return;
 		}
-		// Check if Elementor installed and activated
-		if (!did_action('elementor/loaded')) {
-			add_action('admin_notices', [$this, 'admin_notice_missing_main_plugin']);
-			return;
-		}
 
 		// Check for required Elementor version
 		if (!version_compare(ELEMENTOR_VERSION, self::MINIMUM_ELEMENTOR_VERSION, '>=')) {
@@ -183,7 +177,8 @@ final class magicalProductsDisplay
 			update_option('mpd_install_date', current_time('mysql'));
 		}
 		//Check pro version
-		if ((in_array('magical-products-display-pro/magical-products-display-pro.php', apply_filters('active_plugins', get_option('active_plugins'))) && get_option('mgppro_has_valid_lic') == 'yes') || (get_option('space_has_pro') == 'yes')) {
+		$pro_plugin_slug = 'magical-products-display-pro/magical-products-display-pro.php';
+		if ((in_array($pro_plugin_slug, apply_filters('active_plugins', get_option('active_plugins'))) && get_option('mgppro_has_valid_lic') == 'yes') || (get_option('space_has_pro') == 'yes')) {
 			update_option('mgppro_is_active', 'yes');
 		} else {
 			update_option('mgppro_is_active', 'no');

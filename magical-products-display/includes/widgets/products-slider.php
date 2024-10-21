@@ -842,7 +842,7 @@ class mgProducts_slider extends \Elementor\Widget_Base
         $this->add_responsive_control(
             'my_slider',
             [
-                'label' => esc_html__('Product Image Opacity', 'textdomain'),
+                'label' => esc_html__('Product Image Opacity', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::SLIDER,
                 'size_units' => ['px'],
                 'range' => [
@@ -1050,7 +1050,7 @@ class mgProducts_slider extends \Elementor\Widget_Base
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'mgps_cat_shadow',
-                'label' => __('Title Text Shadow', 'plugin-domain'),
+                'label' => __('Title Text Shadow', 'magical-products-display'),
                 'selector' => '{{WRAPPER}} span.slide-cat a',
             ]
         );
@@ -1126,7 +1126,7 @@ class mgProducts_slider extends \Elementor\Widget_Base
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'mgps_title_shadow',
-                'label' => __('Title Text Shadow', 'plugin-domain'),
+                'label' => __('Title Text Shadow', 'magical-products-display'),
                 'selector' => '{{WRAPPER}} .mgpds-content .mgps-title',
             ]
         );
@@ -1174,7 +1174,7 @@ class mgProducts_slider extends \Elementor\Widget_Base
             Group_Control_Text_Shadow::get_type(),
             [
                 'name' => 'mgps_subtitle_shadow',
-                'label' => __('Title Text Shadow', 'plugin-domain'),
+                'label' => __('Title Text Shadow', 'magical-products-display'),
                 'selector' => '{{WRAPPER}} .mgpds-content .mgps-subtitle',
             ]
         );
@@ -1916,7 +1916,5 @@ class mgProducts_slider extends \Elementor\Widget_Base
 
     }
 
-    public function content_template()
-    {
-    }
+    public function content_template() {}
 }

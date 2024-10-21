@@ -4,6 +4,7 @@ Donate link: https://wpthemespace.com/donation/
 Tags: elementor, WooCommerce Builder, products carousel, products tab, products slider
 Requires at least: 4.0
 Tested up to: 6.6
+Stable Tag : trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -121,6 +122,10 @@ No, you cannot use Magical Products Display – Elementor Products Widgets For W
 
 
 == Changelog ==
+
+= 1.1.24 =
+* Grid filter added
+* added new options
 
 = 1.1.23 =
 * PHP error fixed 

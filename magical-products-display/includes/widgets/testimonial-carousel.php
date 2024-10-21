@@ -47,7 +47,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 	 */
 	public function get_title()
 	{
-		return __('MPD Testimonial Carousel', 'elementor');
+		return __('MPD Testimonial Carousel', 'magical-products-display');
 	}
 
 	/**
@@ -142,7 +142,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->start_controls_section(
 			'section_testimonial',
 			[
-				'label' => __('Testimonial items', 'elementor'),
+				'label' => __('Testimonial items', 'magical-products-display'),
 			]
 		);
 
@@ -151,19 +151,19 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$repeater->add_control(
 			'testimonial_content',
 			[
-				'label' => __('Content', 'elementor'),
+				'label' => __('Content', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'dynamic' => [
 					'active' => true,
 				],
 				'rows' => '10',
-				'default' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'elementor'),
+				'default' => __('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'magical-products-display'),
 			]
 		);
 		$repeater->add_control(
 			'testimonial_name',
 			[
-				'label' => __('Name', 'elementor'),
+				'label' => __('Name', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'dynamic' => [
 					'active' => true,
@@ -174,7 +174,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$repeater->add_control(
 			'testimonial_job',
 			[
-				'label' => __('Title', 'elementor'),
+				'label' => __('Title', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'dynamic' => [
 					'active' => true,
@@ -186,12 +186,12 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$repeater->add_control(
 			'link',
 			[
-				'label' => __('Link', 'elementor'),
+				'label' => __('Link', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::URL,
 				'dynamic' => [
 					'active' => true,
 				],
-				'placeholder' => __('https://your-link.com', 'elementor'),
+				'placeholder' => __('https://your-link.com', 'magical-products-display'),
 			]
 		);
 		$repeater->add_control(
@@ -249,12 +249,12 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->add_control(
 			'testimonial_image_position',
 			[
-				'label' => __('Image Position', 'elementor'),
+				'label' => __('Image Position', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'default' => 'aside',
 				'options' => [
-					'aside' => __('Aside', 'elementor'),
-					'top' => __('Top', 'elementor'),
+					'aside' => __('Aside', 'magical-products-display'),
+					'top' => __('Top', 'magical-products-display'),
 				],
 				'style_transfer' => true,
 			]
@@ -263,20 +263,20 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->add_control(
 			'testimonial_alignment',
 			[
-				'label' => __('Alignment', 'elementor'),
+				'label' => __('Alignment', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::CHOOSE,
 				'default' => 'center',
 				'options' => [
 					'left'    => [
-						'title' => __('Left', 'elementor'),
+						'title' => __('Left', 'magical-products-display'),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __('Center', 'elementor'),
+						'title' => __('Center', 'magical-products-display'),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __('Right', 'elementor'),
+						'title' => __('Right', 'magical-products-display'),
 						'icon' => 'eicon-text-align-right',
 					],
 				],
@@ -287,7 +287,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->add_control(
 			'view',
 			[
-				'label' => __('View', 'elementor'),
+				'label' => __('View', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::HIDDEN,
 				'default' => 'traditional',
 			]
@@ -550,7 +550,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->start_controls_section(
 			'section_style_testimonial_content',
 			[
-				'label' => __('Content', 'elementor'),
+				'label' => __('Content', 'magical-products-display'),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -558,7 +558,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->add_control(
 			'content_content_color',
 			[
-				'label' => __('Text Color', 'elementor'),
+				'label' => __('Text Color', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'global' => [
 					'default' => Global_Colors::COLOR_TEXT,
@@ -592,7 +592,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->start_controls_section(
 			'section_style_testimonial_image',
 			[
-				'label' => __('Image', 'elementor'),
+				'label' => __('Image', 'magical-products-display'),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 				'condition' => [
 					'testimonial_image[url]!' => '',
@@ -603,7 +603,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->add_control(
 			'image_size',
 			[
-				'label' => __('Image Size', 'elementor'),
+				'label' => __('Image Size', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => ['px'],
 				'range' => [
@@ -630,7 +630,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->add_control(
 			'image_border_radius',
 			[
-				'label' => __('Border Radius', 'elementor'),
+				'label' => __('Border Radius', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors' => [
@@ -645,7 +645,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->start_controls_section(
 			'section_style_testimonial_name',
 			[
-				'label' => __('Name', 'elementor'),
+				'label' => __('Name', 'magical-products-display'),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -653,7 +653,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->add_control(
 			'name_text_color',
 			[
-				'label' => __('Text Color', 'elementor'),
+				'label' => __('Text Color', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'global' => [
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -687,7 +687,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->start_controls_section(
 			'section_style_testimonial_job',
 			[
-				'label' => __('Title', 'elementor'),
+				'label' => __('Title', 'magical-products-display'),
 				'tab' => \Elementor\Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -695,7 +695,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 		$this->add_control(
 			'job_text_color',
 			[
-				'label' => __('Text Color', 'elementor'),
+				'label' => __('Text Color', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'global' => [
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -1203,7 +1203,7 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 												if (!empty($slide['link']['url'])) :
 													$image_html = '<a ' . $this->get_render_attribute_string('link') . '>' . $image_html . '</a>';
 												endif;
-												echo $image_html;
+												echo wp_kses_post($image_html);
 												?>
 											</div>
 										<?php endif; ?>
@@ -1288,7 +1288,5 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 	 * @since 2.9.0
 	 * @access protected
 	 */
-	protected function content_template()
-	{
-	}
+	protected function content_template() {}
 }

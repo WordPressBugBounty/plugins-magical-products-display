@@ -24,7 +24,7 @@ trait mpdProHelpLink
             [
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
                 'raw' => mpd_goprolink([
-                    'title' => esc_html__('Get All Pro Features', 'elementor'),
+                    'title' => esc_html__('Get All Pro Features', 'magical-products-display'),
                     'massage' => esc_html__('Unlock all pro featurs and widgets. Upgrade pro to fully recharge your WoooCommerce shop.', 'magical-products-display'),
                     'link' => 'https://wpthemespace.com/product/magical-products-display-pro/?add-to-cart=9177',
                 ]),

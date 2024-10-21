@@ -182,7 +182,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
             $this->add_control(
                 'bsktab_cats',
                 [
-                    'label' => esc_html__('Product Categories', 'textdomain'),
+                    'label' => esc_html__('Product Categories', 'magical-products-display'),
                     'type' => \Elementor\Controls_Manager::HIDDEN,
                 ]
             );
@@ -2435,7 +2435,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         $this->start_controls_section(
             'mgpd_attr_sec',
             [
-                'label' => __('Magical Attributes', 'plugin-name'),
+                'label' => __('Magical Attributes', 'magical-products-display'),
                 'tab' => \Elementor\Controls_Manager::TAB_ADVANCED,
             ]
         );
@@ -2463,14 +2463,14 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         $this->start_controls_section(
             'mgpd_custom_css_sec',
             [
-                'label' => __('Magical Custom CSS', 'plugin-name'),
+                'label' => __('Magical Custom CSS', 'magical-products-display'),
                 'tab' => \Elementor\Controls_Manager::TAB_ADVANCED,
             ]
         );
         $this->add_control(
             'mgpd_custom_css',
             [
-                'label' => __('Custom CSS', 'plugin-domain'),
+                'label' => __('Custom CSS', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::CODE,
                 'language' => 'css',
                 'rows' => 20,
