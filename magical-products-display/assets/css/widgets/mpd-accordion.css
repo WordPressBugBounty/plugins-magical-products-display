@@ -92,7 +92,10 @@
   width: 15px;
   fill: #fff;
 }
-
+.excolor .mgc-icon svg {
+  color: #000;
+  fill: #000;
+}
 .mgrc-title.collapsed .mgc-close {
   opacity: 1;
 }

@@ -204,6 +204,7 @@ class mgProduct_Accordion extends \Elementor\Widget_Base
                 'default' => 'accoedion-primary',
                 'options' => [
                     'accoedion-primary' => esc_html__('Primary', 'magical-products-display'),
+                    'accoedion-minimal' => esc_html__('Minimal', 'magical-products-display'),
                     'curve-shape' => esc_html__('Curve Shape', 'magical-products-display'),
                     'side-curve' => esc_html__('Side Curve', 'magical-products-display'),
                     'box-icon' => esc_html__('Box Icon', 'magical-products-display'),
@@ -1294,7 +1295,7 @@ class mgProduct_Accordion extends \Elementor\Widget_Base
         <?php
         $mpdac_rand = wp_rand(253495, 56934658);
 
-        if ($settings['mpdac_usebg_color'] == 'yes') {
+        if ($settings['mpdac_usebg_color'] == 'yes' || $settings['mpdac_style'] == 'accoedion-minimal') {
             $mpdac_excolor = 'excolor';
         } else {
             $mpdac_excolor = 'eacolor';
