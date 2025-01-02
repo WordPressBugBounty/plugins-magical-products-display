@@ -804,8 +804,8 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
                     'mpdpr_usebtn_icon' => 'yes',
                 ],
                 'selectors' => [
-                    '{{WRAPPER}} .mg-pricing .tbptitw-main .mpd-btn.mpdprice-btn .left i' => 'margin-right: {{SIZE}}{{UNIT}};',
-                    '{{WRAPPER}} .mg-pricing .tbptitw-main .mpd-btn.mpdprice-btn .right i' => 'margin-left: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .mpd-pricing .tbptitw-main .mpd-btn.mpdprice-btn .left i' => 'margin-right: {{SIZE}}{{UNIT}};',
+                    '{{WRAPPER}} .mpd-pricing .tbptitw-main .mpd-btn.mpdprice-btn .right i' => 'margin-left: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );

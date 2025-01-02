@@ -1,7 +1,7 @@
 === Magical Products Display – Elementor Products Widgets For WooCommerce  ===
 Contributors: nalam
 Donate link: https://wpthemespace.com/donation/
-Tags: elementor, WooCommerce Builder, products carousel, products tab, products slider
+Tags: elementor, WooCommerce Builder, products carousel, pricing table, products slider
 Requires at least: 4.0
 Tested up to: 6.7
 Stable Tag : trunk
@@ -122,6 +122,9 @@ No, you cannot use Magical Products Display – Elementor Products Widgets For W
 
 
 == Changelog ==
+
+= 1.1.26 =
+* Pricing table style issue fixed
 
 = 1.1.25 =
 * New style added for products accordion

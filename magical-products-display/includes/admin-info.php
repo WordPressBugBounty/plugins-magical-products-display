@@ -56,14 +56,14 @@ function mpd_display_pro_want()
 //Admin notice 
 function mpd_display_pinfo_optins_texts()
 {
-    $hide_date = get_option('mpd_addon_infotext');
+    $hide_date = get_option('mpd_addon_info1_text');
     $mpd_install_date = get_option('mpd_install_date');
 
 
     $mpd_install_date = get_option('mpd_install_date');
     if (!empty($mpd_install_date)) {
         $mpd_install_date = round((time() - strtotime($mpd_install_date)) / 24 / 60 / 60);
-        if ($mpd_install_date < 3) {
+        if ($mpd_install_date < 5) {
             return;
         }
     }
@@ -96,7 +96,7 @@ function mpd_display_proinfo_texts_init()
         // Verify the nonce and ensure user has permission
         if (wp_verify_nonce($nonce, 'mpd_dismiss_addoninfo_nonce') && current_user_can('manage_options')) {
             // Update the option if the nonce is valid
-            update_option('mpd_addon_infotext', current_time('mysql'));
+            update_option('mpd_addon_info1_text', current_time('mysql'));
         }
     }
 }
