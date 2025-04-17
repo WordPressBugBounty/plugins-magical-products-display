@@ -101,3 +101,4 @@ function mpd_display_proinfo_texts_init()
     }
 }
 add_action('init', 'mpd_display_proinfo_texts_init');
+

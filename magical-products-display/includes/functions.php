@@ -330,6 +330,7 @@ if (!function_exists('mpd_goprolink')) :
     }
 endif;
 
+
 function mpd_get_price_range()
 {
     // Try to get cached min and max prices

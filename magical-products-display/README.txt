@@ -3,7 +3,7 @@ Contributors: nalam
 Donate link: https://wpthemespace.com/donation/
 Tags: elementor, WooCommerce Builder, products carousel, pricing table, products slider
 Requires at least: 4.0
-Tested up to: 6.7
+Tested up to: 6.8
 Stable Tag : trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -122,6 +122,9 @@ No, you cannot use Magical Products Display – Elementor Products Widgets For W
 
 
 == Changelog ==
+
+= 1.1.27 =
+* Fixed Wordpress 6.8 version
 
 = 1.1.26 =
 * Pricing table style issue fixed
