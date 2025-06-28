@@ -1,5 +1,7 @@
 <?php
-
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
 /**
  *  Magical portducts display plugin style and scripts
  * 
@@ -58,6 +60,13 @@ class mpdAssetsManagement
     {
         wp_register_style('admin-info-style', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/admin-info.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
         wp_enqueue_script('mgpd-admin-js', MAGICAL_PRODUCTS_DISPLAY_ASSETS . '/js/admin.js',   array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
+        
+        // Localize script for AJAX
+        wp_localize_script('mgpd-admin-js', 'mpd_admin_ajax', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('mpd_admin_nonce'),
+            'updates_nonce' => wp_create_nonce('updates')
+        ));
     }
 
     public static function editor_widget_styles()

@@ -340,10 +340,19 @@ function mpd_get_price_range()
     if ($cached_price_range === false) {
         global $wpdb;
 
-        // Query to get the minimum and maximum prices
-        $min_price = $wpdb->get_var("SELECT MIN( CAST(meta_value AS DECIMAL) ) FROM {$wpdb->postmeta} WHERE meta_key = '_price'");
-        $max_price = $wpdb->get_var("SELECT MAX( CAST(meta_value AS DECIMAL) ) FROM {$wpdb->postmeta} WHERE meta_key = '_price'");
-
+       
+         $min_price = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT MIN( CAST(meta_value AS DECIMAL) ) FROM {$wpdb->postmeta} WHERE meta_key = %s",
+                '_price'
+            )
+        );
+        $max_price = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT MAX( CAST(meta_value AS DECIMAL) ) FROM {$wpdb->postmeta} WHERE meta_key = %s",
+                '_price'
+            )
+        );
         // Fallback if no price is found
         if (!$min_price) {
             $min_price = 0;

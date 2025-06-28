@@ -123,6 +123,11 @@ No, you cannot use Magical Products Display – Elementor Products Widgets For W
 
 == Changelog ==
 
+= 1.1.28 =
+* Enhanced Elementor editor UX: Category panel now collapses by default
+* PHP code error fixed
+* Added new css style
+
 = 1.1.27 =
 * Fixed Wordpress 6.8 version
 

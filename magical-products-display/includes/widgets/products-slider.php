@@ -1875,7 +1875,6 @@ class mgProducts_slider extends \Elementor\Widget_Base
                             </div>
                     <?php
                         endwhile;
-                        wp_reset_query();
                         wp_reset_postdata();
                     endforeach;
                     ?>

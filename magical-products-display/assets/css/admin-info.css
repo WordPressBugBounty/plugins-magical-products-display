@@ -1,4 +1,3 @@
-
 .mgadin-hero {
     padding: 20px 10px;
     display: flex;
@@ -79,3 +78,248 @@
     margin-right: 10px;
     font-size: 15px !important;
 }
+
+/* Plugin Suggestion Notice Styles */
+.mpd-plugin-suggestion {
+    border: none !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 16px 0;
+    position: relative;
+    overflow: hidden;
+    animation: slideInFade 0.5s ease-out;
+}
+
+.mpd-plugin-suggestion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #007cba, #0073aa, #005177);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes slideInFade {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.mpd-notice-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.mpd-notice-icon {
+    flex: 0 0 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #007cba, #0073aa);
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0, 124, 186, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.mpd-notice-text {
+    flex: 1;
+    padding-top: 2px;
+}
+
+.mpd-notice-text h3 {
+    margin: 0 0 12px 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #1d2327;
+    background: linear-gradient(135deg, #007cba, #005177);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.mpd-notice-text p {
+    margin: 0 0 20px 0;
+    line-height: 1.6;
+    color: #50575e;
+    font-size: 14px;
+}
+
+.mpd-notice-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Enhanced Button Styles */
+.mpd-notice-actions .button {
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Install/Activate Button Styles */
+.mpd-install-plugin, .mpd-activate-plugin {
+    background: linear-gradient(135deg, #007cba 0%, #005177 100%) !important;
+    color: white !important;
+    border: 2px solid transparent !important;
+    box-shadow: 0 3px 12px rgba(0, 124, 186, 0.3);
+    position: relative;
+}
+
+.mpd-install-plugin::before, .mpd-activate-plugin::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.mpd-install-plugin:hover, .mpd-activate-plugin:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 124, 186, 0.4);
+}
+
+.mpd-install-plugin:hover::before, .mpd-activate-plugin:hover::before {
+    left: 100%;
+}
+
+.mpd-install-plugin:active, .mpd-activate-plugin:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 124, 186, 0.3);
+}
+
+/* Disabled state for buttons */
+.mpd-install-plugin:disabled, .mpd-activate-plugin:disabled {
+    background: linear-gradient(135deg, #8c8f94 0%, #72777c 100%) !important;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 2px 6px rgba(140, 143, 148, 0.2);
+}
+
+.mpd-install-plugin:disabled:hover, .mpd-activate-plugin:disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 6px rgba(140, 143, 148, 0.2);
+}
+
+/* Success state */
+.button-secondary.mpd-install-plugin, .button-secondary.mpd-activate-plugin {
+    background: linear-gradient(135deg, #00a32a 0%, #007d1f 100%) !important;
+    color: white !important;
+    box-shadow: 0 3px 12px rgba(0, 163, 42, 0.3);
+}
+
+/* Dismiss Button */
+.mpd-dismiss-suggestion {
+    background: #f6f7f7 !important;
+    color: #50575e !important;
+    border: 2px solid #dcdcde !important;
+}
+
+.mpd-dismiss-suggestion:hover {
+    background: #f0f0f1 !important;
+    color: #1d2327 !important;
+    border-color: #8c8f94 !important;
+    transform: translateY(-1px);
+}
+
+/* Loading animation for buttons */
+.mpd-install-plugin.loading, .mpd-activate-plugin.loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.mpd-install-plugin.loading::after, .mpd-activate-plugin.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Notice dismiss animation */
+.mpd-plugin-suggestion.dismissing {
+    animation: slideOutFade 0.3s ease-in forwards;
+}
+
+@keyframes slideOutFade {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.98);
+    }
+}
+
+@media (max-width: 768px) {
+    .mpd-notice-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .mpd-notice-icon {
+        align-self: center;
+    }
+    
+    .mpd-notice-actions {
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .mpd-notice-actions .button {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+

@@ -1,5 +1,7 @@
 <?php
-
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
 
 class mgProducts_AwesomeList extends \Elementor\Widget_Base
 {
@@ -1860,7 +1862,6 @@ class mgProducts_AwesomeList extends \Elementor\Widget_Base
 
                         <?php
                         endwhile;
-                        wp_reset_query();
                         wp_reset_postdata();
                         ?>
                     </div><!-- //row end -->

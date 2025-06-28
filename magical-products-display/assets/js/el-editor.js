@@ -2,6 +2,7 @@
 (function ($) {
     "use strict";
 
+
 			parent.document.addEventListener("mousedown", function(e) {
 				var widgets = parent.document.querySelectorAll("#elementor-panel-category-mpd-productwoo .elementor-element--promotion");
 
@@ -41,6 +42,6 @@
 					}
 				}
 			});
-	
+
 
 }(jQuery));

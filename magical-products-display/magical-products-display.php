@@ -8,7 +8,7 @@
  * Plugin Name:       Magical products Display
  * Plugin URI:        http://wpthemespace.com
  * Description:       Customizable Elementor Widgets for Beautiful WooCommerce Product Displays.
- * Version:           1.1.27
+ * Version:           1.1.28
  * Author:            Noor alam
  * Author URI:        http://wpthemespace.com
  * License:           GPL-2.0+
@@ -38,7 +38,7 @@ final class magicalProductsDisplay
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.1.27';
+	const VERSION = '1.1.28';
 
 	/**
 	 * Minimum Elementor Version
@@ -174,7 +174,7 @@ final class magicalProductsDisplay
 		}
 		$mpd_install_date = get_option('mpd_install_date');
 		if (empty($mpd_install_date)) {
-			update_option('mpd_install_date', current_time('mysql'));
+			update_option('mpd_install_date', gmdate('Y-m-d H:i:s'));
 		}
 		//Check pro version
 		$pro_plugin_slug = 'magical-products-display-pro/magical-products-display-pro.php';
@@ -191,7 +191,6 @@ final class magicalProductsDisplay
 
 		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/helplink.php');
 
-
 		if (get_option('mgppro_is_active') != 'yes') {
 			// Load admin info
 			require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/admin-info.php');
@@ -204,49 +203,24 @@ final class magicalProductsDisplay
 		add_action('elementor/widgets/register', [$this, 'init_widgets']);
 		add_action('elementor/elements/categories_registered', [$this, 'register_new_category']);
 	}
-	/*
-		public function register_new_category($manager){
-		$manager->add_category('mgproductwoo',[
-			'title' => esc_html__('Magical Products Display','magical-products-display'),
-			'icon' => 'eicon-products',
-		]);
+	
 
-		
-	}
-	*/
+	public function register_new_category( $categories_manager ) {
 
-	public function register_new_category(\Elementor\Elements_Manager $elements_manager)
-	{
 		if (get_option('mgppro_is_active', 'no') == 'yes') {
-			$title_text = esc_html__('Magical Products Display Pro', 'magical-products-display');
-		} else {
-			$title_text = esc_html__('Magical Products Display', 'magical-products-display');
-		}
-
-		//add our categories
-		$category_prefix = 'mpd-';
-
-		$elements_manager->add_category(
-			$category_prefix . 'productwoo',
+				$title_text = esc_html__('Magical Products Display Pro', 'magical-products-display');
+			} else {
+				$title_text = esc_html__('Magical Products Display', 'magical-products-display');
+			}
+		$categories_manager->add_category(
+			'mpd-productwoo',
 			[
 				'title' => $title_text,
 				'icon' => 'eicon-products',
+				'order' => 20,
 			]
 		);
-		$reorder_cats = function () use ($category_prefix) {
-			uksort($this->categories, function ($keyOne, $keyTwo) use ($category_prefix) {
-				if (substr($keyOne, 0, 4) == $category_prefix) {
-					return -1;
-				}
-				if (substr($keyTwo, 0, 4) == $category_prefix) {
-					return 1;
-				}
-				return 0;
-			});
-		};
-		$reorder_cats->call($elements_manager);
 	}
-
 
 
 	/**

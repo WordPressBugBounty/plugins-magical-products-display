@@ -1,5 +1,7 @@
 <?php
-
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
 
 class mgProducts_Grid extends \Elementor\Widget_Base
 {
@@ -2892,7 +2894,6 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                             </div>
                         <?php
                         endwhile;
-                        wp_reset_query();
                         wp_reset_postdata();
                         ?>
                     </div>

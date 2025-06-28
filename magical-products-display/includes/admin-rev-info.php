@@ -82,11 +82,22 @@ add_action('admin_notices', 'mpd_display_new_optins_texts');
 
 function mpd_display_new_optins_texts_init()
 {
-    if (isset($_GET['dismissed']) && $_GET['dismissed'] == 1) {
-        update_option('mpd_revhide_date', current_time('mysql'));
+    // Properly sanitize $_GET parameters and verify user permissions
+    $dismissed = isset($_GET['dismissed']) ? sanitize_text_field(wp_unslash($_GET['dismissed'])) : '';
+    $revadded = isset($_GET['revadded']) ? sanitize_text_field(wp_unslash($_GET['revadded'])) : '';
+    $nonce = isset($_GET['_wpnonce']) ? sanitize_text_field(wp_unslash($_GET['_wpnonce'])) : '';
+    
+    if ($dismissed === '1' && current_user_can('manage_options')) {
+        // Verify nonce for security
+        if (wp_verify_nonce($nonce, 'mpd_dismiss_rev_nonce')) {
+            update_option('mpd_revhide_date', gmdate('Y-m-d H:i:s'));
+        }
     }
-    if (isset($_GET['revadded']) && $_GET['revadded'] == 1) {
-        update_option('mpd_rev_added', 1);
+    if ($revadded === '1' && current_user_can('manage_options')) {
+        // Verify nonce for security  
+        if (wp_verify_nonce($nonce, 'mpd_rev_added_nonce')) {
+            update_option('mpd_rev_added', 1);
+        }
     }
 }
 add_action('init', 'mpd_display_new_optins_texts_init');

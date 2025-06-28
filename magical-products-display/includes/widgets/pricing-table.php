@@ -1,5 +1,7 @@
 <?php
-
+if (!defined('ABSPATH')) {
+	exit; // Exit if accessed directly.
+}
 
 class mgProduct_Pricing_Table extends \Elementor\Widget_Base
 {
