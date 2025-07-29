@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Magical products Display\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-15 12:29+0000\n"
+"POT-Creation-Date: 2025-07-29 06:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -13,617 +13,641 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.4; wp-6.2.2\n"
+"X-Loco-Version: 2.8.0; wp-6.8.2; php-8.3.16\n"
 "X-Domain: magical-products-display"
 
-#: includes/widgets/accordion-widget.php:816
+#: includes/widgets/accordion-widget.php:829
 msgid " Slide Open icon"
 msgstr ""
 
 #. 1: Plugin name 2: Elementor 3: Required Elementor version
 #. 1: Plugin name 2: PHP 3: Required PHP version
-#: magical-products-display.php:356 magical-products-display.php:381
+#: magical-products-display.php:329 magical-products-display.php:354
 #, php-format
 msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
 msgstr ""
 
-#: includes/widgets/pricing-table.php:433
+#: includes/widgets/pricing-table.php:435
 msgid "$"
 msgstr ""
 
 #. 1: Plugin name 2: Elementor 3: Elementor installation link
-#: magical-products-display.php:276 magical-products-display.php:287
-#: magical-products-display.php:316 magical-products-display.php:327
+#: magical-products-display.php:248 magical-products-display.php:259
+#: magical-products-display.php:288 magical-products-display.php:299
 #, php-format
 msgid "%1$s requires %2$s plugin, which is currently NOT RUNNING  %3$s"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:470
+#: includes/widgets/pricing-table.php:472
 msgid "/Month"
 msgstr ""
 
-#: includes/widgets/products-grid.php:304
-#: includes/widgets/products-grid.php:319
-#: includes/widgets/products-grid.php:332
-msgid "1"
-msgstr ""
-
-#: includes/widgets/porducts-cat.php:186
-#: includes/widgets/products-awesome-list.php:264
+#: includes/widgets/porducts-cat.php:190
+#: includes/widgets/products-awesome-list.php:266
 msgid "1 Column"
 msgstr ""
 
-#: includes/widgets/products-grid.php:305
-#: includes/widgets/products-grid.php:320
-#: includes/widgets/products-grid.php:333
-msgid "2"
-msgstr ""
-
-#: includes/widgets/porducts-cat.php:187
+#: includes/widgets/porducts-cat.php:191
 msgid "2 Column"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:265
+#: includes/widgets/products-awesome-list.php:267
 msgid "2 Columns"
 msgstr ""
 
-#: includes/widgets/products-grid.php:306
-#: includes/widgets/products-grid.php:321
-#: includes/widgets/products-grid.php:334
-msgid "3"
-msgstr ""
-
-#: includes/widgets/porducts-cat.php:188
+#: includes/widgets/porducts-cat.php:192
 msgid "3 Column"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:266
+#: includes/widgets/products-awesome-list.php:268
 msgid "3 Columns"
 msgstr ""
 
-#: includes/widgets/products-grid.php:307
-msgid "4"
-msgstr ""
-
-#: includes/widgets/porducts-cat.php:189
+#: includes/widgets/porducts-cat.php:193
 msgid "4 Column"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:267
+#: includes/widgets/products-awesome-list.php:269
 msgid "4 Columns"
 msgstr ""
 
-#: includes/widgets/products-grid.php:308
-msgid "6"
-msgstr ""
-
-#: includes/widgets/porducts-cat.php:190
+#: includes/widgets/porducts-cat.php:194
 msgid "6 Column"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:461
+#: includes/widgets/pricing-table.php:463
 msgid "9.99"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:131
+#: includes/widgets/accordion-widget.php:135
 msgid "Accordion products"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:453
+#: includes/widgets/accordion-widget.php:458
 msgid "Accordion Style"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:492
+#: includes/widgets/accordion-widget.php:504
 msgid "Accordion Title Style"
 msgstr ""
 
-#: magical-products-display.php:279
+#: magical-products-display.php:251
 msgid "Activate Elementor"
 msgstr ""
 
-#: magical-products-display.php:319
+#: includes/admin-info.php:153
+msgid "Activate Plugin"
+msgstr ""
+
+#: magical-products-display.php:291
 msgid "Activate WooCommerce"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1535
+#: includes/widgets/products-slider.php:1711
+#: includes/widgets/testimonial-carousel.php:890
 msgid "Active"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1040
-#: includes/widgets/pricing-table.php:1220
+#: includes/widgets/pricing-table.php:1043
+#: includes/widgets/pricing-table.php:1224
 msgid "Active Absolute position"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:363
+#: includes/widgets/accordion-widget.php:368
 msgid "Active Icon"
 msgstr ""
 
-#: includes/widgets/products-grid.php:434
-#: includes/widgets/products-list.php:348
+#: includes/widgets/products-list.php:350
 msgid "Active Image Flip "
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:147
-#: includes/widgets/products-grid.php:172
-#: includes/widgets/products-list.php:150
+#: includes/widgets/products-awesome-list.php:149
+#: includes/widgets/products-list.php:152
 msgid "Add ID Manually"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:595
-#: includes/widgets/products-grid.php:825
-#: includes/widgets/products-list.php:764
+#: includes/widgets/products-awesome-list.php:597
+#: includes/widgets/products-list.php:766
 msgid "Add to card button"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:635
+msgid "Add your custom CSS code here."
 msgstr ""
 
 #: includes/pro-widgets.php:70
 msgid "Advance Countdown"
 msgstr ""
 
-#: includes/widgets/products-grid.php:685
-#: includes/widgets/products-list.php:624
+#: includes/widgets/products-list.php:626
 msgid "Advance Icons Position"
 msgstr ""
 
-#: includes/widgets/products-grid.php:662
-#: includes/widgets/products-list.php:601
+#: includes/widgets/products-list.php:603
 msgid "Advance Icons Section only work with pro version."
 msgstr ""
 
-#: includes/widgets/products-grid.php:675
-#: includes/widgets/products-list.php:614
+#: includes/widgets/products-list.php:616
 msgid "Advance Icons Show"
 msgstr ""
 
-#: includes/widgets/products-grid.php:1619
-#: includes/widgets/products-list.php:1533
+#: includes/widgets/products-list.php:1548
 msgid "Advance icons Style"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:359
+#: includes/widgets/ajax-search/ajax-search-widget.php:623
+msgid "Advanced"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:208
+msgid ""
+"Advanced filters, custom layouts, and more search options are available in "
+"the Pro version."
+msgstr ""
+
+#: includes/widgets/porducts-cat.php:363
 msgid "After Number Text "
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:521
-#: includes/widgets/products-grid.php:607
-#: includes/widgets/products-list.php:546
+#: includes/widgets/products-awesome-list.php:523
+#: includes/widgets/products-list.php:548
 msgid "After Text "
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:270
-#: includes/widgets/porducts-cat.php:302 includes/widgets/pricing-table.php:333
-#: includes/widgets/pricing-table.php:397
-#: includes/widgets/products-awesome-list.php:432
-#: includes/widgets/products-grid.php:543
-#: includes/widgets/products-list.php:456
-#: includes/widgets/products-slider.php:1416
+#: includes/widgets/accordion-widget.php:275
+#: includes/widgets/porducts-cat.php:306 includes/widgets/pricing-table.php:335
+#: includes/widgets/pricing-table.php:399
+#: includes/widgets/products-awesome-list.php:434
+#: includes/widgets/products-list.php:458
+#: includes/widgets/products-slider.php:277
+#: includes/widgets/products-slider.php:1592
+#: includes/widgets/testimonial-carousel.php:266
+#: includes/widgets/testimonial-carousel.php:773
 msgid "Alignment"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:832
+msgid "All Categories"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:939
+msgid "All Stock Status"
 msgstr ""
 
 #: includes/admin-rev-info.php:37
 msgid "Already Did"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:216
+#: includes/widgets/accordion-widget.php:221
 msgid "Animation Effect"
 msgstr ""
 
-#: includes/widgets/products-slider.php:537
+#: includes/widgets/products-slider.php:556
+#: includes/widgets/products-slider.php:563
+#: includes/widgets/products-slider.php:582
+#: includes/widgets/products-slider.php:592
+msgid "Animation Four"
+msgstr ""
+
+#: includes/widgets/products-slider.php:553
+#: includes/widgets/products-slider.php:560
+#: includes/widgets/products-slider.php:576
+#: includes/widgets/products-slider.php:586
+msgid "Animation One"
+msgstr ""
+
+#: includes/widgets/products-slider.php:609
 msgid "Animation Speed"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:241
-#: includes/widgets/products-grid.php:268
-#: includes/widgets/products-list.php:246
+#: includes/widgets/products-slider.php:555
+#: includes/widgets/products-slider.php:562
+#: includes/widgets/products-slider.php:580
+#: includes/widgets/products-slider.php:590
+msgid "Animation Three"
+msgstr ""
+
+#: includes/widgets/products-slider.php:554
+#: includes/widgets/products-slider.php:561
+#: includes/widgets/products-slider.php:578
+#: includes/widgets/products-slider.php:588
+msgid "Animation Two"
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:243
+#: includes/widgets/products-list.php:248
 msgid "Ascending"
 msgstr ""
 
-#: includes/widgets/products-slider.php:563
-#: includes/widgets/testimonial-carousel.php:395
+#: includes/widgets/testimonial-carousel.php:256
+msgid "Aside"
+msgstr ""
+
+#: includes/widgets/products-slider.php:680
+#: includes/widgets/testimonial-carousel.php:388
 msgid "Autoplay Delay"
 msgstr ""
 
-#: includes/widgets/products-slider.php:569
-#: includes/widgets/testimonial-carousel.php:401
+#: includes/widgets/products-slider.php:686
+#: includes/widgets/testimonial-carousel.php:394
 msgid "Autoplay Delay in milliseconds"
 msgstr ""
 
-#: includes/widgets/products-slider.php:580
-#: includes/widgets/testimonial-carousel.php:412
+#: includes/widgets/products-slider.php:697
+#: includes/widgets/testimonial-carousel.php:405
 msgid "Autoplay Speed"
 msgstr ""
 
-#: includes/widgets/products-slider.php:586
-#: includes/widgets/testimonial-carousel.php:418
+#: includes/widgets/products-slider.php:703
+#: includes/widgets/testimonial-carousel.php:411
 msgid "Autoplay speed in milliseconds"
 msgstr ""
 
-#: includes/widgets/products-slider.php:551
-#: includes/widgets/testimonial-carousel.php:383
+#: includes/widgets/products-slider.php:668
+#: includes/widgets/testimonial-carousel.php:376
 msgid "Autoplay?"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:667
-#: includes/widgets/products-awesome-list.php:668
-#: includes/widgets/products-grid.php:896
-#: includes/widgets/products-grid.php:897
-#: includes/widgets/products-list.php:836
-#: includes/widgets/products-list.php:837
+#: includes/widgets/products-awesome-list.php:669
+#: includes/widgets/products-awesome-list.php:670
+#: includes/widgets/products-list.php:838
+#: includes/widgets/products-list.php:839
 msgid "Available"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:539
-#: includes/widgets/accordion-widget.php:596
-#: includes/widgets/accordion-widget.php:984
-#: includes/widgets/accordion-widget.php:1030
-#: includes/widgets/pricing-table.php:930
-#: includes/widgets/products-awesome-list.php:766
-#: includes/widgets/products-awesome-list.php:928
-#: includes/widgets/products-grid.php:995
-#: includes/widgets/products-grid.php:1156
-#: includes/widgets/products-list.php:935
-#: includes/widgets/products-list.php:1097
-#: includes/widgets/products-slider.php:800
+#: includes/widgets/ajax-search/ajax-search-widget.php:244
+msgid "Available Filters"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:551
+#: includes/widgets/accordion-widget.php:608
+#: includes/widgets/accordion-widget.php:990
+#: includes/widgets/accordion-widget.php:1036
+#: includes/widgets/pricing-table.php:932
+#: includes/widgets/products-awesome-list.php:768
+#: includes/widgets/products-awesome-list.php:930
+#: includes/widgets/products-list.php:937
+#: includes/widgets/products-list.php:1112
+#: includes/widgets/products-slider.php:206
+#: includes/widgets/products-slider.php:931
 msgid "Background"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:1210
-#: includes/widgets/accordion-widget.php:1249
-#: includes/widgets/porducts-cat.php:666 includes/widgets/porducts-cat.php:874
-#: includes/widgets/pricing-table.php:1111
-#: includes/widgets/pricing-table.php:1245
-#: includes/widgets/pricing-table.php:1334
-#: includes/widgets/pricing-table.php:1422
-#: includes/widgets/pricing-table.php:1547
-#: includes/widgets/pricing-table.php:1671
-#: includes/widgets/pricing-table.php:1742
-#: includes/widgets/pricing-table.php:1875
-#: includes/widgets/pricing-table.php:1907
-#: includes/widgets/products-awesome-list.php:986
-#: includes/widgets/products-awesome-list.php:1065
-#: includes/widgets/products-awesome-list.php:1144
-#: includes/widgets/products-awesome-list.php:1233
-#: includes/widgets/products-awesome-list.php:1378
-#: includes/widgets/products-awesome-list.php:1417
-#: includes/widgets/products-grid.php:1214
-#: includes/widgets/products-grid.php:1288
-#: includes/widgets/products-grid.php:1419
-#: includes/widgets/products-grid.php:1498
-#: includes/widgets/products-grid.php:1732
-#: includes/widgets/products-grid.php:1771
-#: includes/widgets/products-grid.php:1902
-#: includes/widgets/products-grid.php:1941
-#: includes/widgets/products-list.php:1155
-#: includes/widgets/products-list.php:1226
-#: includes/widgets/products-list.php:1305
-#: includes/widgets/products-list.php:1385
-#: includes/widgets/products-list.php:1474
-#: includes/widgets/products-list.php:1646
-#: includes/widgets/products-list.php:1685
-#: includes/widgets/products-list.php:1813
-#: includes/widgets/products-list.php:1852
-#: includes/widgets/products-slider.php:258
-#: includes/widgets/products-slider.php:1108
-#: includes/widgets/products-slider.php:1147
-#: includes/widgets/products-slider.php:1315
-#: includes/widgets/products-slider.php:1346
+#: includes/widgets/accordion-widget.php:1216
+#: includes/widgets/accordion-widget.php:1255
+#: includes/widgets/porducts-cat.php:670 includes/widgets/porducts-cat.php:878
+#: includes/widgets/pricing-table.php:1115
+#: includes/widgets/pricing-table.php:1249
+#: includes/widgets/pricing-table.php:1338
+#: includes/widgets/pricing-table.php:1426
+#: includes/widgets/pricing-table.php:1551
+#: includes/widgets/pricing-table.php:1675
+#: includes/widgets/pricing-table.php:1746
+#: includes/widgets/pricing-table.php:1879
+#: includes/widgets/pricing-table.php:1911
+#: includes/widgets/products-awesome-list.php:988
+#: includes/widgets/products-awesome-list.php:1067
+#: includes/widgets/products-awesome-list.php:1146
+#: includes/widgets/products-awesome-list.php:1235
+#: includes/widgets/products-awesome-list.php:1380
+#: includes/widgets/products-awesome-list.php:1419
+#: includes/widgets/products-list.php:1170
+#: includes/widgets/products-list.php:1241
+#: includes/widgets/products-list.php:1320
+#: includes/widgets/products-list.php:1400
+#: includes/widgets/products-list.php:1489
+#: includes/widgets/products-list.php:1661
+#: includes/widgets/products-list.php:1700
+#: includes/widgets/products-list.php:1828
+#: includes/widgets/products-list.php:1867
+#: includes/widgets/products-slider.php:214
+#: includes/widgets/products-slider.php:1282
+#: includes/widgets/products-slider.php:1321
+#: includes/widgets/products-slider.php:1490
+#: includes/widgets/products-slider.php:1522
+#: includes/widgets/testimonial-carousel.php:1065
+#: includes/widgets/testimonial-carousel.php:1096
+#: includes/widgets/ajax-search/ajax-search-widget.php:332
+#: includes/widgets/ajax-search/ajax-search-widget.php:537
 msgid "Background Color"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:374 includes/widgets/porducts-cat.php:395
-#: includes/widgets/porducts-cat.php:831
+#: includes/widgets/products-slider.php:215
+msgid "Background image and gradient support in the pro version"
+msgstr ""
+
+#: includes/widgets/porducts-cat.php:378 includes/widgets/porducts-cat.php:399
+#: includes/widgets/porducts-cat.php:835
 msgid "Badge"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:404
+#: includes/widgets/porducts-cat.php:408
 msgid "Badge Position"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:919
+#: includes/widgets/porducts-cat.php:923
 msgid "Badge Rotate"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:391 includes/widgets/porducts-cat.php:394
+#: includes/widgets/porducts-cat.php:395 includes/widgets/porducts-cat.php:398
 msgid "Badge Text"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:899
+#: includes/widgets/ajax-search/ajax-search-widget.php:483
+msgid "Bars"
+msgstr ""
+
+#: includes/widgets/pricing-table.php:901
 msgid "Base Style"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:450
+#: includes/widgets/porducts-cat.php:454
 msgid "Basic Style"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:575
+#: includes/widgets/pricing-table.php:577
 msgid "Best pricing plan for you. It' editable text you can edit it."
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:141
-#: includes/widgets/products-grid.php:166
-#: includes/widgets/products-list.php:144
+#: includes/widgets/products-awesome-list.php:143
+#: includes/widgets/products-list.php:146
 msgid "Best Selling Products"
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:346
+#: includes/widgets/testimonial-carousel.php:339
 msgid "Between Margin"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:256
-#: includes/widgets/products-awesome-list.php:343
-#: includes/widgets/products-grid.php:418
-#: includes/widgets/products-list.php:333
+#: includes/widgets/accordion-widget.php:261
+#: includes/widgets/products-awesome-list.php:345
+#: includes/widgets/products-list.php:335
 msgid "Blur Effect"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:549
-#: includes/widgets/accordion-widget.php:608
+#: includes/admin-info.php:170
+msgid "Boost Your WooCommerce Sales!"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:561
+#: includes/widgets/accordion-widget.php:620
+#: includes/widgets/ajax-search/ajax-search-widget.php:358
+#: includes/widgets/ajax-search/ajax-search-widget.php:550
 msgid "Border"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:479
-#: includes/widgets/accordion-widget.php:1260
-#: includes/widgets/pricing-table.php:1918
-#: includes/widgets/products-awesome-list.php:1428
-#: includes/widgets/products-grid.php:1782
-#: includes/widgets/products-grid.php:1952
-#: includes/widgets/products-list.php:1696
-#: includes/widgets/products-list.php:1863
-#: includes/widgets/products-slider.php:1158
-#: includes/widgets/products-slider.php:1357
+#: includes/widgets/accordion-widget.php:491
+#: includes/widgets/accordion-widget.php:1266
+#: includes/widgets/pricing-table.php:1922
+#: includes/widgets/products-awesome-list.php:1430
+#: includes/widgets/products-list.php:1711
+#: includes/widgets/products-list.php:1878
+#: includes/widgets/products-slider.php:1332
+#: includes/widgets/products-slider.php:1533
+#: includes/widgets/testimonial-carousel.php:1107
 msgid "Border Color"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:557
-#: includes/widgets/accordion-widget.php:618
-#: includes/widgets/accordion-widget.php:971
-#: includes/widgets/accordion-widget.php:1039
-#: includes/widgets/accordion-widget.php:1161
-#: includes/widgets/porducts-cat.php:490 includes/widgets/porducts-cat.php:654
-#: includes/widgets/porducts-cat.php:742 includes/widgets/porducts-cat.php:900
-#: includes/widgets/pricing-table.php:1075
-#: includes/widgets/pricing-table.php:1265
-#: includes/widgets/pricing-table.php:1344
-#: includes/widgets/pricing-table.php:1432
-#: includes/widgets/pricing-table.php:1557
-#: includes/widgets/pricing-table.php:1681
-#: includes/widgets/pricing-table.php:1752
-#: includes/widgets/pricing-table.php:1826
-#: includes/widgets/products-awesome-list.php:915
-#: includes/widgets/products-awesome-list.php:996
-#: includes/widgets/products-awesome-list.php:1091
-#: includes/widgets/products-awesome-list.php:1171
-#: includes/widgets/products-awesome-list.php:1329
-#: includes/widgets/products-awesome-list.php:1556
-#: includes/widgets/products-grid.php:1143
-#: includes/widgets/products-grid.php:1224
-#: includes/widgets/products-grid.php:1298
-#: includes/widgets/products-grid.php:1445
-#: includes/widgets/products-grid.php:1525
-#: includes/widgets/products-grid.php:1692
-#: includes/widgets/products-grid.php:1853
-#: includes/widgets/products-grid.php:2079
-#: includes/widgets/products-list.php:1084
-#: includes/widgets/products-list.php:1165
-#: includes/widgets/products-list.php:1236
-#: includes/widgets/products-list.php:1331
-#: includes/widgets/products-list.php:1412
-#: includes/widgets/products-list.php:1606
-#: includes/widgets/products-list.php:1764
-#: includes/widgets/products-list.php:1991
-#: includes/widgets/products-slider.php:676
-#: includes/widgets/products-slider.php:787
-#: includes/widgets/products-slider.php:1059
-#: includes/widgets/products-slider.php:1282
-#: includes/widgets/products-slider.php:1481
+#: includes/widgets/accordion-widget.php:569
+#: includes/widgets/accordion-widget.php:630
+#: includes/widgets/accordion-widget.php:977
+#: includes/widgets/accordion-widget.php:1045
+#: includes/widgets/accordion-widget.php:1167
+#: includes/widgets/porducts-cat.php:494 includes/widgets/porducts-cat.php:658
+#: includes/widgets/porducts-cat.php:746 includes/widgets/porducts-cat.php:904
+#: includes/widgets/pricing-table.php:1078
+#: includes/widgets/pricing-table.php:1269
+#: includes/widgets/pricing-table.php:1348
+#: includes/widgets/pricing-table.php:1436
+#: includes/widgets/pricing-table.php:1561
+#: includes/widgets/pricing-table.php:1685
+#: includes/widgets/pricing-table.php:1756
+#: includes/widgets/pricing-table.php:1830
+#: includes/widgets/products-awesome-list.php:917
+#: includes/widgets/products-awesome-list.php:998
+#: includes/widgets/products-awesome-list.php:1093
+#: includes/widgets/products-awesome-list.php:1173
+#: includes/widgets/products-awesome-list.php:1331
+#: includes/widgets/products-awesome-list.php:1558
+#: includes/widgets/products-list.php:1099
+#: includes/widgets/products-list.php:1180
+#: includes/widgets/products-list.php:1251
+#: includes/widgets/products-list.php:1346
+#: includes/widgets/products-list.php:1427
+#: includes/widgets/products-list.php:1621
+#: includes/widgets/products-list.php:1779
+#: includes/widgets/products-list.php:2006
+#: includes/widgets/products-slider.php:791
+#: includes/widgets/products-slider.php:918
+#: includes/widgets/products-slider.php:1078
+#: includes/widgets/products-slider.php:1233
+#: includes/widgets/products-slider.php:1457
+#: includes/widgets/products-slider.php:1657
+#: includes/widgets/testimonial-carousel.php:633
+#: includes/widgets/testimonial-carousel.php:836
+#: includes/widgets/testimonial-carousel.php:1031
+#: includes/widgets/ajax-search/ajax-search-widget.php:366
+#: includes/widgets/ajax-search/ajax-search-widget.php:558
 msgid "Border Radius"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:461
+#: includes/widgets/accordion-widget.php:466
 msgid "Border Width"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:485
-#: includes/widgets/products-awesome-list.php:471
-#: includes/widgets/products-awesome-list.php:570
-#: includes/widgets/products-list.php:495
+#: includes/widgets/pricing-table.php:487
+#: includes/widgets/products-awesome-list.php:473
+#: includes/widgets/products-awesome-list.php:572
+#: includes/widgets/products-list.php:497
 msgid "Bottom"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:998
-#: includes/widgets/pricing-table.php:1178
-#: includes/widgets/products-slider.php:870
-#: includes/widgets/products-slider.php:935
-#: includes/widgets/products-slider.php:983
+#: includes/widgets/pricing-table.php:1001
+#: includes/widgets/pricing-table.php:1182
+#: includes/widgets/products-slider.php:1012
+#: includes/widgets/products-slider.php:1098
+#: includes/widgets/products-slider.php:1146
 msgid "Bottom Spacing"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:209
+#: includes/widgets/accordion-widget.php:214
 msgid "Box Icon"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:569
-#: includes/widgets/accordion-widget.php:631
+#: includes/widgets/accordion-widget.php:581
+#: includes/widgets/accordion-widget.php:643
+#: includes/widgets/ajax-search/ajax-search-widget.php:604
 msgid "Box Shadow"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:1114
-#: includes/widgets/pricing-table.php:708
-#: includes/widgets/pricing-table.php:1779
-#: includes/widgets/products-awesome-list.php:1282
-#: includes/widgets/products-grid.php:1803
-#: includes/widgets/products-list.php:1717
+#: includes/widgets/accordion-widget.php:1120
+#: includes/widgets/pricing-table.php:710
+#: includes/widgets/pricing-table.php:1783
+#: includes/widgets/products-awesome-list.php:1284
+#: includes/widgets/products-list.php:1732
 msgid "Button"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:815
+#: includes/widgets/pricing-table.php:817
 msgid "Button Alignment"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:1180
-#: includes/widgets/products-awesome-list.php:1348
-#: includes/widgets/products-grid.php:1872
-#: includes/widgets/products-list.php:1783
-#: includes/widgets/products-slider.php:1078
+#: includes/widgets/accordion-widget.php:1186
+#: includes/widgets/pricing-table.php:1849
+#: includes/widgets/products-awesome-list.php:1350
+#: includes/widgets/products-list.php:1798
+#: includes/widgets/products-slider.php:1252
 msgid "Button color"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:765
+#: includes/widgets/pricing-table.php:767
 msgid "Button Icon Position"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:725
+#: includes/widgets/pricing-table.php:727
 msgid "Button Link"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:718
-#: includes/widgets/products-awesome-list.php:606
-#: includes/widgets/products-grid.php:836
-#: includes/widgets/products-list.php:775
+#: includes/widgets/pricing-table.php:720
+#: includes/widgets/products-awesome-list.php:608
+#: includes/widgets/products-list.php:777
 msgid "Button Text"
 msgstr ""
 
-#: includes/widgets/products-slider.php:390
+#: includes/widgets/products-slider.php:428
 msgid "Button text"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:715
+#: includes/widgets/pricing-table.php:717
 msgid "Button Title"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:591
-#: includes/widgets/products-grid.php:821
-#: includes/widgets/products-list.php:760
+#: includes/widgets/products-awesome-list.php:593
+#: includes/widgets/products-list.php:762
 msgid "Button type"
 msgstr ""
 
-#: includes/widgets/products-slider.php:393
+#: includes/widgets/products-slider.php:431
 msgid "Buy Now"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:480
+#: includes/widgets/porducts-cat.php:484
 msgid "Card Background color"
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:315
+#: includes/widgets/testimonial-carousel.php:308
 msgid "Carousel Items"
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:308
+#: includes/widgets/testimonial-carousel.php:301
 msgid "Carousel Settings"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:580
-#: includes/widgets/products-grid.php:810
-#: includes/widgets/products-list.php:749
+#: includes/widgets/products-awesome-list.php:582
+#: includes/widgets/products-list.php:751
 msgid "Cart Button"
 msgstr ""
 
-#: includes/widgets/products-slider.php:862
+#: includes/widgets/ajax-search/ajax-search-widget.php:248
+msgid "Categories"
+msgstr ""
+
+#: includes/widgets/products-slider.php:1004
 msgid "Category"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1185
-#: includes/widgets/products-grid.php:1539
-#: includes/widgets/products-list.php:1426
+#: includes/widgets/products-awesome-list.php:1187
+#: includes/widgets/products-list.php:1441
 msgid "Category style"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:686
+#: includes/widgets/porducts-cat.php:690
 msgid "Category Title"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:753
+#: includes/widgets/porducts-cat.php:757
 msgid "Categroy count text color "
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:278
-#: includes/widgets/porducts-cat.php:310 includes/widgets/pricing-table.php:189
-#: includes/widgets/pricing-table.php:341
-#: includes/widgets/pricing-table.php:405
-#: includes/widgets/pricing-table.php:504
-#: includes/widgets/pricing-table.php:533
-#: includes/widgets/pricing-table.php:592
-#: includes/widgets/pricing-table.php:682
-#: includes/widgets/pricing-table.php:823
-#: includes/widgets/products-awesome-list.php:440
-#: includes/widgets/products-awesome-list.php:467
-#: includes/widgets/products-grid.php:551
-#: includes/widgets/products-list.php:464
-#: includes/widgets/products-list.php:491
-#: includes/widgets/products-slider.php:1425
+#: includes/widgets/accordion-widget.php:283
+#: includes/widgets/porducts-cat.php:314 includes/widgets/pricing-table.php:191
+#: includes/widgets/pricing-table.php:343
+#: includes/widgets/pricing-table.php:407
+#: includes/widgets/pricing-table.php:506
+#: includes/widgets/pricing-table.php:535
+#: includes/widgets/pricing-table.php:594
+#: includes/widgets/pricing-table.php:684
+#: includes/widgets/pricing-table.php:825
+#: includes/widgets/products-awesome-list.php:442
+#: includes/widgets/products-awesome-list.php:469
+#: includes/widgets/products-list.php:466
+#: includes/widgets/products-list.php:493
+#: includes/widgets/products-slider.php:285
+#: includes/widgets/products-slider.php:1601
+#: includes/widgets/testimonial-carousel.php:275
+#: includes/widgets/testimonial-carousel.php:782
 msgid "Center"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:236
+#: includes/widgets/porducts-cat.php:240
 msgid "Choose Default Image"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:214
-#: includes/widgets/pricing-table.php:748
+#: includes/widgets/pricing-table.php:216
+#: includes/widgets/pricing-table.php:750
 msgid "Choose Icon"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:232
+#: includes/widgets/pricing-table.php:234
 msgid "Choose Image"
 msgstr ""
 
-#: includes/widgets/products-slider.php:465
-#: includes/widgets/testimonial-carousel.php:514
+#: includes/widgets/products-slider.php:503
+#: includes/widgets/testimonial-carousel.php:509
 msgid "Choose Next Icon"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:719
+#: includes/widgets/pricing-table.php:721
 msgid "Choose Plan"
 msgstr ""
 
-#: includes/widgets/products-slider.php:433
-#: includes/widgets/testimonial-carousel.php:482
+#: includes/widgets/products-slider.php:471
+#: includes/widgets/testimonial-carousel.php:476
 msgid "Choose Prev Icon"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:315
+#: includes/widgets/products-awesome-list.php:317
+#: includes/widgets/ajax-search/ajax-search-widget.php:482
 msgid "Circle"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:252
-#: includes/widgets/products-awesome-list.php:339
-#: includes/widgets/products-grid.php:414
-#: includes/widgets/products-list.php:329
+#: includes/widgets/accordion-widget.php:257
+#: includes/widgets/products-awesome-list.php:341
+#: includes/widgets/products-list.php:331
 msgid "Circle Effect"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:579
+#: includes/widgets/accordion-widget.php:591
 msgid "Closed"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:526
-#: includes/widgets/accordion-widget.php:585
-#: includes/widgets/accordion-widget.php:784
-#: includes/widgets/accordion-widget.php:823
-#: includes/widgets/accordion-widget.php:1010
-#: includes/widgets/pricing-table.php:1099
-#: includes/widgets/pricing-table.php:1324
-#: includes/widgets/products-slider.php:1502
-#: includes/widgets/products-slider.php:1522
-#: includes/widgets/products-slider.php:1542
+#: includes/widgets/accordion-widget.php:538
+#: includes/widgets/accordion-widget.php:597
+#: includes/widgets/accordion-widget.php:794
+#: includes/widgets/accordion-widget.php:836
+#: includes/widgets/accordion-widget.php:1016
+#: includes/widgets/pricing-table.php:1102
+#: includes/widgets/pricing-table.php:1328
+#: includes/widgets/products-slider.php:1678
+#: includes/widgets/products-slider.php:1698
+#: includes/widgets/products-slider.php:1718
+#: includes/widgets/testimonial-carousel.php:857
+#: includes/widgets/testimonial-carousel.php:877
+#: includes/widgets/testimonial-carousel.php:897
 msgid "Color"
 msgstr ""
 
-#: includes/widgets/products-grid.php:300
-msgid "Column in Desktop"
-msgstr ""
-
-#: includes/widgets/products-grid.php:328
-msgid "Column in mobile"
-msgstr ""
-
-#: includes/widgets/products-grid.php:315
-msgid "Column in Tablet"
-msgstr ""
-
-#: includes/widgets/products-awesome-list.php:224
-#: includes/widgets/products-grid.php:251
-#: includes/widgets/products-list.php:229
+#: includes/widgets/products-awesome-list.php:226
+#: includes/widgets/products-list.php:231
 msgid "Comment count"
 msgstr ""
 
@@ -631,95 +655,119 @@ msgstr ""
 msgid "Compare Table"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:163
-#: includes/widgets/porducts-cat.php:154 includes/widgets/porducts-cat.php:264
+#: includes/widgets/accordion-widget.php:167
+#: includes/widgets/porducts-cat.php:158 includes/widgets/porducts-cat.php:268
+#: includes/widgets/testimonial-carousel.php:154
+#: includes/widgets/testimonial-carousel.php:553
 msgid "Content"
 msgstr ""
 
-#: includes/widgets/products-slider.php:849
+#: includes/widgets/products-slider.php:991
 msgid "Content Border Radius"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:469 includes/widgets/porducts-cat.php:550
+#: includes/widgets/porducts-cat.php:473 includes/widgets/porducts-cat.php:554
+#: includes/widgets/products-slider.php:969
 msgid "Content Margin"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:539
-#: includes/widgets/products-slider.php:827
+#: includes/widgets/porducts-cat.php:543
+#: includes/widgets/products-slider.php:958
 msgid "Content Padding"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:360
-#: includes/widgets/products-grid.php:449
-#: includes/widgets/products-list.php:362
+#: includes/widgets/products-awesome-list.php:362
+#: includes/widgets/products-list.php:364
 msgid "Content Settings"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:531
+#: includes/widgets/porducts-cat.php:535
 msgid "Content style"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:288 includes/widgets/products-grid.php:510
-#: includes/widgets/products-list.php:423
-#: includes/widgets/products-slider.php:362
+#: includes/widgets/products-slider.php:549
+msgid "Coverflow"
+msgstr ""
+
+#: includes/widgets/products-slider.php:571
+msgid "coverflow"
+msgstr ""
+
+#: includes/widgets/porducts-cat.php:292 includes/widgets/products-list.php:425
+#: includes/widgets/products-slider.php:400
 msgid "Crop Description By Word"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:376
-#: includes/widgets/products-grid.php:465
-#: includes/widgets/products-list.php:378
-#: includes/widgets/products-slider.php:334
+#: includes/widgets/products-awesome-list.php:378
+#: includes/widgets/products-list.php:380
+#: includes/widgets/products-slider.php:372
 msgid "Crop Title By Word"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:685
+#: includes/widgets/products-slider.php:547
+msgid "Cube"
+msgstr ""
+
+#: includes/widgets/products-slider.php:569
+msgid "cube"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:694
 msgid "cubestyle Background"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:431
+#: includes/widgets/pricing-table.php:433
 msgid "Currency"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1619
+#: includes/widgets/pricing-table.php:1623
 msgid "Currency Color"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1601
+#: includes/widgets/pricing-table.php:1605
 msgid "Currency Margin"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:440
+#: includes/widgets/pricing-table.php:442
 msgid "Currency Position"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1594
+#: includes/widgets/pricing-table.php:1598
 msgid "Currency style"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:207
+#: includes/widgets/accordion-widget.php:212
 msgid "Curve Shape"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1189
+#: includes/widgets/products-slider.php:1363
+#: includes/widgets/testimonial-carousel.php:955
 msgid "Custom"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1607
-#: includes/widgets/products-grid.php:2130
-#: includes/widgets/products-list.php:2041
+#: includes/widgets/products-awesome-list.php:1609
+#: includes/widgets/products-list.php:2056
 msgid "Custom Class"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1615
-#: includes/widgets/products-grid.php:2138
-#: includes/widgets/products-list.php:2049
+#: includes/widgets/products-awesome-list.php:1636
+#: includes/widgets/products-list.php:2083
+#: includes/widgets/ajax-search/ajax-search-widget.php:631
+msgid "Custom CSS"
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:1617
+#: includes/widgets/products-list.php:2064
 msgid "Custom ID"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:205
-#: includes/widgets/products-grid.php:232
-#: includes/widgets/products-list.php:210
+#: includes/widgets/products-awesome-list.php:207
+#: includes/widgets/products-list.php:212
 msgid "Custom order"
+msgstr ""
+
+#: includes/widgets/products-slider.php:264
+msgid "Custom URL"
 msgstr ""
 
 #. Description of the plugin
@@ -727,231 +775,276 @@ msgid ""
 "Customizable Elementor Widgets for Beautiful WooCommerce Product Displays."
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:221
-#: includes/widgets/products-grid.php:248
-#: includes/widgets/products-list.php:226
+#: includes/widgets/products-awesome-list.php:223
+#: includes/widgets/products-list.php:228
 msgid "Date"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:271
+#: includes/widgets/pricing-table.php:273
 msgid "Default"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:210
+#: includes/widgets/porducts-cat.php:214
 msgid "Default Categories Image"
 msgstr ""
 
-#: includes/widgets/products-grid.php:1352
-msgid "Deleted Price Color"
+#: includes/widgets/ajax-search/ajax-search-widget.php:149
+msgid "Delay before search starts (prevents excessive requests)"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:240
-#: includes/widgets/products-grid.php:267
-#: includes/widgets/products-list.php:245
+#: includes/widgets/products-awesome-list.php:242
+#: includes/widgets/products-list.php:247
 msgid "Descending"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:571
-#: includes/widgets/pricing-table.php:1382
-#: includes/widgets/products-grid.php:1245
-#: includes/widgets/products-list.php:1186
+#: includes/widgets/pricing-table.php:573
+#: includes/widgets/pricing-table.php:1386
+#: includes/widgets/products-list.php:1201
 msgid "Description"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:555
+#: includes/widgets/pricing-table.php:557
 msgid "Description & Features list"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1373
+#: includes/widgets/pricing-table.php:1377
 msgid "Description & list"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:584
+#: includes/widgets/pricing-table.php:586
 msgid "Description Alignment"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:781
+#: includes/widgets/porducts-cat.php:785
 msgid "Description style"
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:225
-#: includes/widgets/testimonial-carousel.php:231
+#: includes/widgets/testimonial-carousel.php:218
+#: includes/widgets/testimonial-carousel.php:224
 msgid "Designer"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:507
-#: includes/widgets/products-grid.php:593
-#: includes/widgets/products-list.php:532
+#: includes/widgets/products-awesome-list.php:509
+#: includes/widgets/products-list.php:534
 msgid "Discount Badge "
+msgstr ""
+
+#: includes/admin-info.php:179
+msgid "Dismiss"
 msgstr ""
 
 #: includes/admin-rev-info.php:38
 msgid "Don't Like This Plugin"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1463
+#: includes/widgets/ajax-search/ajax-search-widget.php:481
+msgid "Dots"
+msgstr ""
+
+#: includes/widgets/products-slider.php:1639
+#: includes/widgets/testimonial-carousel.php:818
 msgid "Dots Height"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1445
+#: includes/widgets/products-slider.php:1621
+#: includes/widgets/testimonial-carousel.php:800
 msgid "Dots Width"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:221
+#: includes/widgets/accordion-widget.php:226
 msgid "Effect One"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:223
+#: includes/widgets/accordion-widget.php:228
 msgid "Effect Three"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:222
+#: includes/widgets/accordion-widget.php:227
 msgid "Effect Two"
 msgstr ""
 
-#: magical-products-display.php:278 magical-products-display.php:289
-#: magical-products-display.php:358
+#: magical-products-display.php:250 magical-products-display.php:261
+#: magical-products-display.php:331
 msgid "Elementor"
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:321
+#: includes/widgets/ajax-search/ajax-search-widget.php:216
+msgid "Enable Filters"
+msgstr ""
+
+#: includes/admin-info.php:171
+msgid ""
+"Enhance your customer experience and increase sales with the Guest Checkout "
+"Account Creator plugin. This powerful tool automatically creates customer "
+"accounts during guest checkout and sends welcome emails, making it easier "
+"for customers to track orders and return for future purchases. Reduce "
+"support requests and improve customer satisfaction effortlessly!"
+msgstr ""
+
+#: includes/widgets/testimonial-carousel.php:314
 msgid "Enter How many items show at a time in the carousel"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:640
+#: includes/widgets/pricing-table.php:642
 msgid "Enter List text"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:362
+#: includes/widgets/ajax-search/ajax-search-widget.php:124
+msgid "Enter placeholder text"
+msgstr ""
+
+#: includes/widgets/porducts-cat.php:366
 msgid "Enter Text"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:468
+#: includes/widgets/products-slider.php:227
+msgid "Extra Category Text"
+msgstr ""
+
+#: includes/widgets/products-slider.php:252
+msgid "Extra description"
+msgstr ""
+
+#: includes/widgets/pricing-table.php:470
 msgid "Extra text"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:477
+#: includes/widgets/pricing-table.php:479
 msgid "Extra Text Position"
 msgstr ""
 
-#: includes/widgets/products-slider.php:510
-#: includes/widgets/testimonial-carousel.php:331
+#: includes/widgets/products-slider.php:239
+msgid "Extra Title"
+msgstr ""
+
+#: includes/widgets/products-slider.php:545
+#: includes/widgets/products-slider.php:567
+#: includes/widgets/testimonial-carousel.php:324
 msgid "fade"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:846
+#: includes/widgets/pricing-table.php:848
 msgid "Feature"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:622
+#: includes/widgets/pricing-table.php:624
 msgid "Feature Title"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:140
-#: includes/widgets/products-grid.php:165
-#: includes/widgets/products-list.php:143
+#: includes/widgets/products-awesome-list.php:142
+#: includes/widgets/products-list.php:145
+#: includes/widgets/ajax-search/ajax-search-widget.php:251
 msgid "Featured Products"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:925
+msgid "Featured Products Only"
 msgstr ""
 
 #: includes/functions.php:242
 msgid "Featured!"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:626
+#: includes/widgets/pricing-table.php:628
 msgid "Features"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:636
-#: includes/widgets/pricing-table.php:648
+#: includes/widgets/pricing-table.php:638
+#: includes/widgets/pricing-table.php:650
 msgid "Features List"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:135
-#: includes/widgets/products-grid.php:160
-#: includes/widgets/products-list.php:138
+#: includes/widgets/products-awesome-list.php:137
+#: includes/widgets/products-list.php:140
 msgid "Filter By"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:254
-#: includes/widgets/products-awesome-list.php:341
-#: includes/widgets/products-grid.php:416
-#: includes/widgets/products-list.php:331
+#: includes/widgets/ajax-search/ajax-search-widget.php:228
+msgid "Filter Layout Style"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:730
+msgid "Filters"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:259
+#: includes/widgets/products-awesome-list.php:343
+#: includes/widgets/products-list.php:333
 msgid "Flashing Effect"
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:251
+#: includes/widgets/products-slider.php:548
+#: includes/widgets/products-slider.php:570
+msgid "Flip"
+msgstr ""
+
+#: includes/widgets/testimonial-carousel.php:244
 msgid "Full"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:238
-#: includes/widgets/products-awesome-list.php:299
-#: includes/widgets/products-grid.php:398
-#: includes/widgets/products-list.php:313
+#: includes/widgets/accordion-widget.php:243
+#: includes/widgets/products-awesome-list.php:301
+#: includes/widgets/products-list.php:315
 msgid "Full Size (Original image size)"
+msgstr ""
+
+#: includes/helplink.php:27
+msgid "Get All Pro Features"
 msgstr ""
 
 #: includes/admin-rev-info.php:35
 msgid "Give A 5stars Review"
 msgstr ""
 
-#: includes/widgets/products-slider.php:609
-#: includes/widgets/testimonial-carousel.php:438
+#: includes/widgets/products-slider.php:726
+#: includes/widgets/testimonial-carousel.php:431
 msgid "Grab Cursor?"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:182
+#: includes/widgets/porducts-cat.php:186
 msgid "Grid Column"
 msgstr ""
 
-#: includes/widgets/products-grid.php:353
-msgid "Grid Height"
+#: includes/widgets/ajax-search/ajax-search-widget.php:311
+msgid "Height"
 msgstr ""
 
-#: includes/widgets/products-grid.php:281
-msgid "Grid Layout"
-msgstr ""
-
-#: includes/widgets/products-grid.php:287
-msgid "Grid Style"
-msgstr ""
-
-#: includes/widgets/products-grid.php:964
-msgid "Grid style"
-msgstr ""
-
-#: includes/admin-info.php:23 includes/admin-rev-info.php:23
+#: includes/admin-info.php:27 includes/admin-rev-info.php:23
 msgid "Hello, "
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:512
-#: includes/widgets/products-grid.php:346
-#: includes/widgets/products-grid.php:598
-#: includes/widgets/products-list.php:537
+#: includes/widgets/products-awesome-list.php:514
+#: includes/widgets/products-list.php:539
+#: includes/widgets/ajax-search/ajax-search-widget.php:171
+#: includes/widgets/ajax-search/ajax-search-widget.php:183
 msgid "Hide"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:507
+#: includes/widgets/accordion-widget.php:519
 msgid "Hide default gradient? "
 msgstr ""
 
-#: includes/admin-info.php:37
+#: includes/admin-info.php:45
 msgid "Hide Notice"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1222
+#: includes/widgets/products-slider.php:643
+#: includes/widgets/products-slider.php:648
+#: includes/widgets/products-slider.php:1396
+#: includes/widgets/testimonial-carousel.php:988
 msgid "Horizontal"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:1224
-#: includes/widgets/pricing-table.php:1889
-#: includes/widgets/products-awesome-list.php:1392
-#: includes/widgets/products-grid.php:1746
-#: includes/widgets/products-grid.php:1916
-#: includes/widgets/products-list.php:1660
-#: includes/widgets/products-list.php:1827
-#: includes/widgets/products-slider.php:1122
-#: includes/widgets/products-slider.php:1328
-#: includes/widgets/products-slider.php:1515
+#: includes/widgets/accordion-widget.php:1230
+#: includes/widgets/pricing-table.php:1893
+#: includes/widgets/products-awesome-list.php:1394
+#: includes/widgets/products-list.php:1675
+#: includes/widgets/products-list.php:1842
+#: includes/widgets/products-slider.php:1296
+#: includes/widgets/products-slider.php:1503
+#: includes/widgets/products-slider.php:1691
+#: includes/widgets/testimonial-carousel.php:870
+#: includes/widgets/testimonial-carousel.php:1078
 msgid "Hover"
 msgstr ""
 
@@ -960,319 +1053,377 @@ msgstr ""
 msgid "http://wpthemespace.com"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:727
+#: includes/widgets/pricing-table.php:729
+#: includes/widgets/testimonial-carousel.php:194
 msgid "https://your-link.com"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:295
-#: includes/widgets/accordion-widget.php:312
-#: includes/widgets/pricing-table.php:162
+#: includes/widgets/accordion-widget.php:300
+#: includes/widgets/accordion-widget.php:317
+#: includes/widgets/pricing-table.php:164
 msgid "Icon"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1050
+#: includes/widgets/pricing-table.php:1053
 msgid "Icon Absolute Position"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1021
+#: includes/widgets/products-slider.php:1478
+#: includes/widgets/products-slider.php:1510
+#: includes/widgets/ajax-search/ajax-search-widget.php:441
+msgid "Icon Color"
+msgstr ""
+
+#: includes/widgets/pricing-table.php:1024
 msgid "Icon opacity"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:140
+#: includes/widgets/pricing-table.php:142
 msgid "Icon or Image"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:267
+#: includes/widgets/pricing-table.php:269
 msgid "Icon Or Image Position"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:412
+#: includes/widgets/accordion-widget.php:417
+#: includes/widgets/ajax-search/ajax-search-widget.php:453
 msgid "Icon Position"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:181
+#: includes/widgets/pricing-table.php:183
 msgid "Icon position"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:978
+#: includes/widgets/pricing-table.php:980
+#: includes/widgets/testimonial-carousel.php:923
+#: includes/widgets/ajax-search/ajax-search-widget.php:420
 msgid "Icon Size"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:788
+#: includes/widgets/pricing-table.php:790
 msgid "Icon Spacing"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:967
+#: includes/widgets/pricing-table.php:969
+#: includes/widgets/ajax-search/ajax-search-widget.php:409
 msgid "Icon Style"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:158
+#: includes/widgets/pricing-table.php:160
 msgid "Icon Type"
 msgstr ""
 
-#: includes/widgets/products-grid.php:1720
-#: includes/widgets/products-grid.php:1760
-#: includes/widgets/products-list.php:1634
-#: includes/widgets/products-list.php:1674
+#: includes/widgets/products-list.php:1649
+#: includes/widgets/products-list.php:1689
 msgid "Icons Color"
 msgstr ""
 
-#: includes/widgets/products-grid.php:1653
-#: includes/widgets/products-list.php:1567
+#: includes/widgets/products-list.php:1582
 msgid "Icons Margin"
 msgstr ""
 
-#: includes/widgets/products-grid.php:1642
-#: includes/widgets/products-list.php:1556
+#: includes/widgets/products-list.php:1571
 msgid "Icons Padding"
 msgstr ""
 
-#: includes/widgets/products-grid.php:1664
-#: includes/widgets/products-list.php:1578
+#: includes/widgets/products-list.php:1593
 msgid "Icons size"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:220
-#: includes/widgets/products-grid.php:247
-#: includes/widgets/products-list.php:225
+#: includes/widgets/products-awesome-list.php:222
+#: includes/widgets/products-list.php:227
 msgid "ID"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:218
+#: includes/widgets/porducts-cat.php:222
 msgid ""
 "If you want to add a unique image for every category then please go products "
 "category and add an image by edit. "
 msgstr ""
 
-#: includes/widgets/pricing-table.php:166
-#: includes/widgets/testimonial-carousel.php:208
+#: includes/widgets/pricing-table.php:168
+#: includes/widgets/testimonial-carousel.php:201
+#: includes/widgets/testimonial-carousel.php:595
 msgid "Image"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1230
+#: includes/widgets/pricing-table.php:1234
 msgid "Image Absolute Position"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:895
-#: includes/widgets/porducts-cat.php:599
-#: includes/widgets/products-awesome-list.php:839
-#: includes/widgets/products-grid.php:1063
-#: includes/widgets/products-list.php:1008
-#: includes/widgets/products-slider.php:732
+#: includes/widgets/accordion-widget.php:901
+#: includes/widgets/porducts-cat.php:603
+#: includes/widgets/products-awesome-list.php:841
+#: includes/widgets/products-list.php:1011
+#: includes/widgets/products-slider.php:863
 msgid "Image auto height"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:926
-#: includes/widgets/products-awesome-list.php:870
-#: includes/widgets/products-grid.php:1094
-#: includes/widgets/products-list.php:1039
+#: includes/widgets/accordion-widget.php:932
+#: includes/widgets/products-awesome-list.php:872
+#: includes/widgets/products-list.php:1048
 msgid "Image div Height"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:905
-#: includes/widgets/porducts-cat.php:609
-#: includes/widgets/pricing-table.php:1160
-#: includes/widgets/products-awesome-list.php:849
-#: includes/widgets/products-grid.php:1073
-#: includes/widgets/products-list.php:1018
-#: includes/widgets/products-slider.php:742
+#: includes/widgets/accordion-widget.php:911
+#: includes/widgets/porducts-cat.php:613
+#: includes/widgets/pricing-table.php:1164
+#: includes/widgets/products-awesome-list.php:851
+#: includes/widgets/products-list.php:1021
+#: includes/widgets/products-slider.php:873
 msgid "Image Height"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:247
-#: includes/widgets/products-awesome-list.php:334
-#: includes/widgets/products-grid.php:409
-#: includes/widgets/products-list.php:324
+#: includes/widgets/accordion-widget.php:252
+#: includes/widgets/products-awesome-list.php:336
+#: includes/widgets/products-list.php:326
 msgid "Image Hover Effects"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1201
+#: includes/widgets/pricing-table.php:1205
 msgid "Image opacity"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:322
-#: includes/widgets/products-list.php:277
+#: includes/widgets/products-awesome-list.php:324
+#: includes/widgets/products-list.php:279
+#: includes/widgets/testimonial-carousel.php:252
 msgid "Image Position"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:310
+#: includes/widgets/products-awesome-list.php:312
 msgid "Image Shape"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:230
-#: includes/widgets/products-awesome-list.php:291
-#: includes/widgets/products-grid.php:390
-#: includes/widgets/products-list.php:305
-#: includes/widgets/testimonial-carousel.php:242
+#: includes/widgets/accordion-widget.php:235
+#: includes/widgets/products-awesome-list.php:293
+#: includes/widgets/products-list.php:307
+#: includes/widgets/testimonial-carousel.php:235
+#: includes/widgets/testimonial-carousel.php:606
 msgid "Image Size"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1125
+#: includes/widgets/pricing-table.php:1129
 msgid "Image Style"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:859
-#: includes/widgets/porducts-cat.php:563
-#: includes/widgets/products-awesome-list.php:803
-#: includes/widgets/products-grid.php:1032
-#: includes/widgets/products-list.php:972
-#: includes/widgets/products-slider.php:696
+#: includes/widgets/accordion-widget.php:874
+#: includes/widgets/porducts-cat.php:567
+#: includes/widgets/products-awesome-list.php:805
+#: includes/widgets/products-list.php:974
+#: includes/widgets/products-slider.php:811
 msgid "Image style"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1137
+#: includes/widgets/pricing-table.php:1141
 msgid "Image Width"
 msgstr ""
 
-#: includes/widgets/products-slider.php:597
-#: includes/widgets/testimonial-carousel.php:426
+#: includes/widgets/ajax-search/ajax-search-widget.php:940
+msgid "In Stock"
+msgstr ""
+
+#: includes/widgets/products-slider.php:714
+#: includes/widgets/testimonial-carousel.php:419
 msgid "Infinite Loop?"
 msgstr ""
 
-#: magical-products-display.php:290
+#: magical-products-display.php:262
 msgid "Install Elementor"
 msgstr ""
 
-#: magical-products-display.php:330
+#: includes/admin-info.php:157
+msgid "Install Plugin"
+msgstr ""
+
+#: magical-products-display.php:302
 msgid "Install woocommerce"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:145
+#: includes/widgets/porducts-cat.php:149
 msgid "Instant Category Image"
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:223
-#: includes/widgets/testimonial-carousel.php:229
+#: includes/widgets/ajax-search/ajax-search-widget.php:233
+msgid "Integrated Filters"
+msgstr ""
+
+#: includes/widgets/testimonial-carousel.php:216
+#: includes/widgets/testimonial-carousel.php:222
 msgid "John Doe"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:152
+#: includes/widgets/products-slider.php:228
+msgid "Keep empty for the original Product category"
+msgstr ""
+
+#: includes/widgets/products-slider.php:253
+msgid "Keep empty for the original Product description"
+msgstr ""
+
+#: includes/widgets/products-slider.php:240
+msgid "Keep empty for the original Product title"
+msgstr ""
+
+#: includes/widgets/products-slider.php:265
+msgid "Keep empty for the original Product URL"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:156
 msgid "Keep this slide open? "
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:250
+#: includes/widgets/testimonial-carousel.php:243
 msgid "Large"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:237
-#: includes/widgets/products-awesome-list.php:298
-#: includes/widgets/products-grid.php:397
-#: includes/widgets/products-list.php:312
+#: includes/widgets/accordion-widget.php:242
+#: includes/widgets/products-awesome-list.php:300
+#: includes/widgets/products-list.php:314
 msgid "Large (1024px x 1024px max)"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:236
-#: includes/widgets/products-awesome-list.php:297
-#: includes/widgets/products-grid.php:396
-#: includes/widgets/products-list.php:311
+#: includes/widgets/accordion-widget.php:241
+#: includes/widgets/products-awesome-list.php:299
+#: includes/widgets/products-list.php:313
 msgid "Large (768px x 0px max)"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:254
+#: includes/widgets/products-awesome-list.php:256
 msgid "Layout"
 msgstr ""
 
-#: includes/widgets/products-list.php:904
+#: includes/widgets/products-list.php:906
 msgid "Layout style"
 msgstr ""
 
-#: includes/widgets/products-grid.php:218
-#: includes/widgets/products-list.php:196
+#: includes/helplink.php:42
+msgid "Learn More"
+msgstr ""
+
+#: includes/widgets/products-list.php:198
 msgid "Leave Empty For Show All Categories"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:274
-#: includes/widgets/accordion-widget.php:416
-#: includes/widgets/porducts-cat.php:306 includes/widgets/pricing-table.php:185
-#: includes/widgets/pricing-table.php:337
-#: includes/widgets/pricing-table.php:401
-#: includes/widgets/pricing-table.php:444
-#: includes/widgets/pricing-table.php:500
-#: includes/widgets/pricing-table.php:529
-#: includes/widgets/pricing-table.php:588
-#: includes/widgets/pricing-table.php:678
-#: includes/widgets/pricing-table.php:769
-#: includes/widgets/pricing-table.php:819
-#: includes/widgets/products-awesome-list.php:326
-#: includes/widgets/products-awesome-list.php:436
-#: includes/widgets/products-grid.php:547
-#: includes/widgets/products-list.php:281
-#: includes/widgets/products-list.php:460
-#: includes/widgets/products-slider.php:191
-#: includes/widgets/products-slider.php:1421
+#: includes/widgets/accordion-widget.php:279
+#: includes/widgets/accordion-widget.php:421
+#: includes/widgets/porducts-cat.php:310 includes/widgets/pricing-table.php:187
+#: includes/widgets/pricing-table.php:339
+#: includes/widgets/pricing-table.php:403
+#: includes/widgets/pricing-table.php:446
+#: includes/widgets/pricing-table.php:502
+#: includes/widgets/pricing-table.php:531
+#: includes/widgets/pricing-table.php:590
+#: includes/widgets/pricing-table.php:680
+#: includes/widgets/pricing-table.php:771
+#: includes/widgets/pricing-table.php:821
+#: includes/widgets/products-awesome-list.php:328
+#: includes/widgets/products-awesome-list.php:438
+#: includes/widgets/products-list.php:283
+#: includes/widgets/products-list.php:462
+#: includes/widgets/products-slider.php:188
+#: includes/widgets/products-slider.php:281
+#: includes/widgets/products-slider.php:1597
+#: includes/widgets/testimonial-carousel.php:271
+#: includes/widgets/testimonial-carousel.php:778
+#: includes/widgets/ajax-search/ajax-search-widget.php:457
 msgid "Left"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:722
-#: includes/widgets/accordion-widget.php:728
+#: includes/widgets/accordion-widget.php:731
+#: includes/widgets/accordion-widget.php:737
 msgid "Left & Right"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:412
+#: includes/widgets/porducts-cat.php:416
 msgid "Left Bottom"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:408
+#: includes/widgets/porducts-cat.php:412
 msgid "Left Top"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:674
+#: includes/widgets/testimonial-carousel.php:189
+msgid "Link"
+msgstr ""
+
+#: includes/widgets/pricing-table.php:676
 msgid "List Alignment"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:260
+#: includes/widgets/products-awesome-list.php:262
 msgid "List Column"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1466
+#: includes/widgets/pricing-table.php:1470
 msgid "List Header Margin"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1452
+#: includes/widgets/pricing-table.php:1456
 msgid "List Header style"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:735
+#: includes/widgets/products-awesome-list.php:737
 msgid "List item style"
 msgstr ""
 
-#: includes/widgets/products-list.php:259
+#: includes/widgets/products-list.php:261
 msgid "List Layout"
 msgstr ""
 
-#: includes/widgets/products-list.php:265
+#: includes/widgets/products-list.php:267
 msgid "List Style"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1478
+#: includes/widgets/pricing-table.php:1482
 msgid "List style"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:662
+#: includes/widgets/pricing-table.php:664
 msgid "List text four"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:653
+#: includes/widgets/pricing-table.php:655
 msgid "List text one"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:659
+#: includes/widgets/pricing-table.php:661
 msgid "List text three"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:656
+#: includes/widgets/pricing-table.php:658
 msgid "List text two"
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:224
-#: includes/widgets/testimonial-carousel.php:230
+#: includes/widgets/ajax-search/ajax-search-widget.php:469
+msgid "Loading Style"
+msgstr ""
+
+#: includes/widgets/testimonial-carousel.php:217
+#: includes/widgets/testimonial-carousel.php:223
 msgid "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio"
 msgstr ""
 
-#: magical-products-display.php:228 magical-products-display.php:277
-#: magical-products-display.php:288 magical-products-display.php:317
-#: magical-products-display.php:328 magical-products-display.php:357
-#: magical-products-display.php:382
+#: includes/widgets/testimonial-carousel.php:160
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, "
+"luctus nec ullamcorper mattis, pulvinar dapibus leo."
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:1601
+#: includes/widgets/products-list.php:2048
+msgid "Magical Attributes"
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:1629
+#: includes/widgets/products-list.php:2076
+msgid "Magical Custom CSS"
+msgstr ""
+
+#: magical-products-display.php:216 magical-products-display.php:249
+#: magical-products-display.php:260 magical-products-display.php:289
+#: magical-products-display.php:300 magical-products-display.php:330
+#: magical-products-display.php:355
 msgid "Magical Products Display"
 msgstr ""
 
@@ -1280,191 +1431,210 @@ msgstr ""
 msgid "Magical products Display"
 msgstr ""
 
-#: magical-products-display.php:226
+#: magical-products-display.php:214
 msgid "Magical Products Display Pro"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:959
-#: includes/widgets/accordion-widget.php:1133
-#: includes/widgets/porducts-cat.php:642 includes/widgets/porducts-cat.php:705
-#: includes/widgets/porducts-cat.php:800 includes/widgets/porducts-cat.php:841
-#: includes/widgets/pricing-table.php:918
-#: includes/widgets/pricing-table.php:1312
-#: includes/widgets/pricing-table.php:1401
-#: includes/widgets/pricing-table.php:1526
-#: includes/widgets/pricing-table.php:1650
-#: includes/widgets/pricing-table.php:1721
-#: includes/widgets/pricing-table.php:1798
-#: includes/widgets/products-awesome-list.php:754
-#: includes/widgets/products-awesome-list.php:903
-#: includes/widgets/products-awesome-list.php:965
-#: includes/widgets/products-awesome-list.php:1033
-#: includes/widgets/products-awesome-list.php:1112
-#: includes/widgets/products-awesome-list.php:1194
-#: includes/widgets/products-awesome-list.php:1301
-#: includes/widgets/products-awesome-list.php:1479
-#: includes/widgets/products-grid.php:983
-#: includes/widgets/products-grid.php:1131
-#: includes/widgets/products-grid.php:1193
-#: includes/widgets/products-grid.php:1267
-#: includes/widgets/products-grid.php:1331
-#: includes/widgets/products-grid.php:1387
-#: includes/widgets/products-grid.php:1466
-#: includes/widgets/products-grid.php:1548
-#: includes/widgets/products-grid.php:1825
-#: includes/widgets/products-grid.php:2002
-#: includes/widgets/products-list.php:923
-#: includes/widgets/products-list.php:1072
-#: includes/widgets/products-list.php:1134
-#: includes/widgets/products-list.php:1205
-#: includes/widgets/products-list.php:1273
-#: includes/widgets/products-list.php:1353
-#: includes/widgets/products-list.php:1435
-#: includes/widgets/products-list.php:1736
-#: includes/widgets/products-list.php:1914
-#: includes/widgets/products-slider.php:775
+#: includes/widgets/accordion-widget.php:965
+#: includes/widgets/accordion-widget.php:1139
+#: includes/widgets/porducts-cat.php:646 includes/widgets/porducts-cat.php:709
+#: includes/widgets/porducts-cat.php:804 includes/widgets/porducts-cat.php:845
+#: includes/widgets/pricing-table.php:920
+#: includes/widgets/pricing-table.php:1316
+#: includes/widgets/pricing-table.php:1405
+#: includes/widgets/pricing-table.php:1530
+#: includes/widgets/pricing-table.php:1654
+#: includes/widgets/pricing-table.php:1725
+#: includes/widgets/pricing-table.php:1802
+#: includes/widgets/products-awesome-list.php:756
+#: includes/widgets/products-awesome-list.php:905
+#: includes/widgets/products-awesome-list.php:967
+#: includes/widgets/products-awesome-list.php:1035
+#: includes/widgets/products-awesome-list.php:1114
+#: includes/widgets/products-awesome-list.php:1196
+#: includes/widgets/products-awesome-list.php:1303
+#: includes/widgets/products-awesome-list.php:1481
+#: includes/widgets/products-list.php:925
+#: includes/widgets/products-list.php:1087
+#: includes/widgets/products-list.php:1149
+#: includes/widgets/products-list.php:1220
+#: includes/widgets/products-list.php:1288
+#: includes/widgets/products-list.php:1368
+#: includes/widgets/products-list.php:1450
+#: includes/widgets/products-list.php:1751
+#: includes/widgets/products-list.php:1929
+#: includes/widgets/products-slider.php:906
+#: includes/widgets/products-slider.php:1205
 msgid "Margin"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:665
+#: includes/widgets/accordion-widget.php:677
 msgid "Margin Bottom"
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:248
+#: includes/widgets/ajax-search/ajax-search-widget.php:577
+msgid "Max Height"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:161
+msgid "Maximum number of search results"
+msgstr ""
+
+#: includes/widgets/testimonial-carousel.php:241
 msgid "Medium"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:235
-#: includes/widgets/products-awesome-list.php:296
-#: includes/widgets/products-grid.php:395
-#: includes/widgets/products-list.php:310
+#: includes/widgets/accordion-widget.php:240
+#: includes/widgets/products-awesome-list.php:298
+#: includes/widgets/products-list.php:312
 msgid "Medium (300px x 300px max)"
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:249
+#: includes/widgets/testimonial-carousel.php:242
 msgid "Medium_large"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:564
+#: includes/widgets/products-awesome-list.php:566
 msgid "Meta Position"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:569
+#: includes/widgets/products-awesome-list.php:571
 msgid "Middle"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:279
+#: includes/widgets/pricing-table.php:281
 msgid "middle"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:712
+#: includes/widgets/accordion-widget.php:211
+msgid "Minimal"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:131
+msgid "Minimum Characters"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:136
+msgid "Minimum characters to trigger search"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:721
 msgid "Move icon"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:35
+#: includes/widgets/accordion-widget.php:39
 msgid "MPD Accordion"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:35
+#: includes/widgets/ajax-search/ajax-search-widget.php:36
+msgid "MPD AJAX Search"
+msgstr ""
+
+#: includes/widgets/pricing-table.php:37
 msgid "MPD Pricing Table"
 msgstr ""
 
-#: includes/widgets/products-slider.php:52
+#: includes/widgets/products-slider.php:51
 msgid "MPD Product Slider"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:35
+#: includes/widgets/products-awesome-list.php:37
 msgid "MPD Products Awesome List"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:35
+#: includes/widgets/porducts-cat.php:39
 msgid "MPD Products Categories"
 msgstr ""
 
-#: includes/widgets/products-grid.php:35
-msgid "MPD Products Grid"
-msgstr ""
-
-#: includes/widgets/products-list.php:35
+#: includes/widgets/products-list.php:37
 msgid "MPD Products List"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:222
-#: includes/widgets/products-grid.php:249
-#: includes/widgets/products-list.php:227
+#: includes/widgets/testimonial-carousel.php:50
+msgid "MPD Testimonial Carousel"
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:224
+#: includes/widgets/products-list.php:229
+#: includes/widgets/testimonial-carousel.php:166
+#: includes/widgets/testimonial-carousel.php:648
 msgid "Name"
 msgstr ""
 
-#: includes/widgets/products-slider.php:404
-#: includes/widgets/testimonial-carousel.php:453
+#: includes/widgets/products-slider.php:442
+#: includes/widgets/testimonial-carousel.php:446
 msgid "Nav & Dots"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1245
+#: includes/widgets/products-slider.php:1419
 msgid "Nav Icon Size"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1178
+#: includes/widgets/products-slider.php:1352
+#: includes/widgets/testimonial-carousel.php:913
 msgid "Navigation - Arrow"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1376
+#: includes/widgets/products-slider.php:1552
+#: includes/widgets/testimonial-carousel.php:730
 msgid "Navigation - Dots"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:156
-#: includes/widgets/accordion-widget.php:305
-#: includes/widgets/accordion-widget.php:511
-#: includes/widgets/porducts-cat.php:228 includes/widgets/porducts-cat.php:352
-#: includes/widgets/porducts-cat.php:384 includes/widgets/porducts-cat.php:512
-#: includes/widgets/pricing-table.php:150
-#: includes/widgets/pricing-table.php:740
-#: includes/widgets/pricing-table.php:856
-#: includes/widgets/pricing-table.php:1043
-#: includes/widgets/pricing-table.php:1223
-#: includes/widgets/products-grid.php:678
-#: includes/widgets/products-grid.php:704
-#: includes/widgets/products-grid.php:731
-#: includes/widgets/products-grid.php:758
-#: includes/widgets/products-grid.php:784
-#: includes/widgets/products-list.php:617
-#: includes/widgets/products-list.php:643
-#: includes/widgets/products-list.php:670
-#: includes/widgets/products-list.php:697
-#: includes/widgets/products-list.php:723
-#: includes/widgets/products-slider.php:298
-#: includes/widgets/products-slider.php:309
-#: includes/widgets/products-slider.php:323
-#: includes/widgets/products-slider.php:351
-#: includes/widgets/products-slider.php:379
-#: includes/widgets/products-slider.php:414
-#: includes/widgets/products-slider.php:425
-#: includes/widgets/products-slider.php:554
-#: includes/widgets/products-slider.php:600
-#: includes/widgets/products-slider.php:612
-#: includes/widgets/testimonial-carousel.php:386
-#: includes/widgets/testimonial-carousel.php:429
-#: includes/widgets/testimonial-carousel.php:441
-#: includes/widgets/testimonial-carousel.php:463
-#: includes/widgets/testimonial-carousel.php:474
+#: includes/widgets/accordion-widget.php:160
+#: includes/widgets/accordion-widget.php:310
+#: includes/widgets/accordion-widget.php:523
+#: includes/widgets/porducts-cat.php:232 includes/widgets/porducts-cat.php:356
+#: includes/widgets/porducts-cat.php:388 includes/widgets/porducts-cat.php:516
+#: includes/widgets/pricing-table.php:152
+#: includes/widgets/pricing-table.php:742
+#: includes/widgets/pricing-table.php:858
+#: includes/widgets/pricing-table.php:1046
+#: includes/widgets/pricing-table.php:1227
+#: includes/widgets/products-list.php:619
+#: includes/widgets/products-list.php:645
+#: includes/widgets/products-list.php:672
+#: includes/widgets/products-list.php:699
+#: includes/widgets/products-list.php:725
+#: includes/widgets/products-slider.php:335
+#: includes/widgets/products-slider.php:347
+#: includes/widgets/products-slider.php:361
+#: includes/widgets/products-slider.php:389
+#: includes/widgets/products-slider.php:417
+#: includes/widgets/products-slider.php:452
+#: includes/widgets/products-slider.php:463
+#: includes/widgets/products-slider.php:671
+#: includes/widgets/products-slider.php:717
+#: includes/widgets/products-slider.php:729
+#: includes/widgets/testimonial-carousel.php:379
+#: includes/widgets/testimonial-carousel.php:422
+#: includes/widgets/testimonial-carousel.php:434
+#: includes/widgets/testimonial-carousel.php:456
+#: includes/widgets/testimonial-carousel.php:468
+#: includes/widgets/ajax-search/ajax-search-widget.php:219
 msgid "No"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:220
+#: includes/widgets/products-slider.php:552
+#: includes/widgets/products-slider.php:559
+#: includes/widgets/products-slider.php:575
+#: includes/widgets/products-slider.php:585
+msgid "No Animation"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:225
 msgid "No Effect"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:251
-#: includes/widgets/products-awesome-list.php:338
-#: includes/widgets/products-grid.php:413
-#: includes/widgets/products-list.php:328
+#: includes/widgets/accordion-widget.php:256
+#: includes/widgets/products-awesome-list.php:340
+#: includes/widgets/products-list.php:330
 msgid "No Effects"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:219
-#: includes/widgets/products-grid.php:246
-#: includes/widgets/products-list.php:224
-#: includes/widgets/products-slider.php:1188
+#: includes/widgets/products-awesome-list.php:221
+#: includes/widgets/products-list.php:226
+#: includes/widgets/products-slider.php:1362
+#: includes/widgets/testimonial-carousel.php:954
 msgid "None"
 msgstr ""
 
@@ -1472,205 +1642,230 @@ msgstr ""
 msgid "Noor alam"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:1191
-#: includes/widgets/pricing-table.php:1856
-#: includes/widgets/products-awesome-list.php:1359
-#: includes/widgets/products-grid.php:1713
-#: includes/widgets/products-grid.php:1883
-#: includes/widgets/products-list.php:1627
-#: includes/widgets/products-list.php:1794
-#: includes/widgets/products-slider.php:1089
-#: includes/widgets/products-slider.php:1296
-#: includes/widgets/products-slider.php:1495
+#: includes/widgets/accordion-widget.php:1197
+#: includes/widgets/pricing-table.php:1860
+#: includes/widgets/products-awesome-list.php:1361
+#: includes/widgets/products-list.php:1642
+#: includes/widgets/products-list.php:1809
+#: includes/widgets/products-slider.php:1263
+#: includes/widgets/products-slider.php:1471
+#: includes/widgets/products-slider.php:1671
+#: includes/widgets/testimonial-carousel.php:850
+#: includes/widgets/testimonial-carousel.php:1045
 msgid "Normal"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:514
-#: includes/widgets/products-grid.php:600
-#: includes/widgets/products-list.php:539
+#: includes/widgets/products-awesome-list.php:516
+#: includes/widgets/products-list.php:541
 msgid "Number Discount "
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:898
-#: includes/widgets/porducts-cat.php:602
-#: includes/widgets/products-awesome-list.php:524
-#: includes/widgets/products-awesome-list.php:525
-#: includes/widgets/products-awesome-list.php:842
-#: includes/widgets/products-grid.php:610
-#: includes/widgets/products-grid.php:611
-#: includes/widgets/products-grid.php:1066
-#: includes/widgets/products-list.php:549
-#: includes/widgets/products-list.php:550
-#: includes/widgets/products-list.php:1011
-#: includes/widgets/products-slider.php:735
+#: includes/widgets/accordion-widget.php:904
+#: includes/widgets/porducts-cat.php:606
+#: includes/widgets/products-awesome-list.php:526
+#: includes/widgets/products-awesome-list.php:527
+#: includes/widgets/products-awesome-list.php:844
+#: includes/widgets/products-list.php:551
+#: includes/widgets/products-list.php:552
+#: includes/widgets/products-list.php:1014
+#: includes/widgets/products-slider.php:866
 msgid "Off"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:897
-#: includes/widgets/porducts-cat.php:601
-#: includes/widgets/products-awesome-list.php:841
-#: includes/widgets/products-grid.php:1065
-#: includes/widgets/products-list.php:1010
-#: includes/widgets/products-slider.php:734
+#: includes/widgets/accordion-widget.php:903
+#: includes/widgets/porducts-cat.php:605
+#: includes/widgets/products-awesome-list.php:843
+#: includes/widgets/products-list.php:1013
+#: includes/widgets/products-slider.php:865
 msgid "On"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:255
-#: includes/widgets/products-awesome-list.php:342
-#: includes/widgets/products-grid.php:417
-#: includes/widgets/products-list.php:332
+#: includes/widgets/ajax-search/ajax-search-widget.php:942
+msgid "On Backorder"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:260
+#: includes/widgets/products-awesome-list.php:344
+#: includes/widgets/products-list.php:334
 msgid "Opacity Effect"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:520
+#: includes/widgets/accordion-widget.php:532
 msgid "Open"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:236
-#: includes/widgets/products-grid.php:263
-#: includes/widgets/products-list.php:241
+#: includes/widgets/products-awesome-list.php:238
+#: includes/widgets/products-list.php:243
 msgid "order"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:215
-#: includes/widgets/products-grid.php:242
-#: includes/widgets/products-list.php:220
+#: includes/widgets/products-awesome-list.php:217
+#: includes/widgets/products-list.php:222
 msgid "Orderby"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:651
-#: includes/widgets/accordion-widget.php:948
-#: includes/widgets/accordion-widget.php:1051
-#: includes/widgets/accordion-widget.php:1122
-#: includes/widgets/porducts-cat.php:458 includes/widgets/porducts-cat.php:631
-#: includes/widgets/porducts-cat.php:694 includes/widgets/porducts-cat.php:789
-#: includes/widgets/porducts-cat.php:852 includes/widgets/pricing-table.php:907
-#: includes/widgets/pricing-table.php:1010
-#: includes/widgets/pricing-table.php:1190
-#: includes/widgets/pricing-table.php:1301
-#: includes/widgets/pricing-table.php:1390
-#: includes/widgets/pricing-table.php:1515
-#: includes/widgets/pricing-table.php:1639
-#: includes/widgets/pricing-table.php:1710
-#: includes/widgets/pricing-table.php:1787
-#: includes/widgets/products-awesome-list.php:743
-#: includes/widgets/products-awesome-list.php:892
-#: includes/widgets/products-awesome-list.php:954
-#: includes/widgets/products-awesome-list.php:1044
-#: includes/widgets/products-awesome-list.php:1123
-#: includes/widgets/products-awesome-list.php:1205
-#: includes/widgets/products-awesome-list.php:1290
-#: includes/widgets/products-awesome-list.php:1490
-#: includes/widgets/products-grid.php:972
-#: includes/widgets/products-grid.php:1120
-#: includes/widgets/products-grid.php:1182
-#: includes/widgets/products-grid.php:1256
-#: includes/widgets/products-grid.php:1398
-#: includes/widgets/products-grid.php:1477
-#: includes/widgets/products-grid.php:1814
-#: includes/widgets/products-grid.php:2013
-#: includes/widgets/products-list.php:912
-#: includes/widgets/products-list.php:1061
-#: includes/widgets/products-list.php:1123
-#: includes/widgets/products-list.php:1194
-#: includes/widgets/products-list.php:1284
-#: includes/widgets/products-list.php:1364
-#: includes/widgets/products-list.php:1446
-#: includes/widgets/products-list.php:1725
-#: includes/widgets/products-list.php:1925
-#: includes/widgets/products-slider.php:764
-#: includes/widgets/products-slider.php:915
-#: includes/widgets/products-slider.php:1031
-#: includes/widgets/products-slider.php:1262
+#: includes/widgets/ajax-search/ajax-search-widget.php:941
+msgid "Out of Stock"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:663
+#: includes/widgets/accordion-widget.php:954
+#: includes/widgets/accordion-widget.php:1057
+#: includes/widgets/accordion-widget.php:1128
+#: includes/widgets/porducts-cat.php:462 includes/widgets/porducts-cat.php:635
+#: includes/widgets/porducts-cat.php:698 includes/widgets/porducts-cat.php:793
+#: includes/widgets/porducts-cat.php:856 includes/widgets/pricing-table.php:909
+#: includes/widgets/pricing-table.php:1013
+#: includes/widgets/pricing-table.php:1194
+#: includes/widgets/pricing-table.php:1305
+#: includes/widgets/pricing-table.php:1394
+#: includes/widgets/pricing-table.php:1519
+#: includes/widgets/pricing-table.php:1643
+#: includes/widgets/pricing-table.php:1714
+#: includes/widgets/pricing-table.php:1791
+#: includes/widgets/products-awesome-list.php:745
+#: includes/widgets/products-awesome-list.php:894
+#: includes/widgets/products-awesome-list.php:956
+#: includes/widgets/products-awesome-list.php:1046
+#: includes/widgets/products-awesome-list.php:1125
+#: includes/widgets/products-awesome-list.php:1207
+#: includes/widgets/products-awesome-list.php:1292
+#: includes/widgets/products-awesome-list.php:1492
+#: includes/widgets/products-list.php:914
+#: includes/widgets/products-list.php:1076
+#: includes/widgets/products-list.php:1138
+#: includes/widgets/products-list.php:1209
+#: includes/widgets/products-list.php:1299
+#: includes/widgets/products-list.php:1379
+#: includes/widgets/products-list.php:1461
+#: includes/widgets/products-list.php:1740
+#: includes/widgets/products-list.php:1940
+#: includes/widgets/products-slider.php:895
+#: includes/widgets/products-slider.php:1067
+#: includes/widgets/products-slider.php:1194
+#: includes/widgets/products-slider.php:1437
+#: includes/widgets/testimonial-carousel.php:1011
+#: includes/widgets/ajax-search/ajax-search-widget.php:394
 msgid "Padding"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:513
-#: includes/widgets/products-grid.php:599
-#: includes/widgets/products-list.php:538
+#: includes/widgets/products-awesome-list.php:515
+#: includes/widgets/products-list.php:540
 msgid "Percentage Discount "
 msgstr ""
 
-#: magical-products-display.php:383
+#: magical-products-display.php:356
 msgid "PHP"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:305
+#: includes/widgets/ajax-search/ajax-search-widget.php:121
+msgid "Placeholder Text"
+msgstr ""
+
+#: includes/widgets/pricing-table.php:307
 msgid "Plane Name"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:142
-#: includes/widgets/products-grid.php:167
-#: includes/widgets/products-list.php:145
+#: includes/widgets/porducts-cat.php:959
+msgid "Please select products categories for display this section."
+msgstr ""
+
+#: includes/admin-info.php:320
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: includes/admin-info.php:305
+msgid "Plugin file is required."
+msgstr ""
+
+#: includes/admin-info.php:283
+msgid "Plugin installation failed."
+msgstr ""
+
+#: includes/admin-info.php:286
+msgid "Plugin installed successfully."
+msgstr ""
+
+#: includes/admin-info.php:236
+msgid "Plugin slug is required."
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:144
+#: includes/widgets/products-list.php:147
 msgid "Popular Products"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:1002
+#: includes/widgets/porducts-cat.php:1009
 msgid "Porduct Category "
 msgstr ""
 
-#: includes/widgets/products-slider.php:1186
+#: includes/widgets/products-slider.php:1360
+#: includes/widgets/testimonial-carousel.php:952
 msgid "Position"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:424
-#: includes/widgets/pricing-table.php:459
-#: includes/widgets/pricing-table.php:1585
+#: includes/widgets/pricing-table.php:426
+#: includes/widgets/pricing-table.php:461
+#: includes/widgets/pricing-table.php:1589
 msgid "Price"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:496
-#: includes/widgets/pricing-table.php:525
+#: includes/widgets/pricing-table.php:498
+#: includes/widgets/pricing-table.php:527
 msgid "Price Alignment"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:1093
-#: includes/widgets/products-grid.php:1342
+#: includes/widgets/accordion-widget.php:1099
 msgid "Price Color"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1702
+#: includes/widgets/pricing-table.php:1706
 msgid "Price Extra text style"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:1085
-#: includes/widgets/products-grid.php:1319
+#: includes/widgets/ajax-search/ajax-search-widget.php:250
+msgid "Price Range"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:1091
 msgid "Price Style"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:1631
+#: includes/widgets/pricing-table.php:1635
 msgid "Price style"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:574
+#: includes/widgets/pricing-table.php:576
 msgid "Pricing description goes here."
 msgstr ""
 
-#: includes/widgets/pricing-table.php:117
+#: includes/widgets/pricing-table.php:119
 msgid "Pricing Table Style"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:302
+#: includes/widgets/pricing-table.php:304
 msgid "Pricing title "
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:206
+#: includes/widgets/accordion-widget.php:210
 msgid "Primary"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1103
-#: includes/widgets/products-grid.php:1457
-#: includes/widgets/products-list.php:1344
+#: includes/widgets/products-awesome-list.php:1105
+#: includes/widgets/products-list.php:1359
 msgid "Pro Discount Badge"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:195
+msgid "Pro Filter Settings"
 msgstr ""
 
 #: includes/functions.php:299
 msgid "Pro Only"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:191
-#: includes/widgets/products-grid.php:217
-#: includes/widgets/products-list.php:195
+#: includes/widgets/products-awesome-list.php:193
+#: includes/widgets/products-list.php:197
 msgid "Product Categories"
 msgstr ""
 
@@ -1678,18 +1873,25 @@ msgstr ""
 msgid "Product Hotspots"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:169
-#: includes/widgets/products-grid.php:194
-#: includes/widgets/products-list.php:172
+#: includes/widgets/products-awesome-list.php:171
+#: includes/widgets/products-list.php:174
 msgid "Product IDs"
 msgstr ""
 
-#: includes/widgets/products-slider.php:186
+#: includes/widgets/products-slider.php:633
+msgid "Product Image Animation"
+msgstr ""
+
+#: includes/widgets/products-slider.php:845
+msgid "Product Image Opacity"
+msgstr ""
+
+#: includes/widgets/products-slider.php:183
 msgid "Product Image Position"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:181
-#: includes/widgets/products-list.php:184
+#: includes/widgets/products-awesome-list.php:183
+#: includes/widgets/products-list.php:186
 msgid "Product Limit"
 msgstr ""
 
@@ -1701,186 +1903,175 @@ msgstr ""
 msgid "Product Ticker"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:946
-#: includes/widgets/products-grid.php:1174
-#: includes/widgets/products-list.php:1115
+#: includes/widgets/products-awesome-list.php:948
+#: includes/widgets/products-list.php:1130
 msgid "Product Title"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:363
+#: includes/widgets/porducts-cat.php:367
 msgid "Products"
 msgstr ""
 
-#: includes/widgets/products-grid.php:653
-#: includes/widgets/products-list.php:592
+#: includes/widgets/products-list.php:594
 msgid "Products Advance Icons"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:664
-#: includes/widgets/products-grid.php:893
-#: includes/widgets/products-list.php:833
+#: includes/widgets/products-awesome-list.php:666
+#: includes/widgets/products-list.php:835
 msgid "Products Available Text "
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1024
-#: includes/widgets/products-list.php:1264
+#: includes/widgets/products-awesome-list.php:1026
+#: includes/widgets/products-list.php:1279
 msgid "Products Badge"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:116
+#: includes/widgets/porducts-cat.php:120
 msgid "Products Categories Grid"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:1002
+#: includes/widgets/accordion-widget.php:1008
 msgid "Products Content"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:330
+#: includes/widgets/porducts-cat.php:334
 msgid "Products Count"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:277
-#: includes/widgets/products-grid.php:376
-#: includes/widgets/products-list.php:291
+#: includes/widgets/products-awesome-list.php:279
+#: includes/widgets/products-list.php:293
 msgid "Products Image"
 msgstr ""
 
-#: includes/widgets/products-grid.php:206
-msgid "Products Limit"
-msgstr ""
-
-#: includes/widgets/products-awesome-list.php:489
-#: includes/widgets/products-awesome-list.php:1017
-#: includes/widgets/products-grid.php:574
-#: includes/widgets/products-grid.php:1371
-#: includes/widgets/products-list.php:514
-#: includes/widgets/products-list.php:1257
+#: includes/widgets/products-awesome-list.php:491
+#: includes/widgets/products-awesome-list.php:1019
+#: includes/widgets/products-list.php:516
+#: includes/widgets/products-list.php:1272
 msgid "Products Meta"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:128
-#: includes/widgets/products-grid.php:153
-#: includes/widgets/products-list.php:131
+#: includes/widgets/products-awesome-list.php:130
+#: includes/widgets/products-list.php:133
 msgid "Products Query"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:622
-#: includes/widgets/products-grid.php:851
-#: includes/widgets/products-list.php:791
+#: includes/widgets/products-awesome-list.php:624
+#: includes/widgets/products-list.php:793
 msgid "Products Stock"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1449
-#: includes/widgets/products-grid.php:1972
-#: includes/widgets/products-list.php:1884
+#: includes/widgets/products-awesome-list.php:1451
+#: includes/widgets/products-list.php:1899
 msgid "Products Stock Style "
 msgstr ""
 
-#: includes/widgets/products-grid.php:797
-#: includes/widgets/products-grid.php:798
-#: includes/widgets/products-list.php:736
-#: includes/widgets/products-list.php:737
+#: includes/widgets/products-list.php:738
+#: includes/widgets/products-list.php:739
 msgid "QR Code"
 msgstr ""
 
-#: includes/widgets/products-grid.php:794
-#: includes/widgets/products-list.php:733
+#: includes/widgets/products-list.php:735
 msgid "QR Code Text"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:940
-#: includes/widgets/products-awesome-list.php:776
-#: includes/widgets/products-grid.php:1005
-#: includes/widgets/products-list.php:945
+#: includes/widgets/ajax-search/ajax-search-handler.php:60
+msgid "Query too short"
+msgstr ""
+
+#: includes/admin-info.php:40
+msgid "Quick Upgrade"
+msgstr ""
+
+#: includes/widgets/pricing-table.php:942
+#: includes/widgets/products-awesome-list.php:778
+#: includes/widgets/products-list.php:947
 msgid "Radius"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:225
-#: includes/widgets/products-grid.php:252
-#: includes/widgets/products-list.php:230
+#: includes/widgets/products-awesome-list.php:227
+#: includes/widgets/products-list.php:232
 msgid "Random"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:145
-#: includes/widgets/products-grid.php:170
-#: includes/widgets/products-list.php:148
+#: includes/widgets/products-awesome-list.php:147
+#: includes/widgets/products-list.php:150
 msgid "Random Products"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1259
-#: includes/widgets/products-grid.php:1585
-#: includes/widgets/products-list.php:1500
+#: includes/widgets/products-awesome-list.php:1261
+#: includes/widgets/products-list.php:1515
 msgid "Rating star Color"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1269
-#: includes/widgets/products-grid.php:1595
-#: includes/widgets/products-list.php:1510
+#: includes/widgets/products-awesome-list.php:1271
+#: includes/widgets/products-list.php:1525
 msgid "Rating star Fill Color"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1251
-#: includes/widgets/products-grid.php:1577
-#: includes/widgets/products-list.php:1492
+#: includes/widgets/products-awesome-list.php:1253
+#: includes/widgets/products-list.php:1507
 msgid "Rating Style"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:139
-#: includes/widgets/products-grid.php:164
-#: includes/widgets/products-list.php:142
+#: includes/widgets/products-awesome-list.php:141
+#: includes/widgets/products-list.php:144
 msgid "Recent Products"
 msgstr ""
 
-#: includes/widgets/products-grid.php:1605
-#: includes/widgets/products-list.php:1520
+#: includes/widgets/ajax-search/ajax-search-widget.php:156
+msgid "Results Limit"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:529
+msgid "Results Style"
+msgstr ""
+
+#: includes/widgets/products-list.php:1535
 msgid "Review Text Color"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:282
-#: includes/widgets/accordion-widget.php:420
-#: includes/widgets/porducts-cat.php:314 includes/widgets/pricing-table.php:193
-#: includes/widgets/pricing-table.php:345
-#: includes/widgets/pricing-table.php:409
-#: includes/widgets/pricing-table.php:448
-#: includes/widgets/pricing-table.php:481
-#: includes/widgets/pricing-table.php:508
-#: includes/widgets/pricing-table.php:537
-#: includes/widgets/pricing-table.php:596
-#: includes/widgets/pricing-table.php:686
-#: includes/widgets/pricing-table.php:773
-#: includes/widgets/pricing-table.php:827
-#: includes/widgets/products-awesome-list.php:327
-#: includes/widgets/products-awesome-list.php:444
-#: includes/widgets/products-grid.php:555
-#: includes/widgets/products-list.php:282
-#: includes/widgets/products-list.php:468
-#: includes/widgets/products-slider.php:195
-#: includes/widgets/products-slider.php:1429
+#: includes/widgets/accordion-widget.php:287
+#: includes/widgets/accordion-widget.php:425
+#: includes/widgets/porducts-cat.php:318 includes/widgets/pricing-table.php:195
+#: includes/widgets/pricing-table.php:347
+#: includes/widgets/pricing-table.php:411
+#: includes/widgets/pricing-table.php:450
+#: includes/widgets/pricing-table.php:483
+#: includes/widgets/pricing-table.php:510
+#: includes/widgets/pricing-table.php:539
+#: includes/widgets/pricing-table.php:598
+#: includes/widgets/pricing-table.php:688
+#: includes/widgets/pricing-table.php:775
+#: includes/widgets/pricing-table.php:829
+#: includes/widgets/products-awesome-list.php:329
+#: includes/widgets/products-awesome-list.php:446
+#: includes/widgets/products-list.php:284
+#: includes/widgets/products-list.php:470
+#: includes/widgets/products-slider.php:192
+#: includes/widgets/products-slider.php:289
+#: includes/widgets/products-slider.php:1605
+#: includes/widgets/testimonial-carousel.php:279
+#: includes/widgets/testimonial-carousel.php:786
+#: includes/widgets/ajax-search/ajax-search-widget.php:458
 msgid "Right"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:420
+#: includes/widgets/porducts-cat.php:424
 msgid "Right Bottom"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:416
+#: includes/widgets/porducts-cat.php:420
 msgid "Right Top"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:257
-#: includes/widgets/products-awesome-list.php:344
-#: includes/widgets/products-grid.php:419
-#: includes/widgets/products-list.php:334
+#: includes/widgets/accordion-widget.php:262
+#: includes/widgets/products-awesome-list.php:346
+#: includes/widgets/products-list.php:336
 msgid "Rotate Effect"
 msgstr ""
 
-#: includes/widgets/products-grid.php:1378
-msgid "Sale Badge Style"
-msgstr ""
-
-#: includes/widgets/products-awesome-list.php:143
-#: includes/widgets/products-grid.php:168
-#: includes/widgets/products-list.php:146
+#: includes/widgets/products-awesome-list.php:145
+#: includes/widgets/products-list.php:148
 msgid "Sale Products"
 msgstr ""
 
@@ -1888,533 +2079,580 @@ msgstr ""
 msgid "Sale!"
 msgstr ""
 
+#: includes/widgets/ajax-search/ajax-search-widget.php:277
+msgid "Search Bar Style"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:143
+msgid "Search Delay (ms)"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-handler.php:84
+msgid "Search failed. Please try again."
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:123
+msgid "Search products..."
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:113
+msgid "Search Settings"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-handler.php:43
+msgid "Security check failed"
+msgstr ""
+
+#: includes/admin-info.php:198 includes/admin-info.php:230
+#: includes/admin-info.php:299
+msgid "Security check failed."
+msgstr ""
+
 #: includes/functions.php:110
 msgid "Select"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:141
-#: includes/widgets/porducts-cat.php:135
-#: includes/widgets/products-awesome-list.php:155
-#: includes/widgets/products-grid.php:180
-#: includes/widgets/products-list.php:158
+#: includes/widgets/accordion-widget.php:145
+#: includes/widgets/products-awesome-list.php:157
+#: includes/widgets/products-list.php:160
 msgid "Select Product"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:168
+#: includes/widgets/porducts-cat.php:172
 msgid "Select Product Categories"
 msgstr ""
 
-#: includes/widgets/products-slider.php:163
+#: includes/widgets/products-slider.php:162
 msgid "Select Product for slide"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:853
+#: includes/widgets/porducts-cat.php:139
+msgid "Select Products Category"
+msgstr ""
+
+#: includes/widgets/pricing-table.php:855
 msgid "Set As Feature"
 msgstr ""
 
-#: includes/widgets/products-grid.php:207
-#: includes/widgets/products-list.php:185
+#: includes/widgets/products-list.php:187
 msgid "Set products number for this section"
 msgstr ""
 
-#: includes/widgets/products-slider.php:500
+#: includes/widgets/products-slider.php:538
 msgid "Settings"
 msgstr ""
 
-#: includes/widgets/products-grid.php:744
-#: includes/widgets/products-grid.php:745
-#: includes/widgets/products-list.php:683
-#: includes/widgets/products-list.php:684
+#: includes/widgets/products-list.php:685
+#: includes/widgets/products-list.php:686
 msgid "Share Now"
 msgstr ""
 
-#: includes/widgets/products-grid.php:741
-#: includes/widgets/products-list.php:680
+#: includes/widgets/products-list.php:682
 msgid "Share Text"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:253
-#: includes/widgets/products-awesome-list.php:340
-#: includes/widgets/products-grid.php:415
-#: includes/widgets/products-list.php:330
+#: includes/widgets/accordion-widget.php:258
+#: includes/widgets/products-awesome-list.php:342
+#: includes/widgets/products-list.php:332
 msgid "Shine Effect"
 msgstr ""
 
-#: includes/widgets/products-grid.php:345
+#: includes/widgets/ajax-search/ajax-search-widget.php:170
+#: includes/widgets/ajax-search/ajax-search-widget.php:182
 msgid "Show"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:651
-#: includes/widgets/products-grid.php:880
-#: includes/widgets/products-list.php:820
+#: includes/widgets/products-awesome-list.php:653
+#: includes/widgets/products-list.php:822
 msgid "Show Available products "
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:497
+#: includes/widgets/products-awesome-list.php:499
 msgid "Show Badge"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:422
-#: includes/widgets/products-grid.php:533
-#: includes/widgets/products-list.php:446
+#: includes/widgets/products-awesome-list.php:424
+#: includes/widgets/products-list.php:448
 msgid "Show button"
 msgstr ""
 
-#: includes/widgets/products-slider.php:376
+#: includes/widgets/products-slider.php:414
 msgid "Show Button?"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:146
-#: includes/widgets/products-grid.php:171
-#: includes/widgets/products-list.php:149
+#: includes/widgets/products-awesome-list.php:148
+#: includes/widgets/products-list.php:151
 msgid "Show By Id"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:279
+#: includes/widgets/porducts-cat.php:283
 msgid "Show Categories Description"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:225
+#: includes/widgets/porducts-cat.php:229
 msgid "Show Categories Images?"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:545
-#: includes/widgets/products-grid.php:632
-#: includes/widgets/products-list.php:570
+#: includes/widgets/products-awesome-list.php:547
+#: includes/widgets/products-list.php:572
 msgid "Show Category"
 msgstr ""
 
-#: includes/widgets/products-slider.php:306
+#: includes/widgets/products-slider.php:344
 msgid "Show Category?"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:562
+#: includes/widgets/ajax-search/ajax-search-widget.php:180
+msgid "Show Clear Button"
+msgstr ""
+
+#: includes/widgets/pricing-table.php:564
 msgid "Show Description"
 msgstr ""
 
-#: includes/widgets/products-slider.php:348
+#: includes/widgets/products-slider.php:386
 msgid "Show Description?"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:613
+#: includes/widgets/pricing-table.php:615
 msgid "Show Features List"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:147
+#: includes/widgets/pricing-table.php:149
 msgid "Show Icon or image?"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:302
+#: includes/widgets/accordion-widget.php:307
 msgid "Show Icon?"
 msgstr ""
 
-#: includes/widgets/products-grid.php:689
-#: includes/widgets/products-list.php:628
+#: includes/widgets/products-list.php:630
 msgid "Show Left Side"
 msgstr ""
 
-#: includes/widgets/products-list.php:557
+#: includes/widgets/products-list.php:559
 msgid "Show Number Before Sign"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:532
-#: includes/widgets/products-grid.php:618
+#: includes/widgets/products-awesome-list.php:534
 msgid "Show Number Before Sign "
 msgstr ""
 
-#: includes/widgets/products-grid.php:501
-#: includes/widgets/products-list.php:414
+#: includes/widgets/products-list.php:416
 msgid "Show Product Description"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:412
-#: includes/widgets/products-grid.php:523
-#: includes/widgets/products-list.php:436
+#: includes/widgets/products-slider.php:173
+msgid "Show Product Image"
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:414
+#: includes/widgets/products-list.php:438
 msgid "Show Product Price"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:367
-#: includes/widgets/products-grid.php:456
-#: includes/widgets/products-list.php:369
+#: includes/widgets/products-awesome-list.php:369
+#: includes/widgets/products-list.php:371
 msgid "Show Product Title"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:283
-#: includes/widgets/products-grid.php:382
-#: includes/widgets/products-list.php:297
+#: includes/widgets/products-awesome-list.php:285
+#: includes/widgets/products-list.php:299
 msgid "Show Products image"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:348
+#: includes/widgets/porducts-cat.php:352
 msgid "Show Products Number? "
 msgstr ""
 
-#: includes/widgets/products-grid.php:781
-#: includes/widgets/products-list.php:720
+#: includes/widgets/products-list.php:722
 msgid "Show QR Code Icons"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:555
-#: includes/widgets/products-grid.php:642
-#: includes/widgets/products-list.php:580
+#: includes/widgets/products-awesome-list.php:557
+#: includes/widgets/products-list.php:582
 msgid "Show Ratting"
 msgstr ""
 
-#: includes/widgets/products-grid.php:688
-#: includes/widgets/products-list.php:627
+#: includes/widgets/products-list.php:629
 msgid "Show Right Side"
 msgstr ""
 
-#: includes/widgets/products-grid.php:582
-#: includes/widgets/products-list.php:522
+#: includes/widgets/products-list.php:524
 msgid "Show Sale Badge"
 msgstr ""
 
-#: includes/widgets/products-slider.php:295
+#: includes/widgets/ajax-search/ajax-search-widget.php:168
+msgid "Show Search Icon"
+msgstr ""
+
+#: includes/widgets/products-slider.php:332
 msgid "Show Slider content?"
 msgstr ""
 
-#: includes/widgets/products-grid.php:728
-#: includes/widgets/products-list.php:667
+#: includes/widgets/products-list.php:669
 msgid "Show Social Share Icons"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:641
-#: includes/widgets/products-awesome-list.php:706
-#: includes/widgets/products-grid.php:870
-#: includes/widgets/products-grid.php:935
-#: includes/widgets/products-list.php:810
-#: includes/widgets/products-list.php:875
+#: includes/widgets/products-awesome-list.php:643
+#: includes/widgets/products-awesome-list.php:708
+#: includes/widgets/products-list.php:812
+#: includes/widgets/products-list.php:877
 msgid "Show Stock Slide "
 msgstr ""
 
-#: includes/widgets/products-slider.php:320
+#: includes/widgets/products-slider.php:358
 msgid "Show title?"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:679
-#: includes/widgets/products-grid.php:908
-#: includes/widgets/products-list.php:848
+#: includes/widgets/products-awesome-list.php:681
+#: includes/widgets/products-list.php:850
 msgid "Show total Sold "
 msgstr ""
 
-#: includes/widgets/products-grid.php:771
-#: includes/widgets/products-grid.php:772
-#: includes/widgets/products-list.php:710
-#: includes/widgets/products-list.php:711
+#: includes/widgets/products-list.php:712
+#: includes/widgets/products-list.php:713
 msgid "Show Video"
 msgstr ""
 
-#: includes/widgets/products-grid.php:754
-#: includes/widgets/products-list.php:693
+#: includes/widgets/products-list.php:695
 msgid "Show Video Icons"
 msgstr ""
 
-#: includes/widgets/products-grid.php:701
-#: includes/widgets/products-list.php:640
+#: includes/widgets/products-list.php:642
 msgid "Show Wishlist Icon"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:208
+#: includes/widgets/accordion-widget.php:213
 msgid "Side Curve"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:797
-#: includes/widgets/accordion-widget.php:835
+#: includes/widgets/accordion-widget.php:808
+#: includes/widgets/accordion-widget.php:849
 msgid "Size"
 msgstr ""
 
-#: includes/widgets/products-slider.php:511
-#: includes/widgets/testimonial-carousel.php:332
+#: includes/widgets/products-slider.php:546
+#: includes/widgets/products-slider.php:568
+#: includes/widgets/testimonial-carousel.php:325
 msgid "Slide"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1528
-#: includes/widgets/products-grid.php:2051
-#: includes/widgets/products-list.php:1963
+#: includes/widgets/products-awesome-list.php:1530
+#: includes/widgets/products-list.php:1978
 msgid "Slide Background"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:777
+#: includes/widgets/accordion-widget.php:787
 msgid "Slide Closed Icon"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:258
-#: includes/widgets/products-awesome-list.php:345
-#: includes/widgets/products-grid.php:420
-#: includes/widgets/products-list.php:335
-#: includes/widgets/products-slider.php:507
-#: includes/widgets/testimonial-carousel.php:328
+#: includes/widgets/products-slider.php:656
+msgid "Slide Direction"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:263
+#: includes/widgets/products-awesome-list.php:347
+#: includes/widgets/products-list.php:337
+#: includes/widgets/products-slider.php:598
+#: includes/widgets/testimonial-carousel.php:321
 msgid "Slide Effect"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1538
-#: includes/widgets/products-grid.php:2061
-#: includes/widgets/products-list.php:1973
+#: includes/widgets/products-awesome-list.php:1540
+#: includes/widgets/products-list.php:1988
 msgid "Slide Fill Background"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1567
-#: includes/widgets/products-grid.php:2090
-#: includes/widgets/products-list.php:2002
+#: includes/widgets/products-awesome-list.php:1569
+#: includes/widgets/products-list.php:2017
 msgid "Slide Height"
 msgstr ""
 
-#: includes/widgets/products-slider.php:543
+#: includes/widgets/products-slider.php:615
 msgid "Slide speed in milliseconds"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1519
-#: includes/widgets/products-grid.php:2042
-#: includes/widgets/products-list.php:1954
+#: includes/widgets/products-awesome-list.php:1521
+#: includes/widgets/products-list.php:1969
 msgid "Slide Style"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1023
+#: includes/widgets/products-slider.php:1186
 msgid "Slider Button"
 msgstr ""
 
-#: includes/widgets/products-slider.php:288
+#: includes/widgets/products-slider.php:325
 msgid "Slider content"
 msgstr ""
 
-#: includes/widgets/products-slider.php:819
+#: includes/widgets/products-slider.php:950
 msgid "Slider Content style"
 msgstr ""
 
-#: includes/widgets/products-slider.php:411
-#: includes/widgets/testimonial-carousel.php:460
+#: includes/widgets/products-slider.php:449
+#: includes/widgets/testimonial-carousel.php:453
 msgid "Slider Dots?"
 msgstr ""
 
-#: includes/widgets/products-slider.php:646
+#: includes/widgets/products-slider.php:762
 msgid "Slider Height"
 msgstr ""
 
-#: includes/widgets/products-slider.php:638
+#: includes/widgets/products-slider.php:755
 msgid "Slider Item"
 msgstr ""
 
-#: includes/widgets/products-slider.php:422
-#: includes/widgets/testimonial-carousel.php:471
+#: includes/widgets/products-slider.php:460
+#: includes/widgets/testimonial-carousel.php:465
 msgid "Slider Navigation?"
 msgstr ""
 
-#: includes/widgets/products-slider.php:152
+#: includes/widgets/products-slider.php:151
 msgid "Slides"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:694
-#: includes/widgets/products-awesome-list.php:695
-#: includes/widgets/products-grid.php:923
-#: includes/widgets/products-grid.php:924
-#: includes/widgets/products-list.php:863
-#: includes/widgets/products-list.php:864
+#: includes/widgets/products-awesome-list.php:696
+#: includes/widgets/products-awesome-list.php:697
+#: includes/widgets/products-list.php:865
+#: includes/widgets/products-list.php:866
 msgid "Sold"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:639
+#: includes/widgets/pricing-table.php:641
 msgid "Some style not support list fields"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1403
+#: includes/widgets/products-slider.php:1579
+#: includes/widgets/testimonial-carousel.php:760
 msgid "Spacing"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:314
+#: includes/widgets/ajax-search/ajax-search-widget.php:491
+msgid "Spinner Color"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:505
+msgid "Spinner Size"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:477
+msgid "Spinner Type"
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:316
 msgid "Square"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:306
+#: includes/widgets/pricing-table.php:308
 msgid "Standard"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:202
-#: includes/widgets/porducts-cat.php:197 includes/widgets/pricing-table.php:124
+#: includes/widgets/ajax-search/ajax-search-widget.php:252
+msgid "Stock Status"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:206
+#: includes/widgets/porducts-cat.php:201 includes/widgets/pricing-table.php:126
 msgid "Style"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:131
+#: includes/widgets/pricing-table.php:133
 msgid "Style Four"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:201 includes/widgets/pricing-table.php:128
-#: includes/widgets/products-grid.php:291
-#: includes/widgets/products-list.php:269
+#: includes/widgets/porducts-cat.php:205 includes/widgets/pricing-table.php:130
+#: includes/widgets/products-list.php:271
 msgid "Style One"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:130
-#: includes/widgets/products-grid.php:293
+#: includes/widgets/pricing-table.php:132
 msgid "Style Three"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:202 includes/widgets/pricing-table.php:129
-#: includes/widgets/products-grid.php:292
-#: includes/widgets/products-list.php:270
+#: includes/widgets/porducts-cat.php:206 includes/widgets/pricing-table.php:131
+#: includes/widgets/products-list.php:272
 msgid "Style Two"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:360
-#: includes/widgets/pricing-table.php:368
-#: includes/widgets/products-slider.php:975
+#: includes/widgets/pricing-table.php:362
+#: includes/widgets/pricing-table.php:370
+#: includes/widgets/products-slider.php:1138
 msgid "Subtitle"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:1198
-#: includes/widgets/accordion-widget.php:1238
-#: includes/widgets/porducts-cat.php:716 includes/widgets/porducts-cat.php:761
-#: includes/widgets/porducts-cat.php:811 includes/widgets/porducts-cat.php:864
-#: includes/widgets/pricing-table.php:1412
-#: includes/widgets/pricing-table.php:1537
-#: includes/widgets/pricing-table.php:1661
-#: includes/widgets/pricing-table.php:1732
-#: includes/widgets/pricing-table.php:1863
-#: includes/widgets/pricing-table.php:1896
-#: includes/widgets/products-awesome-list.php:976
-#: includes/widgets/products-awesome-list.php:1055
-#: includes/widgets/products-awesome-list.php:1134
-#: includes/widgets/products-awesome-list.php:1223
-#: includes/widgets/products-awesome-list.php:1366
-#: includes/widgets/products-awesome-list.php:1406
-#: includes/widgets/products-awesome-list.php:1501
-#: includes/widgets/products-grid.php:1204
-#: includes/widgets/products-grid.php:1278
-#: includes/widgets/products-grid.php:1409
-#: includes/widgets/products-grid.php:1488
-#: includes/widgets/products-grid.php:1559
-#: includes/widgets/products-grid.php:1890
-#: includes/widgets/products-grid.php:1930
-#: includes/widgets/products-grid.php:2024
-#: includes/widgets/products-list.php:1145
-#: includes/widgets/products-list.php:1216
-#: includes/widgets/products-list.php:1295
-#: includes/widgets/products-list.php:1375
-#: includes/widgets/products-list.php:1464
-#: includes/widgets/products-list.php:1801
-#: includes/widgets/products-list.php:1841
-#: includes/widgets/products-list.php:1936
-#: includes/widgets/products-slider.php:882
-#: includes/widgets/products-slider.php:947
-#: includes/widgets/products-slider.php:995
-#: includes/widgets/products-slider.php:1096
-#: includes/widgets/products-slider.php:1136
-#: includes/widgets/products-slider.php:1303
-#: includes/widgets/products-slider.php:1335
+#: includes/widgets/ajax-search/ajax-search-widget.php:249
+msgid "Tags"
+msgstr ""
+
+#: includes/widgets/testimonial-carousel.php:145
+msgid "Testimonial items"
+msgstr ""
+
+#: includes/widgets/products-slider.php:622
+msgid "Text Animation"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:1204
+#: includes/widgets/accordion-widget.php:1244
+#: includes/widgets/porducts-cat.php:720 includes/widgets/porducts-cat.php:765
+#: includes/widgets/porducts-cat.php:815 includes/widgets/porducts-cat.php:868
+#: includes/widgets/pricing-table.php:1416
+#: includes/widgets/pricing-table.php:1541
+#: includes/widgets/pricing-table.php:1665
+#: includes/widgets/pricing-table.php:1736
+#: includes/widgets/pricing-table.php:1867
+#: includes/widgets/pricing-table.php:1900
+#: includes/widgets/products-awesome-list.php:978
+#: includes/widgets/products-awesome-list.php:1057
+#: includes/widgets/products-awesome-list.php:1136
+#: includes/widgets/products-awesome-list.php:1225
+#: includes/widgets/products-awesome-list.php:1368
+#: includes/widgets/products-awesome-list.php:1408
+#: includes/widgets/products-awesome-list.php:1503
+#: includes/widgets/products-list.php:1160
+#: includes/widgets/products-list.php:1231
+#: includes/widgets/products-list.php:1310
+#: includes/widgets/products-list.php:1390
+#: includes/widgets/products-list.php:1479
+#: includes/widgets/products-list.php:1816
+#: includes/widgets/products-list.php:1856
+#: includes/widgets/products-list.php:1951
+#: includes/widgets/products-slider.php:1024
+#: includes/widgets/products-slider.php:1110
+#: includes/widgets/products-slider.php:1158
+#: includes/widgets/products-slider.php:1270
+#: includes/widgets/products-slider.php:1310
+#: includes/widgets/testimonial-carousel.php:561
+#: includes/widgets/testimonial-carousel.php:656
+#: includes/widgets/testimonial-carousel.php:698
+#: includes/widgets/testimonial-carousel.php:1052
+#: includes/widgets/testimonial-carousel.php:1085
+#: includes/widgets/ajax-search/ajax-search-widget.php:344
 msgid "Text Color"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:1470
-#: includes/widgets/products-grid.php:1993
-#: includes/widgets/products-list.php:1905
+#: includes/widgets/products-awesome-list.php:1472
+#: includes/widgets/products-list.php:1920
 msgid "Text Style"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:498
-#: includes/widgets/products-list.php:523
+#: includes/widgets/products-awesome-list.php:500
+#: includes/widgets/products-list.php:525
 msgid "The badge will show if available."
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:508
-#: includes/widgets/products-awesome-list.php:533
-#: includes/widgets/products-grid.php:583
-#: includes/widgets/products-grid.php:594
-#: includes/widgets/products-grid.php:619
-#: includes/widgets/products-list.php:533
-#: includes/widgets/products-list.php:558
+#: includes/widgets/products-awesome-list.php:510
+#: includes/widgets/products-awesome-list.php:535
+#: includes/widgets/products-list.php:535
+#: includes/widgets/products-list.php:560
 msgid "The badge will show only sale products."
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:339
-#: includes/widgets/products-awesome-list.php:632
-#: includes/widgets/products-awesome-list.php:1461
-#: includes/widgets/products-grid.php:861
-#: includes/widgets/products-grid.php:1632
-#: includes/widgets/products-grid.php:1984
-#: includes/widgets/products-list.php:801
-#: includes/widgets/products-list.php:1546
-#: includes/widgets/products-list.php:1896
+#: includes/widgets/porducts-cat.php:343
+#: includes/widgets/products-awesome-list.php:634
+#: includes/widgets/products-awesome-list.php:1463
+#: includes/widgets/products-list.php:803
+#: includes/widgets/products-list.php:1561
+#: includes/widgets/products-list.php:1911
 msgid "The Section only work with pro version."
 msgstr ""
 
-#: includes/widgets/products-grid.php:755
-#: includes/widgets/products-list.php:694
+#: includes/widgets/products-list.php:696
 msgid ""
 "The video icons will only be displayed when a YouTube video is available"
 msgstr ""
 
-#: includes/widgets/testimonial-carousel.php:247
+#: includes/widgets/testimonial-carousel.php:240
 msgid "Thumbnail"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:234
-#: includes/widgets/products-awesome-list.php:295
-#: includes/widgets/products-grid.php:394
-#: includes/widgets/products-list.php:309
+#: includes/widgets/accordion-widget.php:239
+#: includes/widgets/products-awesome-list.php:297
+#: includes/widgets/products-list.php:311
 msgid "Thumbnail (150px x 150px max)"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:294
-#: includes/widgets/pricing-table.php:1293
-#: includes/widgets/products-awesome-list.php:223
-#: includes/widgets/products-grid.php:250
-#: includes/widgets/products-list.php:228
-#: includes/widgets/products-slider.php:927
+#: includes/widgets/pricing-table.php:296
+#: includes/widgets/pricing-table.php:1297
+#: includes/widgets/products-awesome-list.php:225
+#: includes/widgets/products-list.php:230
+#: includes/widgets/products-slider.php:1090
+#: includes/widgets/testimonial-carousel.php:177
+#: includes/widgets/testimonial-carousel.php:690
 msgid "Title"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:314
-#: includes/widgets/pricing-table.php:378
-#: includes/widgets/products-awesome-list.php:389
-#: includes/widgets/products-grid.php:478
-#: includes/widgets/products-list.php:391
+#: includes/widgets/pricing-table.php:316
+#: includes/widgets/pricing-table.php:380
+#: includes/widgets/products-awesome-list.php:391
+#: includes/widgets/products-list.php:393
 msgid "Title HTML Tag"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:703
+#: includes/widgets/accordion-widget.php:712
 msgid "Title Icon Style"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:642
-#: includes/widgets/products-grid.php:871
-#: includes/widgets/products-list.php:811
+#: includes/widgets/products-slider.php:1053
+#: includes/widgets/products-slider.php:1129
+#: includes/widgets/products-slider.php:1177
+msgid "Title Text Shadow"
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:644
+#: includes/widgets/products-list.php:813
 msgid ""
 "To display the product stock slide need to add stock quantity from the "
 "product edit page."
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:463
-#: includes/widgets/products-awesome-list.php:568
-#: includes/widgets/products-list.php:487
+#: includes/widgets/ajax-search/ajax-search-widget.php:232
+msgid "Toggle-Style Filters"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-handler.php:49
+msgid "Too many requests. Please wait a moment."
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:465
+#: includes/widgets/products-awesome-list.php:570
+#: includes/widgets/products-list.php:489
+#: includes/widgets/testimonial-carousel.php:257
 msgid "Top"
 msgstr ""
 
-#: includes/widgets/pricing-table.php:275
+#: includes/widgets/pricing-table.php:277
 msgid "top"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:746
-#: includes/widgets/accordion-widget.php:752
+#: includes/widgets/accordion-widget.php:755
+#: includes/widgets/accordion-widget.php:761
 msgid "Top & Bottom"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:144
-#: includes/widgets/products-grid.php:169
-#: includes/widgets/products-list.php:147
+#: includes/widgets/products-awesome-list.php:146
+#: includes/widgets/products-list.php:149
 msgid "Top Rated Products"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:691
-#: includes/widgets/products-grid.php:920
-#: includes/widgets/products-list.php:860
+#: includes/widgets/products-awesome-list.php:693
+#: includes/widgets/products-list.php:862
 msgid "Total Sold Text "
 msgstr ""
 
-#: includes/widgets/products-grid.php:435
-#: includes/widgets/products-list.php:349
+#: includes/widgets/products-list.php:351
 msgid ""
 "Two Product images create a hover flip. You need to add gallery images to "
 "view two different product images on the product edit page."
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:386
+msgid "Typography"
+msgstr ""
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:206
+msgid "Unlock Advanced Filter Features with Pro!"
 msgstr ""
 
 #: includes/helplink.php:28
@@ -2427,182 +2665,189 @@ msgstr ""
 msgid "UPGRADE NOW"
 msgstr ""
 
-#: magical-products-display.php:393
+#: magical-products-display.php:366
 msgid "Upgrade Now"
-msgstr ""
-
-#: includes/admin-info.php:35
-msgid "Upgrade Pro Now"
 msgstr ""
 
 #: includes/helplink.php:19
 msgid "Upgrade Pro | Start Only $24!!"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:509
+#: includes/widgets/porducts-cat.php:513
 msgid "Use Box shadow?"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:381
+#: includes/widgets/porducts-cat.php:385
 msgid "Use Card Badge?"
 msgstr ""
 
-#: includes/widgets/products-grid.php:341
-msgid "Use Fixed Grid Height"
-msgstr ""
-
-#: includes/widgets/pricing-table.php:737
+#: includes/widgets/pricing-table.php:739
 msgid "Use icon"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1199
+#: includes/widgets/products-slider.php:1373
+#: includes/widgets/testimonial-carousel.php:965
 msgid "Vertical"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:459
-#: includes/widgets/products-list.php:483
+#: includes/widgets/products-slider.php:644
+#: includes/widgets/products-slider.php:649
+msgid "vertical"
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:461
+#: includes/widgets/products-list.php:485
 msgid "Vertical Alignment"
 msgstr ""
 
-#: includes/widgets/products-slider.php:1384
+#: includes/widgets/products-slider.php:1560
+#: includes/widgets/testimonial-carousel.php:741
 msgid "Vertical Position"
 msgstr ""
 
-#: includes/widgets/products-grid.php:768
-#: includes/widgets/products-list.php:707
+#: includes/widgets/products-list.php:709
 msgid "Video Text"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:596
-#: includes/widgets/products-awesome-list.php:609
-#: includes/widgets/products-awesome-list.php:610
-#: includes/widgets/products-grid.php:826
-#: includes/widgets/products-grid.php:839
-#: includes/widgets/products-grid.php:840
-#: includes/widgets/products-list.php:765
-#: includes/widgets/products-list.php:778
-#: includes/widgets/products-list.php:779
+#: includes/widgets/testimonial-carousel.php:290
+msgid "View"
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:598
+#: includes/widgets/products-awesome-list.php:611
+#: includes/widgets/products-awesome-list.php:612
+#: includes/widgets/products-list.php:767
+#: includes/widgets/products-list.php:780
+#: includes/widgets/products-list.php:781
 msgid "View details"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:866
-#: includes/widgets/accordion-widget.php:1063
-#: includes/widgets/porducts-cat.php:570
-#: includes/widgets/products-awesome-list.php:810
-#: includes/widgets/products-grid.php:1039
-#: includes/widgets/products-list.php:979
-#: includes/widgets/products-slider.php:703
+#: includes/admin-info.php:43
+msgid "View Pricing"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:881
+#: includes/widgets/accordion-widget.php:1069
+#: includes/widgets/porducts-cat.php:574
+#: includes/widgets/products-awesome-list.php:812
+#: includes/widgets/products-list.php:981
+#: includes/widgets/products-slider.php:818
+#: includes/widgets/ajax-search/ajax-search-widget.php:285
 msgid "Width"
 msgstr ""
 
-#: includes/widgets/products-grid.php:717
-#: includes/widgets/products-grid.php:718
-#: includes/widgets/products-list.php:656
-#: includes/widgets/products-list.php:657
+#: includes/widgets/products-list.php:658
+#: includes/widgets/products-list.php:659
 msgid "Wishlist"
 msgstr ""
 
-#: includes/widgets/products-grid.php:714
-#: includes/widgets/products-list.php:653
+#: includes/widgets/products-list.php:655
 msgid "Wishlist Text"
 msgstr ""
 
-#: magical-products-display.php:318 magical-products-display.php:329
+#: magical-products-display.php:290 magical-products-display.php:301
 msgid "woocommerce"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:155
-#: includes/widgets/accordion-widget.php:304
-#: includes/widgets/accordion-widget.php:510
-#: includes/widgets/porducts-cat.php:227 includes/widgets/porducts-cat.php:351
-#: includes/widgets/porducts-cat.php:383 includes/widgets/porducts-cat.php:511
-#: includes/widgets/pricing-table.php:149
-#: includes/widgets/pricing-table.php:739
-#: includes/widgets/pricing-table.php:855
-#: includes/widgets/pricing-table.php:1042
-#: includes/widgets/pricing-table.php:1222
-#: includes/widgets/products-grid.php:677
-#: includes/widgets/products-grid.php:703
-#: includes/widgets/products-grid.php:730
-#: includes/widgets/products-grid.php:757
-#: includes/widgets/products-grid.php:783
-#: includes/widgets/products-list.php:616
-#: includes/widgets/products-list.php:642
-#: includes/widgets/products-list.php:669
-#: includes/widgets/products-list.php:696
-#: includes/widgets/products-list.php:722
-#: includes/widgets/products-slider.php:297
-#: includes/widgets/products-slider.php:308
-#: includes/widgets/products-slider.php:322
-#: includes/widgets/products-slider.php:350
-#: includes/widgets/products-slider.php:378
-#: includes/widgets/products-slider.php:413
-#: includes/widgets/products-slider.php:424
-#: includes/widgets/products-slider.php:553
-#: includes/widgets/products-slider.php:599
-#: includes/widgets/products-slider.php:611
-#: includes/widgets/testimonial-carousel.php:385
-#: includes/widgets/testimonial-carousel.php:428
-#: includes/widgets/testimonial-carousel.php:440
-#: includes/widgets/testimonial-carousel.php:462
-#: includes/widgets/testimonial-carousel.php:473
+#: includes/widgets/ajax-search/ajax-search-handler.php:32
+msgid "WooCommerce is not active"
+msgstr ""
+
+#: includes/widgets/accordion-widget.php:159
+#: includes/widgets/accordion-widget.php:309
+#: includes/widgets/accordion-widget.php:522
+#: includes/widgets/porducts-cat.php:231 includes/widgets/porducts-cat.php:355
+#: includes/widgets/porducts-cat.php:387 includes/widgets/porducts-cat.php:515
+#: includes/widgets/pricing-table.php:151
+#: includes/widgets/pricing-table.php:741
+#: includes/widgets/pricing-table.php:857
+#: includes/widgets/pricing-table.php:1045
+#: includes/widgets/pricing-table.php:1226
+#: includes/widgets/products-list.php:618
+#: includes/widgets/products-list.php:644
+#: includes/widgets/products-list.php:671
+#: includes/widgets/products-list.php:698
+#: includes/widgets/products-list.php:724
+#: includes/widgets/products-slider.php:334
+#: includes/widgets/products-slider.php:346
+#: includes/widgets/products-slider.php:360
+#: includes/widgets/products-slider.php:388
+#: includes/widgets/products-slider.php:416
+#: includes/widgets/products-slider.php:451
+#: includes/widgets/products-slider.php:462
+#: includes/widgets/products-slider.php:670
+#: includes/widgets/products-slider.php:716
+#: includes/widgets/products-slider.php:728
+#: includes/widgets/testimonial-carousel.php:378
+#: includes/widgets/testimonial-carousel.php:421
+#: includes/widgets/testimonial-carousel.php:433
+#: includes/widgets/testimonial-carousel.php:455
+#: includes/widgets/testimonial-carousel.php:467
+#: includes/widgets/ajax-search/ajax-search-widget.php:218
 msgid "Yes"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:146
+#: includes/widgets/porducts-cat.php:150
 msgid "You can also set image from Product category edit page."
 msgstr ""
 
-#: includes/widgets/products-grid.php:342
-msgid "You can also set image height from the image style section"
-msgstr ""
-
-#: includes/widgets/porducts-cat.php:124
+#: includes/widgets/porducts-cat.php:128
 msgid ""
 "You can select categories more easily and change position by drag and drop "
 "also add images easily in the pro version."
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:349
+#: includes/widgets/porducts-cat.php:353
 msgid "You can show how many products inside the category?"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:707
-#: includes/widgets/products-grid.php:936
-#: includes/widgets/products-list.php:876
+#: includes/widgets/products-slider.php:174
+msgid "You can show or hide product image."
+msgstr ""
+
+#: includes/widgets/products-awesome-list.php:709
+#: includes/widgets/products-list.php:878
 msgid "You can show or hide stock slide"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:652
-#: includes/widgets/products-grid.php:881
-#: includes/widgets/products-list.php:821
+#: includes/widgets/products-awesome-list.php:654
+#: includes/widgets/products-list.php:823
 msgid "You can show or hide total available stock"
 msgstr ""
 
-#: includes/widgets/products-awesome-list.php:680
-#: includes/widgets/products-grid.php:909
-#: includes/widgets/products-list.php:849
+#: includes/widgets/products-awesome-list.php:682
+#: includes/widgets/products-list.php:851
 msgid "You can show or hide total Sold items"
 msgstr ""
 
-#: includes/widgets/porducts-cat.php:272
+#: includes/admin-info.php:293
+msgid "You do not have permission to activate plugins."
+msgstr ""
+
+#: includes/admin-info.php:224
+msgid "You do not have permission to install plugins."
+msgstr ""
+
+#: includes/admin-info.php:193
+msgid "You do not have sufficient permissions."
+msgstr ""
+
+#: includes/widgets/porducts-cat.php:276
 msgid "You need to add category description by products category edit."
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:260
-#: includes/widgets/products-awesome-list.php:347
-#: includes/widgets/products-grid.php:422
-#: includes/widgets/products-list.php:337
+#: includes/widgets/accordion-widget.php:265
+#: includes/widgets/products-awesome-list.php:349
+#: includes/widgets/products-list.php:339
 msgid "Zoom In Effect"
 msgstr ""
 
-#: includes/widgets/accordion-widget.php:259
-#: includes/widgets/products-awesome-list.php:346
-#: includes/widgets/products-grid.php:421
-#: includes/widgets/products-list.php:336
+#: includes/widgets/accordion-widget.php:264
+#: includes/widgets/products-awesome-list.php:348
+#: includes/widgets/products-list.php:338
 msgid "Zoom Out Effect"
 msgstr ""
 
-#: includes/admin-info.php:27 includes/admin-rev-info.php:27
+#: includes/admin-info.php:31 includes/admin-rev-info.php:27
 msgid "👋🏻"
 msgstr ""

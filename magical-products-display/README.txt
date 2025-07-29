@@ -1,77 +1,157 @@
-=== Magical Products Display – Elementor Products Widgets For WooCommerce  ===
+=== Magical Products Display – Elementor WooCommerce Widgets | Product Sliders, Grids & AJAX Search ===
 Contributors: nalam
 Donate link: https://wpthemespace.com/donation/
-Tags: elementor, WooCommerce Builder, products carousel, pricing table, products slider
+Tags: elementor, woocommerce, products carousel slider, ajax search, product filter
 Requires at least: 4.0
 Tested up to: 6.8
 Stable Tag : trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Customizable Elementor Widgets for Beautiful WooCommerce Product Displays.
+Transform your WooCommerce store with 10+ beautiful Elementor widgets. Create Easy product displays, sliders, carousels, grids, AJAX search and more.
 
 == Description ==
-<h2> WooCommerce Products slider, Products carousel, Pricing Table, Testimonial Carousel, Offer Countdown, Product Compare, Product image hotspot, Products Grid & List View, Products Accordion & Tab. Now Need Only One Click!!!  </h2>
-<p>Are you looking to take your WooCommerce store to the next level and captivate your customers with stunning product displays? Look no further than Magical Products Display. This powerful Elementor and WooCommerce addon is designed to transform your product presentations into visually captivating showcases that leave a lasting impression.</p>
 
-### See Live Preview Magical Products Display
-<a href="https://mp.wpteamx.com/" target="_blank">Live preview Magical Products Display </a>
+**Transform your WooCommerce store with beautiful product displays that boost sales and engage customers!**
 
-### Upgrade Pro Now & get all features
-<a href="https://mp.wpteamx.com/magical-products-display-pro-pricing/#pricing-mpd" target="_blank">Purchase Pro Version </a>
+Create stunning product showcases in minutes with our comprehensive collection of **10+ premium Elementor widgets** designed specifically for WooCommerce stores. Whether you need product sliders, carousels, grids, lists, pricing tables, or testimonials - we've got you covered.
 
-### See Short Video For More Details
+### 🔗 See Live Demo
+<a href="https://mp.wpcolors.net/" target="_blank">Experience Magical Products Display in Action</a>
+
+### 🎬 Watch Quick Setup Video
 [youtube https://www.youtube.com/watch?v=dU58wSa3v8E]
 
-Magical Products Display is a powerful WordPress plugin that offers a unique set of Elementor addons for showcasing your WooCommerce products. With its user-friendly interface and extensive customization options, it's easy to create beautiful, engaging product displays that will captivate your audience. This versatile plugin provides a range of unique Elementor product widgets that are specifically designed for WooCommerce products. Whether you're looking to display products in a slider, carousel, tab, accordion, grid, or list format, Magical Products Display has you covered.
+**✨ Why Choose Magical Products Display?**
+- **Zero Coding Required** - Perfect for beginners and experts alike
+- **Mobile-First Design** - Looks perfect on all devices
+- **Lightning Fast** - Optimized for speed and performance
+- **SEO Friendly** - Built with search engines in mind
+- **Conversion Focused** - Designed to increase sales
 
-With unlimited customization options for each widget, you have the freedom to create a nearly endless variety of designs that will perfectly complement your brand. Plus, every widget and addon has been thoroughly tested on various screen sizes and mobile devices, ensuring that your product displays look stunning on any device.
+**🎯 Perfect for:**
+- Online retailers wanting to showcase products beautifully
+- Store owners looking to increase conversion rates
+- Designers creating custom WooCommerce websites
+- Agencies building client e-commerce sites
 
-<h4>Let's explore the exciting lineup of free widgets that come bundled with Magical Products Display: </h4>
+**🚀 NEW: Advanced AJAX Search Widget**
+Search your products instantly with our brand-new AJAX search widget featuring real-time filtering, category sorting, and lightning-fast results. Your customers will love the smooth, responsive search experience!
+
+
+
+### 💎 Upgrade to Pro
+<a href="https://mp.wpcolors.net/magical-products-display-pro-pricing/#pricing-mpd" target="_blank">Get Pro Version with Advanced Features</a>
+
+**The Complete WooCommerce Display Solution**
+
+Magical Products Display revolutionizes how you showcase products on your WordPress website. This powerful plugin seamlessly integrates with Elementor and WooCommerce to deliver professional-grade product displays without requiring any coding knowledge.
+
+**Key Benefits:**
+- **Instant Setup** - Install and start creating beautiful displays in minutes
+- **Unlimited Customization** - Style every aspect to match your brand
+- **Responsive Design** - Automatically adapts to any screen size
+- **Performance Optimized** - Fast loading with on-demand asset loading
+- **Regular Updates** - Continuously improved with new features
+
+## 🎨 Free Widgets Included (10+ Premium Widgets)
+
+**All widgets are fully responsive, customizable, and optimized for conversions:**
 <ul>
- 	<li><strong><a href="https://mp.wpteamx.com/products-slider" target="_blank">WooCommerce Products slider: </a></strong>Elevate your product displays with a sleek and dynamic slider format, allowing customers to effortlessly explore a wide range of offerings within a compact space. Engage their attention with smooth transitions, captivating visuals, and the ability to navigate through your product collection with ease. Whether highlighting new arrivals, featured items, or seasonal promotions, the Elementor Products Slider widget is designed to make a lasting impression and entice customers to discover more of what your store has to offer.</li>
+	<li>🔍 **<a href="https://mp.wpcolors.net/ajax-search" target="_blank">AJAX Product Search</a>** - Real-time product search with instant filtering by categories, price, and attributes. Features modern Material Design 3 UI with accessibility support.</li>
 
-	<li><strong> <a href="https://mp.wpteamx.com/products-carousel" target="_blank">WooCommerce Products Carousel: </a></strong> The Elementor Products Carousel widget brings your offerings to life as it seamlessly rotates through the collection, highlighting each product's unique features and benefits. This eye-catching presentation captures the attention of your customers, encouraging them to explore and discover the full range of what your store has to offer. With smooth transitions and customizable settings, the Products Carousel adds a touch of elegance and interactivity to your product displays, enhancing the overall shopping experience for your valued customers.</li>
+ 	<li>🎢 **<a href="https://mp.wpcolors.net/products-slider" target="_blank">Products Slider</a>** - Showcase your best products in an elegant, touch-friendly slider. Perfect for highlighting featured items, new arrivals, or bestsellers with smooth transitions and navigation controls.</li>
 
-	<li><strong><a href="https://mp.wpteamx.com/testimonial" target="_blank">Awesome Testimonial Carousel: </a></strong> The Elementor Testimonial Carousel adds an extra layer of authenticity to your website, making it a powerful tool for instilling trust and encouraging conversion. The Testimonial Carousel widget is your secret weapon for building confidence among potential buyers. Let your satisfied customers speak for you as their positive reviews glide smoothly across the screen, providing social proof of the quality and satisfaction associated with your products or services.</li>
+	<li>🎠 **<a href="https://mp.wpcolors.net/products-carousel" target="_blank">Products Carousel</a>** - Create engaging rotating product displays that automatically cycle through your inventory. Ideal for homepage showcases and category highlights.</li>
 
-	<li><strong><a href="https://mp.wpteamx.com/product-tab" target="_blank">Products Categories Tab: </a></strong>Simplify the shopping experience for your customers and enhance product discovery with the user-friendly Products Categories Tab Elementor widget. This powerful tool allows you to neatly organize your products into intuitive tabs based on different categories. Customers can effortlessly navigate through various product categories, ensuring a seamless browsing experience.</li>
+	<li>⭐ **<a href="https://mp.wpcolors.net/testimonial" target="_blank">Testimonial Carousel</a>** - Build trust and credibility with customer reviews displayed in a professional carousel format. Social proof that converts visitors into buyers.</li>
 
-	<li><strong><a href="https://mp.wpteamx.com/pricing-table" target="_blank">Pricing Table: </a></strong> Elevate your pricing presentation with the versatile Pricing Table widget designed exclusively for Elementor. This powerful tool allows you to create stunning and informative pricing tables that effectively showcase your product or service offerings. Present different pricing tiers, highlight features and benefits, and guide customers towards selecting the right plan. With customizable options and a user-friendly interface, the Elementor Pricing Table widget empowers you to create visually appealing pricing tables that captivate your audience and drive conversions.</li>
+	<li>📑 **<a href="https://mp.wpcolors.net/product-tab" target="_blank">Product Category Tabs</a>** - Organize products into clean, easy-to-navigate tabs by category. Helps customers find exactly what they're looking for quickly.</li>
 
-	<li><strong><a href="https://mp.wpteamx.com/products-gird" target="_blank">WooCommerce Products Grid: </a></strong>Present your WooCommerce products in a visually appealing grid layout with the easy-to-use Products Grid widget for Elementor. This versatile tool allows you to showcase your offerings in an organized and attractive manner, making it convenient for customers to browse through your collection. With customizable options, you can personalize the layout and style to match your brand. Whether you have a small or large inventory, the Products Grid widget is a great way to display your products and capture the attention of potential buyers.</li>
+	<li>💰 **<a href="https://mp.wpcolors.net/pricing-table" target="_blank">Pricing Tables</a>** - Display service packages, subscription plans, or product tiers with beautiful, conversion-optimized pricing tables that guide customer decisions.</li>
 
-	<li><strong><a href="https://mp.wpteamx.com/accordion" target="_blank">WooCommerce Products Accordion: </a></strong>Expand the possibilities of product presentation with the WooCommerce Products Accordion widget for Elementor. This widget allows you to efficiently utilize page space by displaying product details and descriptions in an accordion-style format. Customers can easily navigate through your product offerings, revealing additional information with a simple click.</li>
+	<li>📱 **<a href="https://mp.wpcolors.net/products-gird" target="_blank">Products Grid</a>** - Present products in clean, organized grid layouts. Fully responsive with multiple style options and hover effects to engage customers.</li>
 
-	<li><strong><a href="https://mp.wpteamx.com/products-carousel" target="_blank">WooCommerce Products List:</a></strong>  Display your products in a clean and organized list format with the user-friendly WooCommerce Products List widget for Elementor. This handy tool seamlessly integrates with WooCommerce, automatically pulling in your product information and presenting it in a neat and easy-to-read list. Customers can quickly scan through the list, view product images, titles, and prices, and make informed decisions. </li>
+	<li>📋 **<a href="https://mp.wpcolors.net/accordion" target="_blank">Products Accordion</a>** - Save space while providing detailed product information with collapsible accordion sections. Perfect for product specifications and FAQs.</li>
 
-	<li><strong><a href="https://mp.wpteamx.com/products-categories/" target="_blank">WooCommerce Products Categories </a></strong> Improve navigation on your WooCommerce store with the user-friendly WooCommerce Products Categories widget for Elementor. The widget allows you to showcase your products based on different categories. Customers can easily explore and find what they're looking for, enhancing their shopping experience. The WooCommerce Products Categories Elementor widget makes it simple to organize and present your products in a visually appealing way. Simplify browsing and help customers discover your diverse range of products with ease.</li>
+	<li>📝 **<a href="https://mp.wpcolors.net/products-list" target="_blank">Products List</a>** - Display products in a clean, scannable list format with images, titles, prices, and descriptions. Great for catalog-style presentations.</li>
 
-	<li><strong><a href="https://mp.wpteamx.com/product-awesome-list/" target="_blank">WooCommerce Products Awesome List</a></strong> Level up your product showcases with the WooCommerce Products Awesome List widget designed for Elementor. This versatile tool allows you to create stunning and engaging lists of your products, showcasing them in a visually captivating manner. Make a memorable impression with the WooCommerce Products Awesome List widget and elevate the presentation of your products.</li>
+	<li>🏷️ **<a href="https://mp.wpcolors.net/products-categories/" target="_blank">Product Categories</a>** - Help customers navigate your store with attractive category displays. Improves user experience and product discovery.</li>
+
+	<li>✨ **<a href="https://mp.wpcolors.net/product-awesome-list/" target="_blank">Awesome Product List</a>** - Create stunning, magazine-style product lists with advanced styling options and interactive elements.</li>
 
 
 </ul>
-<p>But that's not all. With Magical Products Display Pro, you can unlock even more advanced features and widgets to enhance your product presentations:</p>
+## 🚀 Pro Features - Take Your Store to the Next Level
+
+**Unlock advanced functionality with Magical Products Display Pro:**
 <ul>
- 	<li><strong><a href="https://mp.wpteamx.com/product-awesome-list/" target="_blank">Compare Table: </a></strong> Enable your customers to make informed purchasing decisions by presenting a side-by-side comparison of product attributes, prices, and more. This widget offers a visually appealing and user-friendly way to highlight the unique features of your products.</li>
- 	<li><strong><a href="https://mp.wpteamx.com/product-awesome-list/" target="_blank">Products Pro Details: </a></strong> Go beyond the basics and showcase detailed product information such as dimensions, weight, materials, and more. With this widget, you can provide your customers with comprehensive product details, building trust and confidence in their buying decisions.</li>
- 	<li><strong><a href="https://mp.wpteamx.com/product-awesome-list/" target="_blank">Advance Countdown: </a></strong> Create a sense of urgency and drive sales with a dynamic countdown timer. Highlight limited-time offers, flash sales, or upcoming product launches to encourage your customers to take action before time runs out.</li>
- 	<li><strong><a href="https://mp.wpteamx.com/product-awesome-list/" target="_blank">Product Hotspots: </a></strong> Direct your customers' attention to the most compelling aspects of your products using interactive tooltips and labels. Highlight key features, benefits, or special offers to guide your customers towards making a purchase.</li>
- 	<li><strong><a href="https://mp.wpteamx.com/product-awesome-list/" target="_blank">Products Ticker: </a></strong> Keep your customers engaged and informed with a scrolling ticker showcasing your latest products, top sellers, or promotions. This eye-catching feature provides real-time updates and creates a sense of dynamism, encouraging customers to explore your product catalog further.</li>
+ 	<li>⚖️ **<a href="https://mp.wpcolors.net/price-compare-table/" target="_blank">Product Compare Tables</a>** - Help customers make informed decisions with side-by-side product comparisons featuring specifications, prices, and features.</li>
+ 	<li>📊 **<a href="https://mp.wpcolors.net/products-pro-details/" target="_blank">Advanced Product Details</a>** - Showcase comprehensive product information including dimensions, materials, weight, and custom specifications to build customer confidence.</li>
+ 	<li>⏰ **<a href="https://mp.wpcolors.net/advance-countdown/" target="_blank">Smart Countdown Timers</a>** - Create urgency and boost sales with dynamic countdown timers for flash sales, limited offers, and product launches.</li>
+ 	<li>📍 **<a href="https://mp.wpcolors.net/product-hotspots/" target="_blank">Interactive Hotspots</a>** - Add clickable hotspots to product images with tooltips, popups, and detailed information overlays.</li>
+ 	<li>📰 **<a href="https://mp.wpcolors.net/ticker/" target="_blank">Product News Ticker</a>** - Keep customers engaged with scrolling tickers displaying latest products, bestsellers, promotions, and important announcements.</li>
 
 </ul>
-<p>Magical Products Display: Elevate your product displays with the feature-rich Magical Products Display plugin. With its impressive features like Huge Image Hover Animation, On-Demand Assets Loading, Add to Cart and View Details buttons, Features and Sale badges, and Unlimited Options, this plugin offers a powerful solution for showcasing your products. Choose from five different grid layouts to customize the look of your product displays, while the Advanced Products Query ensures precise control over the products you want to showcase. The Text Cropping feature ensures a clean and professional appearance, and with the Show and Hide options for every single item, you can curate your displays to perfection. Enjoy a multitude of styling options to match your brand's aesthetic. With Magical Products Display, unleash the true potential of your WooCommerce store and captivate your customers with stunning product presentations.</p>
+**Plus exclusive Pro features:**
+- 🎯 Advanced product queries and filtering
+- 🎥 Quick product video previews
+- 📱 QR code generation for mobile shopping
+- 🔗 Social media sharing buttons
+- 🏷️ Dynamic discount badges and labels
+- 📊 Stock level indicators and sliders
+- 🎨 Premium design templates and styles
 
-<p>In addition to these exciting new Pro widgets, Magical Products Display Pro offers a lots of premium features such as popular product queries, quick product video view icons, QR code icons, product share icons, discount badges, stock sliders, and more. These advanced functionalities will elevate your store's performance and drive sales like never before.</p>
+## ⚡ Performance & Technical Excellence
 
-<p>With its seamless integration with Elementor and WooCommerce, Magical Products Display ensures an effortless setup process, allowing you to start creating stunning product displays in no time. The intuitive interface and user-friendly controls make it accessible to users of all skill levels, from beginners to experienced store owners.</p>
+**Built for Speed and Reliability:**
+- **On-Demand Loading** - Assets load only when needed for optimal performance
+- **SEO Optimized** - Clean, semantic markup for better search rankings
+- **Accessibility Ready** - WCAG 2.1 AA compliant for all users
+- **Cross-Browser Compatible** - Works perfectly across all modern browsers
+- **Regular Updates** - Continuous improvements and new features
 
-<strong>Note:</strong> This plugin is an addon of Elementor Page Builder. So the plugin only work with Elementor Page Builder plugin.
-(https://wordpress.org/plugins/elementor/)
+## 🎯 Easy Setup & User-Friendly
 
-#### Translations
+**Get Started in Minutes:**
+1. Install the plugin
+2. Open Elementor editor
+3. Drag and drop widgets
+4. Customize to match your brand
+5. Publish and watch sales grow!
 
-* English
+**Perfect for all skill levels** - Whether you're a beginner or an experienced developer, our intuitive interface makes creating professional product displays effortless.
+
+## 📋 Requirements
+
+**System Requirements:**
+- WordPress 4.0 or higher
+- WooCommerce 3.0 or higher  
+- Elementor Page Builder (required)
+- PHP 5.6 or higher
+
+**Note:** This plugin is designed specifically for Elementor Page Builder. Elementor must be installed and activated for the plugin to function.
+<a href="https://wordpress.org/plugins/elementor/" target="_blank">Download Elementor (Free)</a>
+
+## 🌍 Language Support
+
+**Available in multiple languages:**
+- 🇺🇸 English (default)
+- 🇪🇸 Spanish (Español)
+- 🇫🇷 French (Français)
+- 🇩🇪 German (Deutsch)
+- 🇮🇹 Italian (Italiano)
+- 🇧🇷 Portuguese Brazil (Português do Brasil)
+- 🇳🇱 Dutch (Nederlands)
+- 🇯🇵 Japanese (日本語)
+- 🇨🇳 Chinese Simplified (简体中文)
+- 🇸🇦 Arabic (العربية)
+
+**More languages coming soon!** Want to contribute a translation? Contact us!
+
+---
+
+**Ready to transform your WooCommerce store?** Install Magical Products Display today and start creating beautiful product displays that convert visitors into customers!
 
 == Installation ==
 
@@ -122,6 +202,18 @@ No, you cannot use Magical Products Display – Elementor Products Widgets For W
 
 
 == Changelog ==
+
+= 1.1.29 =
+* Added new AJAX Search Widget for WooCommerce products
+* Implemented real-time product search with instant results
+* Added advanced filtering system (categories, tags, price range, featured products, stock status)
+* Integrated Material Design 3 UI components with smooth animations
+* Added comprehensive accessibility support (WCAG 2.1 AA compliant)
+* Implemented intelligent caching and rate limiting for optimal performance
+* Added responsive design with mobile-first approach
+* Included customizable search delay and minimum character settings
+* Added support for multiple filter layout styles (Toggle-style and Integrated)
+* Enhanced security with proper nonce verification and input sanitization
 
 = 1.1.28 =
 * Enhanced Elementor editor UX: Category panel now collapses by default

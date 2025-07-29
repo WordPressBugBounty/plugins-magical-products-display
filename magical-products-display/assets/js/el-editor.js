@@ -17,7 +17,7 @@
 									var button = document.createElement("a");
 									var buttonText = document.createTextNode("Upgrade Pro Version");
 
-									button.setAttribute("href", "https://mp.wpteamx.com/magical-products-display-pro-pricing/#pricing-mpd");
+									button.setAttribute("href", "https://mp.wpcolors.net/magical-products-display-pro-pricing/#pricing-mpd");
 									button.setAttribute("target", "_blank");
 									button.classList.add(
 										"dialog-button",

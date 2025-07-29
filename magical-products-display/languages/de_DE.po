@@ -1,0 +1,255 @@
+# German (Germany) translation for Magical Products Display
+# Copyright (C) 2025 Magical Products Display
+# This file is distributed under the same license as the Magical Products Display package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Magical products Display\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-29 06:12+0000\n"
+"PO-Revision-Date: 2025-07-29 12:00+0000\n"
+"Last-Translator: Magical Products Display Team\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.2; php-8.3.16\n"
+"X-Domain: magical-products-display"
+
+#: includes/widgets/accordion-widget.php:829
+msgid " Slide Open icon"
+msgstr " Folie öffnen Symbol"
+
+#. 1: Plugin name 2: Elementor 3: Required Elementor version
+#. 1: Plugin name 2: PHP 3: Required PHP version
+#: magical-products-display.php:329 magical-products-display.php:354
+#, php-format
+msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
+msgstr "\"%1$s\" erfordert \"%2$s\" Version %3$s oder höher."
+
+#: includes/widgets/pricing-table.php:435
+msgid "$"
+msgstr "€"
+
+#. 1: Plugin name 2: Elementor 3: Elementor installation link
+#: magical-products-display.php:248 magical-products-display.php:259
+#: magical-products-display.php:288 magical-products-display.php:299
+#, php-format
+msgid "%1$s requires %2$s plugin, which is currently NOT RUNNING  %3$s"
+msgstr "%1$s erfordert das %2$s Plugin, das derzeit NICHT LÄUFT %3$s"
+
+#: includes/widgets/pricing-table.php:472
+msgid "/Month"
+msgstr "/Monat"
+
+#: includes/widgets/porducts-cat.php:190
+#: includes/widgets/products-awesome-list.php:266
+msgid "1 Column"
+msgstr "1 Spalte"
+
+#: includes/widgets/porducts-cat.php:191
+msgid "2 Column"
+msgstr "2 Spalten"
+
+#: includes/widgets/products-awesome-list.php:267
+msgid "2 Columns"
+msgstr "2 Spalten"
+
+#: includes/widgets/porducts-cat.php:192
+msgid "3 Column"
+msgstr "3 Spalten"
+
+#: includes/widgets/products-awesome-list.php:268
+msgid "3 Columns"
+msgstr "3 Spalten"
+
+#: includes/widgets/porducts-cat.php:193
+msgid "4 Column"
+msgstr "4 Spalten"
+
+#: includes/widgets/products-awesome-list.php:269
+msgid "4 Columns"
+msgstr "4 Spalten"
+
+#: includes/widgets/porducts-cat.php:194
+msgid "6 Column"
+msgstr "6 Spalten"
+
+#: includes/widgets/pricing-table.php:463
+msgid "9.99"
+msgstr "9,99"
+
+#: includes/widgets/accordion-widget.php:135
+msgid "Accordion products"
+msgstr "Akkordeon-Produkte"
+
+#: includes/widgets/accordion-widget.php:458
+msgid "Accordion Style"
+msgstr "Akkordeon-Stil"
+
+#: includes/widgets/accordion-widget.php:504
+msgid "Accordion Title Style"
+msgstr "Akkordeon-Titel-Stil"
+
+#: magical-products-display.php:251
+msgid "Activate Elementor"
+msgstr "Elementor aktivieren"
+
+#: includes/admin-info.php:153
+msgid "Activate Plugin"
+msgstr "Plugin aktivieren"
+
+#: magical-products-display.php:291
+msgid "Activate WooCommerce"
+msgstr "WooCommerce aktivieren"
+
+#: includes/widgets/products-slider.php:1711
+#: includes/widgets/testimonial-carousel.php:890
+msgid "Active"
+msgstr "Aktiv"
+
+#: includes/widgets/pricing-table.php:1043
+#: includes/widgets/pricing-table.php:1224
+msgid "Active Absolute position"
+msgstr "Aktive absolute Position"
+
+#: includes/widgets/accordion-widget.php:368
+msgid "Active Icon"
+msgstr "Aktives Symbol"
+
+#: includes/widgets/products-list.php:350
+msgid "Active Image Flip "
+msgstr "Aktives Bild umdrehen"
+
+#: includes/widgets/products-awesome-list.php:149
+#: includes/widgets/products-list.php:152
+msgid "Add ID Manually"
+msgstr "ID manuell hinzufügen"
+
+#: includes/widgets/products-awesome-list.php:597
+#: includes/widgets/products-list.php:766
+msgid "Add to card button"
+msgstr "Zum Warenkorb hinzufügen Button"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:635
+msgid "Add your custom CSS code here."
+msgstr "Fügen Sie hier Ihren benutzerdefinierten CSS-Code hinzu."
+
+#: includes/pro-widgets.php:70
+msgid "Advance Countdown"
+msgstr "Erweiteter Countdown"
+
+#: includes/widgets/products-list.php:626
+msgid "Advance Icons Position"
+msgstr "Erweiterte Symbolposition"
+
+#: includes/widgets/products-list.php:603
+msgid "Advance Icons Section only work with pro version."
+msgstr "Der Bereich für erweiterte Symbole funktioniert nur mit der Pro-Version."
+
+#: includes/widgets/products-list.php:616
+msgid "Advance Icons Show"
+msgstr "Erweiterte Symbole anzeigen"
+
+#: includes/widgets/products-list.php:1548
+msgid "Advance icons Style"
+msgstr "Stil für erweiterte Symbole"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:623
+msgid "Advanced"
+msgstr "Erweitert"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:208
+msgid ""
+"Advanced filters, custom layouts, and more search options are available in "
+"the Pro version."
+msgstr ""
+"Erweiterte Filter, benutzerdefinierte Layouts und weitere Suchoptionen sind in der Pro-Version verfügbar."
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:113
+msgid "Search Settings"
+msgstr "Sucheinstellungen"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:121
+msgid "Placeholder Text"
+msgstr "Platzhaltertext"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:123
+msgid "Search products..."
+msgstr "Produkte suchen..."
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:131
+msgid "Minimum Characters"
+msgstr "Mindestzeichenanzahl"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:143
+msgid "Search Delay (ms)"
+msgstr "Suchverzögerung (ms)"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:156
+msgid "Results Limit"
+msgstr "Ergebnisgrenze"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:216
+msgid "Enable Filters"
+msgstr "Filter aktivieren"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:228
+msgid "Filter Layout Style"
+msgstr "Filter-Layout-Stil"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:233
+msgid "Integrated Filters"
+msgstr "Integrierte Filter"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:248
+msgid "Categories"
+msgstr "Kategorien"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:250
+msgid "Price Range"
+msgstr "Preisbereich"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:251
+msgid "Featured Products"
+msgstr "Empfohlene Produkte"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:925
+msgid "Featured Products Only"
+msgstr "Nur empfohlene Produkte"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:939
+msgid "All Stock Status"
+msgstr "Alle Lagerstatus"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:940
+msgid "In Stock"
+msgstr "Auf Lager"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:941
+msgid "Out of Stock"
+msgstr "Nicht auf Lager"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:942
+msgid "On Backorder"
+msgstr "In Nachbestellung"
+
+#: includes/widgets/ajax-search/ajax-search-handler.php:43
+msgid "Security check failed"
+msgstr "Sicherheitsprüfung fehlgeschlagen"
+
+#: includes/widgets/ajax-search/ajax-search-handler.php:60
+msgid "Query too short"
+msgstr "Abfrage zu kurz"
+
+#: includes/widgets/ajax-search/ajax-search-handler.php:84
+msgid "Search failed. Please try again."
+msgstr "Suche fehlgeschlagen. Bitte versuchen Sie es erneut."
+
+#. Description of the plugin
+msgid ""
+"Customizable Elementor Widgets for Beautiful WooCommerce Product Displays."
+msgstr ""
+"Anpassbare Elementor-Widgets für schöne WooCommerce-Produktanzeigen."

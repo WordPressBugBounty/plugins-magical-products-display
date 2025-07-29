@@ -8,7 +8,7 @@
  * Plugin Name:       Magical products Display
  * Plugin URI:        http://wpthemespace.com
  * Description:       Customizable Elementor Widgets for Beautiful WooCommerce Product Displays.
- * Version:           1.1.28
+ * Version:           1.1.29
  * Author:            Noor alam
  * Author URI:        http://wpthemespace.com
  * License:           GPL-2.0+
@@ -38,7 +38,7 @@ final class magicalProductsDisplay
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.1.28';
+	const VERSION = '1.1.29';
 
 	/**
 	 * Minimum Elementor Version
@@ -190,6 +190,9 @@ final class magicalProductsDisplay
 		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/functions.php');
 
 		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/helplink.php');
+		
+		// Load AJAX handler early
+		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/widgets/ajax-search/ajax-search-handler.php');
 
 		if (get_option('mgppro_is_active') != 'yes') {
 			// Load admin info
@@ -360,7 +363,7 @@ final class magicalProductsDisplay
 
 	public function admin_adminpro_link($links)
 	{
-		$newlink = sprintf("<a target='_blank' href='%s'><span style='color:red;font-weight:bold'>%s</span></a>", esc_url('https://mp.wpteamx.com/magical-products-display-pro-pricing/#pricing-mpd'), __('Upgrade Now', 'magical-products-display'));
+		$newlink = sprintf("<a target='_blank' href='%s'><span style='color:red;font-weight:bold'>%s</span></a>", esc_url('https://mp.wpcolors.net/magical-products-display-pro-pricing/#pricing-mpd'), __('Upgrade Now', 'magical-products-display'));
 		if (get_option('mgppro_is_active') != 'yes') {
 			$links[] = $newlink;
 		}
@@ -410,6 +413,12 @@ final class magicalProductsDisplay
 
 		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/widgets/accordion-widget.php');
 		$widgets_manager->register(new \mgProduct_Accordion());
+
+		// Register AJAX Search Widget
+		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/widgets/ajax-search/ajax-search-widget.php');
+		$widgets_manager->register(new \mgProducts_AJAX_Search()); 
+
+
 	}
 }
 

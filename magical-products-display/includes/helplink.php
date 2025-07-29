@@ -32,4 +32,15 @@ trait mpdProHelpLink
         );
         $this->end_controls_section();
     }
+
+     public function pro_help_link($title, $url, $desc = '') {
+        $html = '<div class="mpd-pro-help-link" style="margin: 16px 0; padding: 12px; background: #f8fafc; border: 1px solid #e1e5e9; border-radius: 8px;">';
+        $html .= '<strong style="font-size: 15px; color: #2563eb;">' . esc_html($title) . '</strong>';
+        if ($desc) {
+            $html .= '<div style="margin: 8px 0 0; color: #64748b; font-size: 13px;">' . esc_html($desc) . '</div>';
+        }
+        $html .= '<div style="margin-top: 10px;"><a href="' . esc_url($url) . '" target="_blank" style="color: #2563eb; text-decoration: underline; font-weight: 500;">' . esc_html__('Learn More', 'magical-products-display') . '</a></div>';
+        $html .= '</div>';
+        return $html;
+    }
 }

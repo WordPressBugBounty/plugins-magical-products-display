@@ -32,6 +32,8 @@ class mpdAssetsManagement
         wp_register_style('mgproducts-pricing',  MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/widgets/mpd-pricing.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
         //Accordion style
         wp_register_style('mgproducts-accordion',  MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/widgets/mpd-accordion.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
+        //AJAX Search style
+        wp_register_style('mpd-ajax-search',  MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/mpd-ajax-search.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
         //main style
         wp_enqueue_style('mgproducts-style',  MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/mpd-display-style.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
     }
@@ -45,7 +47,15 @@ class mpdAssetsManagement
         wp_register_script("mgproducts-slider", MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets-active/products-slider-active.js',   array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script("mgproducts-carousel", MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets-active/products-carousel-active.js',   array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script("mgproducts-tcarousel", MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets-active/testimonail-carousel-active.js',   array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
+        wp_register_script("mpd-ajax-search", MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/mpd-ajax-search.js',   array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_enqueue_script("mgproducts-main", MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/main-scripts.js',   array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
+        
+        // Localize AJAX Search script
+        wp_localize_script('mpd-ajax-search', 'mpdAjaxSearch', array(
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'shopUrl' => class_exists('WooCommerce') ? get_permalink(wc_get_page_id('shop')) : home_url('/shop/'),
+            'currencySymbol' => class_exists('WooCommerce') ? get_woocommerce_currency_symbol() : '$'
+        ));
     }
     /**
      * Init admin js

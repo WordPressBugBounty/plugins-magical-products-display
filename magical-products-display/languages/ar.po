@@ -1,0 +1,418 @@
+# Arabic translation for Magical Products Display
+# Copyright (C) 2025 Magical Products Display
+# This file is distributed under the same license as the Magical Products Display package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Magical products Display\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-29 06:12+0000\n"
+"PO-Revision-Date: 2025-07-29 12:00+0000\n"
+"Last-Translator: Magical Products Display Team\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.2; php-8.3.16\n"
+"X-Domain: magical-products-display"
+
+#: includes/widgets/accordion-widget.php:829
+msgid " Slide Open icon"
+msgstr " أيقونة فتح الشريحة"
+
+#. 1: Plugin name 2: Elementor 3: Required Elementor version
+#. 1: Plugin name 2: PHP 3: Required PHP version
+#: magical-products-display.php:329 magical-products-display.php:354
+#, php-format
+msgid "\"%1$s\" requires \"%2$s\" version %3$s or greater."
+msgstr "\"%1$s\" يتطلب \"%2$s\" الإصدار %3$s أو أحدث."
+
+#: includes/widgets/pricing-table.php:435
+msgid "$"
+msgstr "ر.س"
+
+#. 1: Plugin name 2: Elementor 3: Elementor installation link
+#: magical-products-display.php:248 magical-products-display.php:259
+#: magical-products-display.php:288 magical-products-display.php:299
+#, php-format
+msgid "%1$s requires %2$s plugin, which is currently NOT RUNNING  %3$s"
+msgstr "%1$s يتطلب الإضافة %2$s، والتي لا تعمل حالياً %3$s"
+
+#: includes/widgets/pricing-table.php:472
+msgid "/Month"
+msgstr "/شهر"
+
+#: includes/widgets/porducts-cat.php:190
+#: includes/widgets/products-awesome-list.php:266
+msgid "1 Column"
+msgstr "عمود واحد"
+
+#: includes/widgets/porducts-cat.php:191
+msgid "2 Column"
+msgstr "عمودان"
+
+#: includes/widgets/products-awesome-list.php:267
+msgid "2 Columns"
+msgstr "عمودان"
+
+#: includes/widgets/porducts-cat.php:192
+msgid "3 Column"
+msgstr "ثلاثة أعمدة"
+
+#: includes/widgets/products-awesome-list.php:268
+msgid "3 Columns"
+msgstr "ثلاثة أعمدة"
+
+#: includes/widgets/porducts-cat.php:193
+msgid "4 Column"
+msgstr "أربعة أعمدة"
+
+#: includes/widgets/products-awesome-list.php:269
+msgid "4 Columns"
+msgstr "أربعة أعمدة"
+
+#: includes/widgets/porducts-cat.php:194
+msgid "6 Column"
+msgstr "ستة أعمدة"
+
+#: includes/widgets/pricing-table.php:463
+msgid "9.99"
+msgstr "9.99"
+
+#: includes/widgets/accordion-widget.php:135
+msgid "Accordion products"
+msgstr "منتجات الأكورديون"
+
+#: includes/widgets/accordion-widget.php:458
+msgid "Accordion Style"
+msgstr "نمط الأكورديون"
+
+#: includes/widgets/accordion-widget.php:504
+msgid "Accordion Title Style"
+msgstr "نمط عنوان الأكورديون"
+
+#: magical-products-display.php:251
+msgid "Activate Elementor"
+msgstr "تفعيل Elementor"
+
+#: includes/admin-info.php:153
+msgid "Activate Plugin"
+msgstr "تفعيل الإضافة"
+
+#: magical-products-display.php:291
+msgid "Activate WooCommerce"
+msgstr "تفعيل WooCommerce"
+
+#: includes/widgets/products-slider.php:1711
+#: includes/widgets/testimonial-carousel.php:890
+msgid "Active"
+msgstr "نشط"
+
+#: includes/widgets/pricing-table.php:1043
+#: includes/widgets/pricing-table.php:1224
+msgid "Active Absolute position"
+msgstr "الموضع المطلق النشط"
+
+#: includes/widgets/accordion-widget.php:368
+msgid "Active Icon"
+msgstr "الأيقونة النشطة"
+
+#: includes/widgets/products-list.php:350
+msgid "Active Image Flip "
+msgstr "قلب الصورة النشط"
+
+#: includes/widgets/products-awesome-list.php:149
+#: includes/widgets/products-list.php:152
+msgid "Add ID Manually"
+msgstr "إضافة المعرف يدوياً"
+
+#: includes/widgets/products-awesome-list.php:597
+#: includes/widgets/products-list.php:766
+msgid "Add to card button"
+msgstr "زر إضافة إلى السلة"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:635
+msgid "Add your custom CSS code here."
+msgstr "أضف كود CSS المخصص هنا."
+
+#: includes/pro-widgets.php:70
+msgid "Advance Countdown"
+msgstr "العد التنازلي المتقدم"
+
+#: includes/widgets/products-list.php:626
+msgid "Advance Icons Position"
+msgstr "موضع الأيقونات المتقدمة"
+
+#: includes/widgets/products-list.php:603
+msgid "Advance Icons Section only work with pro version."
+msgstr "قسم الأيقونات المتقدمة يعمل فقط مع النسخة الاحترافية."
+
+#: includes/widgets/products-list.php:616
+msgid "Advance Icons Show"
+msgstr "عرض الأيقونات المتقدمة"
+
+#: includes/widgets/products-list.php:1548
+msgid "Advance icons Style"
+msgstr "نمط الأيقونات المتقدمة"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:623
+msgid "Advanced"
+msgstr "متقدم"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:208
+msgid ""
+"Advanced filters, custom layouts, and more search options are available in "
+"the Pro version."
+msgstr ""
+"المرشحات المتقدمة والتخطيطات المخصصة وخيارات البحث الإضافية متوفرة في النسخة الاحترافية."
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:113
+msgid "Search Settings"
+msgstr "إعدادات البحث"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:121
+msgid "Placeholder Text"
+msgstr "النص التوضيحي"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:123
+msgid "Search products..."
+msgstr "البحث عن المنتجات..."
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:131
+msgid "Minimum Characters"
+msgstr "الحد الأدنى للأحرف"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:143
+msgid "Search Delay (ms)"
+msgstr "تأخير البحث (ملي ثانية)"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:156
+msgid "Results Limit"
+msgstr "حد النتائج"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:216
+msgid "Enable Filters"
+msgstr "تفعيل المرشحات"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:228
+msgid "Filter Layout Style"
+msgstr "نمط تخطيط المرشح"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:233
+msgid "Integrated Filters"
+msgstr "المرشحات المدمجة"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:248
+msgid "Categories"
+msgstr "الفئات"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:250
+msgid "Price Range"
+msgstr "نطاق السعر"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:251
+msgid "Featured Products"
+msgstr "المنتجات المميزة"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:925
+msgid "Featured Products Only"
+msgstr "المنتجات المميزة فقط"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:939
+msgid "All Stock Status"
+msgstr "جميع حالات المخزون"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:940
+msgid "In Stock"
+msgstr "متوفر في المخزون"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:941
+msgid "Out of Stock"
+msgstr "غير متوفر في المخزون"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:942
+msgid "On Backorder"
+msgstr "في الطلب المؤجل"
+
+#: includes/widgets/ajax-search/ajax-search-handler.php:43
+msgid "Security check failed"
+msgstr "فشل فحص الأمان"
+
+#: includes/widgets/ajax-search/ajax-search-handler.php:60
+msgid "Query too short"
+msgstr "الاستعلام قصير جداً"
+
+#: includes/widgets/ajax-search/ajax-search-handler.php:84
+msgid "Search failed. Please try again."
+msgstr "فشل البحث. يرجى المحاولة مرة أخرى."
+
+#: includes/widgets/porducts-cat.php:363
+msgid "After Number Text "
+msgstr "النص بعد الرقم"
+
+#: includes/widgets/products-awesome-list.php:523
+#: includes/widgets/products-list.php:548
+msgid "After Text "
+msgstr "النص اللاحق"
+
+#: includes/widgets/accordion-widget.php:275
+#: includes/widgets/porducts-cat.php:306 includes/widgets/pricing-table.php:335
+#: includes/widgets/pricing-table.php:399
+#: includes/widgets/products-awesome-list.php:434
+#: includes/widgets/products-list.php:458
+#: includes/widgets/products-slider.php:277
+#: includes/widgets/products-slider.php:1592
+#: includes/widgets/testimonial-carousel.php:266
+#: includes/widgets/testimonial-carousel.php:773
+msgid "Alignment"
+msgstr "المحاذاة"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:832
+msgid "All Categories"
+msgstr "جميع الفئات"
+
+#: includes/admin-rev-info.php:37
+msgid "Already Did"
+msgstr "تم بالفعل"
+
+#: includes/widgets/accordion-widget.php:221
+msgid "Animation Effect"
+msgstr "تأثير الحركة"
+
+#: includes/widgets/products-slider.php:556
+#: includes/widgets/products-slider.php:563
+#: includes/widgets/products-slider.php:582
+#: includes/widgets/products-slider.php:592
+msgid "Animation Four"
+msgstr "الحركة الرابعة"
+
+#: includes/widgets/products-slider.php:553
+#: includes/widgets/products-slider.php:560
+#: includes/widgets/products-slider.php:576
+#: includes/widgets/products-slider.php:586
+msgid "Animation One"
+msgstr "الحركة الأولى"
+
+#: includes/widgets/products-slider.php:609
+msgid "Animation Speed"
+msgstr "سرعة الحركة"
+
+#: includes/widgets/products-slider.php:555
+#: includes/widgets/products-slider.php:562
+#: includes/widgets/products-slider.php:580
+#: includes/widgets/products-slider.php:590
+msgid "Animation Three"
+msgstr "الحركة الثالثة"
+
+#: includes/widgets/products-slider.php:554
+#: includes/widgets/products-slider.php:561
+#: includes/widgets/products-slider.php:578
+#: includes/widgets/products-slider.php:588
+msgid "Animation Two"
+msgstr "الحركة الثانية"
+
+#: includes/widgets/products-awesome-list.php:243
+#: includes/widgets/products-list.php:248
+msgid "Ascending"
+msgstr "تصاعدي"
+
+#: includes/widgets/testimonial-carousel.php:256
+msgid "Aside"
+msgstr "جانبي"
+
+#: includes/widgets/products-slider.php:680
+#: includes/widgets/testimonial-carousel.php:388
+msgid "Autoplay Delay"
+msgstr "تأخير التشغيل التلقائي"
+
+#: includes/widgets/products-slider.php:686
+#: includes/widgets/testimonial-carousel.php:394
+msgid "Autoplay Delay in milliseconds"
+msgstr "تأخير التشغيل التلقائي بالملي ثانية"
+
+#: includes/widgets/products-slider.php:697
+#: includes/widgets/testimonial-carousel.php:405
+msgid "Autoplay Speed"
+msgstr "سرعة التشغيل التلقائي"
+
+#: includes/widgets/products-slider.php:703
+#: includes/widgets/testimonial-carousel.php:411
+msgid "Autoplay speed in milliseconds"
+msgstr "سرعة التشغيل التلقائي بالملي ثانية"
+
+#: includes/widgets/products-slider.php:668
+#: includes/widgets/testimonial-carousel.php:376
+msgid "Autoplay?"
+msgstr "التشغيل التلقائي؟"
+
+#: includes/widgets/products-awesome-list.php:669
+#: includes/widgets/products-awesome-list.php:670
+#: includes/widgets/products-list.php:838
+#: includes/widgets/products-list.php:839
+msgid "Available"
+msgstr "متوفر"
+
+#: includes/widgets/ajax-search/ajax-search-widget.php:244
+msgid "Available Filters"
+msgstr "المرشحات المتاحة"
+
+#: includes/widgets/accordion-widget.php:551
+#: includes/widgets/accordion-widget.php:608
+#: includes/widgets/accordion-widget.php:990
+#: includes/widgets/accordion-widget.php:1036
+#: includes/widgets/pricing-table.php:932
+#: includes/widgets/products-awesome-list.php:768
+#: includes/widgets/products-awesome-list.php:930
+#: includes/widgets/products-list.php:937
+#: includes/widgets/products-list.php:1112
+#: includes/widgets/products-slider.php:206
+#: includes/widgets/products-slider.php:931
+msgid "Background"
+msgstr "الخلفية"
+
+#: includes/widgets/accordion-widget.php:1216
+#: includes/widgets/accordion-widget.php:1255
+#: includes/widgets/porducts-cat.php:670 includes/widgets/porducts-cat.php:878
+#: includes/widgets/pricing-table.php:1115
+#: includes/widgets/pricing-table.php:1249
+#: includes/widgets/pricing-table.php:1338
+#: includes/widgets/pricing-table.php:1426
+#: includes/widgets/pricing-table.php:1551
+#: includes/widgets/pricing-table.php:1675
+#: includes/widgets/pricing-table.php:1746
+#: includes/widgets/pricing-table.php:1879
+#: includes/widgets/pricing-table.php:1911
+#: includes/widgets/products-awesome-list.php:988
+#: includes/widgets/products-awesome-list.php:1067
+#: includes/widgets/products-awesome-list.php:1146
+#: includes/widgets/products-awesome-list.php:1235
+#: includes/widgets/products-awesome-list.php:1380
+#: includes/widgets/products-awesome-list.php:1419
+#: includes/widgets/products-list.php:1170
+#: includes/widgets/products-list.php:1241
+#: includes/widgets/products-list.php:1320
+#: includes/widgets/products-list.php:1400
+#: includes/widgets/products-list.php:1489
+#: includes/widgets/products-list.php:1661
+#: includes/widgets/products-list.php:1700
+#: includes/widgets/products-list.php:1828
+#: includes/widgets/products-list.php:1867
+#: includes/widgets/products-slider.php:214
+#: includes/widgets/products-slider.php:1282
+#: includes/widgets/products-slider.php:1321
+#: includes/widgets/products-slider.php:1490
+#: includes/widgets/products-slider.php:1522
+#: includes/widgets/testimonial-carousel.php:1065
+#: includes/widgets/testimonial-carousel.php:1096
+#: includes/widgets/ajax-search/ajax-search-widget.php:332
+#: includes/widgets/ajax-search/ajax-search-widget.php:537
+msgid "Background Color"
+msgstr "لون الخلفية"
+
+#. Description of the plugin
+msgid ""
+"Customizable Elementor Widgets for Beautiful WooCommerce Product Displays."
+msgstr ""
+"عناصر Elementor قابلة للتخصيص لعروض منتجات WooCommerce الجميلة."
