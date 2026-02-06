@@ -61,11 +61,7 @@ function mgproducts_display_taxonomy_list($taxonomy = 'product_cat', $getvalue =
 
     if (!empty($terms) && !is_wp_error($terms)) {
         foreach ($terms as $term) {
-            if ($getvalue == 'slug') {
-                $options[$term->slug] = $term->name;
-            } else {
-                $options[$term->term_id] = $term->name;
-            }
+            $options[$term->slug] = $term->name;
         }
         return $options;
     }
@@ -199,19 +195,59 @@ if (!function_exists('mgproducts_display_wc_rating_number')) {
 
 /* 
 * Category list
-* return first one
+* return category based on type
+* @param int $id Product ID
+* @param string $taxonomy Taxonomy name (default: product_cat)
+* @param int $limit Number of categories to display
+* @param string $type Display type: 'first', 'random', 'selected'
+* @param array $selected_categories Array of selected category slugs (for 'selected' type)
 */
-function mgproducts_display_product_category($id = null, $taxonomy = 'product_cat', $limit = 1)
+function mgproducts_display_product_category($id = null, $taxonomy = 'product_cat', $limit = 1, $type = 'selected', $selected_categories = [])
 {
     $terms = get_the_terms($id, $taxonomy);
-    $i = 0;
+    
     if (is_wp_error($terms))
         return $terms;
 
     if (empty($terms))
         return false;
 
-    foreach ($terms as $term) {
+    // Filter terms based on type
+    $filtered_terms = [];
+    
+    switch ($type) {
+        case 'selected':
+            // Show only categories that match selected categories
+            if (!empty($selected_categories)) {
+                foreach ($terms as $term) {
+                    if (in_array($term->slug, $selected_categories)) {
+                        $filtered_terms[] = $term;
+                    }
+                }
+            }
+            // Fallback to first category if no match found
+            if (empty($filtered_terms)) {
+                $filtered_terms = [$terms[0]];
+            }
+            break;
+            
+        case 'random':
+            // Shuffle and get random category
+            $terms_array = (array) $terms;
+            shuffle($terms_array);
+            $filtered_terms = $terms_array;
+            break;
+            
+        case 'first':
+        default:
+            // Show first category (default behavior)
+            $filtered_terms = $terms;
+            break;
+    }
+
+    // Display categories
+    $i = 0;
+    foreach ($filtered_terms as $term) {
         $i++;
         $link = get_term_link($term, $taxonomy);
         if (is_wp_error($link)) {
@@ -372,4 +408,18 @@ function mpd_get_price_range()
     }
 
     return $price_range;
+}
+
+
+function mprd_validate_html_tag($tag, $default_tag = 'h2', $allowed_tags = array()) {
+    // Use the provided whitelist or fall back to a predefined set of safe tags
+    $safe_tags = !empty($allowed_tags) ? $allowed_tags : array(
+        'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p'
+    );
+
+    // Make sure we're working with a string
+    $tag = is_string($tag) ? strtolower(trim($tag)) : '';
+
+    // Return the validated tag or default
+    return in_array($tag, $safe_tags, true) ? $tag : $default_tag;
 }

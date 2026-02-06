@@ -250,6 +250,7 @@ class mgProducts_carousel extends \Elementor\Widget_Base
                     'title'         => esc_html__('Title', 'magical-products-display'),
                     'comment_count' => esc_html__('Comment count', 'magical-products-display'),
                     'rand'          => esc_html__('Random', 'magical-products-display'),
+                    'menu_order'    => esc_html__('Menu Order (Manual)', 'magical-products-display'),
                 ],
                 'condition' => [
                     'mgpcar_custom_order' => 'yes',
@@ -814,6 +815,22 @@ class mgProducts_carousel extends \Elementor\Widget_Base
                 'type'      => \Elementor\Controls_Manager::SWITCHER,
                 'default' => 'yes',
 
+            ]
+        );
+        $this->add_control(
+            'mgpcar_category_type',
+            [
+                'label' => __('Category Display Type', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'first',
+                'options' => [
+                    'first' => __('First Category', 'magical-products-display'),
+                    'random' => __('Random Category', 'magical-products-display'),
+                    'selected' => __('Selected Categories Only', 'magical-products-display'),
+                ],
+                'condition' => [
+                    'mgpcar_category_show' => 'yes',
+                ],
             ]
         );
 
@@ -2792,7 +2809,14 @@ class mgProducts_carousel extends \Elementor\Widget_Base
         switch ($mgpcar_filter) {
 
             case 'sale':
-                $args['post__in'] = array_merge(array(0), wc_get_product_ids_on_sale());
+                $args['meta_query'] = array(
+                    array(
+                        'key'     => '_sale_price',
+                        'value'   => 0,
+                        'compare' => '>',
+                        'type'    => 'NUMERIC'
+                    ),
+                );
                 break;
 
             case 'featured':
@@ -3032,7 +3056,16 @@ class mgProducts_carousel extends \Elementor\Widget_Base
         <div class="mgpde-card-text mgpdeg-card-text mgp-text-style<?php echo esc_attr($mgpcar_product_style); ?>">
             <?php if ($mgpcar_category_show == 'yes' && $mgpcar_product_style != '2') : ?>
                 <div class="mgpde-meta mgpde-category">
-                    <?php mgproducts_display_product_category(); ?>
+                    <?php 
+                    $category_type = $settings['mgpcar_category_type'] ?? 'first';
+                    $selected_categories = [];
+                    if ($category_type === 'selected' && !empty($settings['mgpcar_grid_categories'])) {
+                        $selected_categories = is_array($settings['mgpcar_grid_categories']) 
+                            ? $settings['mgpcar_grid_categories'] 
+                            : explode(',', str_replace(' ', '', $settings['mgpcar_grid_categories']));
+                    }
+                    mgproducts_display_product_category(get_the_ID(), 'product_cat', 1, $category_type, $selected_categories); 
+                    ?>
                 </div>
             <?php endif; ?>
             <?php if ($mgpcar_ratting_show && $mgpcar_product_style == '2') : ?>
@@ -3046,7 +3079,7 @@ class mgProducts_carousel extends \Elementor\Widget_Base
                     <?php
                     printf(
                         '<%1$s class="mgpde-ptitle">%2$s</%1$s>',
-                        tag_escape($mgpcar_title_tag),
+                        mprd_validate_html_tag($mgpcar_title_tag),
                         esc_html(wp_trim_words(get_the_title(), $mgpcar_crop_title))
                     );
                     ?>
@@ -3054,7 +3087,16 @@ class mgProducts_carousel extends \Elementor\Widget_Base
             <?php endif; ?>
             <?php if ($mgpcar_category_show == 'yes' && $mgpcar_product_style == '2') : ?>
                 <div class="mgpde-meta mgpde-category">
-                    <?php mgproducts_display_product_category(); ?>
+                    <?php 
+                    $category_type = $settings['mgpcar_category_type'] ?? 'first';
+                    $selected_categories = [];
+                    if ($category_type === 'selected' && !empty($settings['mgpcar_grid_categories'])) {
+                        $selected_categories = is_array($settings['mgpcar_grid_categories']) 
+                            ? $settings['mgpcar_grid_categories'] 
+                            : explode(',', str_replace(' ', '', $settings['mgpcar_grid_categories']));
+                    }
+                    mgproducts_display_product_category(get_the_ID(), 'product_cat', 1, $category_type, $selected_categories); 
+                    ?>
                 </div>
             <?php endif; ?>
             <?php if ($mgpcar_ratting_show && $mgpcar_product_style != '2') : ?>

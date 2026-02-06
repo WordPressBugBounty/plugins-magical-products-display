@@ -120,7 +120,7 @@ function mpd_display_plugin_suggestion_notice()
         return;
     }
     
-    $hide_date = get_option('mpd_plugin_suggestion_dismissed');
+    $hide_date = get_option('mpd_plugin_suggestion_dismissed1');
     if (!empty($hide_date)) {
         return;
     }
@@ -188,18 +188,23 @@ function mpd_display_plugin_suggestion_notice()
 function mpd_display_plugin_suggestion_init()
 {
     // Handle AJAX dismiss request
-    if (isset($_POST['action']) && $_POST['action'] === 'mpd_dismiss_suggestion') {
-        if (!current_user_can('manage_options')) {
-            wp_die(esc_html__('You do not have sufficient permissions.', 'magical-products-display'));
-        }
+    if (isset($_POST['action']) && isset($_POST['nonce'])) {
+        // Verify nonce first before checking action value
+        $nonce = sanitize_text_field(wp_unslash($_POST['nonce']));
+        $action = sanitize_text_field(wp_unslash($_POST['action']));
         
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
-        if (!wp_verify_nonce($nonce, 'mpd_dismiss_suggestion')) {
-            wp_die(esc_html__('Security check failed.', 'magical-products-display'));
+        if ($action === 'mpd_dismiss_suggestion') {
+            if (!current_user_can('manage_options')) {
+                wp_die(esc_html__('You do not have sufficient permissions.', 'magical-products-display'));
+            }
+            
+            if (!wp_verify_nonce($nonce, 'mpd_dismiss_suggestion')) {
+                wp_die(esc_html__('Security check failed.', 'magical-products-display'));
+            }
+            
+            update_option('mpd_plugin_suggestion_dismissed1', gmdate('Y-m-d H:i:s'));
+            wp_die('success');
         }
-        
-        update_option('mpd_plugin_suggestion_dismissed', gmdate('Y-m-d H:i:s'));
-        wp_die('success');
     }
     
     // Handle GET dismiss request (fallback)
@@ -208,7 +213,7 @@ function mpd_display_plugin_suggestion_init()
     
     if ($dismissed === '1' && current_user_can('manage_options')) {
         if (wp_verify_nonce($nonce, 'mpd_dismiss_suggestion_nonce')) {
-            update_option('mpd_plugin_suggestion_dismissed', gmdate('Y-m-d H:i:s'));
+            update_option('mpd_plugin_suggestion_dismissed1', gmdate('Y-m-d H:i:s'));
         }
     }
 }

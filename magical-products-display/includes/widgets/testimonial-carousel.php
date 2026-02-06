@@ -4,7 +4,6 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Repeater;
 use Elementor\Controls_Manager;
 
@@ -560,9 +559,6 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 			[
 				'label' => __('Text Color', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::COLOR,
-				'global' => [
-					'default' => Global_Colors::COLOR_TEXT,
-				],
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} .elementor-testimonial-content' => 'color: {{VALUE}};',
@@ -655,9 +651,6 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 			[
 				'label' => __('Text Color', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::COLOR,
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				],
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} .elementor-testimonial-name' => 'color: {{VALUE}};',
@@ -697,9 +690,6 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 			[
 				'label' => __('Text Color', 'magical-products-display'),
 				'type' => \Elementor\Controls_Manager::COLOR,
-				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
-				],
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} .elementor-testimonial-job' => 'color: {{VALUE}};',

@@ -215,7 +215,7 @@ class mgProducts_slider extends \Elementor\Widget_Base
                     'description' => esc_html__('Background image and gradient support in the pro version', 'magical-products-display'),
                     'type' => Controls_Manager::COLOR,
                     'selectors' => [
-                        '{{WRAPPER}} .mgpds-item{{CURRENT_ITEM}}' => 'color: {{VALUE}};',
+                        '{{WRAPPER}} .mgpds-item{{CURRENT_ITEM}}' => 'background: {{VALUE}};',
                     ],
 
                 ]

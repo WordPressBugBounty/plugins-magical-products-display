@@ -2146,7 +2146,7 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
 
         printf(
             '<%1$s %2$s>%3$s</%1$s>',
-            tag_escape($mpdpr_title_tag),
+            mprd_validate_html_tag($mpdpr_title_tag),
             $this->get_render_attribute_string('mpdpr_title'),
             mgproducts_kses_tags($mpdpr_title)
         );
@@ -2165,7 +2165,7 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
 
         printf(
             '<%1$s %2$s>%3$s</%1$s>',
-            tag_escape($mpdpr_subtitle_tag),
+            mprd_validate_html_tag($mpdpr_subtitle_tag),
             $this->get_render_attribute_string('mpdpr_subtitle'),
             mgproducts_kses_tags($mpdpr_subtitle)
         );

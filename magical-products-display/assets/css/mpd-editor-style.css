@@ -14,3 +14,14 @@
     background: #a20000;
     color: #fff;
 }
+
+/* Disable pro controls for free version */
+.mpd-pro-control-disabled .elementor-control-input-wrapper,
+.mpd-pro-control-disabled .elementor-switch {
+    opacity: 0.5;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+.mpd-pro-control-disabled .elementor-control-field-description {
+    opacity: 0.7;
+}

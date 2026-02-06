@@ -84,7 +84,8 @@ class mgProducts_Tab extends \Elementor\Widget_Base
     public function get_script_depends()
     {
         return [
-            'bootstrap-bundle'
+            'bootstrap-bundle',
+            'mpd-products-tab-ajax'
         ];
     }
 
@@ -155,7 +156,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                     'label' => __('Select Product', 'magical-products-display'),
                     'type' => \Elementor\Controls_Manager::SELECT,
                     'label_block' => true,
-                    'options' => mgproducts_display_taxonomy_list('product_cat', 'id'),
+                    'options' => mgproducts_display_taxonomy_list('product_cat', 'slug'),
 
                 ]
             );
@@ -196,7 +197,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                     'type' => \Elementor\Controls_Manager::SELECT2,
                     'label_block' => true,
                     'multiple' => true,
-                    'options' => mgproducts_display_taxonomy_list('product_cat', 'id'),
+                    'options' => mgproducts_display_taxonomy_list('product_cat', 'slug'),
 
                 ]
             );
@@ -359,6 +360,124 @@ class mgProducts_Tab extends \Elementor\Widget_Base
             ]
         );
         $this->end_controls_section();
+        
+        // AJAX Loading Section (Pro Only)
+        $this->start_controls_section(
+            'mgpd_ajax_section',
+            [
+                'label' => sprintf('%s %s', esc_html__('AJAX Loading', 'magical-products-display'), mpd_display_pro_only_text()),
+                'tab'   => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
+        
+        $this->add_control(
+            'mgpd_ajax_load',
+            [
+                'label' => sprintf('%s %s', esc_html__('Enable AJAX Loading', 'magical-products-display'), mpd_display_pro_only_text()),
+                'description' => esc_html__('Load tab content on click instead of loading all tabs at once. Improves page load performance.', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'magical-products-display'),
+                'label_off' => esc_html__('No', 'magical-products-display'),
+                'default' => '',
+            ]
+        );
+        
+        $this->add_control(
+            'mgpd_preload_first',
+            [
+                'label' => esc_html__('Preload First Tab', 'magical-products-display'),
+                'description' => esc_html__('Load the first tab content immediately without AJAX.', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => esc_html__('Yes', 'magical-products-display'),
+                'label_off' => esc_html__('No', 'magical-products-display'),
+                'default' => 'yes',
+                'condition' => [
+                    'mgpd_ajax_load' => 'yes',
+                ],
+            ]
+        );
+        
+        $this->add_control(
+            'mgpd_loader_type',
+            [
+                'label' => esc_html__('Loader Type', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'spinner',
+                'options' => [
+                    'spinner' => esc_html__('Spinner', 'magical-products-display'),
+                    'pulse' => esc_html__('Pulse', 'magical-products-display'),
+                    'dots' => esc_html__('Dots', 'magical-products-display'),
+                    'ripple' => esc_html__('Ripple', 'magical-products-display'),
+                ],
+                'condition' => [
+                    'mgpd_ajax_load' => 'yes',
+                ],
+            ]
+        );
+        
+        $this->add_control(
+            'mgpd_loader_color',
+            [
+                'label' => esc_html__('Loader Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'default' => '#0073aa',
+                'condition' => [
+                    'mgpd_ajax_load' => 'yes',
+                ],
+            ]
+        );
+        
+        $this->add_responsive_control(
+            'mgpd_loader_size',
+            [
+                'label' => esc_html__('Loader Size', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 20,
+                        'max' => 100,
+                        'step' => 1,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 40,
+                ],
+                'condition' => [
+                    'mgpd_ajax_load' => 'yes',
+                ],
+            ]
+        );
+        
+        $this->add_responsive_control(
+            'mgpd_loader_min_height',
+            [
+                'label' => esc_html__('Loading Area Min Height', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 100,
+                        'max' => 600,
+                        'step' => 10,
+                    ],
+                ],
+                'default' => [
+                    'unit' => 'px',
+                    'size' => 200,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-tab-content-wrapper' => 'min-height: {{SIZE}}{{UNIT}};',
+                ],
+                'condition' => [
+                    'mgpd_ajax_load' => 'yes',
+                ],
+            ]
+        );
+        
+        $this->end_controls_section();
+        
         $this->start_controls_section(
             'mgpd_tabicon_section',
             [
@@ -726,6 +845,22 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                 'type'      => \Elementor\Controls_Manager::SWITCHER,
                 'default' => 'yes',
 
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_category_type',
+            [
+                'label' => __('Category Display Type', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'selected',
+                'options' => [
+                    'first' => __('First Category', 'magical-products-display'),
+                    'random' => __('Random Category', 'magical-products-display'),
+                    'selected' => __('Selected Categories Only', 'magical-products-display'),
+                ],
+                'condition' => [
+                    'mgpdeg_category_show' => 'yes',
+                ],
             ]
         );
 
@@ -2495,14 +2630,18 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         $settings = $this->get_settings_for_display();
         $bsktab_rcats = $this->get_settings('bsktab_rcats');
 
-
-
         if (get_option('mgppro_is_active', 'no') == 'yes') {
             $bsktab_cats = $bsktab_rcats;
         } else {
             $bsktab_cats = $this->get_settings('bsktab_cats');
         }
 
+        // AJAX Loading settings (Pro Only)
+        $ajax_load = (get_option('mgppro_is_active', 'no') == 'yes') && ($settings['mgpd_ajax_load'] === 'yes');
+        $preload_first = $settings['mgpd_preload_first'] === 'yes';
+        $loader_type = $settings['mgpd_loader_type'] ?? 'spinner';
+        $loader_color = $settings['mgpd_loader_color'] ?? '#0073aa';
+        $loader_size = isset($settings['mgpd_loader_size']['size']) ? $settings['mgpd_loader_size']['size'] : 40;
 
         $mgpdeg_product_img_show = $this->get_settings('mgpdeg_product_img_show');
         $mgpdeg_badge_show    = $settings['mgpdeg_badge_show'];
@@ -2513,8 +2652,6 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         $mgpdeg_btn_type      = $settings['mgpdeg_btn_type'];
         $mgpdeg_card_text     = $settings['mgpdeg_card_text'];
 
-        //advance Icons
-
         //pro icons 
         if (function_exists('yith_wishlist_install')) {
             $mgpdeg_wishlist_show = $settings['mgpdeg_wishlist_show'];
@@ -2523,7 +2660,6 @@ class mgProducts_Tab extends \Elementor\Widget_Base
             $mgpdeg_wishlist_show = ' ';
             $mgpdeg_wishlist_text = ' ';
         }
-
 
         $mgpdeg_share_show = $settings['mgpdeg_share_show'];
         $mgpdeg_share_text = $settings['mgpdeg_share_text'];
@@ -2541,101 +2677,151 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         }
 
         $mgpd_rand = wp_rand(253195, 56914658);
+        $container_id = 'mpd-tabs-' . $mgpd_rand;
+        
+        // Prepare settings for AJAX
+        $ajax_settings = $this->prepare_ajax_settings($settings);
 
         if ($bsktab_cats) :
 ?>
 
-            <div class="bsk-tabs no-load bsk-shadow mpdtabs-style<?php echo esc_attr($settings['mgpd_style']); ?> bsk-tab-<?php echo esc_attr($settings['mgpd_type']); ?>">
-
-                <?php
-                // if( $settings['mgpd_type'] == 'horizontal'):
-                ?>
+            <div class="bsk-tabs no-load bsk-shadow mpdtabs-style<?php echo esc_attr($settings['mgpd_style']); ?> bsk-tab-<?php echo esc_attr($settings['mgpd_type']); ?><?php echo $ajax_load ? ' mpd-ajax-tabs' : ''; ?>" data-container-id="<?php echo esc_attr($container_id); ?>">
 
                 <!-- Horijontal tab start -->
                 <?php if ($settings['mgpd_type'] == 'vertical') : ?>
                     <div class="row">
                         <div class="col-md-3">
-                            <!-- Horijontal tab end -->
-                        <?php endif; ?>
+                <?php endif; ?>
 
+                <div class="mpdtab-nav-wrap bsknav-<?php if ($settings['mgpd_full_width'] == 'yes') : ?>full<?php else : ?>fit navalign-<?php echo esc_attr($settings['mgpd_nav_align']); ?><?php endif; ?>">
+                    <ul class="nav nav-tabs <?php if ($settings['mgpd_full_width'] == 'yes' && $settings['mgpd_type'] == 'horizontal') : ?>nav-justified<?php endif; ?>" id="myTab" role="tablist">
 
-                        <div class="mpdtab-nav-wrap bsknav-<?php if ($settings['mgpd_full_width'] == 'yes') : ?>full<?php else : ?>fit navalign-<?php echo esc_attr($settings['mgpd_nav_align']); ?><?php endif; ?>">
-                            <ul class="nav nav-tabs <?php if ($settings['mgpd_full_width'] == 'yes' && $settings['mgpd_type'] == 'horizontal') : ?>nav-justified<?php endif; ?>" id="myTab" role="tablist">
+                        <?php
+                        foreach ($bsktab_cats as $index => $cats_id) :
 
-                                <?php
-                                foreach ($bsktab_cats as $index => $cats_id) :
+                            if (get_option('mgppro_is_active', 'no') == 'yes') {
+                                $cats_icon = isset($cats_id['bsktab_pcat_icon']) ? $cats_id['bsktab_pcat_icon'] : '';
+                                $cat_value = isset($cats_id['bsktab_pcat_id']) ? $cats_id['bsktab_pcat_id'] : '';
+                            } else {
+                                $cats_icon = '';
+                                $cat_value = $cats_id;
+                            }
+                            
+                            if ($cat_value) :
+                                // Backward compatibility: handle both ID (old) and slug (new)
+                                if (is_numeric($cat_value)) {
+                                    $cat_info = get_term($cat_value, 'product_cat');
+                                } else {
+                                    $cat_info = get_term_by('slug', $cat_value, 'product_cat');
+                                }
+                                if ($index == 0) {
+                                    $bsklink_class = 'nav-link active';
+                                } else {
+                                    $bsklink_class = 'nav-link';
+                                }
+                                
+                                // Skip if term not found
+                                if (!$cat_info || is_wp_error($cat_info)) {
+                                    continue;
+                                }
+                                
+                                $term_name = empty($cat_info->name) ? __('Select Category', 'magical-products-display') : $cat_info->name;
+                                $cat_slug = $cat_info->slug; // Use slug for AJAX
+                        ?>
 
-                                    if (get_option('mgppro_is_active', 'no') == 'yes') {
-                                        $cats_icon = isset($cats_id['bsktab_pcat_icon']) ? $cats_id['bsktab_pcat_icon'] : '';
-                                        $cats_id = isset($cats_id['bsktab_pcat_id']) ? $cats_id['bsktab_pcat_id'] : '';
-                                    } else {
-                                        $cats_icon = '';
-                                    }
-                                    //check category Id
-                                    if ($cats_id) :
-                                        $cat_info = get_term_by('id', $cats_id, 'product_cat');
-                                        if ($index == 0) {
-                                            $bsklink_class = 'nav-link active';
-                                        } else {
-                                            $bsklink_class = 'nav-link';
-                                        }
-                                        $term_name = empty($cat_info->name) ? __('Select Category', 'magical-products-display') : $cat_info->name;
+                                <li class="nav-item" role="presentation">
+                                    <a class="<?php echo esc_attr($bsklink_class); ?>" 
+                                       id="tab-<?php echo esc_attr($mgpd_rand . $index); ?>" 
+                                       data-bs-toggle="tab" 
+                                       data-bs-target="#bsktab<?php echo esc_attr($mgpd_rand . $index); ?>" 
+                                       href="#" 
+                                       role="tab" 
+                                       aria-controls="bsktab<?php echo esc_attr($mgpd_rand . $index); ?>" 
+                                       aria-selected="<?php echo $index == 0 ? 'true' : 'false'; ?>"
+                                       <?php if ($ajax_load) : ?>
+                                       data-ajax-load="yes"
+                                       data-category-slug="<?php echo esc_attr($cat_slug); ?>"
+                                       data-settings='<?php echo esc_attr(wp_json_encode($ajax_settings)); ?>'
+                                       data-nonce="<?php echo esc_attr(wp_create_nonce('mpd_tab_ajax_nonce')); ?>"
+                                       <?php endif; ?>
+                                    >
+                                        <?php if ($settings['mgpd_icon_show'] == 'yes' && !empty($cats_icon) && ($settings['mgpd_icon_position'] == 'left' || $settings['mgpd_icon_position'] == 'top')) : ?>
+                                            <span class="mpdtabs-icon-<?php echo esc_attr($settings['mgpd_icon_position']); ?>">
+                                                <?php \Elementor\Icons_Manager::render_icon($cats_icon, ['aria-hidden' => 'true']); ?>
+                                            </span>
+                                        <?php endif; ?>
+                                        <span><?php echo esc_html($term_name); ?></span>
+                                        <?php if ($settings['mgpd_icon_show'] == 'yes' && !empty($cats_icon) && ($settings['mgpd_icon_position'] == 'right' || $settings['mgpd_icon_position'] == 'bottom')) : ?>
+                                            <span class="mpdtabs-icon-<?php echo esc_attr($settings['mgpd_icon_position']); ?>">
+                                                <?php \Elementor\Icons_Manager::render_icon($cats_icon, ['aria-hidden' => 'true']); ?>
+                                            </span>
+                                        <?php endif; ?>
+                                    </a>
+                                </li>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
 
-                                ?>
+                    </ul>
+                </div>
 
-                                        <li class="nav-item" role="presentation">
-                                            <a class="<?php echo esc_attr($bsklink_class); ?>" id="tab-<?php echo esc_attr($mgpd_rand . $index); ?>" data-bs-toggle="tab" data-bs-target="#bsktab<?php echo esc_attr($mgpd_rand . $index); ?>" href="#" role="tab" aria-controls="bsktab<?php echo esc_attr($mgpd_rand . $index); ?>" aria-selected="<?php if ($index == 0) : ?>true<?php else : ?>false<?php endif; ?>">
-                                                <?php if ($settings['mgpd_icon_show'] == 'yes' && !empty($cats_icon) && ($settings['mgpd_icon_position'] == 'left' || $settings['mgpd_icon_position'] == 'top')) :
-                                                ?>
-                                                    <span class="mpdtabs-icon-<?php echo esc_attr($settings['mgpd_icon_position']); ?>">
-                                                        <?php \Elementor\Icons_Manager::render_icon($cats_icon, ['aria-hidden' => 'true']); ?>
-                                                    </span>
-                                                <?php endif;
-                                                ?>
-                                                <span><?php echo esc_html($term_name); ?></span>
-                                                <?php if ($settings['mgpd_icon_show'] == 'yes' && !empty($cats_icon) && ($settings['mgpd_icon_position'] == 'right' || $settings['mgpd_icon_position'] == 'bottom')) : ?>
-                                                    <span class="mpdtabs-icon-<?php echo esc_attr($settings['mgpd_icon_position']); ?>">
-                                                        <?php \Elementor\Icons_Manager::render_icon($cats_icon, ['aria-hidden' => 'true']); ?>
-                                                    </span>
-                                                <?php endif;  ?>
-                                            </a>
-                                        </li>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-
-                            </ul>
-                        </div>
-
-
-                        <!-- Horijontal tab start -->
-                        <?php if ($settings['mgpd_type'] == 'vertical') : ?>
+                <!-- Horijontal tab start -->
+                <?php if ($settings['mgpd_type'] == 'vertical') : ?>
                         </div>
                         <div class="col-md-9">
-                            <!-- Horijontal tab end -->
-                        <?php endif; ?>
-                        <?php $mgp_unque_num = wp_rand('8652397', '5832471'); ?>
-                        <div class="tab-content mpdtab-content">
-                            <?php if ($settings['mgpd_custom_css']) : ?>
-                                <style>
-                                    <?php echo esc_html($settings['mgpd_custom_css']); ?>
-                                </style>
-                            <?php endif; ?>
-                            <?php
-                            foreach ($bsktab_cats as $index => $cats_id) :
-                                if (get_option('mgppro_is_active', 'no') == 'yes') {
-                                    $cats_id = isset($cats_id['bsktab_pcat_id']) ? $cats_id['bsktab_pcat_id'] : '';
-                                }
+                <?php endif; ?>
+                
+                <?php $mgp_unque_num = wp_rand('8652397', '5832471'); ?>
+                <div class="tab-content mpdtab-content">
+                    <?php if ($settings['mgpd_custom_css']) : ?>
+                        <style>
+                            <?php echo esc_html($settings['mgpd_custom_css']); ?>
+                        </style>
+                    <?php endif; ?>
+                    
+                    <?php
+                    foreach ($bsktab_cats as $index => $cats_id) :
+                        if (get_option('mgppro_is_active', 'no') == 'yes') {
+                            $pcat_value = isset($cats_id['bsktab_pcat_id']) ? $cats_id['bsktab_pcat_id'] : '';
+                        } else {
+                            $pcat_value = $cats_id;
+                        }
 
-                                if ($cats_id) :
-                                    $pcat_obj = get_term_by('id', $cats_id, 'product_cat');
-                                    $pcat_slug = empty($pcat_obj->slug) ? null : $pcat_obj->slug;
-                            ?>
-                                    <div id="bsktab<?php echo esc_attr($mgpd_rand . $index); ?>" class="tab-pane fade in <?php if ($index == 0) : ?>show active<?php endif; ?>" role="tabpanel" aria-labelledby="home-tab">
-                                        <div <?php if ($settings['mgpd_attr_id']) : ?> id="<?php echo esc_attr($settings['mgpd_attr_id']); ?>" <?php endif; ?> class="mgp-unique<?php echo esc_attr($mgp_unque_num); ?> mgproductd mgpde-items style<?php echo esc_attr($mgpdeg_product_style); ?> mgproductd-grid <?php echo esc_attr($settings['mgpd_attr_calss']); ?>">
-
+                        if ($pcat_value) :
+                            // Backward compatibility: handle both ID (old) and slug (new)
+                            if (is_numeric($pcat_value)) {
+                                $pcat_term = get_term($pcat_value, 'product_cat');
+                            } else {
+                                $pcat_term = get_term_by('slug', $pcat_value, 'product_cat');
+                            }
+                            
+                            // Skip if term not found
+                            if (!$pcat_term || is_wp_error($pcat_term)) {
+                                continue;
+                            }
+                            
+                            $pcat_slug = $pcat_term->slug;
+                            
+                            // Determine if we should load content now or via AJAX
+                            $should_preload = !$ajax_load || ($ajax_load && $preload_first && $index == 0);
+                    ?>
+                            <div id="bsktab<?php echo esc_attr($mgpd_rand . $index); ?>" class="tab-pane fade in <?php if ($index == 0) : ?>show active<?php endif; ?>" role="tabpanel" aria-labelledby="home-tab">
+                                <div <?php if ($settings['mgpd_attr_id']) : ?> id="<?php echo esc_attr($settings['mgpd_attr_id']); ?>" <?php endif; ?> class="mgp-unique<?php echo esc_attr($mgp_unque_num); ?> mgproductd mgpde-items style<?php echo esc_attr($mgpdeg_product_style); ?> mgproductd-grid <?php echo esc_attr($settings['mgpd_attr_calss']); ?>">
+                                    
+                                    <?php if ($ajax_load && !$should_preload) : ?>
+                                        <!-- AJAX Loading Placeholder -->
+                                        <div class="mpd-tab-loader" style="display: flex; justify-content: center; align-items: center; padding: 40px;">
+                                            <?php echo $this->get_loader_svg($loader_type, $loader_color, $loader_size); ?>
+                                        </div>
+                                        <div class="mpd-tab-content-wrapper">
+                                            <!-- Content will be loaded via AJAX -->
+                                        </div>
+                                    <?php else : ?>
+                                        <!-- Preloaded Content -->
+                                        <div class="mpd-tab-loader" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
+                                            <?php echo $this->get_loader_svg($loader_type, $loader_color, $loader_size); ?>
+                                        </div>
+                                        <div class="mpd-tab-content-wrapper mpd-tab-loaded">
                                             <div class="row">
-
-
                                                 <?php
                                                 $args = array(
                                                     'post_type'             => 'product',
@@ -2708,34 +2894,139 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                                                     ?>
                                                 <?php endif; ?>
                                             </div>
-
                                         </div>
-                                    </div>
+                                    <?php endif; ?>
+                                    
+                                </div>
+                            </div>
 
+                        <?php endif; ?>
+                    <?php endforeach; ?>
 
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+                </div>
 
-                        </div>
-
-                        <!-- Horijontal tab start -->
-                        <?php if ($settings['mgpd_type'] == 'vertical') : ?>
+                <!-- Horijontal tab start -->
+                <?php if ($settings['mgpd_type'] == 'vertical') : ?>
                         </div>
                     </div>
-                    <!-- Horijontal tab end -->
                 <?php endif; ?>
-
-
 
             </div>
         <?php else : ?>
             <div class="alert alert-danger text-center">
                 <?php echo esc_html('Please select products categories for display the Porducts.', 'magical-products-display'); ?>
             </div>
-        <?php endif; //Check tab item 
-        ?>
+        <?php endif; ?>
 
     <?php
+    }
+
+    /**
+     * Prepare settings for AJAX
+     */
+    protected function prepare_ajax_settings($settings)
+    {
+        return array(
+            'bsktab_products_count' => $settings['bsktab_products_count'],
+            'mgpdeg_rownumber' => $settings['mgpdeg_rownumber'],
+            'mgpdeg_rownumber_tab' => $settings['mgpdeg_rownumber_tab'],
+            'mgpdeg_rownumber_mob' => $settings['mgpdeg_rownumber_mob'],
+            'mgpdeg_product_style' => $settings['mgpdeg_product_style'],
+            'mgpdeg_product_img_show' => $settings['mgpdeg_product_img_show'],
+            'mgpdeg_badge_show' => $settings['mgpdeg_badge_show'],
+            'mgpdeg_img_effects' => $settings['mgpdeg_img_effects'],
+            'mgpdeg_img_size' => $settings['mgpdeg_img_size'],
+            'mgpdeg_show_title' => $settings['mgpdeg_show_title'],
+            'mgpdeg_crop_title' => $settings['mgpdeg_crop_title'],
+            'mgpdeg_title_tag' => $settings['mgpdeg_title_tag'],
+            'mgpdeg_desc_show' => $settings['mgpdeg_desc_show'],
+            'mgpdeg_crop_desc' => $settings['mgpdeg_crop_desc'],
+            'mgpdeg_price_show' => $settings['mgpdeg_price_show'],
+            'mgpdeg_cart_btn' => $settings['mgpdeg_cart_btn'],
+            'mgpdeg_btn_type' => $settings['mgpdeg_btn_type'],
+            'mgpdeg_card_text' => $settings['mgpdeg_card_text'],
+            'mgpdeg_category_show' => $settings['mgpdeg_category_show'],
+            'mgpdeg_category_type' => $settings['mgpdeg_category_type'] ?? 'selected',
+            'mgpdeg_grid_categories' => $settings['mgpdeg_grid_categories'] ?? [],
+            'mgpdeg_ratting_show' => $settings['mgpdeg_ratting_show'],
+            'mgpdeg_badge_discount' => $settings['mgpdeg_badge_discount'],
+            'mgpdeg_badge_after_text' => $settings['mgpdeg_badge_after_text'],
+            'mgpdeg_badge_before_sign' => $settings['mgpdeg_badge_before_sign'],
+            'mgpdeg_img_flip_show' => $settings['mgpdeg_img_flip_show'],
+            'mgpdeg_adicons_show' => $settings['mgpdeg_adicons_show'],
+            'mgpdeg_adicons_position' => $settings['mgpdeg_adicons_position'],
+            'mgpdeg_wishlist_show' => $settings['mgpdeg_wishlist_show'] ?? '',
+            'mgpdeg_wishlist_text' => $settings['mgpdeg_wishlist_text'] ?? '',
+            'mgpdeg_share_show' => $settings['mgpdeg_share_show'],
+            'mgpdeg_share_text' => $settings['mgpdeg_share_text'],
+            'mgpdeg_qrcode_show' => $settings['mgpdeg_qrcode_show'],
+            'mgpdeg_qrcode_text' => $settings['mgpdeg_qrcode_text'],
+            'mgpdeg_video_show' => $settings['mgpdeg_video_show'],
+            'mgpdeg_video_text' => $settings['mgpdeg_video_text'],
+            'mgpdeg_stock_show' => $settings['mgpdeg_stock_show'] ?? '',
+            'mgpdeg_total_stock_show' => $settings['mgpdeg_total_stock_show'] ?? '',
+            'mgpdeg_stock_text' => $settings['mgpdeg_stock_text'] ?? '',
+            'mgpdeg_total_sold_show' => $settings['mgpdeg_total_sold_show'] ?? '',
+            'mgpdeg_sold_text' => $settings['mgpdeg_sold_text'] ?? '',
+            'mgpdeg_stock_slide_show' => $settings['mgpdeg_stock_slide_show'] ?? '',
+        );
+    }
+
+    /**
+     * Get loader SVG based on type
+     */
+    protected function get_loader_svg($type, $color, $size)
+    {
+        $size = intval($size);
+        $color = sanitize_hex_color($color) ?: '#0073aa';
+        
+        switch ($type) {
+            case 'pulse':
+                return '<svg xmlns="http://www.w3.org/2000/svg" width="' . $size . '" height="' . $size . '" viewBox="0 0 44 44">
+                    <circle cx="22" cy="22" r="20" fill="none" stroke="' . $color . '" stroke-width="2" opacity="0.3"/>
+                    <circle cx="22" cy="22" r="20" fill="none" stroke="' . $color . '" stroke-width="2" stroke-dasharray="80" stroke-dashoffset="60">
+                        <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="1s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>';
+                
+            case 'dots':
+                return '<svg xmlns="http://www.w3.org/2000/svg" width="' . $size . '" height="' . ($size / 3) . '" viewBox="0 0 120 30">
+                    <circle cx="15" cy="15" r="12" fill="' . $color . '">
+                        <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite" begin="0s"/>
+                    </circle>
+                    <circle cx="60" cy="15" r="12" fill="' . $color . '">
+                        <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite" begin="0.2s"/>
+                    </circle>
+                    <circle cx="105" cy="15" r="12" fill="' . $color . '">
+                        <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite" begin="0.4s"/>
+                    </circle>
+                </svg>';
+                
+            case 'ripple':
+                return '<svg xmlns="http://www.w3.org/2000/svg" width="' . $size . '" height="' . $size . '" viewBox="0 0 44 44" stroke="' . $color . '">
+                    <g fill="none" fill-rule="evenodd" stroke-width="2">
+                        <circle cx="22" cy="22" r="1">
+                            <animate attributeName="r" begin="0s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1" keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"/>
+                            <animate attributeName="stroke-opacity" begin="0s" dur="1.8s" values="1; 0" calcMode="spline" keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"/>
+                        </circle>
+                        <circle cx="22" cy="22" r="1">
+                            <animate attributeName="r" begin="-0.9s" dur="1.8s" values="1; 20" calcMode="spline" keyTimes="0; 1" keySplines="0.165, 0.84, 0.44, 1" repeatCount="indefinite"/>
+                            <animate attributeName="stroke-opacity" begin="-0.9s" dur="1.8s" values="1; 0" calcMode="spline" keyTimes="0; 1" keySplines="0.3, 0.61, 0.355, 1" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                </svg>';
+                
+            case 'spinner':
+            default:
+                return '<svg xmlns="http://www.w3.org/2000/svg" width="' . $size . '" height="' . $size . '" viewBox="0 0 44 44" stroke="' . $color . '">
+                    <g fill="none" fill-rule="evenodd" stroke-width="3">
+                        <circle cx="22" cy="22" r="19.5" stroke-opacity="0.2"/>
+                        <path d="M22 2.5A19.5 19.5 0 0 1 41.5 22">
+                            <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="0.8s" repeatCount="indefinite"/>
+                        </path>
+                    </g>
+                </svg>';
+        }
     }
 
 
@@ -2761,7 +3052,16 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         <div class="mgpde-card-text mgpdeg-card-text mgp-text-style<?php echo esc_attr($mgpdeg_product_style); ?>">
             <?php if ($mgpdeg_category_show == 'yes' && $mgpdeg_product_style != '2') : ?>
                 <div class="mgpde-meta mgpde-category">
-                    <?php mgproducts_display_product_category(); ?>
+                    <?php 
+                    $category_type = $settings['mgpdeg_category_type'] ?? 'selected';
+                    $selected_categories = [];
+                    if ($category_type === 'selected' && !empty($settings['mgpdeg_grid_categories'])) {
+                        $selected_categories = is_array($settings['mgpdeg_grid_categories']) 
+                            ? $settings['mgpdeg_grid_categories'] 
+                            : explode(',', str_replace(' ', '', $settings['mgpdeg_grid_categories']));
+                    }
+                    mgproducts_display_product_category(get_the_ID(), 'product_cat', 1, $category_type, $selected_categories); 
+                    ?>
                 </div>
             <?php endif; ?>
             <?php if ($mgpdeg_ratting_show && $mgpdeg_product_style == '2') : ?>
@@ -2775,7 +3075,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                     <?php
                     printf(
                         '<%1$s class="mgpde-ptitle">%2$s</%1$s>',
-                        tag_escape($mgpdeg_title_tag),
+                        mprd_validate_html_tag($mgpdeg_title_tag),
                         esc_html(wp_trim_words(get_the_title(), $mgpdeg_crop_title))
                     );
                     ?>
@@ -2783,7 +3083,16 @@ class mgProducts_Tab extends \Elementor\Widget_Base
             <?php endif; ?>
             <?php if ($mgpdeg_category_show == 'yes' && $mgpdeg_product_style == '2') : ?>
                 <div class="mgpde-meta mgpde-category">
-                    <?php mgproducts_display_product_category(); ?>
+                    <?php 
+                    $category_type = $settings['mgpdeg_category_type'] ?? 'selected';
+                    $selected_categories = [];
+                    if ($category_type === 'selected' && !empty($settings['mgpdeg_grid_categories'])) {
+                        $selected_categories = is_array($settings['mgpdeg_grid_categories']) 
+                            ? $settings['mgpdeg_grid_categories'] 
+                            : explode(',', str_replace(' ', '', $settings['mgpdeg_grid_categories']));
+                    }
+                    mgproducts_display_product_category(get_the_ID(), 'product_cat', 1, $category_type, $selected_categories); 
+                    ?>
                 </div>
             <?php endif; ?>
             <?php if ($mgpdeg_ratting_show && $mgpdeg_product_style != '2') : ?>

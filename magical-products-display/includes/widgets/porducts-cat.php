@@ -139,7 +139,7 @@ class mgProducts_cats extends \Elementor\Widget_Base
                     'label' => __('Select Products Category', 'magical-products-display'),
                     'type' => \Elementor\Controls_Manager::SELECT,
                     'label_block' => true,
-                    'options' => mgproducts_display_taxonomy_list('product_cat', 'id'),
+                    'options' => mgproducts_display_taxonomy_list('product_cat', 'slug'),
 
                 ]
             );
@@ -173,7 +173,7 @@ class mgProducts_cats extends \Elementor\Widget_Base
                     'type' => \Elementor\Controls_Manager::SELECT2,
                     'label_block' => true,
                     'multiple' => true,
-                    'options' => mgproducts_display_taxonomy_list('product_cat', 'id'),
+                    'options' => mgproducts_display_taxonomy_list('product_cat', 'slug'),
 
                 ]
             );
@@ -183,15 +183,41 @@ class mgProducts_cats extends \Elementor\Widget_Base
         $this->add_control(
             'mgpd_cats_column',
             [
-                'label'   => __('Grid Column', 'magical-products-display'),
+                'label'   => __('Grid Column in Desktop', 'magical-products-display'),
                 'type'    => \Elementor\Controls_Manager::SELECT,
                 'default' => '4',
                 'options' => [
                     '12'   => __('1 Column', 'magical-products-display'),
-                    '6'  => __('2 Column', 'magical-products-display'),
-                    '4'  => __('3 Column', 'magical-products-display'),
-                    '3'  => __('4 Column', 'magical-products-display'),
-                    '2'  => __('6 Column', 'magical-products-display'),
+                    '6'  => __('2 Columns', 'magical-products-display'),
+                    '4'  => __('3 Columns', 'magical-products-display'),
+                    '3'  => __('4 Columns', 'magical-products-display'),
+                    '2'  => __('6 Columns', 'magical-products-display'),
+                ]
+            ]
+        );
+        $this->add_control(
+            'mgpd_column_tablet',
+            [
+                'label'   => __('Grid Column in Tablet', 'magical-products-display'),
+                'type'    => \Elementor\Controls_Manager::SELECT,
+                'default' => '6',
+                'options' => [
+                    '12'   => __('1 Column', 'magical-products-display'),
+                    '6'  => __('2 Columns', 'magical-products-display'),
+                    '4'  => __('3 Columns', 'magical-products-display'),
+                ]
+            ]
+        );
+        $this->add_control(
+            'mgpd_column_mobile',
+            [
+                'label'   => __('Grid Column in mobile', 'magical-products-display'),
+                'type'    => \Elementor\Controls_Manager::SELECT,
+                'default' => '12',
+                'options' => [
+                    '12'   => __('1 Column', 'magical-products-display'),
+                    '6'  => __('2 Columns', 'magical-products-display'),
+                    '4'  => __('3 Columns', 'magical-products-display'),
                 ]
             ]
         );
@@ -961,6 +987,8 @@ class mgProducts_cats extends \Elementor\Widget_Base
         }
 
         $mgpd_cats_column = $this->get_settings('mgpd_cats_column');
+        $mgpd_column_tablet = $this->get_settings('mgpd_column_tablet');
+        $mgpd_column_mobile = $this->get_settings('mgpd_column_mobile');
         $mpdc_default_img = $this->get_settings('mpdc_default_img');
         $mgpd_cats_style = esc_attr($settings['mgpd_cats_style']);
         $content_grid_boxshadow = $settings['content_grid_boxshadow'] === 'yes' ? 'mgpdi-shadow' : '';
@@ -976,25 +1004,43 @@ class mgProducts_cats extends \Elementor\Widget_Base
         <div class="mpdkit-cat-grid mpdc-catg-<?php echo esc_attr($mgpd_cats_style); ?>">
             <div class="row">
                 <?php foreach ($mgpd_cats as $cat_items) :
-                    $catid = get_option('mgppro_is_active', 'no') === 'yes'
+                    $cat_value = get_option('mgppro_is_active', 'no') === 'yes'
                         ? $cat_items['mpdac_pcat_id']
                         : $cat_items;
                     $mpdc_icat_img = get_option('mgppro_is_active', 'no') === 'yes'
                         ? $cat_items['mpdc_icat_img']
                         : '';
 
+                    // Backward compatibility: handle both ID (old) and slug (new)
+                    if (is_numeric($cat_value)) {
+                        // Old saved data - it's a term ID
+                        $info = get_term($cat_value, 'product_cat');
+                    } else {
+                        // New saved data - it's a slug
+                        $info = get_term_by('slug', $cat_value, 'product_cat');
+                    }
+
+                    // Skip if term not found or is an error
+                    if (!$info || is_wp_error($info)) {
+                        continue;
+                    }
+
+                    $catid = $info->term_id;
+
                     $thumb_id = get_term_meta($catid, 'thumbnail_id', true);
                     $thumb_url = wp_get_attachment_image_url($thumb_id, 'thumbnail_id', true);
-                    $info = get_term_by('id', $catid, 'product_cat');
                     $urlarray = explode("/", $thumb_url);
                     $default_img = end($urlarray);
-                    $term_slug = $info->slug ?? null;
-                    $term_name = $info->name ?? null;
-                    $term_desc = $info->description ?? null;
+                    $term_slug = $info->slug;
+                    $term_name = $info->name;
+                    $term_desc = $info->description;
 
-                    $cat_link = $term_slug ? get_term_link($term_slug, 'product_cat') : '#';
+                    $cat_link = get_term_link($info, 'product_cat');
+                    if (is_wp_error($cat_link)) {
+                        $cat_link = '#';
+                    }
                 ?>
-                    <div class="col-lg-<?php echo esc_attr($mgpd_cats_column); ?>">
+                    <div class="col-<?php echo esc_attr($mgpd_column_mobile); ?> col-md-<?php echo esc_attr($mgpd_column_tablet); ?> col-lg-<?php echo esc_attr($mgpd_cats_column); ?>">
                         <div class="mpdkit-cat-item <?php echo esc_attr($content_grid_boxshadow); ?>">
                             <?php if ($mpdc_catimg_show) : ?>
                                 <div class="mpdkit-cat-img">

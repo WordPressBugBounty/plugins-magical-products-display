@@ -581,6 +581,7 @@ figure a {
   display: flex;
   align-items: center;
   flex-flow: row wrap;
+  justify-content: center;
 }
 
 .mgproductd-grid form.mgf-filter-form>div {
@@ -974,6 +975,9 @@ span.mpdkit-cat-badge.mpdkit-cat-top {
   background: #fff;
   padding: 10px 20px;
 }
+.mpdkit-cat-grid .mpdkit-cat-item {
+    overflow: hidden;
+}
 .mgppro-catcount {
   font-size: 13px;
 }
@@ -1064,4 +1068,11 @@ div#mgpdeg-items .swiper-container {
       display: none !important;
     }
 } 
+
+/* MPD Shop Products Widget - Hide WooCommerce result count and ordering */
+.mgpshop-products-wrapper .woocommerce-result-count,
+.mgpshop-products-wrapper .woocommerce-ordering {
+  display: none !important;
+}
+
 

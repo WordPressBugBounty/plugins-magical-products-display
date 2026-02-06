@@ -8,7 +8,7 @@
  * Plugin Name:       Magical products Display
  * Plugin URI:        http://wpthemespace.com
  * Description:       Customizable Elementor Widgets for Beautiful WooCommerce Product Displays.
- * Version:           1.1.29
+ * Version:           1.1.38
  * Author:            Noor alam
  * Author URI:        http://wpthemespace.com
  * License:           GPL-2.0+
@@ -38,7 +38,7 @@ final class magicalProductsDisplay
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '1.1.29';
+	const VERSION = '1.1.38';
 
 	/**
 	 * Minimum Elementor Version
@@ -191,8 +191,9 @@ final class magicalProductsDisplay
 
 		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/helplink.php');
 		
-		// Load AJAX handler early
+		// Load AJAX handlers early
 		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/widgets/ajax-search/ajax-search-handler.php');
+		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/ajax/products-tab-ajax.php');
 
 		if (get_option('mgppro_is_active') != 'yes') {
 			// Load admin info
@@ -238,7 +239,10 @@ final class magicalProductsDisplay
 	public function admin_notice_missing_main_plugin()
 	{
 
-		if (isset($_GET['activate'])) unset($_GET['activate']);
+		if (isset($_GET['activate'])) {
+			$_GET['activate'] = sanitize_text_field(wp_unslash($_GET['activate']));
+			unset($_GET['activate']);
+		}
 
 
 		if (file_exists(WP_PLUGIN_DIR . '/elementor/elementor.php')) {
@@ -322,7 +326,10 @@ final class magicalProductsDisplay
 	public function admin_notice_minimum_elementor_version()
 	{
 
-		if (isset($_GET['activate'])) unset($_GET['activate']);
+		if (isset($_GET['activate'])) {
+			$_GET['activate'] = sanitize_text_field(wp_unslash($_GET['activate']));
+			unset($_GET['activate']);
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: Elementor 3: Required Elementor version */
@@ -347,7 +354,10 @@ final class magicalProductsDisplay
 	public function admin_notice_minimum_php_version()
 	{
 
-		if (isset($_GET['activate'])) unset($_GET['activate']);
+		if (isset($_GET['activate'])) {
+			$_GET['activate'] = sanitize_text_field(wp_unslash($_GET['activate']));
+			unset($_GET['activate']);
+		}
 
 		$message = sprintf(
 			/* translators: 1: Plugin name 2: PHP 3: Required PHP version */
@@ -389,6 +399,9 @@ final class magicalProductsDisplay
 
 		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/widgets/products-list.php');
 		$widgets_manager->register(new \mgProducts_List());
+
+		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/widgets/shop-products.php');
+		$widgets_manager->register(new \mgProducts_Shop());
 
 		require_once(MAGICAL_PRODUCTS_DISPLAY_DIR . '/includes/widgets/products-slider.php');
 		$widgets_manager->register(new \mgProducts_slider());

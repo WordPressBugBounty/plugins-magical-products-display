@@ -48,7 +48,14 @@ class mpdAssetsManagement
         wp_register_script("mgproducts-carousel", MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets-active/products-carousel-active.js',   array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script("mgproducts-tcarousel", MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets-active/testimonail-carousel-active.js',   array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script("mpd-ajax-search", MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/mpd-ajax-search.js',   array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
+        wp_register_script("mpd-products-tab-ajax", MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/mpd-products-tab-ajax.js',   array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_enqueue_script("mgproducts-main", MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/main-scripts.js',   array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
+        
+        // Localize Products Tab AJAX script
+        wp_localize_script('mpd-products-tab-ajax', 'mpdTabAjax', array(
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('mpd_tab_ajax_nonce')
+        ));
         
         // Localize AJAX Search script
         wp_localize_script('mpd-ajax-search', 'mpdAjaxSearch', array(

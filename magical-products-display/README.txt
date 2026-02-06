@@ -3,7 +3,7 @@ Contributors: nalam
 Donate link: https://wpthemespace.com/donation/
 Tags: elementor, woocommerce, products carousel slider, ajax search, product filter
 Requires at least: 4.0
-Tested up to: 6.8
+Tested up to: 6.9
 Stable Tag : trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -59,6 +59,8 @@ Magical Products Display revolutionizes how you showcase products on your WordPr
 **All widgets are fully responsive, customizable, and optimized for conversions:**
 <ul>
 	<li>🔍 **<a href="https://mp.wpcolors.net/ajax-search" target="_blank">AJAX Product Search</a>** - Real-time product search with instant filtering by categories, price, and attributes. Features modern Material Design 3 UI with accessibility support.</li>
+
+	<li>🛒 **Shop Products** - Display WooCommerce products with native shop styling on any page. Perfect for creating custom shop pages, homepage product showcases, or landing pages. Features all WooCommerce shortcode parameters including filters by category, tags, attributes, sale status, best-selling, top-rated products, and more. Fully customizable with advanced styling controls.</li>
 
  	<li>🎢 **<a href="https://mp.wpcolors.net/products-slider" target="_blank">Products Slider</a>** - Showcase your best products in an elegant, touch-friendly slider. Perfect for highlighting featured items, new arrivals, or bestsellers with smooth transitions and navigation controls.</li>
 
@@ -202,6 +204,45 @@ No, you cannot use Magical Products Display – Elementor Products Widgets For W
 
 
 == Changelog ==
+
+= 1.1.38 =
+* Added "Menu Order (Manual)" option to Custom Order settings for Products Grid, List, Carousel, and Awesome List widgets
+* Added new "Default (Menu Order)" filter option to respect WooCommerce drag & drop product sorting
+* Fixed Sale and Featured product filters to respect WooCommerce menu_order sorting
+* Improved compatibility with WooCommerce manual product ordering
+
+= 1.1.37 =
+* Product Categories select issue fixed
+
+= 1.1.35 =
+* Tab categories display issue
+* Added AJAX lazy loading for Products Tab widget (Pro)
+* Tab content now loads on click for improved page performance
+* Added customizable SVG loading animations (Spinner, Pulse, Dots, Ripple)
+* Added loader color and size controls in Elementor
+* Fixed category slug handling in Products Tab widget
+
+= 1.1.34 =
+* Added new style some widgets
+* Fixed category widget column issue
+* category id to slug query
+
+= 1.1.33 =
+* Added new Shop Products widget with WooCommerce native shortcode support
+* Fixed grid query issue
+* fixed css style issue
+
+= 1.1.32 =
+* Security improvement: Fixed direct $_GET superglobal access vulnerability
+* Enhanced input sanitization in admin notice functions
+* Code quality improvements and security hardening
+* Added product categories meta options 
+
+= 1.1.31 =
+* PHP error fixed
+
+= 1.1.30 =
+* Security update
 
 = 1.1.29 =
 * Added new AJAX Search Widget for WooCommerce products

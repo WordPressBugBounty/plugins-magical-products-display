@@ -225,6 +225,7 @@ class mgProducts_AwesomeList extends \Elementor\Widget_Base
                     'title'         => esc_html__('Title', 'magical-products-display'),
                     'comment_count' => esc_html__('Comment count', 'magical-products-display'),
                     'rand'          => esc_html__('Random', 'magical-products-display'),
+                    'menu_order'    => esc_html__('Menu Order (Manual)', 'magical-products-display'),
                 ],
                 'condition' => [
                     'mpdal_custom_order' => 'yes',
@@ -548,6 +549,23 @@ class mgProducts_AwesomeList extends \Elementor\Widget_Base
                 'type'      => \Elementor\Controls_Manager::SWITCHER,
                 'default' => '',
 
+            ]
+        );
+        
+        $this->add_control(
+            'mpdal_category_type',
+            [
+                'label' => __('Category Display Type', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'selected',
+                'options' => [
+                    'first' => __('First Category', 'magical-products-display'),
+                    'random' => __('Random Category', 'magical-products-display'),
+                    'selected' => __('From Selected Categories', 'magical-products-display'),
+                ],
+                'condition' => [
+                    'mpdal_category_show' => 'yes',
+                ]
             ]
         );
 
@@ -1678,7 +1696,14 @@ class mgProducts_AwesomeList extends \Elementor\Widget_Base
         switch ($mpdal_filter) {
 
             case 'sale':
-                $args['post__in'] = array_merge(array(0), wc_get_product_ids_on_sale());
+                $args['meta_query'] = array(
+                    array(
+                        'key'     => '_sale_price',
+                        'value'   => 0,
+                        'compare' => '>',
+                        'type'    => 'NUMERIC'
+                    ),
+                );
                 break;
 
             case 'featured':
@@ -1807,7 +1832,7 @@ class mgProducts_AwesomeList extends \Elementor\Widget_Base
                                                     <?php
                                                     printf(
                                                         '<%1$s class="mpdal-ptitle">%2$s</%1$s>',
-                                                        tag_escape($mpdal_title_tag),
+                                                        mprd_validate_html_tag($mpdal_title_tag),
                                                         esc_html(wp_trim_words(get_the_title(), $mpdal_crop_title))
                                                     );
                                                     ?>
@@ -1917,9 +1942,17 @@ class mgProducts_AwesomeList extends \Elementor\Widget_Base
     public function mpd_awelist_meta($settings)
     {
 
-        if ($settings['mpdal_category_show'] == 'yes') : ?>
+        if ($settings['mpdal_category_show'] == 'yes') : 
+            $category_type = isset($settings['mpdal_category_type']) ? $settings['mpdal_category_type'] : 'selected';
+            $selected_categories = [];
+            
+            // Get selected categories for 'selected' type
+            if ($category_type === 'selected' && !empty($settings['mpdal_grid_categories'])) {
+                $selected_categories = $settings['mpdal_grid_categories'];
+            }
+            ?>
             <div class="mpdal-category mb-1">
-                <?php mgproducts_display_product_category(); ?>
+                <?php mgproducts_display_product_category(get_the_ID(), 'product_cat', 1, $category_type, $selected_categories); ?>
             </div>
         <?php endif; ?>
         <?php if ($settings['mpdal_ratting_show']) : ?>

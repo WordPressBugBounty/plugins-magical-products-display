@@ -359,7 +359,8 @@
     white-space: nowrap;
 }
 
-.mpd-ajax-search__result-price {
+.mpd-ajax-search__result-price,
+.mpd-ajax-search__result-sku {
     font-size: 12px;
     color: #64748b;
     margin: 0;

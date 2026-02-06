@@ -167,6 +167,7 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                 'default' => 'recent',
                 'options' => [
                     'recent' => esc_html__('Recent Products', 'magical-products-display'),
+                    'menu_order' => esc_html__('Default (Menu Order)', 'magical-products-display'),
                     'featured' => esc_html__('Featured Products', 'magical-products-display'),
                     'best_selling' => esc_html__('Best Selling Products', 'magical-products-display'),
                     $pproducts => sprintf('%s %s', esc_html__('Popular Products', 'magical-products-display'), mpd_display_pro_only_text()),
@@ -255,6 +256,7 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                     'title'         => esc_html__('Title', 'magical-products-display'),
                     'comment_count' => esc_html__('Comment count', 'magical-products-display'),
                     'rand'          => esc_html__('Random', 'magical-products-display'),
+                    'menu_order'    => esc_html__('Menu Order (Manual)', 'magical-products-display'),
                 ],
                 'condition' => [
                     'mgpdeg_custom_order' => 'yes',
@@ -642,6 +644,23 @@ class mgProducts_Grid extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'mgpdeg_category_type',
+            [
+                'label'     => __('Category Display Type', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SELECT,
+                'default'   => 'selected',
+                'options'   => [
+                    'first'    => __('First Category', 'magical-products-display'),
+                    'random'   => __('Random Category', 'magical-products-display'),
+                    'selected' => __('Selected Categories', 'magical-products-display'),
+                ],
+                'condition' => [
+                    'mgpdeg_category_show' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'mgpdeg_ratting_show',
             [
                 'label'     => __('Show Ratting', 'magical-products-display'),
@@ -876,11 +895,77 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                 'label'     => sprintf('%s %s', esc_html__('Show Products Filter ', 'magical-products-display'), mpd_display_pro_only_text()),
                 'description'     => __('You can display products filter by this section.', 'magical-products-display'),
                 'type'      => \Elementor\Controls_Manager::SWITCHER,
-                'default' => 'yes',
+                'default' => 'no',
 
             ]
         );
-
+        $this->add_control(
+            'mgpdeg_filter_display_style',
+            [
+                'label'   => sprintf('%s %s', esc_html__('Filter Display Style', 'magical-products-display'), mpd_display_pro_only_text()),
+                'type'    => \Elementor\Controls_Manager::SELECT,
+                'default' => 'sidebar',
+                'options' => [
+                    'normal'  => __('Normal (Always Visible)', 'magical-products-display'),
+                    'popup'   => __('Popup (Click Icon to Open)', 'magical-products-display'),
+                    'sidebar' => __('Sidebar (Slide from Side)', 'magical-products-display'),
+                ],
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                ]
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_filter_icon_position',
+            [
+                'label'   => sprintf('%s %s', esc_html__('Filter Icon Position', 'magical-products-display'), mpd_display_pro_only_text()),
+                'type'    => \Elementor\Controls_Manager::SELECT,
+                'default' => 'left',
+                'options' => [
+                    'left'  => __('Left', 'magical-products-display'),
+                    'right'   => __('Right', 'magical-products-display'),
+                ],
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                    'mgpdeg_filter_display_style' => 'sidebar',
+                ]
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_filter_icon_text',
+            [
+                'label'       => sprintf('%s %s', esc_html__('Filter Icon Text', 'magical-products-display'), mpd_display_pro_only_text()),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'input_type'  => 'text',
+                'placeholder' => __('Filter Products', 'magical-products-display'),
+                'default'     => __('Filter Products', 'magical-products-display'),
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                    'mgpdeg_filter_display_style!' => 'normal',
+                ]
+            ]
+        );
+if (get_option('mgppro_is_active', 'no') == 'yes') {
+        $this->add_control(
+            'mgpdeg_filter_warning',
+            [
+                'type' => \Elementor\Controls_Manager::RAW_HTML,
+                'raw' => '<div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px 15px; margin: 10px 0;">
+                    <strong style="color: #856404; display: block; margin-bottom: 5px;">⚠️ Important Notice:</strong>
+                    <p style="color: #856404; margin: 0; line-height: 1.5;">When <strong>Products Filter</strong> is enabled, it will take complete control of product queries. The following widget settings will be <strong>disabled and ignored</strong>:</p>
+                    <ul style="color: #856404; margin: 8px 0 0 20px; line-height: 1.6;">
+                        <li><strong>Filter By</strong> (Sale, Featured, Best Selling, etc.)</li>
+                        <li><strong>Product Categories</strong> selection</li>
+                        <li><strong>Custom Order</strong> settings</li>
+                    </ul>
+                    <p style="color: #856404; margin: 8px 0 0 0; line-height: 1.5;">Users will instead filter products dynamically using the filter form displayed on the frontend. Turn off this option to use the widget\'s built-in query controls.</p>
+                </div>',
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                ],
+            ]
+        );
+    }
         $this->add_control(
             'mgpdeg_cat_filter_active',
             [
@@ -933,6 +1018,34 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                 'condition' => [
                     'mgpdeg_filter_show' => 'yes',
                     'mgpdeg_tag_filter_active' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_brand_filter_active',
+            [
+                'label'     => sprintf('%s %s', esc_html__('Active Brand Filter ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'description'     => __('Visitor can filter products by brands.', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default' => 'no',
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                ]
+
+            ]
+        );
+        $this->add_control(
+            'mgpdeg_brand_text',
+            [
+                'label'       => sprintf('%s %s', esc_html__('Brand Filter Text ', 'magical-products-display'), mpd_display_pro_only_text()),
+                'type'        => \Elementor\Controls_Manager::TEXT,
+                'input_type'  => 'text',
+                'placeholder' => __('Select Brand', 'magical-products-display'),
+                'default'     => __('Select Brand', 'magical-products-display'),
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                    'mgpdeg_brand_filter_active' => 'yes',
                 ]
 
             ]
@@ -2597,6 +2710,164 @@ class mgProducts_Grid extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+
+        // Filter Trigger Button Style
+        $this->start_controls_section(
+            'mgpdeg_filter_trigger_style',
+            [
+                'label'     => sprintf('%s %s', esc_html__('Filter Trigger Button', 'magical-products-display'), mpd_display_pro_only_text()),
+                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                'condition' => [
+                    'mgpdeg_filter_show' => 'yes',
+                    'mgpdeg_filter_display_style!' => 'normal',
+                ]
+            ]
+        );
+
+        $this->start_controls_tabs('mgpdeg_filter_trigger_tabs');
+
+        // Normal State Tab
+        $this->start_controls_tab(
+            'mgpdeg_filter_trigger_normal',
+            [
+                'label' => __('Normal', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_filter_trigger_color',
+            [
+                'label' => __('Text Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mgf-filter-trigger' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'mgpdeg_filter_trigger_background',
+                'label' => __('Background', 'magical-products-display'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .mgf-filter-trigger',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'mgpdeg_filter_trigger_border',
+                'selector' => '{{WRAPPER}} .mgf-filter-trigger',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'mgpdeg_filter_trigger_shadow',
+                'selector' => '{{WRAPPER}} .mgf-filter-trigger',
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        // Hover State Tab
+        $this->start_controls_tab(
+            'mgpdeg_filter_trigger_hover',
+            [
+                'label' => __('Hover', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_filter_trigger_hcolor',
+            [
+                'label' => __('Text Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mgf-filter-trigger:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Background::get_type(),
+            [
+                'name' => 'mgpdeg_filter_trigger_hbackground',
+                'label' => __('Background', 'magical-products-display'),
+                'types' => ['classic', 'gradient'],
+                'selector' => '{{WRAPPER}} .mgf-filter-trigger:hover',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'mgpdeg_filter_trigger_hborder',
+                'selector' => '{{WRAPPER}} .mgf-filter-trigger:hover',
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Box_Shadow::get_type(),
+            [
+                'name' => 'mgpdeg_filter_trigger_hshadow',
+                'selector' => '{{WRAPPER}} .mgf-filter-trigger:hover',
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        // Common Controls (outside tabs)
+        $this->add_control(
+            'mgpdeg_filter_trigger_border_radius',
+            [
+                'label' => __('Border Radius', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'separator' => 'before',
+                'selectors' => [
+                    '{{WRAPPER}} .mgf-filter-trigger' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'mgpdeg_filter_trigger_padding',
+            [
+                'label' => __('Padding', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .mgf-filter-trigger' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'mgpdeg_filter_trigger_margin',
+            [
+                'label' => __('Margin', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .mgf-filter-trigger' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'mgpdeg_filter_trigger_typography',
+                'selector' => '{{WRAPPER}} .mgf-filter-trigger',
+            ]
+        );
+
+        $this->end_controls_section();
     }
 
     /**
@@ -2689,10 +2960,24 @@ class mgProducts_Grid extends \Elementor\Widget_Base
             'posts_per_page'        => $mgpdeg_products_count,
         );
 
-        switch ($mgpdeg_filter) {
+        // Only apply widget filter if products filter is not active
+        if (!($settings['mgpdeg_filter_show'] == 'yes' && get_option('mgppro_is_active', 'no') == 'yes')) {
+            switch ($mgpdeg_filter) {
 
-            case 'sale':
-                $args['post__in'] = array_merge(array(0), wc_get_product_ids_on_sale());
+                case 'menu_order':
+                    $args['orderby']    = 'menu_order';
+                    $args['order']      = 'ASC';
+                    break;
+
+                case 'sale':
+                $args['meta_query'] = array(
+                    array(
+                        'key'     => '_sale_price',
+                        'value'   => 0,
+                        'compare' => '>',
+                        'type'    => 'NUMERIC'
+                    ),
+                );
                 break;
 
             case 'featured':
@@ -2742,15 +3027,17 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                 $args['orderby']    = 'date';
                 $args['order']      = 'desc';
                 break;
+            }
         }
 
         // Custom Order
-        if ($mgpdeg_custom_order == 'yes') {
+        if ($mgpdeg_custom_order == 'yes' && !($settings['mgpdeg_filter_show'] == 'yes' && get_option('mgppro_is_active', 'no') == 'yes')) {
             $args['orderby'] = $orderby;
             $args['order'] = $order;
         }
 
-        if (!(($mgpdeg_filter == "show_byid") || ($mgpdeg_filter == "show_byid_manually"))) {
+        // Only apply category filter if products filter is not active
+        if (!($settings['mgpdeg_filter_show'] == 'yes' && get_option('mgppro_is_active', 'no') == 'yes') && !(($mgpdeg_filter == "show_byid") || ($mgpdeg_filter == "show_byid_manually"))) {
 
             $product_cats = str_replace(' ', '', $mgpdeg_grid_categories);
             if ("0" != $mgpdeg_grid_categories) {
@@ -2767,10 +3054,6 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                 }
             }
         }
-        if ($settings['mgpdeg_filter_show'] == 'yes') {
-            $args = apply_filters('mgpdeg_before_products_filter_args', $args);
-        }
-
 
         $mgpdeg_cart_btn   = $this->get_settings('mgpdeg_cart_btn');
         $mgpdeg_badge_show    = $this->get_settings('mgpdeg_badge_show');
@@ -2820,6 +3103,11 @@ class mgProducts_Grid extends \Elementor\Widget_Base
             $img_effects = $settings['mgpdeg_img_effects'];
         }
 
+        // Apply filter args before creating query
+        if ($settings['mgpdeg_filter_show'] == 'yes' && get_option('mgppro_is_active', 'no') == 'yes') {
+            $args = apply_filters('mgpdeg_before_products_filter_args', $args);
+        }
+
         $mgpdeg_products = new WP_Query($args);
         $mgp_unque_num = wp_rand('8652397', '5832471');
 ?>
@@ -2831,7 +3119,7 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                 </style>
             <?php endif; ?>
             <?php
-            if ($settings['mgpdeg_filter_show'] == 'yes') {
+            if ($settings['mgpdeg_filter_show'] == 'yes' && get_option('mgppro_is_active', 'no') == 'yes') {
                 do_action('mgproducts_pro_filter', $settings);
             }
 
@@ -2935,7 +3223,16 @@ class mgProducts_Grid extends \Elementor\Widget_Base
         <div class="mgpde-card-text mgpdeg-card-text mgp-text-style<?php echo esc_attr($mgpdeg_product_style); ?>">
             <?php if ($mgpdeg_category_show == 'yes' && $mgpdeg_product_style != '2') : ?>
                 <div class="mgpde-meta mgpde-category">
-                    <?php mgproducts_display_product_category(); ?>
+                    <?php 
+                    $category_type = $settings['mgpdeg_category_type'] ?? 'selected';
+                    $selected_categories = [];
+                    if ($category_type === 'selected' && !empty($settings['mgpdeg_grid_categories'])) {
+                        $selected_categories = is_array($settings['mgpdeg_grid_categories']) 
+                            ? $settings['mgpdeg_grid_categories'] 
+                            : explode(',', str_replace(' ', '', $settings['mgpdeg_grid_categories']));
+                    }
+                    mgproducts_display_product_category(get_the_ID(), 'product_cat', 1, $category_type, $selected_categories); 
+                    ?>
                 </div>
             <?php endif; ?>
 
@@ -2950,7 +3247,7 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                     <?php
                     printf(
                         '<%1$s class="mgpde-ptitle">%2$s</%1$s>',
-                        tag_escape($mgpdeg_title_tag),
+                        mprd_validate_html_tag($mgpdeg_title_tag),
                         esc_html(wp_trim_words(get_the_title(), $mgpdeg_crop_title))
                     );
                     ?>
@@ -2958,7 +3255,16 @@ class mgProducts_Grid extends \Elementor\Widget_Base
             <?php endif; ?>
             <?php if ($mgpdeg_category_show == 'yes' && $mgpdeg_product_style == '2') : ?>
                 <div class="mgpde-meta mgpde-category">
-                    <?php mgproducts_display_product_category(); ?>
+                    <?php 
+                    $category_type = $settings['mgpdeg_category_type'] ?? 'selected';
+                    $selected_categories = [];
+                    if ($category_type === 'selected' && !empty($settings['mgpdeg_grid_categories'])) {
+                        $selected_categories = is_array($settings['mgpdeg_grid_categories']) 
+                            ? $settings['mgpdeg_grid_categories'] 
+                            : explode(',', str_replace(' ', '', $settings['mgpdeg_grid_categories']));
+                    }
+                    mgproducts_display_product_category(get_the_ID(), 'product_cat', 1, $category_type, $selected_categories); 
+                    ?>
                 </div>
             <?php endif; ?>
             <?php if ($mgpdeg_ratting_show && $mgpdeg_product_style != '2') : ?>
@@ -3024,10 +3330,6 @@ class mgProducts_Grid extends \Elementor\Widget_Base
 
 <?php
     } // products content
-
-
-
-
 
 
 }
