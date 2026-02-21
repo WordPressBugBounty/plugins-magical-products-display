@@ -331,7 +331,7 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
             [
                 'label' => __('Background Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#ffffff',
+                'default' => '',
                 'selectors' => [
                     '{{WRAPPER}} .mpd-ajax-search__input' => 'background-color: {{VALUE}};',
                 ],
@@ -343,7 +343,7 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
             [
                 'label' => __('Text Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#333333',
+                'default' => '',
                 'selectors' => [
                     '{{WRAPPER}} .mpd-ajax-search__input' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .mpd-ajax-search__input::placeholder' => 'color: {{VALUE}}; opacity: 0.7;',
@@ -440,7 +440,7 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
             [
                 'label' => __('Icon Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#666666',
+                'default' => '',
                 'selectors' => [
                     '{{WRAPPER}} .mpd-ajax-search__icon' => 'color: {{VALUE}};',
                 ],
@@ -490,7 +490,7 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
             [
                 'label' => __('Spinner Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#007cba',
+                'default' => '',
                 'selectors' => [
                     '{{WRAPPER}} .mpd-ajax-search__spinner' => 'color: {{VALUE}};',
                     '{{WRAPPER}} .mpd-ajax-search__spinner::before' => 'background-color: {{VALUE}};',
@@ -536,7 +536,7 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
             [
                 'label' => __('Background Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#ffffff',
+                'default' => '',
                 'selectors' => [
                     '{{WRAPPER}} .mpd-ajax-search__results' => 'background-color: {{VALUE}};',
                 ],
@@ -876,12 +876,16 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
         global $wpdb;
         
         // Get min and max prices
-        $prices = $wpdb->get_row("
-            SELECT MIN(meta_value+0) as min_price, MAX(meta_value+0) as max_price 
-            FROM {$wpdb->postmeta} 
-            WHERE meta_key='_price' 
-            AND meta_value != ''
-        ");
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+        $prices = $wpdb->get_row(
+            $wpdb->prepare(
+                "SELECT MIN(meta_value+0) as min_price, MAX(meta_value+0) as max_price 
+                FROM {$wpdb->postmeta} 
+                WHERE meta_key = %s 
+                AND meta_value != ''",
+                '_price'
+            )
+        );
 
         if (!$prices) {
             return;
@@ -903,9 +907,9 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
                        max="<?php echo esc_attr($prices->max_price); ?>" 
                        value="<?php echo esc_attr($prices->max_price); ?>">
                 <div class="mpd-ajax-search__price-display">
-                    <span class="mpd-ajax-search__price-min-display"><?php echo wc_price($prices->min_price); ?></span>
+                    <span class="mpd-ajax-search__price-min-display"><?php echo wp_kses_post(wc_price($prices->min_price)); ?></span>
                     <span> - </span>
-                    <span class="mpd-ajax-search__price-max-display"><?php echo wc_price($prices->max_price); ?></span>
+                    <span class="mpd-ajax-search__price-max-display"><?php echo wp_kses_post(wc_price($prices->max_price)); ?></span>
                 </div>
             </div>
         </div>

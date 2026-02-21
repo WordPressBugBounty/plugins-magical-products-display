@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa"/>
+      <stop offset="100%" style="stop-color:#e9ecef"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGrad)"/>
+  
+  <!-- Simple Cart Icon -->
+  <circle cx="200" cy="90" r="40" fill="#ffffff" stroke="#dee2e6" stroke-width="2"/>
+  <path d="M180 80 L185 100 L215 100 L218 85 L188 85" fill="none" stroke="#6c757d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="188" cy="106" r="3" fill="#6c757d"/>
+  <circle cx="212" cy="106" r="3" fill="#6c757d"/>
+  
+  <!-- Empty Text -->
+  <rect x="125" y="145" width="150" height="16" rx="2" fill="#343a40"/>
+  
+  <!-- Message Text -->
+  <rect x="100" y="170" width="200" height="8" rx="1" fill="#6c757d"/>
+  <rect x="130" y="185" width="140" height="8" rx="1" fill="#adb5bd"/>
+  
+  <!-- Shop Button -->
+  <rect x="145" y="210" width="110" height="35" rx="4" fill="#007bff"/>
+  
+  <!-- Label -->
+  <text x="200" y="290" font-family="Arial, sans-serif" font-size="11" fill="#6c757d" text-anchor="middle">Simple Empty Cart</text>
+</svg>

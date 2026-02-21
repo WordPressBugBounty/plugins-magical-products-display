@@ -1,19 +1,18 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Magical products Display\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-29 06:12+0000\n"
+"Project-Id-Version: Magical Shop Builder 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wpthemespace.com/contact/\n"
+"POT-Creation-Date: 2026-02-15 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
+"Last-Translator: Magical Shop Builder Team\n"
+"Language-Team: Magical Shop Builder\n"
 "Language: \n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.0; wp-6.8.2; php-8.3.16\n"
+"X-Generator: Magical Shop Builder\n"
 "X-Domain: magical-products-display"
 
 #: includes/widgets/accordion-widget.php:829
@@ -2850,4 +2849,476 @@ msgstr ""
 
 #: includes/admin-info.php:31 includes/admin-rev-info.php:27
 msgid "👋🏻"
+msgstr ""
+
+#. Magical Shop Builder 2.0.0 - New Strings
+
+#: magical-products-display.php:400
+msgid "Magical Shop Builder"
+msgstr ""
+
+#: magical-products-display.php:410
+msgid "Magical Single Product"
+msgstr ""
+
+#: magical-products-display.php:420
+msgid "Magical Cart & Checkout"
+msgstr ""
+
+#: magical-products-display.php:430
+msgid "Magical My Account"
+msgstr ""
+
+#: magical-products-display.php:440
+msgid "Magical Shop Archive"
+msgstr ""
+
+#: magical-products-display.php:450
+msgid "Magical Thank You"
+msgstr ""
+
+#: magical-products-display.php:460
+msgid "Magical Global"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php:303
+msgid "This widget is available in the Pro version of Magical Shop Builder."
+msgstr ""
+
+#: includes/templates/prelayouts/class-mpd-prelayout-manager.php:361
+msgid "This layout requires Magical Shop Builder Pro."
+msgstr ""
+
+#. Single Product Widget Strings
+#: includes/widgets/single-product/class-mpd-widget-product-title.php
+msgid "Product Title"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-product-price.php
+msgid "Product Price"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-product-gallery.php
+msgid "Product Gallery"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-add-to-cart.php
+msgid "Add to Cart"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-product-description.php
+msgid "Product Description"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-product-short-description.php
+msgid "Short Description"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-product-meta.php
+msgid "Product Meta"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-product-rating.php
+msgid "Product Rating"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-product-reviews.php
+msgid "Product Reviews"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-product-tabs.php
+msgid "Product Tabs"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-related-products.php
+msgid "Related Products"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-upsells.php
+msgid "Upsells"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-product-stock.php
+msgid "Product Stock"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-product-attributes.php
+msgid "Product Attributes"
+msgstr ""
+
+#: includes/widgets/single-product/class-mpd-widget-product-navigation.php
+msgid "Product Navigation"
+msgstr ""
+
+#: includes/widgets/single-product/action-buttons-widget.php
+msgid "Action Buttons"
+msgstr ""
+
+#. Cart Widget Strings
+#: includes/widgets/cart/class-mpd-widget-cart-table.php
+msgid "Cart Table"
+msgstr ""
+
+#: includes/widgets/cart/class-mpd-widget-cart-totals.php
+msgid "Cart Totals"
+msgstr ""
+
+#: includes/widgets/cart/class-mpd-widget-cross-sells.php
+msgid "Cross-Sells"
+msgstr ""
+
+#: includes/widgets/cart/class-mpd-widget-coupon-form.php
+msgid "Coupon Form"
+msgstr ""
+
+#: includes/widgets/cart/class-mpd-widget-mini-cart.php
+msgid "Mini Cart"
+msgstr ""
+
+#: includes/widgets/cart/class-mpd-widget-empty-cart.php
+msgid "Empty Cart"
+msgstr ""
+
+#. Checkout Widget Strings
+#: includes/widgets/checkout/class-mpd-widget-billing-form.php
+msgid "Billing Form"
+msgstr ""
+
+#: includes/widgets/checkout/class-mpd-widget-shipping-form.php
+msgid "Shipping Form"
+msgstr ""
+
+#: includes/widgets/checkout/class-mpd-widget-order-review.php
+msgid "Order Review"
+msgstr ""
+
+#: includes/widgets/checkout/class-mpd-widget-payment-methods.php
+msgid "Payment Methods"
+msgstr ""
+
+#: includes/widgets/checkout/class-mpd-widget-checkout-coupon.php
+msgid "Checkout Coupon"
+msgstr ""
+
+#: includes/widgets/checkout/class-mpd-widget-place-order.php
+msgid "Place Order"
+msgstr ""
+
+#: includes/widgets/checkout/class-mpd-widget-order-notes.php
+msgid "Order Notes"
+msgstr ""
+
+#: includes/widgets/checkout/class-mpd-widget-checkout-login.php
+msgid "Checkout Login"
+msgstr ""
+
+#: includes/widgets/checkout/class-mpd-widget-multi-step-checkout.php
+msgid "Multi-Step Checkout"
+msgstr ""
+
+#: includes/widgets/checkout/class-mpd-widget-express-checkout.php
+msgid "Express Checkout"
+msgstr ""
+
+#. My Account Widget Strings
+#: includes/widgets/my-account/class-mpd-widget-account-nav.php
+msgid "Account Navigation"
+msgstr ""
+
+#: includes/widgets/my-account/class-mpd-widget-account-dashboard.php
+msgid "Account Dashboard"
+msgstr ""
+
+#: includes/widgets/my-account/class-mpd-widget-orders.php
+msgid "Orders"
+msgstr ""
+
+#: includes/widgets/my-account/class-mpd-widget-addresses.php
+msgid "Addresses"
+msgstr ""
+
+#: includes/widgets/my-account/class-mpd-widget-account-details.php
+msgid "Account Details"
+msgstr ""
+
+#: includes/widgets/my-account/class-mpd-widget-downloads.php
+msgid "Downloads"
+msgstr ""
+
+#: includes/widgets/my-account/class-mpd-widget-logout.php
+msgid "Logout"
+msgstr ""
+
+#: includes/widgets/my-account/class-mpd-widget-account-login.php
+msgid "Account Login"
+msgstr ""
+
+#. Shop Archive Widget Strings
+#: includes/widgets/shop-archive/class-mpd-widget-products-archive.php
+msgid "Products Archive"
+msgstr ""
+
+#: includes/widgets/shop-archive/class-mpd-widget-archive-title.php
+msgid "Archive Title"
+msgstr ""
+
+#: includes/widgets/shop-archive/class-mpd-widget-archive-description.php
+msgid "Archive Description"
+msgstr ""
+
+#: includes/widgets/shop-archive/class-mpd-widget-result-count.php
+msgid "Result Count"
+msgstr ""
+
+#: includes/widgets/shop-archive/class-mpd-widget-ordering.php
+msgid "Ordering"
+msgstr ""
+
+#: includes/widgets/shop-archive/class-mpd-widget-pagination.php
+msgid "Pagination"
+msgstr ""
+
+#: includes/widgets/shop-archive/class-mpd-widget-active-filters.php
+msgid "Active Filters"
+msgstr ""
+
+#: includes/widgets/shop-archive/class-mpd-widget-price-filter.php
+msgid "Price Filter"
+msgstr ""
+
+#: includes/widgets/shop-archive/class-mpd-widget-attribute-filter.php
+msgid "Attribute Filter"
+msgstr ""
+
+#: includes/widgets/shop-archive/class-mpd-widget-category-filter.php
+msgid "Category Filter"
+msgstr ""
+
+#: includes/widgets/shop-archive/class-mpd-widget-advanced-filter.php
+msgid "Advanced Filter"
+msgstr ""
+
+#. Global Widget Strings
+#: includes/widgets/global/class-mpd-widget-header-cart.php
+msgid "Header Cart"
+msgstr ""
+
+#: includes/widgets/global/class-mpd-widget-breadcrumbs.php
+msgid "Breadcrumbs"
+msgstr ""
+
+#: includes/widgets/global/class-mpd-widget-store-notice.php
+msgid "Store Notice"
+msgstr ""
+
+#: includes/widgets/global/class-mpd-widget-recently-viewed.php
+msgid "Recently Viewed"
+msgstr ""
+
+#: includes/widgets/global/class-mpd-widget-comparison.php
+msgid "Product Comparison"
+msgstr ""
+
+#: includes/widgets/global/class-mpd-widget-wishlist.php
+msgid "Wishlist"
+msgstr ""
+
+#: includes/widgets/global/class-mpd-widget-header-wishlist-compare.php
+msgid "Header Wishlist & Compare"
+msgstr ""
+
+#. Thank You Widget Strings
+#: includes/widgets/thankyou/class-mpd-widget-order-confirmation.php
+msgid "Order Confirmation"
+msgstr ""
+
+#: includes/widgets/thankyou/class-mpd-widget-order-details.php
+msgid "Order Details"
+msgstr ""
+
+#: includes/widgets/thankyou/class-mpd-widget-order-items.php
+msgid "Order Items"
+msgstr ""
+
+#: includes/widgets/thankyou/class-mpd-widget-customer-details.php
+msgid "Customer Details"
+msgstr ""
+
+#. Template Builder Strings
+#: includes/admin/class-mpd-admin.php
+msgid "Dashboard"
+msgstr ""
+
+#: includes/admin/class-mpd-admin.php
+msgid "Templates"
+msgstr ""
+
+#: includes/admin/class-mpd-admin.php
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/class-mpd-admin.php
+msgid "Widgets"
+msgstr ""
+
+#: includes/admin/class-mpd-admin.php
+msgid "Pro Features"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "Single Product"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "Product Archive"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "Cart"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "Checkout"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "My Account"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "Thank You"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "Add New Template"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "Edit Template"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "Template Type"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "Display Conditions"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "All Products"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "Specific Categories"
+msgstr ""
+
+#: includes/templates/class-mpd-template-builder.php
+msgid "Specific Products"
+msgstr ""
+
+#. Common Widget Strings
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Content"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Style"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Advanced"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Typography"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Color"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Background"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Border"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Padding"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Margin"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Alignment"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Spacing"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Show"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Hide"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Yes"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "No"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Left"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Center"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Right"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Top"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Bottom"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Normal"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Hover"
+msgstr ""
+
+#: includes/widgets/base/class-mpd-widget-base.php
+msgid "Active"
+msgstr ""
+
+#. Pro Lock Strings
+#: includes/traits/trait-mpd-pro-lock.php
+msgid "Pro Feature"
+msgstr ""
+
+#: includes/traits/trait-mpd-pro-lock.php
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes/traits/trait-mpd-pro-lock.php
+msgid "This feature is available in Magical Shop Builder Pro"
 msgstr ""

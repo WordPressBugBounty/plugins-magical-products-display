@@ -1,0 +1,3043 @@
+/**
+ * Admin dashboard styles - Modern & User-Friendly Design
+ *
+ * @package Magical_Shop_Builder
+ * @since   2.0.0
+ */
+
+// Variables
+$primary-color: #7c3aed;
+$primary-dark: #6d28d9;
+$primary-light: #8b5cf6;
+$primary-lighter: #ede9fe;
+$secondary-color: #1e293b;
+$success-color: #22c55e;
+$success-light: #dcfce7;
+$warning-color: #f59e0b;
+$warning-light: #fef3c7;
+$danger-color: #ef4444;
+$danger-light: #fee2e2;
+$info-color: #3b82f6;
+$info-light: #dbeafe;
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$text-muted: #94a3b8;
+$border-color: #e2e8f0;
+$border-light: #f1f5f9;
+$background-light: #f8fafc;
+$background-card: #ffffff;
+$white: #ffffff;
+$sidebar-width: 240px;
+$header-height: 64px;
+$border-radius: 8px;
+$border-radius-lg: 12px;
+$border-radius-sm: 6px;
+$box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+$box-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+$box-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+$transition: all 0.2s ease;
+
+// Hide default WordPress notices
+#wpbody-content > .notice,
+#wpbody-content > .error,
+#wpbody-content > .updated,
+#wpbody-content > .update-nag {
+	display: none;
+}
+
+// Main container
+.mpd-admin-wrap {
+	margin: -20px -20px 0;
+	min-height: 100vh;
+	background: $background-light;
+	display: flex;
+	flex-direction: column;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+	* {
+		box-sizing: border-box;
+	}
+}
+
+// ============================================
+// Header
+// ============================================
+.mpd-admin-header {
+	background: $white;
+	border-bottom: 1px solid $border-color;
+	padding: 0 24px;
+	height: $header-height;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: sticky;
+	top: 32px;
+	z-index: 100;
+
+	&__left {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+
+	&__logo {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-size: 18px;
+		font-weight: 600;
+		color: $text-primary;
+		text-decoration: none;
+
+		svg {
+			color: $primary-color;
+		}
+
+		&:hover {
+			color: $primary-color;
+		}
+	}
+
+	&__version {
+		background: $background-light;
+		color: $text-secondary;
+		font-size: 12px;
+		padding: 4px 10px;
+		border-radius: 20px;
+		font-weight: 500;
+	}
+
+	&__pro-badge {
+		background: linear-gradient(135deg, $primary-color, $primary-dark);
+		color: $white;
+		font-size: 11px;
+		padding: 4px 12px;
+		border-radius: 20px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	&__right {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		color: $text-secondary;
+		text-decoration: none;
+		font-size: 13px;
+		padding: 8px 14px;
+		border-radius: $border-radius;
+		transition: $transition;
+		font-weight: 500;
+
+		&:hover {
+			background: $background-light;
+			color: $primary-color;
+		}
+
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+	}
+
+	&__upgrade {
+		background: linear-gradient(135deg, $primary-color, $primary-dark) !important;
+		border: none !important;
+		border-radius: $border-radius !important;
+		font-weight: 500 !important;
+	}
+}
+
+// ============================================
+// Loading State
+// ============================================
+.mpd-admin-loading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 400px;
+	gap: 16px;
+	padding: 40px;
+
+	p {
+		color: $text-secondary;
+		font-size: 14px;
+		margin: 0;
+	}
+}
+
+.mpd-admin-loading-spinner {
+	width: 40px;
+	height: 40px;
+	border: 3px solid $border-color;
+	border-top-color: $primary-color;
+	border-radius: 50%;
+	animation: mpd-admin-spin 0.8s linear infinite;
+}
+
+@keyframes mpd-admin-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+// ============================================
+// Layout
+// ============================================
+.mpd-admin-layout {
+	display: flex;
+	flex: 1;
+	min-height: calc(100vh - $header-height - 32px);
+}
+.mpd-admin-card {
+    padding: 20px;
+    border-radius: 5px;
+}
+// ============================================
+// Sidebar
+// ============================================
+.mpd-admin-sidebar {
+	width: $sidebar-width;
+	background: $white;
+	border-right: 1px solid $border-color;
+	padding: 24px 0;
+	position: sticky;
+	top: $header-height + 32px;
+	height: calc(100vh - $header-height - 32px);
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+
+	&__nav {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		padding: 0 16px;
+		flex: 1;
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 12px 16px;
+		color: $text-secondary;
+		text-decoration: none;
+		border-radius: $border-radius;
+		font-size: 14px;
+		font-weight: 500;
+		transition: $transition;
+
+		svg {
+			width: 20px;
+			height: 20px;
+			flex-shrink: 0;
+			opacity: 0.7;
+		}
+
+		&:hover {
+			background: $background-light;
+			color: $text-primary;
+
+			svg {
+				opacity: 1;
+			}
+		}
+
+		&.active {
+			background: linear-gradient(135deg, $primary-color, $primary-dark);
+			color: $white;
+			box-shadow: 0 4px 12px rgba($primary-color, 0.25);
+
+			svg {
+				color: $white;
+				opacity: 1;
+			}
+		}
+	}
+
+	&__divider {
+		height: 1px;
+		background: $border-color;
+		margin: 16px;
+	}
+
+	&__footer {
+		padding: 16px;
+		border-top: 1px solid $border-color;
+		margin-top: auto;
+	}
+
+	&__credit {
+		font-size: 12px;
+		color: $text-muted;
+		margin: 0;
+		text-align: center;
+
+		a {
+			color: $primary-color;
+			text-decoration: none;
+			font-weight: 500;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	&__pro-badge {
+		background: linear-gradient(135deg, $warning-color, #d97706);
+		color: $white;
+		font-size: 10px;
+		padding: 2px 8px;
+		border-radius: 10px;
+		font-weight: 600;
+		margin-left: auto;
+	}
+}
+
+// ============================================
+// Main Content
+// ============================================
+.mpd-admin-content {
+	flex: 1;
+	padding: 32px;
+	max-width: 100%;
+	overflow-x: hidden;
+	background: $background-light;
+}
+
+// ============================================
+// Page Header
+// ============================================
+.mpd-admin-page-header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	margin-bottom: 32px;
+	gap: 24px;
+
+	h1 {
+		font-size: 28px;
+		font-weight: 700;
+		color: $text-primary;
+		margin: 0 0 8px;
+		line-height: 1.2;
+	}
+
+	p {
+		font-size: 15px;
+		color: $text-secondary;
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	.components-button.is-primary {
+		background: linear-gradient(135deg, $primary-color, $primary-dark);
+		border: none;
+		border-radius: $border-radius;
+		padding: 10px 20px;
+		height: auto;
+		font-weight: 500;
+		box-shadow: 0 4px 12px rgba($primary-color, 0.25);
+
+		&:hover:not(:disabled) {
+			background: linear-gradient(135deg, $primary-dark, #5b21b6);
+		}
+	}
+}
+
+// ============================================
+// Loading State
+// ============================================
+.mpd-loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 60px 20px;
+
+	.components-spinner {
+		width: 40px;
+		height: 40px;
+	}
+}
+
+// ============================================
+// Card Component
+// ============================================
+.mpd-card {
+	background: $white;
+	border: 1px solid $border-color;
+	border-radius: $border-radius-lg;
+	box-shadow: $box-shadow;
+	overflow: hidden;
+
+	&__header {
+		padding: 20px 24px;
+		border-bottom: 1px solid $border-light;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	&__title {
+		font-size: 16px;
+		font-weight: 600;
+		color: $text-primary;
+		margin: 0;
+	}
+
+	&__body {
+		padding: 24px;
+	}
+
+	&__footer {
+		padding: 16px 24px;
+		border-top: 1px solid $border-light;
+		background: $background-light;
+	}
+}
+
+// ============================================
+// Dashboard Page
+// ============================================
+.mpd-dashboard-page {
+	.mpd-dashboard-stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 24px;
+		margin-bottom: 32px;
+	}
+
+	.mpd-stat-card {
+		background: $white;
+		border: 1px solid $border-color;
+		border-radius: $border-radius-lg;
+		padding: 24px;
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		transition: $transition;
+		box-shadow: $box-shadow;
+
+		&:hover {
+			box-shadow: $box-shadow-md;
+			transform: translateY(-2px);
+		}
+
+		&-icon {
+			width: 52px;
+			height: 52px;
+			border-radius: $border-radius;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: $primary-lighter;
+			color: $primary-color;
+			flex-shrink: 0;
+
+			svg {
+				width: 26px;
+				height: 26px;
+			}
+		}
+
+		&-content {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+		&-value {
+			font-size: 32px;
+			font-weight: 700;
+			color: $text-primary;
+			line-height: 1;
+		}
+
+		&-title {
+			font-size: 14px;
+			color: $text-secondary;
+			font-weight: 500;
+		}
+
+		&-link {
+			text-decoration: none;
+			display: block;
+		}
+	}
+
+	.mpd-dashboard-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 24px;
+	}
+
+	.mpd-quickstart-actions {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+
+		a {
+			text-decoration: none;
+		}
+
+		.components-button {
+			width: 100%;
+			justify-content: center;
+			height: 44px;
+			border-radius: $border-radius;
+		}
+
+		.components-button.is-primary {
+			background: linear-gradient(135deg, $primary-color, $primary-dark);
+			border: none;
+		}
+	}
+
+	.mpd-template-types-list,
+	.mpd-pro-features-list,
+	.mpd-resources-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
+		li {
+			padding: 12px 0;
+			border-bottom: 1px solid $border-light;
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			strong {
+				color: $text-primary;
+				font-weight: 600;
+				font-size: 14px;
+			}
+
+			span {
+				color: $text-secondary;
+				font-size: 13px;
+			}
+
+			a {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				color: $text-secondary;
+				text-decoration: none;
+				font-size: 14px;
+				transition: $transition;
+
+				&:hover {
+					color: $primary-color;
+				}
+
+				svg {
+					width: 16px;
+					height: 16px;
+					opacity: 0.7;
+				}
+			}
+		}
+	}
+
+	.mpd-dashboard-pro {
+		background: linear-gradient(135deg, $primary-lighter, #f5f3ff);
+		border-color: $primary-light;
+
+		.mpd-card__title {
+			color: $primary-dark;
+		}
+
+		.mpd-upgrade-btn {
+			background: linear-gradient(135deg, $primary-color, $primary-dark) !important;
+			border: none !important;
+			width: 100%;
+			justify-content: center;
+			margin-top: 16px;
+			gap: 8px;
+		}
+	}
+}
+
+// ============================================
+// Widgets Page
+// ============================================
+.mpd-widgets-page {
+	.mpd-admin-page-header {
+		flex-wrap: wrap;
+
+		.components-button.is-primary {
+			flex-shrink: 0;
+		}
+	}
+
+	.mpd-widgets-toolbar {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		margin-bottom: 24px;
+		flex-wrap: wrap;
+		background: $white;
+		padding: 16px 20px;
+		border-radius: $border-radius-lg;
+		border: 1px solid $border-color;
+		box-shadow: $box-shadow;
+
+		.components-search-control {
+			flex: 0 1 320px;
+			min-width: 200px;
+			max-width: 320px;
+
+			.components-search-control__input {
+				height: 42px;
+				border-radius: $border-radius;
+				border-color: $border-color;
+				font-size: 14px;
+
+				&:focus {
+					border-color: $primary-color;
+					box-shadow: 0 0 0 1px $primary-color;
+				}
+			}
+		}
+	}
+
+	.mpd-widgets-bulk-actions {
+		display: flex;
+		gap: 8px;
+		margin-left: auto;
+
+		.components-button {
+			height: 42px;
+			padding: 0 16px;
+			border-radius: $border-radius;
+			font-weight: 500;
+
+			&.is-secondary {
+				border-color: $border-color;
+				color: $text-secondary;
+
+				&:hover:not(:disabled) {
+					border-color: $primary-color;
+					color: $primary-color;
+					background: $primary-lighter;
+				}
+			}
+		}
+	}
+
+	.mpd-widgets-summary {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+		padding: 12px 20px;
+		background: $white;
+		border-radius: $border-radius;
+		margin-bottom: 24px;
+		font-size: 14px;
+		color: $text-secondary;
+		border: 1px solid $border-color;
+
+		span {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+
+			&::before {
+				content: '';
+				width: 8px;
+				height: 8px;
+				border-radius: 50%;
+				background: $text-muted;
+			}
+
+			&:nth-child(2)::before {
+				background: $success-color;
+			}
+
+			&:nth-child(3)::before {
+				background: $danger-color;
+			}
+		}
+	}
+
+	.mpd-widgets-grid {
+		column-count: 3;
+		column-gap: 24px;
+		
+		@media (max-width: 1400px) {
+			column-count: 2;
+		}
+		
+		@media (max-width: 900px) {
+			column-count: 1;
+		}
+	}
+
+	.mpd-widgets-category-card {
+		break-inside: avoid;
+		margin-bottom: 24px;
+		display: inline-block;
+		width: 100%;
+		
+		.mpd-card__body {
+			padding: 0;
+		}
+	}
+
+	.mpd-widgets-list {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.mpd-widget-item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 16px 24px;
+		border-bottom: 1px solid $border-light;
+		transition: $transition;
+		gap: 16px;
+
+		&:last-child {
+			border-bottom: none;
+		}
+
+		&:hover {
+			background: $background-light;
+		}
+
+		&.is-pro-locked {
+			opacity: 0.6;
+		}
+
+		&-info {
+			flex: 1;
+			min-width: 0;
+		}
+
+		&-name {
+			font-size: 14px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0 0 4px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		&-description {
+			font-size: 13px;
+			color: $text-secondary;
+			margin: 0;
+			line-height: 1.4;
+		}
+
+		&-toggle {
+			flex-shrink: 0;
+
+			.components-toggle-control {
+				margin-bottom: 0;
+
+				.components-base-control__field {
+					margin-bottom: 0;
+				}
+
+				.components-form-toggle {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+
+	.mpd-pro-badge {
+		background: linear-gradient(135deg, $warning-color, #d97706);
+		color: $white;
+		font-size: 10px;
+		padding: 2px 8px;
+		border-radius: 10px;
+		font-weight: 600;
+		text-transform: uppercase;
+	}
+
+	.mpd-widgets-empty {
+		grid-column: 1 / -1;
+		text-align: center;
+
+		.mpd-card__body {
+			padding: 48px 24px;
+		}
+
+		p {
+			color: $text-secondary;
+			margin: 0;
+		}
+	}
+}
+
+// ============================================
+// Templates Page
+// ============================================
+.mpd-templates-page {
+	.mpd-templates-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+		gap: 24px;
+	}
+
+	.mpd-template-type-card {
+		.mpd-card__header {
+			background: $background-light;
+		}
+
+		.mpd-card__body {
+			padding: 16px;
+		}
+
+		&.mpd-template-type-disabled {
+			.mpd-template-type-templates {
+				opacity: 0.6;
+				pointer-events: none;
+			}
+		}
+	}
+
+	.mpd-template-type-toggle {
+		.components-toggle-control {
+			margin-bottom: 0;
+		}
+
+		.components-base-control__field {
+			margin-bottom: 0;
+		}
+	}
+
+	.mpd-settings-info-notice {
+		background: #f0f6fc;
+		border-left: 4px solid #2271b1;
+		padding: 12px 16px;
+		border-radius: 0 4px 4px 0;
+
+		p {
+			margin: 0 0 4px 0;
+			font-size: 13px;
+			line-height: 1.6;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		.mpd-settings-info-sub {
+			color: #646970;
+			font-size: 12px;
+		}
+	}
+
+	.mpd-template-type-templates {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.mpd-template-card {
+		background: $white;
+		border: 1px solid $border-color;
+		border-radius: $border-radius;
+		padding: 16px;
+		transition: $transition;
+
+		&:hover {
+			border-color: $primary-light;
+			box-shadow: $box-shadow;
+		}
+
+		&-header {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			margin-bottom: 12px;
+		}
+
+		&-title {
+			font-size: 15px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0;
+			line-height: 1.3;
+		}
+
+		&-menu-btn {
+			flex-shrink: 0;
+			padding: 4px !important;
+			min-width: auto !important;
+			height: auto !important;
+
+			&:hover {
+				color: $primary-color;
+			}
+		}
+
+		&-body {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			margin-bottom: 16px;
+		}
+
+		&-type {
+			font-size: 12px;
+			color: $text-secondary;
+			background: $background-light;
+			padding: 4px 10px;
+			border-radius: 20px;
+		}
+
+		&-conditions {
+			font-size: 12px;
+			color: $info-color;
+			background: $info-light;
+			padding: 4px 10px;
+			border-radius: 20px;
+		}
+
+		&-footer {
+			display: flex;
+			gap: 8px;
+
+			.components-button {
+				flex: 1;
+				justify-content: center;
+				height: 36px;
+				border-radius: $border-radius-sm;
+				font-size: 13px;
+				font-weight: 500;
+				gap: 6px;
+
+				svg {
+					width: 14px;
+					height: 14px;
+				}
+			}
+		}
+
+		// Add New Card Style
+		&.mpd-template-card-add {
+			border-style: dashed;
+			border-color: $border-color;
+			background: $background-light;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 24px;
+			gap: 12px;
+			min-height: 100px;
+
+			&:hover {
+				border-color: $primary-color;
+				background: $primary-lighter;
+			}
+
+			.mpd-template-card-add-btn {
+				background: $white;
+				border: 1px solid $border-color;
+				color: $primary-color;
+				font-weight: 500;
+				height: 40px;
+				padding: 0 20px;
+				border-radius: $border-radius;
+
+				&:hover:not(:disabled) {
+					background: $primary-color;
+					border-color: $primary-color;
+					color: $white;
+				}
+			}
+
+			.mpd-template-card-type {
+				font-size: 13px;
+				color: $text-muted;
+				background: transparent;
+				padding: 0;
+			}
+		}
+	}
+}
+
+// ============================================
+// Settings Page
+// ============================================
+.mpd-settings-page {
+	.mpd-settings-tabs {
+		.components-tab-panel__tabs {
+			background: $white;
+			border: 1px solid $border-color;
+			border-bottom: none;
+			border-radius: $border-radius-lg $border-radius-lg 0 0;
+			padding: 0;
+			margin-bottom: 0;
+			display: flex;
+			gap: 0;
+			overflow-x: auto;
+
+			.components-tab-panel__tabs-item {
+				padding: 16px 24px;
+				font-size: 14px;
+				font-weight: 500;
+				color: $text-secondary;
+				border: none;
+				border-bottom: 2px solid transparent;
+				background: transparent;
+				margin-bottom: -1px;
+				white-space: nowrap;
+
+				&:hover {
+					color: $text-primary;
+					background: $background-light;
+				}
+
+				&.is-active {
+					color: $primary-color;
+					border-bottom-color: $primary-color;
+					background: $white;
+				}
+
+				&:focus:not(:disabled) {
+					box-shadow: none;
+				}
+			}
+		}
+
+		.components-tab-panel__tab-content {
+			background: $white;
+			border: 1px solid $border-color;
+			border-radius: 0 0 $border-radius-lg $border-radius-lg;
+			padding: 32px;
+		}
+	}
+
+	.mpd-settings-group {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		// Style for Toggle components
+		.mpd-toggle {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			padding: 16px 0;
+			border-bottom: 1px solid $border-light;
+			gap: 24px;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			&.is-pro-locked {
+				opacity: 0.7;
+			}
+
+			&-content {
+				flex: 1;
+			}
+
+			&-label-wrap {
+				margin-bottom: 4px;
+			}
+
+			&-label {
+				font-size: 14px;
+				font-weight: 500;
+				color: $text-primary;
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+
+				.mpd-pro-badge {
+					background: $danger-color;
+					color: $white;
+					font-size: 10px;
+					font-weight: 600;
+					padding: 3px 8px;
+					border-radius: 10px;
+					text-transform: uppercase;
+					letter-spacing: 0.3px;
+					line-height: 1;
+				}
+			}
+
+			&-help {
+				font-size: 13px;
+				color: $text-secondary;
+				margin: 0;
+				line-height: 1.4;
+			}
+
+			.components-toggle-control {
+				margin-bottom: 0;
+				flex-shrink: 0;
+
+				.components-base-control__field {
+					margin-bottom: 0;
+				}
+
+				// Hide the label from ToggleControl since we're showing our own
+				.components-toggle-control__label {
+					display: none;
+				}
+			}
+		}
+
+		// Fix select and number input widths
+		.components-select-control,
+		.components-number-control {
+			max-width: 280px;
+
+			.components-select-control__input,
+			.components-text-control__input,
+			input[type="number"] {
+				height: 42px;
+				border-radius: $border-radius;
+				border-color: $border-color;
+
+				&:focus {
+					border-color: $primary-color;
+					box-shadow: 0 0 0 1px $primary-color;
+				}
+			}
+		}
+
+		// Direct input styling for experimental number control
+		.components-input-control__container {
+			max-width: 280px;
+
+			input {
+				height: 42px;
+				border-radius: $border-radius;
+			}
+		}
+	}
+
+	.mpd-settings-section {
+		margin-bottom: 32px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		&-title {
+			font-size: 16px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0 0 20px;
+			padding-bottom: 12px;
+			border-bottom: 1px solid $border-light;
+		}
+	}
+
+	.mpd-settings-row {
+		display: flex;
+		align-items: flex-start;
+		gap: 24px;
+		padding: 16px 0;
+		border-bottom: 1px solid $border-light;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	.mpd-settings-label {
+		flex: 0 0 200px;
+
+		label {
+			font-size: 14px;
+			font-weight: 500;
+			color: $text-primary;
+			display: block;
+			margin-bottom: 4px;
+		}
+
+		.description {
+			font-size: 13px;
+			color: $text-secondary;
+			margin: 0;
+		}
+	}
+
+	.mpd-settings-control {
+		flex: 1;
+		max-width: 400px;
+
+		.components-text-control__input,
+		.components-select-control__input {
+			height: 42px;
+			border-radius: $border-radius;
+			border-color: $border-color;
+
+			&:focus {
+				border-color: $primary-color;
+				box-shadow: 0 0 0 1px $primary-color;
+			}
+		}
+
+		.components-toggle-control {
+			.components-base-control__field {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.mpd-settings-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
+		margin-top: 32px;
+		padding-top: 24px;
+		border-top: 1px solid $border-color;
+
+		.components-button.is-primary {
+			background: linear-gradient(135deg, $primary-color, $primary-dark);
+			border: none;
+			border-radius: $border-radius;
+			padding: 10px 24px;
+			height: auto;
+			font-weight: 500;
+		}
+	}
+}
+
+// ============================================
+// Sticky Save Bar (Global - used on Settings & Widgets pages)
+// ============================================
+
+// Add padding when sticky save bar is visible
+.has-sticky-save-bar {
+	padding-bottom: 80px;
+}
+
+.mpd-settings-save-bar {
+	position: fixed;
+	bottom: 0;
+	left: 160px; // WordPress admin sidebar width
+	right: 0;
+	background: $white;
+	border-top: 1px solid $border-color;
+	box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+	z-index: 100;
+	animation: mpdSlideUp 0.3s ease;
+
+	@media (max-width: 782px) {
+		left: 0;
+	}
+
+	&-content {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 16px 32px;
+		gap: 16px;
+	}
+
+	&-message {
+		font-size: 14px;
+		color: $text-secondary;
+		font-weight: 500;
+	}
+
+	.components-button.is-primary {
+		background: linear-gradient(135deg, $primary-color, $primary-dark);
+		border: none;
+		border-radius: $border-radius;
+		padding: 10px 24px;
+		height: auto;
+		font-weight: 500;
+		box-shadow: 0 2px 8px rgba($primary-color, 0.3);
+		transition: all 0.2s ease;
+
+		&:hover:not(:disabled) {
+			transform: translateY(-1px);
+			box-shadow: 0 4px 12px rgba($primary-color, 0.4);
+		}
+	}
+}
+
+@keyframes mpdSlideUp {
+	from {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+// ============================================
+// Preloader Settings Styles
+// ============================================
+.mpd-settings-page {
+	.mpd-color-settings {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 24px;
+	}
+
+	.mpd-color-settings-compact {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 20px;
+
+		@media (max-width: 1200px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		@media (max-width: 600px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.mpd-color-field-compact {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+
+		> label {
+			font-weight: 500;
+			font-size: 13px;
+			color: $text-primary;
+		}
+
+		.mpd-color-button {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px 12px;
+			background: #fff;
+			border: 1px solid $border-color;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: all 0.2s ease;
+
+			&:hover {
+				border-color: $primary-color;
+			}
+
+			.components-color-indicator {
+				width: 24px;
+				height: 24px;
+				border-radius: 4px;
+				box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+			}
+
+			span {
+				font-size: 12px;
+				font-family: monospace;
+				color: $text-secondary;
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	.mpd-color-popover {
+		padding: 12px;
+	}
+
+	.mpd-color-field {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+
+		> label {
+			font-weight: 500;
+			font-size: 13px;
+			color: $text-primary;
+		}
+
+		.components-color-picker {
+			width: 100%;
+			max-width: 200px;
+		}
+	}
+
+	.mpd-checkbox-group {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: 12px;
+
+		.components-checkbox-control {
+			margin: 0;
+		}
+	}
+
+	.mpd-logo-upload {
+		margin-top: 12px;
+	}
+
+	.mpd-logo-preview {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+
+		img {
+			max-width: 150px;
+			max-height: 80px;
+			border: 1px solid $border-color;
+			border-radius: $border-radius;
+			padding: 8px;
+			background: $white;
+		}
+	}
+
+	.mpd-preloader-preview-box {
+		margin-top: 16px;
+	}
+
+	// Pro-locked card wrapper (used for Logo & Text section)
+	.mpd-pro-locked-card-wrap {
+		position: relative;
+
+		&.is-locked {
+			.mpd-admin-card {
+				opacity: 0.5;
+				pointer-events: none;
+				user-select: none;
+			}
+		}
+
+		.mpd-pro-locked-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 10;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 10px;
+			background: rgba(255, 255, 255, 0.35);
+			border-radius: $border-radius-lg;
+			cursor: default;
+
+			.mpd-pro-badge {
+				background: linear-gradient(135deg, $warning-color, #d97706);
+				color: $white;
+				font-size: 12px;
+				padding: 4px 14px;
+				border-radius: 12px;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+			}
+
+			.mpd-pro-locked-text {
+				font-size: 13px;
+				color: $text-secondary;
+				font-weight: 500;
+			}
+		}
+	}
+
+	// Pro-locked select option styling
+	select option:disabled {
+		color: #999;
+		font-style: italic;
+	}
+
+	.mpd-settings-section-header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 16px;
+		margin-bottom: 16px;
+
+		.mpd-settings-description {
+			margin-bottom: 0;
+		}
+
+		.mpd-reset-defaults-btn {
+			white-space: nowrap;
+			flex-shrink: 0;
+		}
+	}
+
+	.mpd-settings-description {
+		color: $text-secondary;
+		font-size: 14px;
+		margin-bottom: 16px;
+	}
+}
+
+// Preloader animation keyframes for preview
+@keyframes mpd-spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+@keyframes mpd-bounce {
+	0%, 100% { transform: scale(0); }
+	50% { transform: scale(1); }
+}
+
+@keyframes mpd-pulse {
+	0% { transform: scale(0); opacity: 1; }
+	100% { transform: scale(1); opacity: 0; }
+}
+
+@keyframes mpd-three-dots {
+	0%, 80%, 100% { transform: scale(0); }
+	40% { transform: scale(1); }
+}
+
+@keyframes mpd-wave {
+	0%, 40%, 100% { transform: scaleY(0.4); }
+	20% { transform: scaleY(1); }
+}
+
+@keyframes mpd-ring {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+@keyframes mpd-progress {
+	0% { transform: scaleX(0); }
+	50% { transform: scaleX(0.5); }
+	100% { transform: scaleX(1); }
+}
+
+// ============================================
+// Pro Features Page
+// ============================================
+.mpd-pro-page {
+	.mpd-upgrade-hero-card {
+		.mpd-card__body {
+			padding: 0;
+		}
+	}
+
+	.mpd-upgrade-hero {
+		display: flex;
+		align-items: stretch;
+		gap: 0;
+
+		@media (max-width: 900px) {
+			flex-direction: column;
+		}
+	}
+
+	.mpd-upgrade-hero-content {
+		flex: 1;
+		padding: 40px;
+
+		h2 {
+			font-size: 28px;
+			font-weight: 700;
+			color: $text-primary;
+			margin: 0 0 12px;
+		}
+
+		> p {
+			font-size: 15px;
+			color: $text-secondary;
+			margin: 0 0 24px;
+			line-height: 1.6;
+			max-width: 520px;
+		}
+	}
+
+	.mpd-upgrade-highlights {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+
+		@media (max-width: 600px) {
+			grid-template-columns: 1fr;
+		}
+
+		li {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			font-size: 14px;
+			font-weight: 500;
+			color: $text-primary;
+
+			svg {
+				color: $success-color;
+				flex-shrink: 0;
+			}
+		}
+	}
+
+	.mpd-upgrade-hero-cta {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 40px;
+		background: linear-gradient(135deg, $primary-lighter, #f0ecff);
+		border-left: 1px solid rgba($primary-color, 0.15);
+		min-width: 280px;
+
+		@media (max-width: 900px) {
+			border-left: none;
+			border-top: 1px solid rgba($primary-color, 0.15);
+		}
+	}
+
+	.mpd-upgrade-price-box {
+		text-align: center;
+	}
+
+	.mpd-price-label {
+		font-size: 13px;
+		color: $text-secondary;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		font-weight: 600;
+		display: block;
+		margin-bottom: 8px;
+	}
+
+	.mpd-price-amount {
+		margin-bottom: 20px;
+		display: flex;
+		align-items: baseline;
+		justify-content: center;
+		gap: 4px;
+	}
+
+	.mpd-guarantee-text {
+		display: block;
+		margin-top: 12px;
+		font-size: 12px;
+		color: $text-muted;
+	}
+
+	.mpd-pro-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 24px;
+		margin-bottom: 32px;
+	}
+
+	.mpd-license-card {
+		.mpd-card__body {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+
+		p {
+			color: $text-secondary;
+			margin: 0;
+			font-size: 14px;
+		}
+
+		.components-text-control {
+			max-width: 100%;
+
+			.components-text-control__input {
+				height: 44px;
+				border-radius: $border-radius;
+				border-color: $border-color;
+				font-family: monospace;
+				font-size: 14px;
+
+				&:focus {
+					border-color: $primary-color;
+					box-shadow: 0 0 0 1px $primary-color;
+				}
+			}
+		}
+	}
+
+	.mpd-license-status {
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		padding: 20px;
+		border-radius: $border-radius;
+		background: $success-light;
+		border: 1px solid $success-color;
+
+		svg {
+			flex-shrink: 0;
+			color: $success-color;
+		}
+
+		strong {
+			display: block;
+			font-size: 15px;
+			color: $text-primary;
+			margin-bottom: 4px;
+		}
+
+		p {
+			margin: 0;
+			font-size: 13px;
+			color: $text-secondary;
+		}
+
+		&.mpd-license-inactive {
+			background: $background-light;
+			border-color: $border-color;
+
+			svg {
+				color: $text-muted;
+			}
+		}
+	}
+
+	.mpd-license-actions {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		flex-wrap: wrap;
+
+		.components-button {
+			height: 44px;
+			padding: 0 20px;
+			border-radius: $border-radius;
+			font-weight: 500;
+		}
+
+		.components-button.is-primary {
+			background: linear-gradient(135deg, $primary-color, $primary-dark);
+			border: none;
+		}
+
+		.components-button.is-link {
+			height: auto;
+			padding: 0;
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			color: $primary-color;
+
+			&:hover {
+				color: $primary-dark;
+			}
+		}
+	}
+
+	.mpd-license-input-group {
+		display: flex;
+		gap: 12px;
+
+		.components-text-control__input {
+			flex: 1;
+			height: 44px;
+			border-radius: $border-radius;
+			border-color: $border-color;
+			font-family: monospace;
+
+			&:focus {
+				border-color: $primary-color;
+				box-shadow: 0 0 0 1px $primary-color;
+			}
+		}
+
+		.components-button {
+			height: 44px;
+			padding: 0 20px;
+			border-radius: $border-radius;
+			font-weight: 500;
+		}
+	}
+
+	.mpd-upgrade-card {
+		background: linear-gradient(135deg, $primary-lighter, #f5f3ff);
+		border-color: $primary-light;
+
+		.mpd-card__header {
+			background: transparent;
+			border-bottom-color: rgba($primary-color, 0.2);
+		}
+
+		.mpd-card__title {
+			color: $primary-dark;
+		}
+	}
+
+	.mpd-upgrade-content {
+		text-align: center;
+		padding: 8px 0;
+	}
+
+	.mpd-upgrade-price,
+	.mpd-price-amount {
+		margin-bottom: 24px;
+
+		.mpd-price {
+			font-size: 48px;
+			font-weight: 700;
+			color: $primary-dark;
+			line-height: 1;
+		}
+
+		.mpd-price-period {
+			font-size: 16px;
+			color: $text-secondary;
+			font-weight: 500;
+		}
+	}
+
+	.mpd-upgrade-benefits {
+		list-style: none;
+		margin: 0 0 24px;
+		padding: 0;
+		text-align: left;
+
+		li {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			padding: 10px 0;
+			font-size: 14px;
+			color: $text-primary;
+			border-bottom: 1px solid rgba($primary-color, 0.1);
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			svg {
+				color: $success-color;
+				flex-shrink: 0;
+			}
+		}
+	}
+
+	.mpd-upgrade-btn {
+		width: 100%;
+		justify-content: center;
+		height: 48px !important;
+		font-size: 15px !important;
+		background: linear-gradient(135deg, $primary-color, $primary-dark) !important;
+		border: none !important;
+		box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+		gap: 8px;
+		max-width: 280px;
+	}
+
+	.mpd-upgrade-bottom-card {
+		.mpd-card__body {
+			padding: 0;
+		}
+	}
+
+	.mpd-upgrade-bottom {
+		text-align: center;
+		padding: 40px;
+		background: linear-gradient(135deg, $primary-lighter, #f0ecff);
+
+		h3 {
+			font-size: 22px;
+			font-weight: 700;
+			color: $text-primary;
+			margin: 0 0 8px;
+		}
+
+		p {
+			font-size: 15px;
+			color: $text-secondary;
+			margin: 0 0 24px;
+		}
+
+		.mpd-upgrade-btn {
+			display: inline-flex;
+			width: auto;
+			padding: 0 32px !important;
+		}
+	}
+
+	.mpd-features-card {
+		.mpd-card__body {
+			padding: 0;
+		}
+	}
+
+	.mpd-features-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	}
+
+	.mpd-feature-item {
+		display: flex;
+		align-items: flex-start;
+		gap: 16px;
+		padding: 24px;
+		border-bottom: 1px solid $border-light;
+		border-right: 1px solid $border-light;
+		transition: $transition;
+
+		&:hover {
+			background: $background-light;
+		}
+
+		// Remove right border on last column items
+		&:nth-child(3n) {
+			border-right: none;
+		}
+
+		// Remove bottom border on last row
+		&:nth-last-child(-n+3) {
+			border-bottom: none;
+		}
+	}
+
+	.mpd-feature-icon {
+		width: 40px;
+		height: 40px;
+		background: $success-light;
+		border-radius: $border-radius;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		color: $success-color;
+	}
+
+	.mpd-feature-content {
+		h4 {
+			font-size: 15px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0 0 6px;
+		}
+
+		p {
+			font-size: 13px;
+			color: $text-secondary;
+			margin: 0;
+			line-height: 1.5;
+		}
+	}
+
+	.mpd-pro-features-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: 24px;
+	}
+
+	.mpd-pro-feature-card {
+		background: $white;
+		border: 1px solid $border-color;
+		border-radius: $border-radius-lg;
+		padding: 24px;
+		transition: $transition;
+
+		&:hover {
+			border-color: $primary-light;
+			box-shadow: $box-shadow;
+		}
+
+		&-icon {
+			width: 48px;
+			height: 48px;
+			background: $primary-lighter;
+			border-radius: $border-radius;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 16px;
+			color: $primary-color;
+
+			svg {
+				width: 24px;
+				height: 24px;
+			}
+		}
+
+		&-title {
+			font-size: 16px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0 0 8px;
+		}
+
+		&-description {
+			font-size: 14px;
+			color: $text-secondary;
+			margin: 0;
+			line-height: 1.5;
+		}
+	}
+
+	.mpd-pro-cta {
+		background: linear-gradient(135deg, $primary-lighter, #f5f3ff);
+		border: 1px solid $primary-light;
+		border-radius: $border-radius-lg;
+		padding: 32px;
+		text-align: center;
+		margin-top: 32px;
+
+		h3 {
+			font-size: 20px;
+			font-weight: 600;
+			color: $primary-dark;
+			margin: 0 0 12px;
+		}
+
+		p {
+			font-size: 15px;
+			color: $text-secondary;
+			margin: 0 0 24px;
+		}
+
+		.components-button.is-primary {
+			background: linear-gradient(135deg, $primary-color, $primary-dark);
+			border: none;
+			border-radius: $border-radius;
+			padding: 12px 32px;
+			height: auto;
+			font-weight: 600;
+			font-size: 15px;
+			box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+		}
+	}
+}
+
+// ============================================
+// Modals
+// ============================================
+.mpd-create-template-modal,
+.mpd-delete-template-modal {
+	.components-modal__content {
+		padding: 24px;
+	}
+
+	.components-text-control,
+	.components-select-control {
+		margin-bottom: 20px;
+
+		.components-text-control__input,
+		.components-select-control__input {
+			height: 44px;
+			border-radius: $border-radius;
+		}
+	}
+
+	.mpd-modal-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
+		margin-top: 24px;
+		padding-top: 20px;
+		border-top: 1px solid $border-light;
+
+		.components-button {
+			height: 42px;
+			padding: 0 20px;
+			border-radius: $border-radius;
+			font-weight: 500;
+		}
+
+		.components-button.is-primary {
+			background: linear-gradient(135deg, $primary-color, $primary-dark);
+			border: none;
+
+			&.is-destructive {
+				background: linear-gradient(135deg, $danger-color, #dc2626);
+			}
+		}
+	}
+}
+
+// ============================================
+// Toggle Control Override
+// ============================================
+.mpd-admin-wrap {
+	.components-toggle-control {
+		.components-form-toggle {
+			&.is-checked {
+				.components-form-toggle__track {
+					background: $primary-color;
+					border-color: $primary-color;
+				}
+			}
+		}
+	}
+
+	.components-button {
+		&.is-primary {
+			&:hover:not(:disabled) {
+				background: linear-gradient(135deg, $primary-dark, #5b21b6);
+			}
+
+			&:focus:not(:disabled) {
+				box-shadow: 0 0 0 2px $primary-light;
+			}
+		}
+	}
+}
+
+// ============================================
+// Notices
+// ============================================
+.mpd-admin-notices {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	z-index: 9999;
+	max-width: 400px;
+
+	.components-snackbar-list {
+		position: static;
+	}
+
+	.components-snackbar {
+		border-radius: $border-radius;
+		box-shadow: $box-shadow-lg;
+	}
+}
+
+// ============================================
+// Template Conditions Modal
+// ============================================
+.mpd-conditions-modal {
+	.components-modal__content {
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		min-height: 400px;
+	}
+
+	.components-modal__header {
+		padding: 20px 24px;
+		border-bottom: 1px solid $border-color;
+		margin: 0;
+
+		.components-modal__header-heading {
+			font-size: 18px;
+			font-weight: 600;
+			color: $text-primary;
+		}
+	}
+
+	// Condition Builder
+	.mpd-condition-builder {
+		padding: 24px;
+		flex: 1;
+		overflow-y: auto;
+	}
+
+	.mpd-condition-builder-header {
+		margin-bottom: 24px;
+
+		h4 {
+			margin: 0 0 8px;
+			font-size: 16px;
+			font-weight: 600;
+			color: $text-primary;
+		}
+
+		.description {
+			margin: 0;
+			font-size: 13px;
+			color: $text-secondary;
+		}
+	}
+
+	.mpd-condition-builder-loading {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 40px;
+	}
+
+	.mpd-condition-list {
+		margin-bottom: 20px;
+	}
+
+	.mpd-condition-empty {
+		background: $background-light;
+		border: 2px dashed $border-color;
+		border-radius: $border-radius-lg;
+		padding: 24px;
+		text-align: center;
+		color: $text-secondary;
+		font-size: 14px;
+		margin: 0;
+	}
+
+	.mpd-condition-row {
+		display: grid;
+		grid-template-columns: 140px 1fr 1fr auto;
+		gap: 12px;
+		align-items: flex-start;
+		padding: 16px;
+		background: $white;
+		border: 1px solid $border-color;
+		border-radius: $border-radius;
+		margin-bottom: 12px;
+		transition: all 0.2s ease;
+
+		&:hover {
+			border-color: $primary-color;
+			box-shadow: 0 2px 8px rgba($primary-color, 0.1);
+		}
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		.components-select-control {
+			width: 100%;
+		}
+
+		.components-base-control {
+			margin-bottom: 0;
+
+			.components-base-control__field {
+				margin-bottom: 0;
+			}
+
+			.components-select-control__input {
+				height: 40px;
+				border-radius: $border-radius;
+				border-color: $border-color;
+				font-size: 14px;
+
+				&:focus {
+					border-color: $primary-color;
+					box-shadow: 0 0 0 1px $primary-color;
+				}
+			}
+		}
+
+		.components-button.is-destructive {
+			flex-shrink: 0;
+			width: 40px;
+			height: 40px;
+			padding: 0;
+			justify-content: center;
+			border-radius: $border-radius;
+			background: rgba(220, 38, 38, 0.1);
+			color: #dc2626;
+
+			&:hover {
+				background: #dc2626;
+				color: $white;
+			}
+
+			svg {
+				width: 20px;
+				height: 20px;
+			}
+		}
+	}
+
+	.mpd-condition-value {
+		min-width: 200px;
+
+		.mpd-condition-all {
+			display: flex;
+			align-items: center;
+			height: 40px;
+			padding: 0 12px;
+			background: $background-light;
+			border: 1px solid $border-color;
+			border-radius: $border-radius;
+			font-size: 13px;
+			color: $text-secondary;
+			font-style: italic;
+		}
+
+		.components-form-token-field {
+			.components-form-token-field__input-container {
+				min-height: 40px;
+				border-radius: $border-radius;
+				border-color: $border-color;
+				padding: 4px 8px;
+
+				&:focus-within {
+					border-color: $primary-color;
+					box-shadow: 0 0 0 1px $primary-color;
+				}
+			}
+
+			.components-form-token-field__token {
+				background: linear-gradient(135deg, $primary-color, $primary-dark);
+				color: $white;
+				border-radius: 4px;
+				padding: 2px 8px;
+				font-size: 12px;
+
+				.components-button {
+					color: $white;
+					
+					&:hover {
+						color: rgba($white, 0.8);
+					}
+				}
+			}
+
+			.components-form-token-field__suggestions-list {
+				border-radius: $border-radius;
+				box-shadow: $box-shadow-lg;
+				border: 1px solid $border-color;
+				overflow: hidden;
+
+				.components-form-token-field__suggestion {
+					padding: 10px 12px;
+					font-size: 13px;
+
+					&.is-selected {
+						background: $primary-color;
+						color: $white;
+					}
+				}
+			}
+		}
+	}
+
+	.mpd-condition-add-btn {
+		margin-top: 16px;
+		border-radius: $border-radius;
+		font-weight: 500;
+		gap: 6px;
+
+		&:hover {
+			background: $background-light;
+		}
+	}
+
+	// Modal Actions
+	.mpd-modal-actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
+		padding: 20px 24px;
+		border-top: 1px solid $border-color;
+		background: $background-light;
+
+		.components-button {
+			border-radius: $border-radius;
+			font-weight: 500;
+			height: auto;
+			padding: 10px 24px;
+
+			&.is-primary {
+				background: linear-gradient(135deg, $primary-color, $primary-dark);
+				border: none;
+				box-shadow: 0 2px 8px rgba($primary-color, 0.3);
+
+				&:hover:not(:disabled) {
+					box-shadow: 0 4px 12px rgba($primary-color, 0.4);
+					transform: translateY(-1px);
+				}
+			}
+
+			&.is-secondary {
+				border-color: $border-color;
+
+				&:hover {
+					background: $white;
+					border-color: $text-secondary;
+				}
+			}
+		}
+	}
+}
+
+// Non-fullscreen modal variant
+.mpd-conditions-modal:not(.is-full-screen) {
+	.components-modal__frame {
+		max-width: 600px;
+		width: 90%;
+	}
+}
+
+// ============================================
+// Responsive Design
+// ============================================
+@media (max-width: 1200px) {
+	.mpd-admin-sidebar {
+		width: 200px;
+	}
+
+	.mpd-admin-content {
+		padding: 24px;
+	}
+
+	.mpd-widgets-page .mpd-widgets-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 960px) {
+	.mpd-admin-layout {
+		flex-direction: column;
+	}
+
+	.mpd-admin-sidebar {
+		width: 100%;
+		height: auto;
+		position: static;
+		border-right: none;
+		border-bottom: 1px solid $border-color;
+		padding: 16px;
+
+		&__nav {
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 8px;
+		}
+
+		&__link {
+			padding: 10px 16px;
+		}
+
+		&__divider {
+			display: none;
+		}
+
+		&__footer {
+			display: none;
+		}
+	}
+
+	.mpd-admin-header {
+		flex-wrap: wrap;
+		height: auto;
+		padding: 12px 16px;
+		gap: 12px;
+
+		&__right {
+			display: none;
+		}
+	}
+
+	.mpd-admin-page-header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.mpd-templates-page .mpd-templates-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 600px) {
+	.mpd-admin-content {
+		padding: 16px;
+	}
+
+	.mpd-dashboard-page {
+		.mpd-dashboard-stats,
+		.mpd-dashboard-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.mpd-widgets-page {
+		.mpd-widgets-toolbar {
+			flex-direction: column;
+			align-items: stretch;
+
+			.components-search-control {
+				flex: 1;
+				max-width: none;
+			}
+
+			.mpd-widgets-bulk-actions {
+				margin-left: 0;
+				justify-content: center;
+			}
+		}
+
+		.mpd-widgets-summary {
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 16px;
+		}
+	}
+
+	.mpd-pro-page .mpd-pro-features-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+// ============================================
+// Pre-Layout Selector
+// ============================================
+.mpd-prelayout-selector {
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	max-width: 1600px;
+	margin: 0 auto;
+	width: 100%;
+
+	&-header {
+		text-align: center;
+		margin-bottom: 20px;
+		padding: 0 20px;
+
+		h2 {
+			font-size: 22px;
+			font-weight: 700;
+			color: $text-primary;
+			margin: 0 0 6px;
+		}
+
+		p {
+			font-size: 13px;
+			color: $text-secondary;
+			margin: 0;
+		}
+	}
+
+	&-filters {
+		display: flex;
+		gap: 12px;
+		margin-bottom: 20px;
+		padding: 0 20px;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+
+		.mpd-prelayout-search {
+			flex: 1;
+			min-width: 180px;
+			max-width: 300px;
+
+			.components-search-control__input {
+				height: 42px;
+				border-radius: $border-radius;
+				border-color: $border-color;
+
+				&:focus {
+					border-color: $primary-color;
+					box-shadow: 0 0 0 1px $primary-color;
+				}
+			}
+		}
+
+		.mpd-prelayout-category-filter {
+			.components-select-control__input {
+				height: 42px;
+				border-radius: $border-radius;
+				border-color: $border-color;
+
+				&:focus {
+					border-color: $primary-color;
+					box-shadow: 0 0 0 1px $primary-color;
+				}
+			}
+		}
+	}
+
+}
+
+.mpd-prelayout-loading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 60px 20px;
+	gap: 16px;
+	flex: 1;
+	min-height: 300px;
+
+	p {
+		color: $text-secondary;
+		font-size: 14px;
+		margin: 0;
+	}
+}
+
+.mpd-prelayout-no-results {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 60px 20px;
+	gap: 16px;
+	flex: 1;
+	min-height: 300px;
+	text-align: center;
+
+	p {
+		color: $text-secondary;
+		font-size: 14px;
+		margin: 0;
+	}
+}
+
+.mpd-prelayout-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 16px;
+	flex: 1;
+	overflow-y: auto;
+	padding: 4px 20px 20px;
+	margin: 0;
+
+	// Custom scrollbar
+	&::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: $background-light;
+		border-radius: 4px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: $border-color;
+		border-radius: 4px;
+
+		&:hover {
+			background: $text-muted;
+		}
+	}
+
+	@media (max-width: 1200px) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	@media (max-width: 900px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@media (max-width: 600px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.mpd-prelayout-card {
+	background: $white;
+	border: 2px solid $border-color;
+	border-radius: $border-radius-lg;
+	cursor: pointer;
+	transition: $transition;
+	overflow: hidden;
+	position: relative;
+
+	&:hover {
+		border-color: $primary-light;
+		box-shadow: $box-shadow-md;
+		transform: translateY(-2px);
+	}
+
+	&.is-selected {
+		border-color: $primary-color;
+		box-shadow: 0 0 0 2px $primary-lighter;
+	}
+
+	&.is-pro {
+		.mpd-prelayout-card-thumbnail img {
+			filter: grayscale(30%);
+		}
+	}
+
+	&.is-custom {
+		border-style: dashed;
+		background: $background-light;
+
+		&:hover {
+			background: $primary-lighter;
+			border-color: $primary-color;
+		}
+	}
+
+	&-thumbnail {
+		position: relative;
+		aspect-ratio: 4 / 3;
+		background: $background-light;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.3s ease;
+		}
+
+		&:hover img {
+			transform: scale(1.05);
+		}
+	}
+
+	&-content {
+		padding: 14px 16px 16px;
+
+		.mpd-prelayout-card-title {
+			font-size: 13px;
+			font-weight: 600;
+			color: $text-primary;
+			margin: 0 0 6px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.mpd-prelayout-card-description {
+			font-size: 11px;
+			color: $text-secondary;
+			margin: 0;
+			line-height: 1.5;
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			overflow: hidden;
+			min-height: 34px;
+		}
+	}
+
+	&-selected-indicator {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		width: 28px;
+		height: 28px;
+		background: $primary-color;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $white;
+		box-shadow: 0 2px 8px rgba($primary-color, 0.4);
+
+		svg {
+			width: 16px;
+			height: 16px;
+		}
+	}
+
+	&-custom-icon {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: $text-muted;
+
+		svg {
+			width: 48px;
+			height: 48px;
+		}
+	}
+
+	&-preview-btn {
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		opacity: 0;
+		transition: opacity 0.2s ease;
+	}
+
+	&:hover &-preview-btn {
+		opacity: 1;
+	}
+}
+
+.mpd-prelayout-pro-badge {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background: linear-gradient(135deg, $warning-color, #d97706);
+	color: $white;
+	padding: 4px 10px;
+	border-radius: 20px;
+	font-size: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+
+	svg {
+		width: 12px;
+		height: 12px;
+	}
+}
+
+.mpd-prelayout-selector-footer {
+	display: flex;
+	gap: 12px;
+	justify-content: flex-end;
+	padding: 16px 20px;
+	border-top: 1px solid $border-color;
+	background: $background-light;
+	margin-top: auto;
+	flex-shrink: 0;
+	position: sticky;
+	bottom: 0;
+	z-index: 10;
+
+	.components-button {
+		border-radius: $border-radius;
+		height: 40px;
+		padding: 0 20px;
+		font-weight: 500;
+
+		&.is-primary {
+			background: linear-gradient(135deg, $primary-color, $primary-dark);
+			border: none;
+			box-shadow: 0 2px 6px rgba($primary-color, 0.3);
+		}
+
+		&.is-secondary {
+			border-color: $border-color;
+		}
+	}
+}
+
+// Layout Preview Modal
+.mpd-layout-preview-modal {
+	.components-modal__frame {
+		max-width: 600px;
+		width: 95vw;
+	}
+
+	.components-modal__content {
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		max-height: 80vh;
+	}
+
+	.components-modal__header {
+		margin: 0;
+		padding: 16px 24px;
+		border-bottom: 1px solid $border-color;
+
+		.components-modal__header-heading {
+			font-size: 18px;
+			font-weight: 600;
+			color: $text-primary;
+		}
+	}
+}
+
+.mpd-layout-preview-content {
+	flex: 1;
+	overflow-y: auto;
+	padding: 24px;
+}
+
+.mpd-layout-preview-image {
+	margin-bottom: 24px;
+	border-radius: $border-radius;
+	overflow: hidden;
+	border: 1px solid $border-color;
+
+	img {
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+}
+
+.mpd-layout-preview-tabs {
+	.components-tab-panel__tabs {
+		border-bottom: 1px solid $border-color;
+		margin-bottom: 20px;
+
+		.components-tab-panel__tabs-item {
+			padding: 12px 20px;
+			border: none;
+			border-bottom: 2px solid transparent;
+			color: $text-secondary;
+			font-weight: 500;
+
+			&.is-active {
+				color: $primary-color;
+				border-bottom-color: $primary-color;
+			}
+		}
+	}
+}
+
+.mpd-layout-preview-info {
+	h4 {
+		font-size: 15px;
+		font-weight: 600;
+		color: $text-primary;
+		margin: 0 0 16px;
+	}
+
+	p {
+		font-size: 14px;
+		color: $text-secondary;
+		line-height: 1.6;
+	}
+}
+
+.mpd-layout-preview-widgets {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 12px;
+
+	.mpd-widget-tag {
+		background: $background-light;
+		color: $text-secondary;
+		padding: 6px 12px;
+		border-radius: 20px;
+		font-size: 12px;
+		font-weight: 500;
+	}
+}
+
+.mpd-layout-preview-features {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 16px;
+	margin-top: 16px;
+
+	.mpd-feature-item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 12px 16px;
+		background: $success-light;
+		border-radius: $border-radius;
+
+		svg {
+			color: $success-color;
+			flex-shrink: 0;
+		}
+
+		span {
+			font-size: 13px;
+			font-weight: 500;
+			color: $text-primary;
+		}
+	}
+}
+
+.mpd-layout-preview-actions {
+	padding: 16px 24px;
+	border-top: 1px solid $border-color;
+	display: flex;
+	gap: 12px;
+	justify-content: flex-end;
+	background: $background-light;
+
+	.components-button {
+		border-radius: $border-radius;
+		height: 42px;
+		padding: 0 24px;
+		font-weight: 500;
+
+		&.is-primary {
+			background: linear-gradient(135deg, $primary-color, $primary-dark);
+			border: none;
+			box-shadow: 0 2px 8px rgba($primary-color, 0.3);
+		}
+	}
+}
+
+// Template Creation Steps
+.mpd-template-creation-steps {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	margin-bottom: 32px;
+	padding: 16px;
+	background: $background-light;
+	border-radius: $border-radius-lg;
+}
+
+.mpd-creation-step {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	color: $text-muted;
+	font-size: 13px;
+	font-weight: 500;
+
+	&.is-active {
+		color: $primary-color;
+	}
+
+	&.is-completed {
+		color: $success-color;
+	}
+
+	&-number {
+		width: 28px;
+		height: 28px;
+		border-radius: 50%;
+		background: $border-color;
+		color: $text-muted;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 600;
+		font-size: 12px;
+	}
+
+	&.is-active &-number {
+		background: $primary-color;
+		color: $white;
+	}
+
+	&.is-completed &-number {
+		background: $success-color;
+		color: $white;
+	}
+}
+
+.mpd-creation-step-divider {
+	width: 40px;
+	height: 2px;
+	background: $border-color;
+	border-radius: 1px;
+}
+
+// Responsive
+@media (max-width: 768px) {
+	.mpd-prelayout-grid {
+		grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+		gap: 16px;
+	}
+
+	.mpd-prelayout-selector-filters {
+		flex-direction: column;
+
+		.mpd-prelayout-search {
+			max-width: none;
+		}
+	}
+
+	.mpd-layout-preview-modal .components-modal__frame {
+		width: 100%;
+		max-width: none;
+		margin: 0;
+		height: 100vh;
+		max-height: none;
+	}
+}
+

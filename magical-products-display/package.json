@@ -1,0 +1,40 @@
+{
+  "name": "magical-products-display",
+  "version": "2.0.0",
+  "description": "Magical Shop Builder - Complete WooCommerce Shop Builder with Elementor",
+  "author": "Noor alam",
+  "license": "GPL-2.0+",
+  "homepage": "https://wpthemespace.com/magical-shop-builder",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nooralam/magical-products-display"
+  },
+  "scripts": {
+    "start": "wp-scripts start src/admin/index.js --output-path=build/admin",
+    "build": "wp-scripts build src/admin/index.js --output-path=build/admin",
+    "lint:js": "wp-scripts lint-js src/",
+    "lint:css": "wp-scripts lint-style src/",
+    "format": "wp-scripts format src/",
+    "packages-update": "wp-scripts packages-update"
+  },
+  "devDependencies": {
+    "@wordpress/scripts": "^30.0.0"
+  },
+  "dependencies": {
+    "@wordpress/api-fetch": "^7.0.0",
+    "@wordpress/components": "^30.0.0",
+    "@wordpress/data": "^10.0.0",
+    "@wordpress/element": "^6.0.0",
+    "@wordpress/hooks": "^4.0.0",
+    "@wordpress/i18n": "^5.0.0",
+    "@wordpress/notices": "^5.0.0",
+    "@wordpress/url": "^4.0.0",
+    "classnames": "^2.5.0",
+    "react-router-dom": "^6.20.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

@@ -1,0 +1,59 @@
+[
+    {
+      "id": "auto_001",
+      "settings": {
+        "flex_direction": "column",
+        "min_height": {
+          "unit": "vh",
+          "size": 60,
+          "sizes": []
+        },
+        "padding": {
+          "unit": "px",
+          "top": "60",
+          "right": "20",
+          "bottom": "60",
+          "left": "20",
+          "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#F8F9FA",
+        "flex_justify_content": "center",
+        "flex_align_items": "center",
+        "boxed_width": {
+          "unit": "px",
+          "size": 800,
+          "sizes": []
+        },
+        "magical_custom_attributes": []
+      },
+      "elements": [
+        {
+          "id": "auto_002",
+          "settings": {
+            "title": "Your cart is empty",
+            "description": "Looks like you haven't added any items to your cart yet. Browse our products and find something you like!",
+            "button_text": "Return to Shop",
+            "suggestions_title": "You might like these",
+            "container_background_background": "classic",
+            "container_background_color": "#FFFFFF",
+            "_box_shadow_box_shadow_type": "yes",
+            "_box_shadow_box_shadow": {
+              "horizontal": 0,
+              "vertical": 0,
+              "blur": 20,
+              "spread": 0,
+              "color": "rgba(0, 0, 0, 0.23)"
+            },
+            "magical_custom_attributes": []
+          },
+          "elements": [],
+          "isInner": false,
+          "widgetType": "mpd-empty-cart",
+          "elType": "widget"
+        }
+      ],
+      "isInner": false,
+      "elType": "container"
+    }
+  ]

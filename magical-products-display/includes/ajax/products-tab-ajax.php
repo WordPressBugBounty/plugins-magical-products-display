@@ -34,7 +34,7 @@ class MPD_Products_Tab_Ajax
 
         // Get and sanitize parameters
         $category_slug = isset($_POST['category_slug']) ? sanitize_text_field(wp_unslash($_POST['category_slug'])) : '';
-        $settings = isset($_POST['settings']) ? self::sanitize_settings($_POST['settings']) : [];
+        $settings = isset($_POST['settings']) ? self::sanitize_settings(wp_unslash($_POST['settings'])) : [];
 
         if (empty($category_slug)) {
             wp_send_json_error(['message' => __('Category not specified', 'magical-products-display')]);

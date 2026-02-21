@@ -1,0 +1,467 @@
+/**
+ * MPD Header Wishlist & Compare Widget Styles
+ *
+ * Styles for the header wishlist and compare widget that displays
+ * icons with counts and optional dropdowns.
+ *
+ * @package Magical_Products_Display
+ * @since   2.0.0
+ */
+
+/* ============================================
+   Wrapper Styles
+   ============================================ */
+
+.mpd-header-wc-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.mpd-header-wc-wrapper.mpd-header-wc-layout--vertical {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+/* ============================================
+   Item Styles
+   ============================================ */
+
+.mpd-header-wc-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.mpd-header-wc-icon-wrap {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mpd-header-wc-item i {
+	font-size: 22px;
+	color: #333;
+	transition: color 0.3s ease;
+}
+
+.mpd-header-wc-item:hover i {
+	color: var(--mpd-primary-color, #0073aa);
+}
+
+/* ============================================
+   Count Badge Styles
+   ============================================ */
+
+.mpd-header-wc-count {
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	min-width: 18px;
+	height: 18px;
+	line-height: 18px;
+	padding: 0 4px;
+	font-size: 11px;
+	font-weight: 600;
+	text-align: center;
+	color: #fff;
+	background-color: #dc3545;
+	border-radius: 50px;
+	pointer-events: none;
+	transition: transform 0.2s ease;
+}
+
+.mpd-header-wc-item:hover .mpd-header-wc-count {
+	transform: scale(1.1);
+}
+
+/* Hide badge when count is zero */
+.mpd-header-wc-count.mpd-count-zero {
+	display: none;
+}
+
+/* ============================================
+   Label Styles
+   ============================================ */
+
+.mpd-header-wc-label {
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+	transition: color 0.3s ease;
+}
+
+.mpd-header-wc-item:hover .mpd-header-wc-label {
+	color: var(--mpd-primary-color, #0073aa);
+}
+
+/* ============================================
+   Dropdown Styles
+   ============================================ */
+
+.mpd-header-wc-dropdown {
+	position: absolute;
+	top: 100%;
+	right: 0;
+	width: 300px;
+	max-height: 400px;
+	margin-top: 10px;
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	border-radius: 8px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(10px);
+	transition: all 0.3s ease;
+	z-index: 9999;
+	overflow: hidden;
+}
+
+.mpd-header-wc-has-dropdown .mpd-header-wc-item:hover .mpd-header-wc-dropdown,
+.mpd-header-wc-dropdown.is-active {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+/* Dropdown Header */
+.mpd-header-wc-dropdown-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 12px 15px;
+	border-bottom: 1px solid #eee;
+	background-color: #f9f9f9;
+}
+
+.mpd-dropdown-title {
+	font-size: 14px;
+	font-weight: 600;
+	color: #333;
+}
+
+.mpd-clear-wishlist,
+.mpd-clear-compare {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	border: none;
+	background: transparent;
+	color: #999;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: all 0.2s ease;
+}
+
+.mpd-clear-wishlist:hover,
+.mpd-clear-compare:hover {
+	background-color: #ffebee;
+	color: #dc3545;
+}
+
+/* Dropdown Content */
+.mpd-header-wc-dropdown-content {
+	max-height: 280px;
+	overflow-y: auto;
+	padding: 10px;
+}
+
+/* Empty Message */
+.mpd-empty-message {
+	padding: 20px;
+	margin: 0;
+	text-align: center;
+	color: #999;
+	font-size: 14px;
+}
+
+/* Product Item in Dropdown */
+.mpd-dropdown-product-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px;
+	border-radius: 6px;
+	transition: background-color 0.2s ease;
+}
+
+.mpd-dropdown-product-item:hover {
+	background-color: #f7f7f7;
+}
+
+.mpd-dropdown-product-item + .mpd-dropdown-product-item {
+	border-top: 1px solid #f0f0f0;
+}
+
+.mpd-dropdown-product-image {
+	flex-shrink: 0;
+	width: 50px;
+	height: 50px;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.mpd-dropdown-product-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.mpd-dropdown-product-info {
+	flex: 1;
+	min-width: 0;
+}
+
+.mpd-dropdown-product-title {
+	margin: 0 0 4px;
+	font-size: 13px;
+	font-weight: 500;
+	color: #333;
+	line-height: 1.3;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.mpd-dropdown-product-title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.mpd-dropdown-product-title a:hover {
+	color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-dropdown-product-price {
+	font-size: 12px;
+	color: #666;
+}
+
+.mpd-dropdown-product-remove {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border: none;
+	background: transparent;
+	color: #ccc;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: all 0.2s ease;
+}
+
+.mpd-dropdown-product-remove:hover {
+	background-color: #ffebee;
+	color: #dc3545;
+}
+
+/* Dropdown Footer */
+.mpd-header-wc-dropdown-footer {
+	padding: 12px 15px;
+	border-top: 1px solid #eee;
+	background-color: #f9f9f9;
+	text-align: center;
+}
+
+.mpd-view-all-btn {
+	display: inline-block;
+	padding: 8px 20px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #fff;
+	background-color: var(--mpd-primary-color, #0073aa);
+	border-radius: 4px;
+	text-decoration: none;
+	transition: all 0.2s ease;
+}
+
+.mpd-view-all-btn:hover {
+	background-color: var(--mpd-primary-hover-color, #005177);
+	color: #fff;
+}
+
+/* ============================================
+   Responsive Styles
+   ============================================ */
+
+@media (max-width: 768px) {
+	.mpd-header-wc-dropdown {
+		position: fixed;
+		top: auto;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		max-height: 60vh;
+		margin-top: 0;
+		border-radius: 16px 16px 0 0;
+		transform: translateY(100%);
+	}
+
+	.mpd-header-wc-has-dropdown .mpd-header-wc-item:hover .mpd-header-wc-dropdown,
+	.mpd-header-wc-dropdown.is-active,
+	.mpd-header-wc-dropdown.mpd-dropdown-active {
+		transform: translateY(0);
+	}
+
+	.mpd-header-wc-dropdown-content {
+		max-height: calc(60vh - 120px);
+	}
+}
+
+/* ============================================
+   Animation for Adding Items
+   ============================================ */
+
+/* Item Row Styles (AJAX-loaded items) */
+.mpd-header-wc-item-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 10px;
+	border-radius: 6px;
+	transition: background-color 0.2s ease;
+}
+
+.mpd-header-wc-item-row:hover {
+	background-color: #f7f7f7;
+}
+
+.mpd-header-wc-item-row + .mpd-header-wc-item-row {
+	border-top: 1px solid #f0f0f0;
+}
+
+.mpd-header-wc-item-link {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex: 1;
+	min-width: 0;
+	text-decoration: none;
+	color: inherit;
+}
+
+.mpd-header-wc-item-image {
+	flex-shrink: 0;
+	width: 45px;
+	height: 45px;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.mpd-header-wc-item-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.mpd-header-wc-item-details {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.mpd-header-wc-item-name {
+	font-size: 13px;
+	font-weight: 500;
+	color: #333;
+	line-height: 1.3;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.mpd-header-wc-item-price {
+	font-size: 12px;
+	color: #666;
+}
+
+.mpd-header-wc-remove-item,
+.mpd-header-compare-remove-item {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border: none;
+	background: transparent;
+	color: #ccc;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: all 0.2s ease;
+}
+
+.mpd-header-wc-remove-item:hover,
+.mpd-header-compare-remove-item:hover {
+	background-color: #ffebee;
+	color: #dc3545;
+}
+
+/* Hidden count badge */
+.mpd-count-hidden {
+	display: none !important;
+}
+
+/* ============================================
+   Original Animation for Adding Items
+   ============================================ */
+
+@keyframes mpd-badge-pulse {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.3);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.mpd-header-wc-count.mpd-count-updated {
+	animation: mpd-badge-pulse 0.3s ease;
+}
+
+/* ============================================
+   Loading State
+   ============================================ */
+
+.mpd-dropdown-loading {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 30px;
+}
+
+.mpd-dropdown-loading::after {
+	content: '';
+	width: 24px;
+	height: 24px;
+	border: 2px solid #eee;
+	border-top-color: var(--mpd-primary-color, #0073aa);
+	border-radius: 50%;
+	animation: mpd-spin 0.8s linear infinite;
+}
+
+@keyframes mpd-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}

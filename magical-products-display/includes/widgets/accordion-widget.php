@@ -1390,15 +1390,16 @@ class mgProduct_Accordion extends \Elementor\Widget_Base
                                 </div>
                             </div>
                         <?php endwhile; ?>
+                    <?php wp_reset_postdata(); ?>
                     <?php else : ?>
                         <div class="alert alert-warning text-center mt-5 mb-5" role="alert">
-                            <?php echo esc_html('No Products found. Please add products for display the accordion.', 'magical-products-display'); ?>
+                            <?php echo esc_html__('No Products found. Please add products for display the accordion.', 'magical-products-display'); ?>
                         </div>
                     <?php endif; ?>
                 <?php endforeach; ?>
             <?php else : ?>
                 <div class="alert alert-danger text-center mt-5 mb-5" role="alert">
-                    <?php echo esc_html('No Products found. Please add products for display the accordion.', 'magical-products-display'); ?>
+                    <?php echo esc_html__('No Products found. Please add products for display the accordion.', 'magical-products-display'); ?>
                 </div>
             <?php endif; ?>
 

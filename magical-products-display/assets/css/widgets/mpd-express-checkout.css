@@ -1,0 +1,321 @@
+/**
+ * Express Checkout Widget Styles
+ *
+ * @package Magical_Products_Display
+ * @since 2.6.0
+ */
+
+/* ============================================
+   Container
+   ============================================ */
+.mpd-express-checkout {
+	--mpd-ec-primary: #2563eb;
+	--mpd-ec-text: #1f2937;
+	--mpd-ec-text-muted: #6b7280;
+	--mpd-ec-border: #e5e7eb;
+	--mpd-ec-bg: #f8fafc;
+	
+	background-color: var(--mpd-ec-bg);
+	padding: 25px;
+	border-radius: 12px;
+	margin-bottom: 30px;
+}
+
+/* ============================================
+   Title
+   ============================================ */
+.mpd-express-title {
+	font-size: 18px;
+	font-weight: 600;
+	color: var(--mpd-ec-text);
+	margin: 0 0 15px 0;
+	text-align: center;
+}
+
+/* ============================================
+   Description
+   ============================================ */
+.mpd-express-description {
+	font-size: 14px;
+	color: var(--mpd-ec-text-muted);
+	margin: 0 0 15px 0;
+	text-align: center;
+}
+
+/* ============================================
+   Buttons Container
+   ============================================ */
+.mpd-express-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 15px;
+	margin: 15px 0;
+}
+
+/* Vertical Layout */
+.mpd-express-layout-vertical .mpd-express-buttons {
+	flex-direction: column;
+	align-items: center;
+}
+
+.mpd-express-layout-vertical .mpd-express-buttons > div,
+.mpd-express-layout-vertical .mpd-express-buttons > button,
+.mpd-express-layout-vertical .mpd-express-buttons > a {
+	width: 100%;
+	max-width: 350px;
+}
+
+/* Style gateway buttons */
+.mpd-express-buttons > div,
+.mpd-express-buttons > button,
+.mpd-express-buttons > a {
+	min-width: 200px;
+}
+
+/* PayPal Button Container */
+.mpd-express-buttons #ppc-button,
+.mpd-express-buttons .ppcp-messages,
+.mpd-express-buttons #wc-ppec-payment-button-container {
+	min-width: 200px;
+}
+
+/* Stripe Payment Request Button */
+.mpd-express-buttons #wc-stripe-payment-request-wrapper,
+.mpd-express-buttons .wc-stripe-payment-request-button-wrapper {
+	min-width: 200px;
+}
+
+/* ============================================
+   Demo Buttons (Editor Only)
+   ============================================ */
+.mpd-express-demo-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 15px;
+	width: 100%;
+}
+
+.mpd-express-layout-vertical .mpd-express-demo-buttons {
+	flex-direction: column;
+	align-items: center;
+}
+
+.mpd-express-demo-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 12px 24px;
+	min-width: 180px;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: default;
+	transition: transform 0.2s ease;
+}
+
+.mpd-express-demo-btn:hover {
+	transform: translateY(-1px);
+}
+
+/* PayPal Demo */
+.mpd-express-demo-paypal {
+	background: #ffc439;
+	color: #003087;
+}
+
+/* Apple Pay Demo */
+.mpd-express-demo-applepay {
+	background: #000;
+	color: #fff;
+}
+
+/* Google Pay Demo */
+.mpd-express-demo-googlepay {
+	background: #fff;
+	color: #3c4043;
+	border: 1px solid #dadce0;
+}
+
+/* Editor Note */
+.mpd-express-editor-note {
+	font-size: 12px;
+	color: var(--mpd-ec-text-muted);
+	text-align: center;
+	margin: 15px 0 0 0;
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.03);
+	border-radius: 6px;
+}
+
+/* Fallback Message */
+.mpd-express-fallback {
+	text-align: center;
+	color: var(--mpd-ec-text-muted);
+	font-size: 14px;
+	padding: 20px;
+}
+
+/* ============================================
+   Divider
+   ============================================ */
+.mpd-express-divider {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	margin: 20px 0 0 0;
+}
+
+.mpd-express-divider::before,
+.mpd-express-divider::after {
+	content: '';
+	flex: 1;
+	height: 1px;
+	background-color: var(--mpd-ec-border);
+}
+
+.mpd-express-divider span {
+	padding: 0 15px;
+	font-size: 13px;
+	font-weight: 500;
+	color: #9ca3af;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	background-color: var(--mpd-ec-bg);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 600px) {
+	.mpd-express-checkout {
+		padding: 20px 15px;
+	}
+	
+	.mpd-express-buttons {
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.mpd-express-buttons > div,
+	.mpd-express-buttons > button,
+	.mpd-express-buttons > a,
+	.mpd-express-demo-btn {
+		width: 100%;
+		max-width: 100%;
+	}
+	
+	.mpd-express-demo-buttons {
+		flex-direction: column;
+	}
+}
+
+/* ============================================
+   WooCommerce Gateway Compatibility
+   ============================================ */
+
+/* PayPal Payments */
+.mpd-express-buttons .ppcp-button-container {
+	display: flex;
+	justify-content: center;
+}
+
+.mpd-express-buttons .ppcp-button-container .ppcp-button {
+	min-width: 200px;
+}
+
+/* Stripe Payment Request */
+.mpd-express-buttons .wc-stripe-payment-request-button-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+/* Square */
+.mpd-express-buttons .sq-payment-request {
+	min-width: 200px;
+}
+
+/* Amazon Pay */
+.mpd-express-buttons #pay_with_amazon,
+.mpd-express-buttons .amazon-payment-button {
+	min-width: 200px;
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+	.mpd-express-checkout {
+		display: none !important;
+	}
+}
+
+/* ============================================
+   Reduced Motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+	.mpd-express-demo-btn {
+		transition: none;
+	}
+}
+
+/* ============================================
+   Context-Specific Styles
+   ============================================ */
+
+/* Cart Context */
+.mpd-express-context-cart {
+	margin-bottom: 20px;
+}
+
+.mpd-express-context-cart .mpd-express-buttons {
+	margin-top: 15px;
+}
+
+/* Product Context - Buy Now style */
+.mpd-express-context-product {
+	margin-top: 15px;
+	padding: 15px;
+	background: transparent;
+}
+
+.mpd-express-context-product .mpd-express-title {
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+
+.mpd-express-context-product .mpd-express-buttons {
+	margin: 10px 0;
+}
+
+/* Anywhere Context - Compact for sidebar/popup */
+.mpd-express-context-anywhere {
+	padding: 15px;
+}
+
+.mpd-express-context-anywhere .mpd-express-title {
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+
+.mpd-express-context-anywhere .mpd-express-buttons {
+	flex-direction: column;
+}
+
+.mpd-express-context-anywhere .mpd-express-demo-btn,
+.mpd-express-context-anywhere .mpd-express-buttons > div,
+.mpd-express-context-anywhere .mpd-express-buttons > button,
+.mpd-express-context-anywhere .mpd-express-buttons > a {
+	width: 100%;
+	min-width: unset;
+}
+
+/* Empty Cart Notice */
+.mpd-express-empty-cart {
+	text-align: center;
+	padding: 20px;
+	color: #6b7280;
+	font-style: italic;
+}

@@ -1,21 +1,20 @@
-# Portuguese (Brazil) translation for Magical Products Display
-# Copyright (C) 2025 Magical Products Display
-# This file is distributed under the same license as the Magical Products Display package.
+# Portuguese (Brazil) translation for Magical Shop Builder
+# Copyright (C) 2026 Magical Shop Builder
+# This file is distributed under the same license as the Magical Shop Builder package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Magical products Display\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-29 06:12+0000\n"
-"PO-Revision-Date: 2025-07-29 12:00+0000\n"
-"Last-Translator: Magical Products Display Team\n"
+"Project-Id-Version: Magical Shop Builder 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wpthemespace.com/contact/\n"
+"POT-Creation-Date: 2026-02-15 00:00+0000\n"
+"PO-Revision-Date: 2026-02-15 12:00+0000\n"
+"Last-Translator: Magical Shop Builder Team\n"
 "Language-Team: Portuguese (Brazil)\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.0; wp-6.8.2; php-8.3.16\n"
+"X-Generator: Magical Shop Builder\n"
 "X-Domain: magical-products-display"
 
 #: includes/widgets/accordion-widget.php:829
@@ -253,3 +252,281 @@ msgid ""
 "Customizable Elementor Widgets for Beautiful WooCommerce Product Displays."
 msgstr ""
 "Widgets Elementor personalizáveis para belos displays de produtos WooCommerce."
+
+#. Magical Shop Builder 2.0.0 - New Strings
+
+msgid "Magical Shop Builder"
+msgstr "Magical Shop Builder"
+
+msgid "Magical Single Product"
+msgstr "Produto Único Mágico"
+
+msgid "Magical Cart & Checkout"
+msgstr "Carrinho e Checkout Mágico"
+
+msgid "Magical My Account"
+msgstr "Minha Conta Mágica"
+
+msgid "Magical Shop Archive"
+msgstr "Arquivo da Loja Mágico"
+
+msgid "Magical Thank You"
+msgstr "Obrigado Mágico"
+
+msgid "Magical Global"
+msgstr "Global Mágico"
+
+msgid "This widget is available in the Pro version of Magical Shop Builder."
+msgstr "Este widget está disponível na versão Pro do Magical Shop Builder."
+
+msgid "This layout requires Magical Shop Builder Pro."
+msgstr "Este layout requer Magical Shop Builder Pro."
+
+msgid "Product Title"
+msgstr "Título do Produto"
+
+msgid "Product Price"
+msgstr "Preço do Produto"
+
+msgid "Product Gallery"
+msgstr "Galeria do Produto"
+
+msgid "Add to Cart"
+msgstr "Adicionar ao Carrinho"
+
+msgid "Product Description"
+msgstr "Descrição do Produto"
+
+msgid "Short Description"
+msgstr "Descrição Curta"
+
+msgid "Product Meta"
+msgstr "Meta do Produto"
+
+msgid "Product Rating"
+msgstr "Avaliação do Produto"
+
+msgid "Product Reviews"
+msgstr "Avaliações do Produto"
+
+msgid "Product Tabs"
+msgstr "Abas do Produto"
+
+msgid "Related Products"
+msgstr "Produtos Relacionados"
+
+msgid "Upsells"
+msgstr "Vendas Adicionais"
+
+msgid "Product Stock"
+msgstr "Estoque do Produto"
+
+msgid "Product Attributes"
+msgstr "Atributos do Produto"
+
+msgid "Product Navigation"
+msgstr "Navegação do Produto"
+
+msgid "Action Buttons"
+msgstr "Botões de Ação"
+
+msgid "Cart Table"
+msgstr "Tabela do Carrinho"
+
+msgid "Cart Totals"
+msgstr "Totais do Carrinho"
+
+msgid "Cross-Sells"
+msgstr "Vendas Cruzadas"
+
+msgid "Coupon Form"
+msgstr "Formulário de Cupom"
+
+msgid "Mini Cart"
+msgstr "Mini Carrinho"
+
+msgid "Empty Cart"
+msgstr "Carrinho Vazio"
+
+msgid "Billing Form"
+msgstr "Formulário de Cobrança"
+
+msgid "Shipping Form"
+msgstr "Formulário de Envio"
+
+msgid "Order Review"
+msgstr "Revisão do Pedido"
+
+msgid "Payment Methods"
+msgstr "Métodos de Pagamento"
+
+msgid "Checkout Coupon"
+msgstr "Cupom de Checkout"
+
+msgid "Place Order"
+msgstr "Finalizar Pedido"
+
+msgid "Order Notes"
+msgstr "Notas do Pedido"
+
+msgid "Checkout Login"
+msgstr "Login no Checkout"
+
+msgid "Multi-Step Checkout"
+msgstr "Checkout Multi-Etapas"
+
+msgid "Express Checkout"
+msgstr "Checkout Expresso"
+
+msgid "Account Navigation"
+msgstr "Navegação da Conta"
+
+msgid "Account Dashboard"
+msgstr "Painel da Conta"
+
+msgid "Orders"
+msgstr "Pedidos"
+
+msgid "Addresses"
+msgstr "Endereços"
+
+msgid "Account Details"
+msgstr "Detalhes da Conta"
+
+msgid "Downloads"
+msgstr "Downloads"
+
+msgid "Logout"
+msgstr "Sair"
+
+msgid "Account Login"
+msgstr "Login da Conta"
+
+msgid "Products Archive"
+msgstr "Arquivo de Produtos"
+
+msgid "Archive Title"
+msgstr "Título do Arquivo"
+
+msgid "Archive Description"
+msgstr "Descrição do Arquivo"
+
+msgid "Result Count"
+msgstr "Contagem de Resultados"
+
+msgid "Ordering"
+msgstr "Ordenação"
+
+msgid "Pagination"
+msgstr "Paginação"
+
+msgid "Active Filters"
+msgstr "Filtros Ativos"
+
+msgid "Price Filter"
+msgstr "Filtro de Preço"
+
+msgid "Attribute Filter"
+msgstr "Filtro de Atributos"
+
+msgid "Category Filter"
+msgstr "Filtro de Categorias"
+
+msgid "Advanced Filter"
+msgstr "Filtro Avançado"
+
+msgid "Header Cart"
+msgstr "Carrinho do Cabeçalho"
+
+msgid "Breadcrumbs"
+msgstr "Breadcrumbs"
+
+msgid "Store Notice"
+msgstr "Aviso da Loja"
+
+msgid "Recently Viewed"
+msgstr "Vistos Recentemente"
+
+msgid "Product Comparison"
+msgstr "Comparação de Produtos"
+
+msgid "Wishlist"
+msgstr "Lista de Desejos"
+
+msgid "Header Wishlist & Compare"
+msgstr "Lista de Desejos e Comparar no Cabeçalho"
+
+msgid "Order Confirmation"
+msgstr "Confirmação do Pedido"
+
+msgid "Order Details"
+msgstr "Detalhes do Pedido"
+
+msgid "Order Items"
+msgstr "Itens do Pedido"
+
+msgid "Customer Details"
+msgstr "Detalhes do Cliente"
+
+msgid "Dashboard"
+msgstr "Painel"
+
+msgid "Templates"
+msgstr "Modelos"
+
+msgid "Settings"
+msgstr "Configurações"
+
+msgid "Widgets"
+msgstr "Widgets"
+
+msgid "Pro Features"
+msgstr "Recursos Pro"
+
+msgid "Single Product"
+msgstr "Produto Único"
+
+msgid "Product Archive"
+msgstr "Arquivo de Produtos"
+
+msgid "Cart"
+msgstr "Carrinho"
+
+msgid "Checkout"
+msgstr "Checkout"
+
+msgid "My Account"
+msgstr "Minha Conta"
+
+msgid "Thank You"
+msgstr "Obrigado"
+
+msgid "Add New Template"
+msgstr "Adicionar Novo Modelo"
+
+msgid "Edit Template"
+msgstr "Editar Modelo"
+
+msgid "Template Type"
+msgstr "Tipo de Modelo"
+
+msgid "Display Conditions"
+msgstr "Condições de Exibição"
+
+msgid "All Products"
+msgstr "Todos os Produtos"
+
+msgid "Specific Categories"
+msgstr "Categorias Específicas"
+
+msgid "Specific Products"
+msgstr "Produtos Específicos"
+
+msgid "Pro Feature"
+msgstr "Recurso Pro"
+
+msgid "Upgrade to Pro"
+msgstr "Atualizar para Pro"
+
+msgid "This feature is available in Magical Shop Builder Pro"
+msgstr "Este recurso está disponível no Magical Shop Builder Pro"

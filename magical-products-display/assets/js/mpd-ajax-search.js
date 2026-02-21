@@ -410,7 +410,7 @@
                                     errorMessage = errorResponse.message;
                                 }
                             } catch (e) {
-                                console.log('MPD Search: Could not parse error response');
+                                // Error parsing response.
                             }
                         }
                         
@@ -431,8 +431,6 @@
             const filters = {};
             const filterContainer = this.element.find('.mpd-ajax-search__filters');
             
-            console.log('MPD Search: Getting active filters, container found:', filterContainer.length);
-            
             if (!filterContainer.length) {
                 return filters;
             }
@@ -441,7 +439,6 @@
             const category = filterContainer.find('[data-filter="categories"]').val();
             if (category && category !== '') {
                 filters.category = category;
-                console.log('MPD Search: Category filter:', category);
             }
 
             // Tags
@@ -453,7 +450,6 @@
                 } else if (tags !== '') {
                     filters.tags = [tags]; // Convert single value to array
                 }
-                console.log('MPD Search: Tags filter:', filters.tags);
             }
 
             // Price range
@@ -461,28 +457,23 @@
             const priceMax = filterContainer.find('[data-filter="price_max"]').val();
             if (priceMin && priceMin !== '' && parseFloat(priceMin) > 0) {
                 filters.price_min = priceMin;
-                console.log('MPD Search: Price min filter:', priceMin);
             }
             if (priceMax && priceMax !== '' && parseFloat(priceMax) > 0) {
                 filters.price_max = priceMax;
-                console.log('MPD Search: Price max filter:', priceMax);
             }
 
             // Featured
             const featured = filterContainer.find('[data-filter="featured"]').is(':checked');
             if (featured) {
                 filters.featured = true;
-                console.log('MPD Search: Featured filter enabled');
             }
 
             // Stock status
             const stockStatus = filterContainer.find('[data-filter="stock_status"]').val();
             if (stockStatus && stockStatus !== '') {
                 filters.stock_status = stockStatus;
-                console.log('MPD Search: Stock status filter:', stockStatus);
             }
 
-            console.log('MPD Search: Final active filters:', filters);
             return filters;
         }
 
@@ -731,7 +722,6 @@
             $('.mpd-ajax-search').each(function() {
                 const widget = new MPDAjaxSearch(this);
                 $(this).data('mpdAjaxSearch', widget);
-                console.log('MPD Search: Widget instance created');
             });
         }, 100);
     });
@@ -744,7 +734,6 @@
                 if (searchElement) {
                     const widget = new MPDAjaxSearch(searchElement);
                     $scope.find('.mpd-ajax-search').data('mpdAjaxSearch', widget);
-                    console.log('MPD Search: Elementor widget instance created');
                 }
             }, 150);
         });

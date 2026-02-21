@@ -21,6 +21,7 @@ class mgProducts_slider extends \Elementor\Widget_Base
 {
 
     use mpdProHelpLink;
+    use MPD_Action_Buttons;
     /**
      * Get widget name.
      *
@@ -98,7 +99,8 @@ class mgProducts_slider extends \Elementor\Widget_Base
     {
         return [
             'mg-swiper',
-            'mgproducts-slider'
+            'mgproducts-slider',
+            'mpd-global-widgets',
         ];
     }
 
@@ -116,6 +118,7 @@ class mgProducts_slider extends \Elementor\Widget_Base
         return [
             'mgproducts-style',
             'swiper',
+            'mpd-global-widgets',
         ];
     }
 
@@ -736,6 +739,7 @@ class mgProducts_slider extends \Elementor\Widget_Base
 
 
         $this->end_controls_section();
+        $this->register_action_buttons_content_controls('mgpds');
         $this->link_pro_added();
     }
 
@@ -1727,6 +1731,7 @@ class mgProducts_slider extends \Elementor\Widget_Base
         $this->end_controls_tabs();
 
         $this->end_controls_section();
+        $this->register_action_buttons_style_controls('mgpds');
     }
 
     /**
@@ -1801,6 +1806,9 @@ class mgProducts_slider extends \Elementor\Widget_Base
                                             <?php if (has_post_thumbnail() && ($slide['mgps_img_position'] == 'left') && $slide['mgpdeg_pimg_show']) : ?>
                                                 <div class="mgpds-img-after" data-swiper-parallax-<?php echo esc_attr($settings['mgps_pimg_effect']); ?>="300" data-swiper-parallax-duration="600">
                                                     <?php the_post_thumbnail($settings['thumbnail_size'], array('class' => 'mgpds-img')); ?>
+                                                    <?php $this->render_action_buttons_html($settings, 'on_image', 'mgpds'); ?>
+                                                                                                    <?php $this->render_action_buttons_html($settings, 'below_image', 'mgpds'); ?>
+
                                                 </div>
                                             <?php endif; // image check 
                                             ?>
@@ -1865,6 +1873,9 @@ class mgProducts_slider extends \Elementor\Widget_Base
                                             <?php if (has_post_thumbnail() && ($slide['mgps_img_position'] == 'right') && $slide['mgpdeg_pimg_show']) : ?>
                                                 <div class="mgpds-img-before" data-swiper-parallax-<?php echo esc_attr($settings['mgps_pimg_effect']); ?>="-300" data-swiper-parallax-duration="600">
                                                     <?php the_post_thumbnail($settings['thumbnail_size'], array('class' => 'mgpds-img')); ?>
+                                                    <?php $this->render_action_buttons_html($settings, 'on_image', 'mgpds'); ?>
+                                                                                                    <?php $this->render_action_buttons_html($settings, 'below_image', 'mgpds'); ?>
+
                                                 </div>
                                             <?php endif; // image check 
                                             ?>
@@ -1899,7 +1910,7 @@ class mgProducts_slider extends \Elementor\Widget_Base
                 else : // loop $arg check
         ?>
             <div class="alert alert-danger text-center">
-                <?php echo esc_html('Please select products for display the Slider.', 'magical-products-display'); ?>
+                <?php echo esc_html__('Please select products for display the Slider.', 'magical-products-display'); ?>
             </div>
         <?php
                 endif; // loop $arg check

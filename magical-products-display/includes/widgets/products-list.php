@@ -7,6 +7,7 @@ class mgProducts_List extends \Elementor\Widget_Base
 {
 
     use mpdProHelpLink;
+    use MPD_Action_Buttons;
     /**
      * Get widget name.
      *
@@ -84,6 +85,20 @@ class mgProducts_List extends \Elementor\Widget_Base
     {
         return [
             'bootstrap-grid',
+            'mpd-global-widgets',
+        ];
+    }
+
+    /**
+     * Retrieve the list of scripts the widget depended on.
+     *
+     * @access public
+     * @return array Widget scripts dependencies.
+     */
+    public function get_script_depends()
+    {
+        return [
+            'mpd-global-widgets',
         ];
     }
 
@@ -903,6 +918,7 @@ class mgProducts_List extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+        $this->register_action_buttons_content_controls('mgpdel');
         $this->link_pro_added();
     }
 
@@ -1156,7 +1172,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card .mgpde-ptitle' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-ptitle' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1167,7 +1183,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card .mgpde-ptitle' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-ptitle' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1177,7 +1193,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'label' => __('Text Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card .mgpde-ptitle' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-ptitle, {{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-ptitle-link' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1187,7 +1203,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'label' => __('Background Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card .mgpde-ptitle' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-ptitle' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -1198,7 +1214,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card .mgpde-ptitle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-ptitle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1207,7 +1223,7 @@ class mgProducts_List extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'mgpdel_title_typography',
-                'selector' => '{{WRAPPER}} .mgpdel-card .mgpde-ptitle',
+                'selector' => '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-ptitle',
             ]
         );
         $this->end_controls_section();
@@ -1227,7 +1243,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card-text p' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text p' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1238,7 +1254,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card-text p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1248,7 +1264,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'label' => __('Text Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card-text p' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text p' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1258,7 +1274,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'label' => __('Background Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card-text p' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text p' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -1269,7 +1285,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card-text p' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text p' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1278,7 +1294,7 @@ class mgProducts_List extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'mgpdel_description_typography',
-                'selector' => '{{WRAPPER}} .mgpdel-card-text p',
+                'selector' => '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text p',
             ]
         );
 
@@ -1468,7 +1484,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card-text .mgpde-category a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-category a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1479,7 +1495,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card-text .mgpde-category a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-category a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1487,7 +1503,7 @@ class mgProducts_List extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             [
                 'name' => 'mgpdel_cat_border',
-                'selector' => '{{WRAPPER}} .mgpdel-card-text .mgpde-category a',
+                'selector' => '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-category a',
             ]
         );
         $this->add_control(
@@ -1496,7 +1512,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'label' => __('Text Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card-text .mgpde-category a' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-category a' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1506,7 +1522,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'label' => __('Background Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-card-text .mgpde-category a' => 'background: {{VALUE}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-category a' => 'background: {{VALUE}};',
                 ],
             ]
         );
@@ -1515,7 +1531,7 @@ class mgProducts_List extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'mgpdel_meta_cat_typography',
-                'selector' => '{{WRAPPER}} .mgpdel-card-text .mgpde-category a',
+                'selector' => '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpde-category a',
             ]
         );
         $this->add_control(
@@ -1532,7 +1548,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'label' => __('Rating star Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-product-rating .wd-product-ratting i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpdel-product-rating .wd-product-ratting i' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1542,7 +1558,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'label' => __('Rating star Fill Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdel-product-rating .wd-product-ratting .wd-product-user-ratting i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpdel-product-rating .wd-product-ratting .wd-product-user-ratting i' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1552,7 +1568,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                 'label' => __('Review Text Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} span.mgp-rating-count' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpde-lcard .mgpdel-card-text .mgpdel-product-rating span.mgp-rating-count' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -2047,6 +2063,7 @@ class mgProducts_List extends \Elementor\Widget_Base
             ]
         );
         $this->end_controls_section();
+        $this->register_action_buttons_style_controls('mgpdel');
     }
 
     /**
@@ -2328,7 +2345,9 @@ class mgProducts_List extends \Elementor\Widget_Base
                                                         <?php do_action('mgproducts_pro_advance_icons', $mgpdel_wishlist_show, $mgpdel_wishlist_text, $mgpdel_share_show, $mgpdel_share_text, $mgpdel_video_show, $mgpdel_video_text, $mgpdel_qrcode_show, $mgpdel_qrcode_text); ?>
                                                     </div>
                                                 <?php endif; ?>
+                                                <?php $this->render_action_buttons_html($settings, 'on_image', 'mgpdel'); ?>
                                             </figure>
+                                            <?php $this->render_action_buttons_html($settings, 'below_image', 'mgpdel'); ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">

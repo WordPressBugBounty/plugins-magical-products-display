@@ -1,21 +1,20 @@
-# Dutch (Netherlands) translation for Magical Products Display
-# Copyright (C) 2025 Magical Products Display
-# This file is distributed under the same license as the Magical Products Display package.
+# Dutch (Netherlands) translation for Magical Shop Builder
+# Copyright (C) 2026 Magical Shop Builder
+# This file is distributed under the same license as the Magical Shop Builder package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Magical products Display\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-29 06:12+0000\n"
-"PO-Revision-Date: 2025-07-29 12:00+0000\n"
-"Last-Translator: Magical Products Display Team\n"
+"Project-Id-Version: Magical Shop Builder 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wpthemespace.com/contact/\n"
+"POT-Creation-Date: 2026-02-15 00:00+0000\n"
+"PO-Revision-Date: 2026-02-15 12:00+0000\n"
+"Last-Translator: Magical Shop Builder Team\n"
 "Language-Team: Dutch\n"
 "Language: nl_NL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.0; wp-6.8.2; php-8.3.16\n"
+"X-Generator: Magical Shop Builder\n"
 "X-Domain: magical-products-display"
 
 #: includes/widgets/accordion-widget.php:829
@@ -253,3 +252,281 @@ msgid ""
 "Customizable Elementor Widgets for Beautiful WooCommerce Product Displays."
 msgstr ""
 "Aanpasbare Elementor widgets voor prachtige WooCommerce productweergaven."
+
+#. Magical Shop Builder 2.0.0 - New Strings
+
+msgid "Magical Shop Builder"
+msgstr "Magical Shop Builder"
+
+msgid "Magical Single Product"
+msgstr "Magisch Enkel Product"
+
+msgid "Magical Cart & Checkout"
+msgstr "Magische Winkelwagen & Afrekenen"
+
+msgid "Magical My Account"
+msgstr "Magisch Mijn Account"
+
+msgid "Magical Shop Archive"
+msgstr "Magisch Winkel Archief"
+
+msgid "Magical Thank You"
+msgstr "Magisch Bedankt"
+
+msgid "Magical Global"
+msgstr "Magisch Globaal"
+
+msgid "This widget is available in the Pro version of Magical Shop Builder."
+msgstr "Deze widget is beschikbaar in de Pro-versie van Magical Shop Builder."
+
+msgid "This layout requires Magical Shop Builder Pro."
+msgstr "Deze lay-out vereist Magical Shop Builder Pro."
+
+msgid "Product Title"
+msgstr "Producttitel"
+
+msgid "Product Price"
+msgstr "Productprijs"
+
+msgid "Product Gallery"
+msgstr "Productgalerij"
+
+msgid "Add to Cart"
+msgstr "Toevoegen aan Winkelwagen"
+
+msgid "Product Description"
+msgstr "Productbeschrijving"
+
+msgid "Short Description"
+msgstr "Korte Beschrijving"
+
+msgid "Product Meta"
+msgstr "Product Meta"
+
+msgid "Product Rating"
+msgstr "Productbeoordeling"
+
+msgid "Product Reviews"
+msgstr "Productrecensies"
+
+msgid "Product Tabs"
+msgstr "Product Tabbladen"
+
+msgid "Related Products"
+msgstr "Gerelateerde Producten"
+
+msgid "Upsells"
+msgstr "Upsells"
+
+msgid "Product Stock"
+msgstr "Productvoorraad"
+
+msgid "Product Attributes"
+msgstr "Productattributen"
+
+msgid "Product Navigation"
+msgstr "Productnavigatie"
+
+msgid "Action Buttons"
+msgstr "Actieknoppen"
+
+msgid "Cart Table"
+msgstr "Winkelwagentabel"
+
+msgid "Cart Totals"
+msgstr "Winkelwagen Totalen"
+
+msgid "Cross-Sells"
+msgstr "Cross-sells"
+
+msgid "Coupon Form"
+msgstr "Couponformulier"
+
+msgid "Mini Cart"
+msgstr "Mini Winkelwagen"
+
+msgid "Empty Cart"
+msgstr "Lege Winkelwagen"
+
+msgid "Billing Form"
+msgstr "Factuurformulier"
+
+msgid "Shipping Form"
+msgstr "Verzendformulier"
+
+msgid "Order Review"
+msgstr "Besteloverzicht"
+
+msgid "Payment Methods"
+msgstr "Betaalmethoden"
+
+msgid "Checkout Coupon"
+msgstr "Afrekenen Coupon"
+
+msgid "Place Order"
+msgstr "Bestelling Plaatsen"
+
+msgid "Order Notes"
+msgstr "Bestelnotities"
+
+msgid "Checkout Login"
+msgstr "Afrekenen Login"
+
+msgid "Multi-Step Checkout"
+msgstr "Meerstaps Afrekenen"
+
+msgid "Express Checkout"
+msgstr "Express Afrekenen"
+
+msgid "Account Navigation"
+msgstr "Accountnavigatie"
+
+msgid "Account Dashboard"
+msgstr "Account Dashboard"
+
+msgid "Orders"
+msgstr "Bestellingen"
+
+msgid "Addresses"
+msgstr "Adressen"
+
+msgid "Account Details"
+msgstr "Accountgegevens"
+
+msgid "Downloads"
+msgstr "Downloads"
+
+msgid "Logout"
+msgstr "Uitloggen"
+
+msgid "Account Login"
+msgstr "Account Login"
+
+msgid "Products Archive"
+msgstr "Producten Archief"
+
+msgid "Archive Title"
+msgstr "Archieftitel"
+
+msgid "Archive Description"
+msgstr "Archiefbeschrijving"
+
+msgid "Result Count"
+msgstr "Resultaattelling"
+
+msgid "Ordering"
+msgstr "Sortering"
+
+msgid "Pagination"
+msgstr "Paginering"
+
+msgid "Active Filters"
+msgstr "Actieve Filters"
+
+msgid "Price Filter"
+msgstr "Prijsfilter"
+
+msgid "Attribute Filter"
+msgstr "Attribuutfilter"
+
+msgid "Category Filter"
+msgstr "Categoriefilter"
+
+msgid "Advanced Filter"
+msgstr "Geavanceerd Filter"
+
+msgid "Header Cart"
+msgstr "Header Winkelwagen"
+
+msgid "Breadcrumbs"
+msgstr "Broodkruimels"
+
+msgid "Store Notice"
+msgstr "Winkelmelding"
+
+msgid "Recently Viewed"
+msgstr "Recent Bekeken"
+
+msgid "Product Comparison"
+msgstr "Productvergelijking"
+
+msgid "Wishlist"
+msgstr "Verlanglijst"
+
+msgid "Header Wishlist & Compare"
+msgstr "Header Verlanglijst & Vergelijk"
+
+msgid "Order Confirmation"
+msgstr "Bestelbevestiging"
+
+msgid "Order Details"
+msgstr "Bestelgegevens"
+
+msgid "Order Items"
+msgstr "Bestelartikelen"
+
+msgid "Customer Details"
+msgstr "Klantgegevens"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Templates"
+msgstr "Sjablonen"
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "Widgets"
+msgstr "Widgets"
+
+msgid "Pro Features"
+msgstr "Pro Functies"
+
+msgid "Single Product"
+msgstr "Enkel Product"
+
+msgid "Product Archive"
+msgstr "Product Archief"
+
+msgid "Cart"
+msgstr "Winkelwagen"
+
+msgid "Checkout"
+msgstr "Afrekenen"
+
+msgid "My Account"
+msgstr "Mijn Account"
+
+msgid "Thank You"
+msgstr "Bedankt"
+
+msgid "Add New Template"
+msgstr "Nieuw Sjabloon Toevoegen"
+
+msgid "Edit Template"
+msgstr "Sjabloon Bewerken"
+
+msgid "Template Type"
+msgstr "Sjabloontype"
+
+msgid "Display Conditions"
+msgstr "Weergavevoorwaarden"
+
+msgid "All Products"
+msgstr "Alle Producten"
+
+msgid "Specific Categories"
+msgstr "Specifieke Categorieën"
+
+msgid "Specific Products"
+msgstr "Specifieke Producten"
+
+msgid "Pro Feature"
+msgstr "Pro Functie"
+
+msgid "Upgrade to Pro"
+msgstr "Upgraden naar Pro"
+
+msgid "This feature is available in Magical Shop Builder Pro"
+msgstr "Deze functie is beschikbaar in Magical Shop Builder Pro"

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 /*
 * Doc Help link 
 *
@@ -9,7 +12,7 @@ trait mpdProHelpLink
 {
     public function link_pro_added()
     {
-        if (get_option('mgppro_is_active') == 'yes') {
+        if (get_option('mgppro_is_active') === 'yes') {
             return;
         }
 

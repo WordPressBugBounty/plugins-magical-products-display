@@ -1,21 +1,20 @@
-# Arabic translation for Magical Products Display
-# Copyright (C) 2025 Magical Products Display
-# This file is distributed under the same license as the Magical Products Display package.
+# Arabic translation for Magical Shop Builder
+# Copyright (C) 2026 Magical Shop Builder
+# This file is distributed under the same license as the Magical Shop Builder package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Magical products Display\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-29 06:12+0000\n"
-"PO-Revision-Date: 2025-07-29 12:00+0000\n"
-"Last-Translator: Magical Products Display Team\n"
+"Project-Id-Version: Magical Shop Builder 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wpthemespace.com/contact/\n"
+"POT-Creation-Date: 2026-02-15 00:00+0000\n"
+"PO-Revision-Date: 2026-02-15 12:00+0000\n"
+"Last-Translator: Magical Shop Builder Team\n"
 "Language-Team: Arabic\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.0; wp-6.8.2; php-8.3.16\n"
+"X-Generator: Magical Shop Builder\n"
 "X-Domain: magical-products-display"
 
 #: includes/widgets/accordion-widget.php:829
@@ -416,3 +415,281 @@ msgid ""
 "Customizable Elementor Widgets for Beautiful WooCommerce Product Displays."
 msgstr ""
 "عناصر Elementor قابلة للتخصيص لعروض منتجات WooCommerce الجميلة."
+
+#. Magical Shop Builder 2.0.0 - New Strings
+
+msgid "Magical Shop Builder"
+msgstr "Magical Shop Builder"
+
+msgid "Magical Single Product"
+msgstr "المنتج الفردي السحري"
+
+msgid "Magical Cart & Checkout"
+msgstr "سلة التسوق والدفع السحري"
+
+msgid "Magical My Account"
+msgstr "حسابي السحري"
+
+msgid "Magical Shop Archive"
+msgstr "أرشيف المتجر السحري"
+
+msgid "Magical Thank You"
+msgstr "صفحة الشكر السحرية"
+
+msgid "Magical Global"
+msgstr "العالمي السحري"
+
+msgid "This widget is available in the Pro version of Magical Shop Builder."
+msgstr "هذه الأداة متاحة في النسخة الاحترافية من Magical Shop Builder."
+
+msgid "This layout requires Magical Shop Builder Pro."
+msgstr "هذا التخطيط يتطلب Magical Shop Builder Pro."
+
+msgid "Product Title"
+msgstr "عنوان المنتج"
+
+msgid "Product Price"
+msgstr "سعر المنتج"
+
+msgid "Product Gallery"
+msgstr "معرض المنتج"
+
+msgid "Add to Cart"
+msgstr "أضف إلى السلة"
+
+msgid "Product Description"
+msgstr "وصف المنتج"
+
+msgid "Short Description"
+msgstr "وصف مختصر"
+
+msgid "Product Meta"
+msgstr "بيانات المنتج الوصفية"
+
+msgid "Product Rating"
+msgstr "تقييم المنتج"
+
+msgid "Product Reviews"
+msgstr "مراجعات المنتج"
+
+msgid "Product Tabs"
+msgstr "تبويبات المنتج"
+
+msgid "Related Products"
+msgstr "منتجات ذات صلة"
+
+msgid "Upsells"
+msgstr "منتجات مقترحة"
+
+msgid "Product Stock"
+msgstr "مخزون المنتج"
+
+msgid "Product Attributes"
+msgstr "سمات المنتج"
+
+msgid "Product Navigation"
+msgstr "تصفح المنتج"
+
+msgid "Action Buttons"
+msgstr "أزرار الإجراء"
+
+msgid "Cart Table"
+msgstr "جدول السلة"
+
+msgid "Cart Totals"
+msgstr "إجماليات السلة"
+
+msgid "Cross-Sells"
+msgstr "منتجات مكملة"
+
+msgid "Coupon Form"
+msgstr "نموذج القسيمة"
+
+msgid "Mini Cart"
+msgstr "سلة مصغرة"
+
+msgid "Empty Cart"
+msgstr "سلة فارغة"
+
+msgid "Billing Form"
+msgstr "نموذج الفواتير"
+
+msgid "Shipping Form"
+msgstr "نموذج الشحن"
+
+msgid "Order Review"
+msgstr "مراجعة الطلب"
+
+msgid "Payment Methods"
+msgstr "طرق الدفع"
+
+msgid "Checkout Coupon"
+msgstr "قسيمة الدفع"
+
+msgid "Place Order"
+msgstr "إتمام الطلب"
+
+msgid "Order Notes"
+msgstr "ملاحظات الطلب"
+
+msgid "Checkout Login"
+msgstr "تسجيل الدخول للدفع"
+
+msgid "Multi-Step Checkout"
+msgstr "الدفع متعدد الخطوات"
+
+msgid "Express Checkout"
+msgstr "الدفع السريع"
+
+msgid "Account Navigation"
+msgstr "تصفح الحساب"
+
+msgid "Account Dashboard"
+msgstr "لوحة تحكم الحساب"
+
+msgid "Orders"
+msgstr "الطلبات"
+
+msgid "Addresses"
+msgstr "العناوين"
+
+msgid "Account Details"
+msgstr "تفاصيل الحساب"
+
+msgid "Downloads"
+msgstr "التنزيلات"
+
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+msgid "Account Login"
+msgstr "تسجيل دخول الحساب"
+
+msgid "Products Archive"
+msgstr "أرشيف المنتجات"
+
+msgid "Archive Title"
+msgstr "عنوان الأرشيف"
+
+msgid "Archive Description"
+msgstr "وصف الأرشيف"
+
+msgid "Result Count"
+msgstr "عدد النتائج"
+
+msgid "Ordering"
+msgstr "الترتيب"
+
+msgid "Pagination"
+msgstr "التصفح"
+
+msgid "Active Filters"
+msgstr "الفلاتر النشطة"
+
+msgid "Price Filter"
+msgstr "فلتر السعر"
+
+msgid "Attribute Filter"
+msgstr "فلتر السمات"
+
+msgid "Category Filter"
+msgstr "فلتر التصنيف"
+
+msgid "Advanced Filter"
+msgstr "فلتر متقدم"
+
+msgid "Header Cart"
+msgstr "سلة الرأس"
+
+msgid "Breadcrumbs"
+msgstr "مسار التنقل"
+
+msgid "Store Notice"
+msgstr "إشعار المتجر"
+
+msgid "Recently Viewed"
+msgstr "شوهد مؤخراً"
+
+msgid "Product Comparison"
+msgstr "مقارنة المنتجات"
+
+msgid "Wishlist"
+msgstr "قائمة الأمنيات"
+
+msgid "Header Wishlist & Compare"
+msgstr "قائمة الأمنيات والمقارنة بالرأس"
+
+msgid "Order Confirmation"
+msgstr "تأكيد الطلب"
+
+msgid "Order Details"
+msgstr "تفاصيل الطلب"
+
+msgid "Order Items"
+msgstr "عناصر الطلب"
+
+msgid "Customer Details"
+msgstr "تفاصيل العميل"
+
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+msgid "Templates"
+msgstr "القوالب"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Widgets"
+msgstr "الأدوات"
+
+msgid "Pro Features"
+msgstr "ميزات النسخة الاحترافية"
+
+msgid "Single Product"
+msgstr "منتج فردي"
+
+msgid "Product Archive"
+msgstr "أرشيف المنتجات"
+
+msgid "Cart"
+msgstr "سلة التسوق"
+
+msgid "Checkout"
+msgstr "الدفع"
+
+msgid "My Account"
+msgstr "حسابي"
+
+msgid "Thank You"
+msgstr "شكراً لك"
+
+msgid "Add New Template"
+msgstr "إضافة قالب جديد"
+
+msgid "Edit Template"
+msgstr "تحرير القالب"
+
+msgid "Template Type"
+msgstr "نوع القالب"
+
+msgid "Display Conditions"
+msgstr "شروط العرض"
+
+msgid "All Products"
+msgstr "جميع المنتجات"
+
+msgid "Specific Categories"
+msgstr "تصنيفات محددة"
+
+msgid "Specific Products"
+msgstr "منتجات محددة"
+
+msgid "Pro Feature"
+msgstr "ميزة احترافية"
+
+msgid "Upgrade to Pro"
+msgstr "ترقية إلى النسخة الاحترافية"
+
+msgid "This feature is available in Magical Shop Builder Pro"
+msgstr "هذه الميزة متاحة في Magical Shop Builder Pro"

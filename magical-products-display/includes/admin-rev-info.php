@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 /*
 * Magical products display info
 *
@@ -9,6 +12,7 @@
  * Rev notice text
  *
  */
+if ( ! function_exists( 'mpd_display_rev_want' ) ) {
 function mpd_display_rev_want()
 {
 
@@ -18,7 +22,7 @@ function mpd_display_rev_want()
             <div class="mge-info-hello">
                 <?php
                 $current_user = wp_get_current_user();
-                $rev_link = 'https://wordpress.org/support/plugin/wp-edit-password-protected/reviews/?filter=5';
+                $rev_link = 'https://wordpress.org/support/plugin/magical-products-display/reviews/?filter=5';
 
                 esc_html_e('Hello, ', 'magical-products-display');
                 echo esc_html($current_user->display_name);
@@ -27,8 +31,8 @@ function mpd_display_rev_want()
                 <?php esc_html_e('👋🏻', 'magical-products-display'); ?>
             </div>
             <div class="mge-info-desc">
-                <div><?php echo esc_html('We hope you are enjoying using Magical Products Display plugin for your WordPress website. If you find this plugin helpful, please consider leaving a review on our plugin page. Your review will help us improve our plugin and serve you better.', 'magical-products-display'); ?></div>
-                <div class="mge-offer"><?php echo esc_html('Your Good feedback is valuable to us, and it helps us improve the plugin.', 'magical-products-display'); ?></div>
+                <div><?php echo esc_html__('We hope you are enjoying using Magical Products Display plugin for your WordPress website. If you find this plugin helpful, please consider leaving a review on our plugin page. Your review will help us improve our plugin and serve you better.', 'magical-products-display'); ?></div>
+                <div class="mge-offer"><?php echo esc_html__('Your Good feedback is valuable to us, and it helps us improve the plugin.', 'magical-products-display'); ?></div>
             </div>
             <div class="mge-info-actions">
                 <a href="<?php echo esc_url($rev_link); ?>" target="_blank" class="button button-primary upgrade-btn">
@@ -43,15 +47,16 @@ function mpd_display_rev_want()
     </div>
 <?php
 }
+}
 
 
 //Admin notice 
+if ( ! function_exists( 'mpd_display_new_optins_texts' ) ) {
 function mpd_display_new_optins_texts()
 {
     $hide_date = get_option('mpd_revhide_date');
     $mpd_install_date = get_option('mpd_install_date');
 
-    global $pagenow;
     if (get_option('mpd_rev_added')) {
         return;
     }
@@ -61,7 +66,6 @@ function mpd_display_new_optins_texts()
             return;
         }
     }
-    $mpd_install_date = get_option('mpd_install_date');
     if (!empty($mpd_install_date)) {
         $mpd_install_date = round((time() - strtotime($mpd_install_date)) / 24 / 60 / 60);
         if ($mpd_install_date < 3) {
@@ -79,7 +83,9 @@ function mpd_display_new_optins_texts()
 
 }
 add_action('admin_notices', 'mpd_display_new_optins_texts');
+}
 
+if ( ! function_exists( 'mpd_display_new_optins_texts_init' ) ) {
 function mpd_display_new_optins_texts_init()
 {
     // Properly sanitize $_GET parameters and verify user permissions
@@ -101,3 +107,4 @@ function mpd_display_new_optins_texts_init()
     }
 }
 add_action('init', 'mpd_display_new_optins_texts_init');
+}

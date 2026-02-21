@@ -1,21 +1,20 @@
-# Japanese translation for Magical Products Display
-# Copyright (C) 2025 Magical Products Display
-# This file is distributed under the same license as the Magical Products Display package.
+# Japanese translation for Magical Shop Builder
+# Copyright (C) 2026 Magical Shop Builder
+# This file is distributed under the same license as the Magical Shop Builder package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Magical products Display\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-29 06:12+0000\n"
-"PO-Revision-Date: 2025-07-29 12:00+0000\n"
-"Last-Translator: Magical Products Display Team\n"
+"Project-Id-Version: Magical Shop Builder 2.0.0\n"
+"Report-Msgid-Bugs-To: https://wpthemespace.com/contact/\n"
+"POT-Creation-Date: 2026-02-15 00:00+0000\n"
+"PO-Revision-Date: 2026-02-15 12:00+0000\n"
+"Last-Translator: Magical Shop Builder Team\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.8.0; wp-6.8.2; php-8.3.16\n"
+"X-Generator: Magical Shop Builder\n"
 "X-Domain: magical-products-display"
 
 #: includes/widgets/accordion-widget.php:829
@@ -253,3 +252,281 @@ msgid ""
 "Customizable Elementor Widgets for Beautiful WooCommerce Product Displays."
 msgstr ""
 "美しいWooCommerce商品表示のためのカスタマイズ可能なElementorウィジェット。"
+
+#. Magical Shop Builder 2.0.0 - New Strings
+
+msgid "Magical Shop Builder"
+msgstr "Magical Shop Builder"
+
+msgid "Magical Single Product"
+msgstr "マジカル単一商品"
+
+msgid "Magical Cart & Checkout"
+msgstr "マジカルカート＆決済"
+
+msgid "Magical My Account"
+msgstr "マジカルマイアカウント"
+
+msgid "Magical Shop Archive"
+msgstr "マジカルショップアーカイブ"
+
+msgid "Magical Thank You"
+msgstr "マジカルありがとう"
+
+msgid "Magical Global"
+msgstr "マジカルグローバル"
+
+msgid "This widget is available in the Pro version of Magical Shop Builder."
+msgstr "このウィジェットはMagical Shop Builder Proバージョンで利用できます。"
+
+msgid "This layout requires Magical Shop Builder Pro."
+msgstr "このレイアウトにはMagical Shop Builder Proが必要です。"
+
+msgid "Product Title"
+msgstr "商品タイトル"
+
+msgid "Product Price"
+msgstr "商品価格"
+
+msgid "Product Gallery"
+msgstr "商品ギャラリー"
+
+msgid "Add to Cart"
+msgstr "カートに追加"
+
+msgid "Product Description"
+msgstr "商品説明"
+
+msgid "Short Description"
+msgstr "簡単な説明"
+
+msgid "Product Meta"
+msgstr "商品メタ"
+
+msgid "Product Rating"
+msgstr "商品評価"
+
+msgid "Product Reviews"
+msgstr "商品レビュー"
+
+msgid "Product Tabs"
+msgstr "商品タブ"
+
+msgid "Related Products"
+msgstr "関連商品"
+
+msgid "Upsells"
+msgstr "アップセル"
+
+msgid "Product Stock"
+msgstr "商品在庫"
+
+msgid "Product Attributes"
+msgstr "商品属性"
+
+msgid "Product Navigation"
+msgstr "商品ナビゲーション"
+
+msgid "Action Buttons"
+msgstr "アクションボタン"
+
+msgid "Cart Table"
+msgstr "カートテーブル"
+
+msgid "Cart Totals"
+msgstr "カート合計"
+
+msgid "Cross-Sells"
+msgstr "クロスセル"
+
+msgid "Coupon Form"
+msgstr "クーポンフォーム"
+
+msgid "Mini Cart"
+msgstr "ミニカート"
+
+msgid "Empty Cart"
+msgstr "空のカート"
+
+msgid "Billing Form"
+msgstr "請求フォーム"
+
+msgid "Shipping Form"
+msgstr "配送フォーム"
+
+msgid "Order Review"
+msgstr "注文確認"
+
+msgid "Payment Methods"
+msgstr "支払い方法"
+
+msgid "Checkout Coupon"
+msgstr "決済クーポン"
+
+msgid "Place Order"
+msgstr "注文する"
+
+msgid "Order Notes"
+msgstr "注文メモ"
+
+msgid "Checkout Login"
+msgstr "決済ログイン"
+
+msgid "Multi-Step Checkout"
+msgstr "マルチステップ決済"
+
+msgid "Express Checkout"
+msgstr "エクスプレス決済"
+
+msgid "Account Navigation"
+msgstr "アカウントナビゲーション"
+
+msgid "Account Dashboard"
+msgstr "アカウントダッシュボード"
+
+msgid "Orders"
+msgstr "注文"
+
+msgid "Addresses"
+msgstr "住所"
+
+msgid "Account Details"
+msgstr "アカウント詳細"
+
+msgid "Downloads"
+msgstr "ダウンロード"
+
+msgid "Logout"
+msgstr "ログアウト"
+
+msgid "Account Login"
+msgstr "アカウントログイン"
+
+msgid "Products Archive"
+msgstr "商品アーカイブ"
+
+msgid "Archive Title"
+msgstr "アーカイブタイトル"
+
+msgid "Archive Description"
+msgstr "アーカイブ説明"
+
+msgid "Result Count"
+msgstr "結果数"
+
+msgid "Ordering"
+msgstr "並べ替え"
+
+msgid "Pagination"
+msgstr "ページネーション"
+
+msgid "Active Filters"
+msgstr "アクティブフィルター"
+
+msgid "Price Filter"
+msgstr "価格フィルター"
+
+msgid "Attribute Filter"
+msgstr "属性フィルター"
+
+msgid "Category Filter"
+msgstr "カテゴリーフィルター"
+
+msgid "Advanced Filter"
+msgstr "詳細フィルター"
+
+msgid "Header Cart"
+msgstr "ヘッダーカート"
+
+msgid "Breadcrumbs"
+msgstr "パンくずリスト"
+
+msgid "Store Notice"
+msgstr "ストアノーティス"
+
+msgid "Recently Viewed"
+msgstr "最近見た商品"
+
+msgid "Product Comparison"
+msgstr "商品比較"
+
+msgid "Wishlist"
+msgstr "ウィッシュリスト"
+
+msgid "Header Wishlist & Compare"
+msgstr "ヘッダーウィッシュリスト＆比較"
+
+msgid "Order Confirmation"
+msgstr "注文確認"
+
+msgid "Order Details"
+msgstr "注文詳細"
+
+msgid "Order Items"
+msgstr "注文商品"
+
+msgid "Customer Details"
+msgstr "顧客詳細"
+
+msgid "Dashboard"
+msgstr "ダッシュボード"
+
+msgid "Templates"
+msgstr "テンプレート"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Widgets"
+msgstr "ウィジェット"
+
+msgid "Pro Features"
+msgstr "Pro機能"
+
+msgid "Single Product"
+msgstr "単一商品"
+
+msgid "Product Archive"
+msgstr "商品アーカイブ"
+
+msgid "Cart"
+msgstr "カート"
+
+msgid "Checkout"
+msgstr "決済"
+
+msgid "My Account"
+msgstr "マイアカウント"
+
+msgid "Thank You"
+msgstr "ありがとうございます"
+
+msgid "Add New Template"
+msgstr "新しいテンプレートを追加"
+
+msgid "Edit Template"
+msgstr "テンプレートを編集"
+
+msgid "Template Type"
+msgstr "テンプレートタイプ"
+
+msgid "Display Conditions"
+msgstr "表示条件"
+
+msgid "All Products"
+msgstr "すべての商品"
+
+msgid "Specific Categories"
+msgstr "特定のカテゴリー"
+
+msgid "Specific Products"
+msgstr "特定の商品"
+
+msgid "Pro Feature"
+msgstr "Pro機能"
+
+msgid "Upgrade to Pro"
+msgstr "Proにアップグレード"
+
+msgid "This feature is available in Magical Shop Builder Pro"
+msgstr "この機能はMagical Shop Builder Proで利用できます"

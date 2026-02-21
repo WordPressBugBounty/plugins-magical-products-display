@@ -1,0 +1,2384 @@
+/**
+ * Magical Shop Builder - My Account Widgets Styles
+ *
+ * Styles for My Account page widgets including Account Navigation,
+ * Dashboard, Orders, Downloads, Addresses, Account Details, and Logout.
+ *
+ * @package Magical_Shop_Builder
+ * @since   2.0.0
+ */
+
+/* ==========================================================================
+   Account Navigation Widget
+   ========================================================================== */
+
+.mpd-account-nav {
+	margin: 0;
+	padding: 0;
+}
+
+.mpd-account-nav__list {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+/* Vertical Layout (default) */
+.mpd-account-nav--vertical .mpd-account-nav__list {
+	flex-direction: column;
+}
+
+/* Horizontal Layout */
+.mpd-account-nav--horizontal .mpd-account-nav__list {
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.mpd-account-nav__item {
+	margin: 0;
+	padding: 0;
+}
+
+.mpd-account-nav__link {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 16px;
+	color: #333;
+	text-decoration: none;
+	background-color: #f8f9fa;
+	border-radius: 4px;
+	transition: all 0.3s ease;
+}
+
+.mpd-account-nav__link:hover {
+	color: #0073aa;
+	background-color: #e9ecef;
+}
+
+.mpd-account-nav__item--active .mpd-account-nav__link {
+	color: #fff;
+	background-color: #0073aa;
+}
+
+.mpd-account-nav__icon {
+	display: inline-flex;
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+}
+
+.mpd-account-nav__icon svg {
+	width: 100%;
+	height: 100%;
+}
+
+.mpd-account-nav__text {
+	flex: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Account Navigation - Pro Features
+   -------------------------------------------------------------------------- */
+
+/* Sticky Navigation - Base (stores original position) */
+.mpd-account-nav--sticky {
+	transition: none;
+}
+
+/* Sticky Navigation - Fixed when scrolled */
+.mpd-account-nav--sticky.mpd-account-nav--fixed {
+	position: fixed;
+	top: var(--mpd-sticky-offset, 20px);
+	z-index: var(--mpd-sticky-zindex, 100);
+	width: var(--mpd-sticky-width, auto);
+	max-width: 100%;
+	background-color: inherit;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	animation: mpdStickySlideIn 0.3s ease;
+}
+
+/* Placeholder to prevent layout jump */
+.mpd-account-nav-placeholder {
+	display: none;
+}
+
+.mpd-account-nav-placeholder.mpd-placeholder-active {
+	display: block;
+}
+
+@keyframes mpdStickySlideIn {
+	from {
+		transform: translateY(-20px);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+/* User Avatar Section */
+.mpd-account-nav__avatar-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 20px;
+	padding: 20px;
+	text-align: center;
+	background-color: #f8f9fa;
+	border-radius: 8px;
+}
+
+.mpd-account-nav__avatar img {
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.mpd-account-nav__user-info {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.mpd-account-nav__username {
+	font-size: 16px;
+	font-weight: 600;
+	color: #333;
+}
+
+.mpd-account-nav__email {
+	font-size: 13px;
+	color: #666;
+}
+
+/* Order Badge */
+.mpd-account-nav__badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 20px;
+	height: 20px;
+	padding: 0 6px;
+	margin-left: auto;
+	font-size: 11px;
+	font-weight: 600;
+	color: #fff;
+	background-color: #e74c3c;
+	border-radius: 10px;
+}
+
+/* Dividers */
+.mpd-account-nav--dividers .mpd-account-nav__item {
+	position: relative;
+}
+
+.mpd-account-nav--dividers.mpd-account-nav--vertical .mpd-account-nav__item:not(:last-child)::after {
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	left: 16px;
+	right: 16px;
+	height: 1px;
+	background-color: #e0e0e0;
+}
+
+.mpd-account-nav--dividers.mpd-account-nav--horizontal .mpd-account-nav__item:not(:last-child)::after {
+	content: '';
+	position: absolute;
+	top: 25%;
+	right: -5px;
+	width: 1px;
+	height: 50%;
+	background-color: #e0e0e0;
+}
+
+/* Active Indicator - Bar Left */
+.mpd-account-nav--indicator-bar-left .mpd-account-nav__item {
+	position: relative;
+}
+
+.mpd-account-nav--indicator-bar-left .mpd-account-nav__item--active .mpd-account-nav__indicator {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 4px;
+	height: 60%;
+	background-color: #0073aa;
+	border-radius: 0 2px 2px 0;
+}
+
+/* Active Indicator - Bar Right */
+.mpd-account-nav--indicator-bar-right .mpd-account-nav__item {
+	position: relative;
+}
+
+.mpd-account-nav--indicator-bar-right .mpd-account-nav__item--active .mpd-account-nav__indicator {
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 4px;
+	height: 60%;
+	background-color: #0073aa;
+	border-radius: 2px 0 0 2px;
+}
+
+/* Active Indicator - Underline */
+.mpd-account-nav--indicator-underline .mpd-account-nav__item {
+	position: relative;
+}
+
+.mpd-account-nav--indicator-underline .mpd-account-nav__item--active .mpd-account-nav__indicator {
+	position: absolute;
+	bottom: 0;
+	left: 16px;
+	right: 16px;
+	height: 3px;
+	background-color: #0073aa;
+}
+
+/* Active Indicator - Dot */
+.mpd-account-nav--indicator-dot .mpd-account-nav__item {
+	position: relative;
+}
+
+.mpd-account-nav--indicator-dot .mpd-account-nav__item--active .mpd-account-nav__indicator {
+	position: absolute;
+	left: 8px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 6px;
+	height: 6px;
+	background-color: #0073aa;
+	border-radius: 50%;
+}
+
+/* Active Indicator - Arrow */
+.mpd-account-nav--indicator-arrow .mpd-account-nav__item--active .mpd-account-nav__link::after {
+	content: '';
+	position: absolute;
+	right: -8px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 0;
+	height: 0;
+	border-top: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	border-left: 8px solid #0073aa;
+}
+
+.mpd-account-nav--indicator-arrow .mpd-account-nav__link {
+	position: relative;
+}
+
+/* Horizontal Layout with Avatar */
+.mpd-account-nav--horizontal .mpd-account-nav__avatar-section {
+	flex-direction: row;
+	margin-bottom: 15px;
+	padding: 15px 20px;
+}
+
+/* Avatar Section Alignment */
+.mpd-account-nav__avatar-section--left {
+	align-items: flex-start;
+	text-align: left;
+}
+
+.mpd-account-nav__avatar-section--center {
+	align-items: center;
+	text-align: center;
+}
+
+.mpd-account-nav__avatar-section--right {
+	align-items: flex-end;
+	text-align: right;
+}
+
+.mpd-account-nav--horizontal .mpd-account-nav__avatar-section--left {
+	justify-content: flex-start;
+}
+
+.mpd-account-nav--horizontal .mpd-account-nav__avatar-section--center {
+	justify-content: center;
+}
+
+.mpd-account-nav--horizontal .mpd-account-nav__avatar-section--right {
+	justify-content: flex-end;
+}
+
+/* ==========================================================================
+   Account Dashboard Widget
+   ========================================================================== */
+
+.mpd-account-dashboard {
+	padding: 0;
+}
+
+.mpd-account-dashboard__title {
+	margin: 0 0 20px;
+	font-size: 24px;
+	font-weight: 600;
+	color: #333;
+}
+
+.mpd-account-dashboard__welcome {
+	margin-bottom: 30px;
+}
+
+.mpd-account-dashboard__welcome-text {
+	font-size: 16px;
+	line-height: 1.6;
+	color: #666;
+}
+
+.mpd-account-dashboard__welcome-text strong {
+	color: #333;
+}
+
+/* Quick Links */
+.mpd-account-dashboard__quick-links {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 15px;
+	margin-bottom: 30px;
+}
+
+.mpd-account-dashboard__quick-link {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 15px 20px;
+	color: #333;
+	text-decoration: none;
+	background-color: #f8f9fa;
+	border: 1px solid #e9ecef;
+	border-radius: 8px;
+	transition: all 0.3s ease;
+}
+
+.mpd-account-dashboard__quick-link:hover {
+	color: #0073aa;
+	background-color: #fff;
+	border-color: #0073aa;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.mpd-account-dashboard__quick-link-icon {
+	display: inline-flex;
+	width: 24px;
+	height: 24px;
+	color: #0073aa;
+}
+
+.mpd-account-dashboard__quick-link-icon svg {
+	width: 100%;
+	height: 100%;
+}
+
+/* Stats Section */
+.mpd-account-dashboard__stats {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 20px;
+	margin-bottom: 30px;
+}
+
+.mpd-account-dashboard__stat {
+	padding: 20px;
+	text-align: center;
+	background-color: #f8f9fa;
+	border-radius: 8px;
+}
+
+.mpd-account-dashboard__stat-value {
+	display: block;
+	font-size: 28px;
+	font-weight: 700;
+	color: #0073aa;
+	line-height: 1.2;
+}
+
+.mpd-account-dashboard__stat-label {
+	display: block;
+	margin-top: 5px;
+	font-size: 13px;
+	color: #666;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+/* Recent Orders */
+.mpd-account-dashboard__recent-orders {
+	margin-top: 30px;
+}
+
+.mpd-account-dashboard__section-title {
+	margin: 0 0 15px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #333;
+}
+
+.mpd-account-dashboard__orders-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.mpd-account-dashboard__orders-table th,
+.mpd-account-dashboard__orders-table td {
+	padding: 12px 15px;
+	text-align: left;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.mpd-account-dashboard__orders-table th {
+	font-weight: 600;
+	color: #333;
+	background-color: #f8f9fa;
+}
+
+.mpd-account-dashboard__orders-table tbody tr:hover {
+	background-color: #f8f9fa;
+}
+
+.mpd-account-dashboard__order-link {
+	color: #0073aa;
+	text-decoration: none;
+}
+
+.mpd-account-dashboard__order-link:hover {
+	text-decoration: underline;
+}
+
+.mpd-account-dashboard__view-all {
+	display: inline-block;
+	margin-top: 15px;
+	color: #0073aa;
+	text-decoration: none;
+}
+
+.mpd-account-dashboard__view-all:hover {
+	text-decoration: underline;
+}
+
+/* ==========================================================================
+   Orders Widget
+   ========================================================================== */
+
+.mpd-orders {
+	padding: 0;
+}
+
+.mpd-orders__title {
+	margin: 0 0 20px;
+	font-size: 24px;
+	font-weight: 600;
+	color: #333;
+}
+
+/* Orders Filters */
+.mpd-orders__filters {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	gap: 15px;
+	margin-bottom: 20px;
+	padding: 15px;
+	background-color: #f8f9fa;
+	border-radius: 8px;
+}
+
+.mpd-orders__search,
+.mpd-orders__status-filter {
+	flex: 1;
+	min-width: 180px;
+}
+
+.mpd-orders__date-filter {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	flex: 2;
+	min-width: 280px;
+}
+
+.mpd-orders__filters input,
+.mpd-orders__filters select {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+	background-color: #fff;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mpd-orders__filters input:focus,
+.mpd-orders__filters select:focus {
+	outline: none;
+	border-color: #0073aa;
+	box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.1);
+}
+
+.mpd-orders__filters input[type="date"] {
+	flex: 1;
+	min-width: 130px;
+}
+
+.mpd-orders__filters input::placeholder {
+	color: #999;
+}
+
+.mpd-orders__date-filter::before {
+	content: none;
+}
+
+/* Filter Group Legacy Support */
+.mpd-orders__filter-group {
+	flex: 1;
+	min-width: 200px;
+}
+
+.mpd-orders__filter-group label {
+	display: block;
+	margin-bottom: 5px;
+	font-size: 13px;
+	font-weight: 500;
+	color: #666;
+}
+
+.mpd-orders__filter-group input,
+.mpd-orders__filter-group select {
+	width: 100%;
+	padding: 8px 12px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.mpd-orders__filter-group input:focus,
+.mpd-orders__filter-group select:focus {
+	outline: none;
+	border-color: #0073aa;
+	box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.1);
+}
+
+/* Orders Table */
+.mpd-orders__table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #fff;
+}
+
+.mpd-orders__table th,
+.mpd-orders__table td {
+	padding: 15px;
+	text-align: left;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.mpd-orders__table th {
+	font-weight: 600;
+	color: #333;
+	background-color: #f8f9fa;
+}
+
+.mpd-orders__table tbody tr:hover {
+	background-color: #f8f9fa;
+}
+
+.mpd-orders__order-number a {
+	color: #0073aa;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.mpd-orders__order-number a:hover {
+	text-decoration: underline;
+}
+
+.mpd-orders__status {
+	display: inline-block;
+	padding: 4px 10px;
+	font-size: 12px;
+	font-weight: 500;
+	border-radius: 4px;
+	text-transform: capitalize;
+}
+
+.mpd-orders__status--processing {
+	color: #0073aa;
+	background-color: #e5f3ff;
+}
+
+.mpd-orders__status--completed {
+	color: #2e7d32;
+	background-color: #e8f5e9;
+}
+
+.mpd-orders__status--on-hold {
+	color: #ed6c02;
+	background-color: #fff3e0;
+}
+
+.mpd-orders__status--cancelled,
+.mpd-orders__status--failed,
+.mpd-orders__status--refunded {
+	color: #d32f2f;
+	background-color: #ffebee;
+}
+
+.mpd-orders__status--pending {
+	color: #666;
+	background-color: #f5f5f5;
+}
+
+/* MPD Order Status (shared class for dashboard and orders) */
+.mpd-order-status {
+	display: inline-block;
+	padding: 4px 10px;
+	font-size: 12px;
+	font-weight: 500;
+	border-radius: 4px;
+	text-transform: capitalize;
+}
+
+.mpd-order-status--processing {
+	color: #0073aa;
+	background-color: #e5f3ff;
+}
+
+.mpd-order-status--completed {
+	color: #2e7d32;
+	background-color: #e8f5e9;
+}
+
+.mpd-order-status--on-hold {
+	color: #ed6c02;
+	background-color: #fff3e0;
+}
+
+.mpd-order-status--cancelled,
+.mpd-order-status--failed,
+.mpd-order-status--refunded {
+	color: #d32f2f;
+	background-color: #ffebee;
+}
+
+.mpd-order-status--pending {
+	color: #666;
+	background-color: #f5f5f5;
+}
+
+.mpd-orders__view-button {
+	display: inline-block;
+	padding: 6px 12px;
+	color: #0073aa;
+	font-size: 13px;
+	text-decoration: none;
+	background-color: transparent;
+	border: 1px solid #0073aa;
+	border-radius: 4px;
+	transition: all 0.3s ease;
+}
+
+.mpd-orders__view-button:hover {
+	color: #fff;
+	background-color: #0073aa;
+}
+
+/* Orders Pagination */
+.mpd-orders__pagination {
+	display: flex;
+	justify-content: center;
+	gap: 5px;
+	margin-top: 20px;
+}
+
+.mpd-orders__page-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 36px;
+	height: 36px;
+	padding: 0 10px;
+	color: #333;
+	text-decoration: none;
+	background-color: #f8f9fa;
+	border: 1px solid #e9ecef;
+	border-radius: 4px;
+	transition: all 0.3s ease;
+}
+
+.mpd-orders__page-link:hover {
+	color: #0073aa;
+	border-color: #0073aa;
+}
+
+.mpd-orders__page-link--current {
+	color: #fff;
+	background-color: #0073aa;
+	border-color: #0073aa;
+}
+
+/* Empty State */
+.mpd-orders__empty {
+	padding: 40px 20px;
+	text-align: center;
+}
+
+.mpd-orders__empty-icon {
+	font-size: 48px;
+	color: #ddd;
+	margin-bottom: 15px;
+}
+
+.mpd-orders__empty-message {
+	margin: 0 0 20px;
+	font-size: 16px;
+	color: #666;
+}
+
+.mpd-orders__shop-button {
+	display: inline-block;
+	padding: 12px 24px;
+	color: #fff;
+	text-decoration: none;
+	background-color: #0073aa;
+	border-radius: 4px;
+	transition: background-color 0.3s ease;
+}
+
+.mpd-orders__shop-button:hover {
+	color: #fff;
+	background-color: #005a87;
+}
+
+/* ==========================================================================
+   Downloads Widget
+   ========================================================================== */
+
+.mpd-downloads {
+	padding: 0;
+}
+
+.mpd-downloads__title {
+	margin: 0 0 20px;
+	font-size: 24px;
+	font-weight: 600;
+	color: #333;
+}
+
+.mpd-downloads__table {
+	width: 100%;
+	border-collapse: collapse;
+	background-color: #fff;
+}
+
+.mpd-downloads__table th,
+.mpd-downloads__table td {
+	padding: 15px;
+	text-align: left;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.mpd-downloads__table th {
+	font-weight: 600;
+	color: #333;
+	background-color: #f8f9fa;
+}
+
+.mpd-downloads__table tbody tr:hover {
+	background-color: #f8f9fa;
+}
+
+.mpd-downloads__table a {
+	color: #0073aa;
+	text-decoration: none;
+}
+
+.mpd-downloads__table a:hover {
+	text-decoration: underline;
+}
+
+.mpd-downloads__unlimited,
+.mpd-downloads__never-expires {
+	color: #2e7d32;
+	font-weight: 500;
+}
+
+.mpd-downloads__expired {
+	color: #d32f2f;
+}
+
+.mpd-downloads__button {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 16px;
+	color: #fff;
+	text-decoration: none;
+	background-color: #0073aa;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.mpd-downloads__button:hover {
+	color: #fff;
+	background-color: #005a87;
+}
+
+/* Downloads Empty State */
+.mpd-downloads__empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 60px 20px;
+	text-align: center;
+	background-color: #f8f9fa;
+	border-radius: 8px;
+	border: 1px dashed #ddd;
+}
+
+.mpd-downloads__empty-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 80px;
+	height: 80px;
+	margin-bottom: 20px;
+	color: #999;
+	background-color: #fff;
+	border-radius: 50%;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.mpd-downloads__empty-icon svg {
+	width: 40px;
+	height: 40px;
+}
+
+.mpd-downloads__empty-message {
+	margin: 0 0 24px;
+	font-size: 16px;
+	color: #666;
+	max-width: 300px;
+}
+
+.mpd-downloads__shop-button {
+	display: inline-block;
+	padding: 12px 24px;
+	color: #fff;
+	text-decoration: none;
+	background-color: #0073aa;
+	border-radius: 4px;
+	transition: background-color 0.3s ease;
+}
+
+.mpd-downloads__shop-button:hover {
+	color: #fff;
+	background-color: #005a87;
+}
+
+/* ==========================================================================
+   Addresses Widget
+   ========================================================================== */
+
+.mpd-addresses {
+	padding: 0;
+}
+
+.mpd-addresses__title {
+	margin: 0 0 20px;
+	font-size: 24px;
+	font-weight: 600;
+	color: #333;
+}
+
+.mpd-addresses__container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 30px;
+}
+
+/* Side by Side Layout (default) */
+.mpd-addresses--side-by-side .mpd-addresses__container {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+/* Stacked Layout */
+.mpd-addresses--stacked .mpd-addresses__container {
+	grid-template-columns: 1fr;
+}
+
+@media (max-width: 768px) {
+	.mpd-addresses__container {
+		grid-template-columns: 1fr;
+	}
+}
+
+.mpd-addresses__card {
+	padding: 25px;
+	background-color: #f8f9fa;
+	border: 1px solid #e9ecef;
+	border-radius: 8px;
+}
+
+.mpd-addresses__card-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.mpd-addresses__card-title {
+	margin: 0;
+	font-size: 18px;
+	font-weight: 600;
+	color: #333;
+}
+
+.mpd-addresses__edit-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	color: #0073aa;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.mpd-addresses__edit-link:hover {
+	text-decoration: underline;
+}
+
+.mpd-addresses__content address {
+	font-style: normal;
+	line-height: 1.8;
+	color: #666;
+}
+
+.mpd-addresses__content address strong {
+	color: #333;
+}
+
+.mpd-addresses__empty {
+	color: #999;
+	font-style: italic;
+}
+
+/* Address Edit Form */
+.mpd-addresses--edit-form {
+	max-width: 600px;
+}
+
+/* Address Notice Styles */
+.mpd-addresses .woocommerce-message,
+.mpd-addresses .woocommerce-error,
+.mpd-addresses .woocommerce-info {
+	padding: 15px 20px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	border-width: 1px;
+	border-style: solid;
+	list-style: none;
+}
+
+.mpd-addresses .woocommerce-message {
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+
+.mpd-addresses .woocommerce-message::before {
+	display: none;
+}
+
+.mpd-addresses .woocommerce-error {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.mpd-addresses .woocommerce-error li {
+	list-style: none;
+	margin: 0;
+	padding: 0 0 0 30px !important;
+}
+
+.mpd-addresses .woocommerce-info {
+	color: #0c5460;
+	background-color: #d1ecf1;
+	border-color: #bee5eb;
+}
+
+.mpd-addresses .woocommerce-info::before {
+	display: none;
+}
+
+.mpd-addresses__form-title {
+	margin: 0 0 25px 0;
+	font-size: 22px;
+	font-weight: 600;
+	color: #333;
+}
+
+.mpd-addresses__form .woocommerce-address-fields__field-wrapper {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+}
+
+.mpd-addresses__form .form-row {
+	margin: 0;
+}
+
+.mpd-addresses__form .form-row-wide {
+	grid-column: 1 / -1;
+}
+
+.mpd-addresses__form .form-row-first {
+	grid-column: 1;
+}
+
+.mpd-addresses__form .form-row-last {
+	grid-column: 2;
+}
+
+.mpd-addresses__form label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+}
+
+.mpd-addresses__form label .required {
+	color: #e74c3c;
+}
+
+.mpd-addresses__form input[type="text"],
+.mpd-addresses__form input[type="email"],
+.mpd-addresses__form input[type="tel"],
+.mpd-addresses__form select,
+.mpd-addresses__form textarea {
+	width: 100%;
+	padding: 12px 15px;
+	font-size: 14px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	background-color: #fff;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mpd-addresses__form input:focus,
+.mpd-addresses__form select:focus,
+.mpd-addresses__form textarea:focus {
+	outline: none;
+	border-color: #0073aa;
+	box-shadow: 0 0 0 3px rgba(0, 115, 170, 0.1);
+}
+
+.mpd-addresses__form-buttons {
+	display: flex;
+	gap: 15px;
+	margin-top: 30px;
+	padding-top: 20px;
+	border-top: 1px solid #e9ecef;
+}
+
+.mpd-addresses__save-button {
+	padding: 12px 30px;
+	font-size: 15px;
+	font-weight: 500;
+	color: #fff;
+	background-color: #0073aa;
+	border: none;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.mpd-addresses__save-button:hover {
+	color: #fff;
+	background-color: #005a87;
+}
+
+.mpd-addresses__cancel-button {
+	padding: 12px 25px;
+	font-size: 15px;
+	font-weight: 500;
+	color: #666;
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+	text-decoration: none;
+	transition: all 0.2s ease;
+}
+
+.mpd-addresses__cancel-button:hover {
+	color: #333;
+	background-color: #e9ecef;
+	border-color: #ccc;
+}
+
+/* Select2 overrides for address form */
+.mpd-addresses__form .select2-container {
+	width: 100% !important;
+}
+
+.mpd-addresses__form .select2-container--default .select2-selection--single {
+	height: auto;
+	padding: 8px 12px;
+	border: 1px solid #ddd;
+	border-radius: 6px;
+}
+
+.mpd-addresses__form .select2-container--default .select2-selection--single .select2-selection__rendered {
+	line-height: 1.5;
+	padding-left: 0;
+}
+
+.mpd-addresses__form .select2-container--default .select2-selection--single .select2-selection__arrow {
+	height: 100%;
+}
+
+@media (max-width: 576px) {
+	.mpd-addresses__form .woocommerce-address-fields__field-wrapper {
+		grid-template-columns: 1fr;
+	}
+
+	.mpd-addresses__form .form-row-first,
+	.mpd-addresses__form .form-row-last {
+		grid-column: 1;
+	}
+
+	.mpd-addresses__form-buttons {
+		flex-direction: column;
+	}
+}
+
+/* ==========================================================================
+   Account Details Widget
+   ========================================================================== */
+
+.mpd-account-details {
+	padding: 0;
+}
+
+.mpd-account-details__title {
+	margin: 0 0 20px;
+	font-size: 24px;
+	font-weight: 600;
+	color: #333;
+}
+
+/* WooCommerce Native Form Styling */
+.mpd-account-details .woocommerce-EditAccountForm,
+.mpd-account-details .edit-account {
+	max-width: 600px;
+}
+
+.mpd-account-details .woocommerce-form-row {
+	margin-bottom: 20px;
+}
+
+.mpd-account-details .form-row-first,
+.mpd-account-details .form-row-last {
+	display: inline-block;
+	width: calc(50% - 10px);
+}
+
+.mpd-account-details .form-row-first {
+	margin-right: 20px;
+}
+
+@media (max-width: 576px) {
+	.mpd-account-details .form-row-first,
+	.mpd-account-details .form-row-last {
+		width: 100%;
+		margin-right: 0;
+	}
+}
+
+.mpd-account-details label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+}
+
+.mpd-account-details label .required {
+	color: #d32f2f;
+}
+
+.mpd-account-details input[type="text"],
+.mpd-account-details input[type="email"],
+.mpd-account-details input[type="password"],
+.mpd-account-details .woocommerce-Input {
+	width: 100%;
+	padding: 12px 15px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+	box-sizing: border-box;
+}
+
+.mpd-account-details input:focus,
+.mpd-account-details .woocommerce-Input:focus {
+	outline: none;
+	border-color: #0073aa;
+	box-shadow: 0 0 0 3px rgba(0, 115, 170, 0.1);
+}
+
+.mpd-account-details em,
+.mpd-account-details .description {
+	display: block;
+	margin-top: 5px;
+	font-size: 13px;
+	color: #666;
+}
+
+.mpd-account-details fieldset {
+	margin: 30px 0 0;
+	padding: 20px;
+	background-color: #f8f9fa;
+	border: 1px solid #e9ecef;
+	border-radius: 8px;
+}
+
+.mpd-account-details fieldset legend {
+	padding: 0 10px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #333;
+}
+
+.mpd-account-details button[type="submit"],
+.mpd-account-details .woocommerce-Button {
+	padding: 12px 30px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 500;
+	background-color: #0073aa;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.mpd-account-details button[type="submit"]:hover,
+.mpd-account-details .woocommerce-Button:hover {
+	background-color: #005a87;
+}
+
+.mpd-account-details .clear {
+	clear: both;
+}
+
+/* Legacy class support - keep for backwards compatibility */
+.mpd-account-details__form {
+	max-width: 600px;
+}
+
+.mpd-account-details__field-row {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+	margin-bottom: 20px;
+}
+
+@media (max-width: 576px) {
+	.mpd-account-details__field-row {
+		grid-template-columns: 1fr;
+	}
+}
+
+.mpd-account-details__field-row--single {
+	grid-template-columns: 1fr;
+}
+
+.mpd-account-details__form .woocommerce-form-row {
+	margin-bottom: 20px;
+}
+
+.mpd-account-details__form label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+}
+
+.mpd-account-details__form label .required {
+	color: #d32f2f;
+}
+
+.mpd-account-details__form input[type="text"],
+.mpd-account-details__form input[type="email"],
+.mpd-account-details__form input[type="password"] {
+	width: 100%;
+	padding: 12px 15px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mpd-account-details__form input:focus {
+	outline: none;
+	border-color: #0073aa;
+	box-shadow: 0 0 0 3px rgba(0, 115, 170, 0.1);
+}
+
+.mpd-account-details__form em {
+	display: block;
+	margin-top: 5px;
+	font-size: 13px;
+	color: #666;
+}
+
+.mpd-account-details__fieldset {
+	margin: 30px 0 0;
+	padding: 20px;
+	background-color: #f8f9fa;
+	border: 1px solid #e9ecef;
+	border-radius: 8px;
+}
+
+.mpd-account-details__fieldset legend {
+	padding: 0 10px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #333;
+}
+
+.mpd-account-details__submit {
+	margin-top: 25px;
+}
+
+.mpd-account-details__submit-button {
+	padding: 12px 30px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 500;
+	background-color: #0073aa;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.mpd-account-details__submit-button:hover {
+	background-color: #005a87;
+}
+
+/* Avatar Section */
+.mpd-account-details__avatar {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	margin-bottom: 30px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.mpd-account-details__avatar-image {
+	flex-shrink: 0;
+}
+
+.mpd-account-details__avatar-image img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+.mpd-account-details__avatar-upload-label {
+	display: inline-block;
+	padding: 8px 16px;
+	color: #0073aa;
+	font-size: 14px;
+	background-color: #fff;
+	border: 1px solid #0073aa;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.mpd-account-details__avatar-upload-label:hover {
+	color: #fff;
+	background-color: #0073aa;
+}
+
+/* Avatar from WooCommerce template */
+.mpd-account-details__avatar img {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+}
+
+/* Notice Styles */
+.mpd-account-details .woocommerce-message,
+.mpd-account-details .woocommerce-error,
+.mpd-account-details .woocommerce-info {
+	padding: 15px 20px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	border-width: 1px;
+	border-style: solid;
+	list-style: none;
+}
+
+.mpd-account-details .woocommerce-message {
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+
+.mpd-account-details .woocommerce-message::before {
+	display: none;
+}
+
+.mpd-account-details .woocommerce-error {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.mpd-account-details .woocommerce-error li {
+	list-style: none;
+	margin: 0;
+	padding: 0 0 0 30px !important;
+}
+
+.mpd-account-details .woocommerce-info {
+	color: #0c5460;
+	background-color: #d1ecf1;
+	border-color: #bee5eb;
+}
+
+.mpd-account-details .woocommerce-info::before {
+	display: none;
+}
+
+/* Sample notice for editor preview */
+.mpd-account-details .mpd-sample-notice {
+	position: relative;
+}
+
+.mpd-account-details .mpd-sample-notice::after {
+	content: "(Preview)";
+	margin-left: 10px;
+	font-size: 12px;
+	font-style: italic;
+	opacity: 0.7;
+}
+
+/* Field Visibility Classes */
+.mpd-account-details.mpd-hide-first-name .form-row-first:has(#account_first_name),
+.mpd-account-details.mpd-hide-first-name p:has(#account_first_name) {
+	display: none !important;
+}
+
+.mpd-account-details.mpd-hide-last-name .form-row-last:has(#account_last_name),
+.mpd-account-details.mpd-hide-last-name p:has(#account_last_name) {
+	display: none !important;
+}
+
+.mpd-account-details.mpd-hide-display-name p:has(#account_display_name) {
+	display: none !important;
+}
+
+.mpd-account-details.mpd-hide-email p:has(#account_email) {
+	display: none !important;
+}
+
+.mpd-account-details.mpd-hide-password fieldset {
+	display: none !important;
+}
+
+/* Layout Variations */
+.mpd-account-details.mpd-layout-stacked .form-row-first,
+.mpd-account-details.mpd-layout-stacked .form-row-last {
+	display: block;
+	width: 100%;
+	margin-right: 0;
+}
+
+.mpd-account-details.mpd-layout-inline .woocommerce-EditAccountForm {
+	max-width: none;
+}
+
+.mpd-account-details.mpd-layout-inline .form-row-first,
+.mpd-account-details.mpd-layout-inline .form-row-last,
+.mpd-account-details.mpd-layout-inline .form-row-wide {
+	display: inline-block;
+	width: calc(50% - 10px);
+	vertical-align: top;
+}
+
+.mpd-account-details.mpd-layout-inline .form-row-first,
+.mpd-account-details.mpd-layout-inline .form-row-wide:nth-child(odd) {
+	margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+	.mpd-account-details.mpd-layout-inline .form-row-first,
+	.mpd-account-details.mpd-layout-inline .form-row-last,
+	.mpd-account-details.mpd-layout-inline .form-row-wide {
+		display: block;
+		width: 100%;
+		margin-right: 0;
+	}
+}
+
+/* ==========================================================================
+   Logout Button Widget
+   ========================================================================== */
+
+.mpd-logout {
+	display: block;
+}
+
+.mpd-logout__button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 12px 24px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: 500;
+	text-decoration: none;
+	background-color: #d32f2f;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.mpd-logout__button:hover {
+	color: #fff;
+	background-color: #b71c1c;
+}
+
+.mpd-logout__icon {
+	display: inline-flex;
+	font-size: 16px;
+}
+
+.mpd-logout__icon svg {
+	width: 1em;
+	height: 1em;
+}
+
+/* Confirmation Modal */
+.mpd-logout__modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 99999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mpd-logout__modal-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mpd-logout__modal-content {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+	padding: 30px;
+	background-color: #fff;
+	border-radius: 8px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+	animation: mpdModalFadeIn 0.3s ease;
+}
+
+@keyframes mpdModalFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.mpd-logout__modal-title {
+	margin: 0 0 15px;
+	font-size: 20px;
+	font-weight: 600;
+	color: #333;
+}
+
+.mpd-logout__modal-message {
+	margin: 0 0 25px;
+	font-size: 15px;
+	line-height: 1.6;
+	color: #666;
+}
+
+.mpd-logout__modal-buttons {
+	display: flex;
+	gap: 10px;
+}
+
+.mpd-logout__confirm-button {
+	flex: 1;
+	padding: 10px 20px;
+	color: #fff;
+	font-weight: 500;
+	background-color: #d32f2f;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.mpd-logout__confirm-button:hover {
+	color: #fff;
+	background-color: #b71c1c;
+}
+
+.mpd-logout__cancel-button {
+	flex: 1;
+	padding: 10px 20px;
+	color: #333;
+	font-weight: 500;
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.mpd-logout__cancel-button:hover {
+	background-color: #e9ecef;
+	border-color: #ccc;
+}
+
+/* ==========================================================================
+   General Responsive Styles
+   ========================================================================== */
+
+@media (max-width: 768px) {
+	/* Navigation */
+	.mpd-account-nav--horizontal .mpd-account-nav__list {
+		flex-direction: column;
+	}
+
+	/* Dashboard Quick Links */
+	.mpd-account-dashboard__quick-links {
+		grid-template-columns: 1fr;
+	}
+
+	/* Dashboard Stats */
+	.mpd-account-dashboard__stats {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	/* Tables - responsive scroll */
+	.mpd-orders__table,
+	.mpd-downloads__table,
+	.mpd-account-dashboard__orders-table {
+		display: block;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	/* Filters */
+	.mpd-orders__filters {
+		flex-direction: column;
+	}
+
+	.mpd-orders__search,
+	.mpd-orders__status-filter,
+	.mpd-orders__date-filter {
+		width: 100%;
+		min-width: 100%;
+	}
+
+	.mpd-orders__date-filter {
+		flex-direction: column;
+	}
+
+	.mpd-orders__filter-group {
+		min-width: 100%;
+	}
+}
+
+@media (max-width: 576px) {
+	/* Dashboard Stats */
+	.mpd-account-dashboard__stats {
+		grid-template-columns: 1fr;
+	}
+
+	/* Modal */
+	.mpd-logout__modal-content {
+		margin: 0 15px;
+	}
+
+	.mpd-logout__modal-buttons {
+		flex-direction: column;
+	}
+}
+
+/* ==========================================================================
+   Editor Preview Styles
+   ========================================================================== */
+
+.elementor-editor-active .mpd-orders__empty,
+.elementor-editor-active .mpd-downloads__empty {
+	border: 1px dashed #ddd;
+	background-color: #fafafa;
+}
+
+/* Pro Feature Disabled State */
+.mpd-pro-disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+/* Modal Open Body Lock */
+body.mpd-modal-open {
+	overflow: hidden;
+}
+
+/* Loading State */
+.mpd-loading {
+	position: relative;
+	pointer-events: none;
+}
+
+.mpd-loading::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 16px;
+	height: 16px;
+	margin: -8px 0 0 -8px;
+	border: 2px solid #ddd;
+	border-top-color: #0073aa;
+	border-radius: 50%;
+	animation: mpdLoadingSpin 0.8s linear infinite;
+}
+
+@keyframes mpdLoadingSpin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Inline Editing States for Addresses */
+.mpd-addresses__card--editing .mpd-addresses__content {
+	display: none;
+}
+
+.mpd-addresses__card--editing .mpd-addresses__inline-form {
+	display: block;
+}
+
+.mpd-addresses__inline-form {
+	display: none;
+}
+
+.mpd-addresses__inline-form .form-row {
+	margin-bottom: 15px;
+}
+
+.mpd-addresses__inline-form input,
+.mpd-addresses__inline-form select {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.mpd-addresses__inline-form input:focus,
+.mpd-addresses__inline-form select:focus {
+	outline: none;
+	border-color: #0073aa;
+	box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.1);
+}
+
+.mpd-addresses__form-buttons {
+	display: flex;
+	gap: 10px;
+	margin-top: 15px;
+}
+
+.mpd-addresses__save-edit,
+.mpd-addresses__cancel-edit {
+	padding: 8px 16px;
+	font-size: 14px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.mpd-addresses__save-edit {
+	color: #fff;
+	background-color: #0073aa;
+	border: none;
+}
+
+.mpd-addresses__save-edit:hover {
+	background-color: #005a87;
+}
+
+.mpd-addresses__cancel-edit {
+	color: #666;
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+}
+
+.mpd-addresses__cancel-edit:hover {
+	background-color: #e9ecef;
+	border-color: #ccc;
+}
+
+/* ==========================================================================
+   Account Login Widget
+   ========================================================================== */
+
+.mpd-account-login {
+	width: 100%;
+}
+
+/* Side by Side Layout */
+.mpd-account-login__columns {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 30px;
+}
+
+.mpd-account-login--side-by-side .mpd-account-login__form-box {
+	flex: 1;
+}
+
+/* Stacked Layout */
+.mpd-account-login--stacked .mpd-account-login__form-box {
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto 30px;
+}
+
+.mpd-account-login--stacked .mpd-account-login__form-box:last-child {
+	margin-bottom: 0;
+}
+
+/* Form Box */
+.mpd-account-login__form-box {
+	padding: 30px;
+	background-color: #f9f9f9;
+	border-radius: 8px;
+	max-width: 500px;
+}
+
+/* Title */
+.mpd-account-login__title {
+	margin: 0 0 20px;
+	font-size: 22px;
+	font-weight: 600;
+	color: #333;
+}
+
+/* Form Rows */
+.mpd-account-login .form-row {
+	margin-bottom: 20px;
+}
+
+.mpd-account-login .form-row:last-child {
+	margin-bottom: 0;
+}
+
+/* Labels */
+.mpd-account-login label {
+	display: block;
+	margin-bottom: 8px;
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+}
+
+.mpd-account-login label .required {
+	color: #e74c3c;
+}
+
+/* Input Fields */
+.mpd-account-login input.input-text,
+.mpd-account-login input[type="text"],
+.mpd-account-login input[type="email"],
+.mpd-account-login input[type="password"] {
+	width: 100%;
+	padding: 12px 15px;
+	font-size: 15px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	background-color: #fff;
+	transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mpd-account-login input:focus {
+	outline: none;
+	border-color: #0073aa;
+	box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.1);
+}
+
+/* Remember Me */
+.mpd-account-login .woocommerce-form__label-for-checkbox {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 15px;
+	cursor: pointer;
+}
+
+.mpd-account-login .woocommerce-form__input-checkbox {
+	width: 18px;
+	height: 18px;
+	margin: 0;
+}
+
+/* Buttons */
+.mpd-account-login button[type="submit"] {
+	display: inline-block;
+	padding: 12px 30px;
+	font-size: 15px;
+	font-weight: 600;
+	color: #fff;
+	background-color: #0073aa;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.mpd-account-login button[type="submit"]:hover {
+	background-color: #005a87;
+}
+
+.mpd-account-login button[type="submit"]:active {
+	transform: translateY(1px);
+}
+
+/* Lost Password Link */
+.mpd-account-login .lost_password {
+	margin-top: 15px;
+}
+
+.mpd-account-login .lost_password a {
+	font-size: 14px;
+	color: #0073aa;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
+
+.mpd-account-login .lost_password a:hover {
+	color: #005a87;
+	text-decoration: underline;
+}
+
+/* Notices */
+.mpd-account-login .woocommerce-message,
+.mpd-account-login .woocommerce-error,
+.mpd-account-login .woocommerce-info,
+.mpd-account-login .mpd-notice {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 15px 20px;
+	padding-left: 50px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	border: 1px solid transparent;
+	list-style: none;
+	position: relative;
+}
+
+/* WooCommerce notice icon positioning */
+.mpd-account-login .woocommerce-message::before,
+.mpd-account-login .woocommerce-error::before,
+.mpd-account-login .woocommerce-info::before {
+	position: absolute;
+	left: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 18px;
+	line-height: 1;
+}
+
+.mpd-account-login .woocommerce-message {
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+
+.mpd-account-login .woocommerce-error {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+	padding-left: 30px;
+}
+
+.mpd-account-login .woocommerce-info {
+	color: #0c5460;
+	background-color: #d1ecf1;
+	border-color: #bee5eb;
+}
+.mpd-account-login .woocommerce-error li, 
+.mpd-account-login .woocommerce-info li, 
+.mpd-account-login .woocommerce-message li {
+	padding-left: 30px !important;
+}
+
+/* MPD Notice - Custom Notice Structure */
+.mpd-account-login .mpd-notice,
+.mpd-notice {
+	display: flex !important;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 15px 20px;
+	margin-bottom: 20px;
+	border-radius: 4px;
+	border: 1px solid transparent;
+	position: relative;
+	z-index: 1;
+}
+
+.mpd-account-login .mpd-notice--error,
+.mpd-notice--error {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+}
+
+.mpd-account-login .mpd-notice--success,
+.mpd-notice--success {
+	color: #155724;
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+}
+
+.mpd-account-login .mpd-notice--info,
+.mpd-notice--info {
+	color: #0c5460;
+	background-color: #d1ecf1;
+	border-color: #bee5eb;
+}
+.mpd-notice.mpd-notice--success,
+.mpd-notice.mpd-notice--info,
+.mpd-notice.mpd-notice--error {
+    transform: inherit;
+    left: 0;
+    top: 0;
+}
+/* Notice Icon */
+.mpd-account-login .mpd-notice__icon,
+.mpd-notice__icon {
+	display: inline-flex !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 18px;
+	height: 18px;
+	margin-top: 2px;
+}
+
+.mpd-account-login .mpd-notice__icon svg,
+.mpd-notice__icon svg {
+	width: 100%;
+	height: 100%;
+}
+
+.mpd-account-login .mpd-notice--error .mpd-notice__icon,
+.mpd-notice--error .mpd-notice__icon {
+	color: #dc3545;
+}
+
+.mpd-account-login .mpd-notice--success .mpd-notice__icon,
+.mpd-notice--success .mpd-notice__icon {
+	color: #28a745;
+}
+
+.mpd-account-login .mpd-notice--info .mpd-notice__icon,
+.mpd-notice--info .mpd-notice__icon {
+	color: #17a2b8;
+}
+
+/* Notice Text */
+.mpd-account-login .mpd-notice__text,
+.mpd-notice__text {
+	display: inline-block !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+	flex: 1;
+	line-height: 1.5;
+	font-size: 14px;
+}
+
+/* Preview Badge */
+.mpd-account-login .mpd-notice__preview-badge,
+.mpd-notice__preview-badge {
+	flex-shrink: 0;
+	padding: 2px 8px;
+	font-size: 10px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	background-color: rgba(0, 0, 0, 0.1);
+	border-radius: 3px;
+	opacity: 0.7;
+}
+
+/* Tabs Layout */
+.mpd-account-login__tabs {
+	width: 100%;
+}
+
+.mpd-account-login__tabs-nav {
+	display: flex;
+	gap: 0;
+	border-bottom: 2px solid #ddd;
+	margin-bottom: 30px;
+}
+
+.mpd-account-login__tab-btn {
+	padding: 15px 30px;
+	font-size: 16px;
+	font-weight: 500;
+	color: #666;
+	background: none;
+	border: none;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -2px;
+	cursor: pointer;
+	transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.mpd-account-login__tab-btn:hover {
+	color: #0073aa;
+}
+
+.mpd-account-login__tab-btn--active {
+	color: #0073aa;
+	border-bottom-color: #0073aa;
+}
+
+.mpd-account-login__tabs-content {
+	width: 100%;
+}
+
+.mpd-account-login__tab-panel {
+	display: none;
+}
+
+.mpd-account-login__tab-panel--active {
+	display: block;
+}
+
+/* Tabs Layout Form Box */
+.mpd-account-login--tabs .mpd-account-login__form-box {
+	max-width: 500px;
+}
+
+/* Registration Info Text */
+.mpd-account-login .register p {
+	margin-bottom: 20px;
+	font-size: 14px;
+	color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.mpd-account-login__columns {
+		grid-template-columns: 1fr;
+	}
+	
+	.mpd-account-login__form-box {
+		padding: 20px;
+	}
+	
+	.mpd-account-login__tabs-nav {
+		flex-direction: column;
+	}
+	
+	.mpd-account-login__tab-btn {
+		border-bottom: none;
+		border-left: 2px solid transparent;
+		margin-bottom: 0;
+		margin-left: -2px;
+		text-align: left;
+	}
+	
+	.mpd-account-login__tab-btn--active {
+		border-left-color: #0073aa;
+		border-bottom: none;
+	}
+}
+
+/* ==========================================================================
+   Navigation Logout Confirmation Modal (Pro)
+   ========================================================================== */
+
+.mpd-nav-logout-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mpd-nav-logout-modal--visible {
+	opacity: 1;
+	visibility: visible;
+}
+
+.mpd-nav-logout-modal__backdrop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mpd-nav-logout-modal__content {
+	position: relative;
+	max-width: 400px;
+	padding: 30px;
+	background-color: #fff;
+	border-radius: 12px;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	transform: translateY(-20px);
+	transition: transform 0.3s ease;
+}
+
+.mpd-nav-logout-modal--visible .mpd-nav-logout-modal__content {
+	transform: translateY(0);
+}
+
+.mpd-nav-logout-modal__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 60px;
+	height: 60px;
+	margin-bottom: 20px;
+	background-color: #fee2e2;
+	border-radius: 50%;
+	color: #dc2626;
+	font-size: 24px;
+}
+
+.mpd-nav-logout-modal__icon svg {
+	width: 28px;
+	height: 28px;
+}
+
+.mpd-nav-logout-modal__message {
+	margin: 0 0 25px;
+	font-size: 16px;
+	color: #333;
+	line-height: 1.5;
+}
+
+.mpd-nav-logout-modal__actions {
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+}
+
+.mpd-nav-logout-modal__cancel,
+.mpd-nav-logout-modal__confirm {
+	padding: 12px 24px;
+	font-size: 14px;
+	font-weight: 500;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	text-decoration: none;
+	border: none;
+}
+
+.mpd-nav-logout-modal__cancel {
+	background-color: #f3f4f6;
+	color: #374151;
+}
+
+.mpd-nav-logout-modal__cancel:hover {
+	background-color: #e5e7eb;
+}
+
+.mpd-nav-logout-modal__confirm {
+	background-color: #dc2626;
+	color: #fff;
+}
+
+.mpd-nav-logout-modal__confirm:hover {
+	background-color: #b91c1c;
+	color: #fff;
+}
+
+/* Body class when modal is open */
+body.mpd-modal-open {
+	overflow: hidden;
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+	.mpd-logout,
+	.mpd-account-nav,
+	.mpd-orders__filters,
+	.mpd-account-login {
+		display: none;
+	}
+
+	.mpd-addresses__card,
+	.mpd-account-dashboard__stat {
+		border: 1px solid #ddd;
+		break-inside: avoid;
+	}
+}

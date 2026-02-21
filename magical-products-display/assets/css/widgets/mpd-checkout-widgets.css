@@ -1,0 +1,1523 @@
+/**
+ * Checkout Widgets Styles
+ *
+ * @package Magical_Shop_Builder
+ * @since   2.0.0
+ */
+
+/* ==========================================================================
+   Billing Form Widget
+   ========================================================================== */
+.mpd-billing-form {
+    width: 100%;
+}
+
+.mpd-billing-form__title {
+    margin: 0 0 20px;
+    font-weight: 600;
+}
+
+.mpd-billing-form .form-row,
+.mpd-billing-form .woocommerce-billing-fields .form-row {
+    margin-bottom: 15px;
+}
+
+.mpd-billing-form .form-row label,
+.mpd-billing-form .woocommerce-billing-fields label,
+.mpd-billing-form .woocommerce-billing-fields .form-row label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.mpd-billing-form .form-row .required,
+.mpd-billing-form .woocommerce-billing-fields .required {
+    color: #e74c3c;
+}
+
+.mpd-billing-form .form-row input,
+.mpd-billing-form .form-row select,
+.mpd-billing-form .woocommerce-billing-fields input.input-text,
+.mpd-billing-form .woocommerce-billing-fields select,
+.mpd-billing-form .woocommerce-billing-fields textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mpd-billing-form .form-row input:focus,
+.mpd-billing-form .form-row select:focus,
+.mpd-billing-form .woocommerce-billing-fields input.input-text:focus,
+.mpd-billing-form .woocommerce-billing-fields select:focus,
+.mpd-billing-form .woocommerce-billing-fields textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.mpd-billing-form .form-row-first,
+.mpd-billing-form .form-row-last {
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.mpd-billing-form .form-row-first {
+    margin-right: 2%;
+}
+
+.mpd-billing-form .form-row-wide {
+    width: 100%;
+}
+
+/* ==========================================================================
+   Shipping Form Widget
+   ========================================================================== */
+.mpd-shipping-form {
+    width: 100%;
+}
+
+.mpd-shipping-form__title {
+    margin: 0 0 20px;
+    font-weight: 600;
+}
+
+.mpd-shipping-form__toggle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.mpd-shipping-form__toggle-checkbox {
+    margin-right: 10px;
+}
+
+.mpd-shipping-form__toggle-label {
+    cursor: pointer;
+    user-select: none;
+}
+
+.mpd-shipping-form__fields {
+    display: none;
+}
+
+.mpd-shipping-form__fields--visible {
+    display: block;
+}
+
+.mpd-shipping-form .form-row,
+.mpd-shipping-form .woocommerce-shipping-fields .form-row {
+    margin-bottom: 15px;
+}
+
+.mpd-shipping-form .form-row label,
+.mpd-shipping-form .woocommerce-shipping-fields label,
+.mpd-shipping-form .woocommerce-shipping-fields .form-row label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.mpd-shipping-form .woocommerce-shipping-fields label{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 8px;
+}
+.mpd-shipping-form .form-row input,
+.mpd-shipping-form .form-row select,
+.mpd-shipping-form .woocommerce-shipping-fields input.input-text,
+.mpd-shipping-form .woocommerce-shipping-fields select,
+.mpd-shipping-form .woocommerce-shipping-fields textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.mpd-shipping-form .form-row input:focus,
+.mpd-shipping-form .form-row select:focus,
+.mpd-shipping-form .woocommerce-shipping-fields input.input-text:focus,
+.mpd-shipping-form .woocommerce-shipping-fields select:focus,
+.mpd-shipping-form .woocommerce-shipping-fields textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.mpd-shipping-form .form-row-first,
+.mpd-shipping-form .form-row-last {
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.mpd-shipping-form .form-row-first {
+    margin-right: 2%;
+}
+
+/* ==========================================================================
+   Order Review Widget
+   ========================================================================== */
+.mpd-order-review {
+    width: 100%;
+}
+
+.mpd-order-review__title {
+    margin: 0 0 20px;
+    font-weight: 600;
+}
+
+.mpd-order-review__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.mpd-order-review__table th,
+.mpd-order-review__table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.mpd-order-review__table thead th {
+    background: #f8f9fa;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+.mpd-order-review__table tbody tr:hover {
+    background: #fafafa;
+}
+
+.mpd-order-review__table tfoot tr:first-child td {
+    border-top: 2px solid #eee;
+}
+
+.mpd-order-review__table tfoot th,
+.mpd-order-review__table tfoot td {
+    font-weight: 600;
+}
+
+.mpd-order-review__table .order-total th,
+.mpd-order-review__table .order-total td {
+    font-size: 18px;
+    font-weight: 700;
+    background: #f8f9fa;
+}
+
+.mpd-order-review__product-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.mpd-order-review__product-name {
+    display: flex;
+    align-items: center;
+}
+
+.mpd-order-review__product-qty {
+    color: #666;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Payment Methods Widget
+   ========================================================================== */
+.mpd-payment-methods {
+    width: 100%;
+}
+
+.mpd-payment-methods__title {
+    margin: 0 0 20px;
+    font-weight: 600;
+}
+
+.mpd-payment-methods__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-payment-methods__item {
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.mpd-payment-methods__item:last-child {
+    margin-bottom: 0;
+}
+
+.mpd-payment-methods__header {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    cursor: pointer;
+    background: #fafafa;
+    transition: background 0.3s ease;
+}
+
+.mpd-payment-methods__header:hover {
+    background: #f0f0f0;
+}
+
+.mpd-payment-methods__radio {
+    margin-right: 12px;
+}
+
+.mpd-payment-methods__label {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    cursor: pointer;
+}
+
+.mpd-payment-methods__icon {
+    width: 32px;
+    height: 32px;
+    margin-right: 12px;
+    object-fit: contain;
+}
+
+.mpd-payment-methods__name {
+    font-weight: 600;
+}
+
+.mpd-payment-methods__description {
+    padding: 15px;
+    background: #fff;
+    border-top: 1px solid #eee;
+    color: #666;
+    font-size: 14px;
+    display: none;
+}
+
+.mpd-payment-methods__item--active .mpd-payment-methods__description {
+    display: block;
+}
+
+.mpd-payment-methods__item--active .mpd-payment-methods__header {
+    background: #e8f4f8;
+}
+
+/* Layout: Tabs */
+.mpd-payment-methods--tabs .mpd-payment-methods__tabs {
+    display: flex;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 0;
+}
+
+.mpd-payment-methods--tabs .mpd-payment-methods__tab {
+    padding: 12px 20px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-weight: 500;
+    color: #666;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.mpd-payment-methods--tabs .mpd-payment-methods__tab--active {
+    color: #3498db;
+}
+
+.mpd-payment-methods--tabs .mpd-payment-methods__tab--active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #3498db;
+}
+
+.mpd-payment-methods--tabs .mpd-payment-methods__content {
+    padding: 20px 0;
+}
+
+/* Layout: Accordion */
+.mpd-payment-methods--accordion .mpd-payment-methods__item {
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid #eee;
+}
+
+.mpd-payment-methods--accordion .mpd-payment-methods__header::after {
+    content: '+';
+    font-size: 20px;
+    font-weight: 300;
+    color: #999;
+    margin-left: auto;
+}
+
+.mpd-payment-methods--accordion .mpd-payment-methods__item--active .mpd-payment-methods__header::after {
+    content: '−';
+}
+
+/* ==========================================================================
+   Checkout Coupon Widget
+   ========================================================================== */
+.mpd-checkout-coupon {
+    width: 100%;
+}
+
+.mpd-checkout-coupon__toggle {
+    padding: 15px;
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.mpd-checkout-coupon__toggle-link {
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.mpd-checkout-coupon__toggle-link:hover {
+    text-decoration: underline;
+}
+
+.mpd-checkout-coupon__form {
+    padding: 20px;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 4px;
+}
+
+.mpd-checkout-coupon__form--inline {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.mpd-checkout-coupon__form--stacked .mpd-checkout-coupon__field {
+    margin-bottom: 15px;
+}
+
+.mpd-checkout-coupon__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.mpd-checkout-coupon__input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.mpd-checkout-coupon__input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.mpd-checkout-coupon__form--inline .mpd-checkout-coupon__input {
+    flex: 1;
+}
+
+.mpd-checkout-coupon__button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.mpd-checkout-coupon__button:hover {
+    opacity: 0.9;
+}
+
+.mpd-checkout-coupon__applied {
+    margin-top: 15px;
+}
+
+.mpd-checkout-coupon__applied-title {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.mpd-checkout-coupon__applied-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-checkout-coupon__applied-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    background: #e8f4f8;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.mpd-checkout-coupon__applied-code {
+    font-weight: 600;
+    font-family: monospace;
+}
+
+.mpd-checkout-coupon__remove {
+    color: #e74c3c;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.mpd-checkout-coupon__remove:hover {
+    text-decoration: underline;
+}
+
+.mpd-checkout-coupon__message {
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.mpd-checkout-coupon__message--success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.mpd-checkout-coupon__message--error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Coupon form processing state */
+.mpd-checkout-coupon.processing {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.mpd-checkout-coupon__button.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.mpd-checkout-coupon__button.loading::after {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-left: 8px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: mpd-spin 0.8s linear infinite;
+    vertical-align: middle;
+}
+
+/* Coupon applied item inline display */
+.mpd-checkout-coupon__applied-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+/* ==========================================================================
+   Place Order Widget
+   ========================================================================== */
+.mpd-place-order {
+    width: 100%;
+}
+
+.mpd-place-order__terms {
+    margin-bottom: 20px;
+}
+
+.mpd-place-order__terms p {
+    margin: 0 0 10px;
+    font-size: 13px;
+    color: #666;
+}
+
+.mpd-place-order__terms a {
+    font-weight: 500;
+}
+
+.mpd-place-order__checkbox-wrapper {
+    margin-bottom: 15px;
+}
+
+.mpd-place-order__checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    cursor: pointer;
+}
+
+.mpd-place-order__checkbox {
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.mpd-place-order__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.mpd-place-order__button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mpd-place-order__button--full {
+    width: 100%;
+}
+
+.mpd-place-order__button--loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.mpd-place-order__button--loading::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: mpd-spin 0.8s linear infinite;
+}
+
+@keyframes mpd-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.mpd-place-order__icon {
+    margin-right: 10px;
+}
+
+.mpd-place-order__privacy {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #666;
+}
+
+.mpd-place-order__privacy a {
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Order Notes Widget
+   ========================================================================== */
+.mpd-order-notes {
+    width: 100%;
+}
+
+.mpd-order-notes__title {
+    margin: 0 0 20px;
+    font-weight: 600;
+}
+
+.mpd-order-notes__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.mpd-order-notes__label .optional {
+    color: #999;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.mpd-order-notes__textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 1.5;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mpd-order-notes__textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.mpd-order-notes__textarea::placeholder {
+    color: #999;
+}
+
+.mpd-order-notes .gift-wrapping {
+    margin-top: 15px;
+}
+
+.mpd-order-notes .gift-wrapping label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mpd-order-notes .gift-wrapping input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* ==========================================================================
+   Checkout Login Widget
+   ========================================================================== */
+.mpd-checkout-login {
+    width: 100%;
+}
+
+.mpd-checkout-login__toggle {
+    background: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.mpd-checkout-login__toggle-link {
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.mpd-checkout-login__toggle-link:hover {
+    text-decoration: underline;
+}
+
+.mpd-checkout-login__form {
+    padding: 25px;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 6px;
+}
+
+p.form-row.mpd-checkout-login__actions {
+    text-align: right;
+}
+
+.mpd-checkout-login__form-title {
+    margin: 0 0 20px;
+    font-weight: 600;
+}
+
+.mpd-checkout-login .form-row {
+    margin-bottom: 15px;
+}
+
+.mpd-checkout-login .form-row-first,
+.mpd-checkout-login .form-row-last {
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.mpd-checkout-login .form-row-first {
+    margin-right: 2%;
+}
+
+.mpd-checkout-login__label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.mpd-checkout-login__label .required {
+    color: #e74c3c;
+}
+
+.mpd-checkout-login__input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.mpd-checkout-login__input:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.mpd-checkout-login__actions {
+    margin-top: 20px;
+}
+
+.mpd-checkout-login__button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mpd-checkout-login__button:hover {
+    opacity: 0.9;
+}
+
+.mpd-checkout-login__button--full {
+    width: 100%;
+}
+
+.mpd-checkout-login__options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.mpd-checkout-login__options label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.mpd-checkout-login__options input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.mpd-checkout-login__link {
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.mpd-checkout-login__link:hover {
+    text-decoration: underline;
+}
+
+.mpd-checkout-login--editor-notice {
+    padding: 20px;
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.mpd-checkout-login--editor-notice p {
+    margin: 0;
+    color: #856404;
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+@media (max-width: 768px) {
+    .mpd-billing-form .form-row-first,
+    .mpd-billing-form .form-row-last,
+    .mpd-shipping-form .form-row-first,
+    .mpd-shipping-form .form-row-last,
+    .mpd-checkout-login .form-row-first,
+    .mpd-checkout-login .form-row-last {
+        width: 100%;
+        display: block;
+        margin-right: 0;
+    }
+
+    .mpd-checkout-coupon__form--inline {
+        flex-direction: column;
+    }
+
+    .mpd-checkout-coupon__form--inline .mpd-checkout-coupon__input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .mpd-checkout-coupon__form--inline .mpd-checkout-coupon__button {
+        width: 100%;
+    }
+
+    .mpd-checkout-login__options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .mpd-order-review__table {
+        font-size: 14px;
+    }
+
+    .mpd-order-review__table th,
+    .mpd-order-review__table td {
+        padding: 10px;
+    }
+
+    .mpd-payment-methods--tabs .mpd-payment-methods__tabs {
+        flex-wrap: wrap;
+    }
+
+    .mpd-payment-methods--tabs .mpd-payment-methods__tab {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+}
+
+/* ==========================================================================
+   WooCommerce Integration Fixes
+   ========================================================================== */
+.mpd-billing-form .select2-container,
+.mpd-shipping-form .select2-container {
+    width: 100% !important;
+}
+
+.mpd-billing-form .select2-container--default .select2-selection--single,
+.mpd-shipping-form .select2-container--default .select2-selection--single {
+    height: auto;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.mpd-billing-form .select2-container--default .select2-selection--single .select2-selection__rendered,
+.mpd-shipping-form .select2-container--default .select2-selection--single .select2-selection__rendered {
+    padding: 0;
+    line-height: normal;
+}
+
+.mpd-billing-form .select2-container--default .select2-selection--single .select2-selection__arrow,
+.mpd-shipping-form .select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+    top: 0;
+}
+
+/* Form validation styles */
+.mpd-billing-form .woocommerce-invalid input,
+.mpd-billing-form .woocommerce-invalid select,
+.mpd-shipping-form .woocommerce-invalid input,
+.mpd-shipping-form .woocommerce-invalid select,
+.mpd-checkout-login__input.woocommerce-invalid {
+    border-color: #e74c3c;
+}
+
+.mpd-billing-form .woocommerce-validated input,
+.mpd-billing-form .woocommerce-validated select,
+.mpd-shipping-form .woocommerce-validated input,
+.mpd-shipping-form .woocommerce-validated select {
+    border-color: #27ae60;
+}
+
+/* ==========================================================================
+   Layout Variations - Billing & Shipping Forms
+   ========================================================================== */
+
+/* Stacked Layout - Billing - Elementor wrapper targeting */
+[class*="mpd-billing-layout-stacked"] .woocommerce-billing-fields__field-wrapper .form-row,
+[class*="mpd-billing-layout-stacked"] .woocommerce-billing-fields__field-wrapper .form-row-first,
+[class*="mpd-billing-layout-stacked"] .woocommerce-billing-fields__field-wrapper .form-row-last,
+[class*="mpd-billing-layout-stacked"] .mpd-billing-form .form-row,
+[class*="mpd-billing-layout-stacked"] .mpd-billing-form .form-row-first,
+[class*="mpd-billing-layout-stacked"] .mpd-billing-form .form-row-last,
+.mpd-billing-layout-stacked .woocommerce-billing-fields__field-wrapper .form-row,
+.mpd-billing-layout-stacked .woocommerce-billing-fields__field-wrapper .form-row-first,
+.mpd-billing-layout-stacked .woocommerce-billing-fields__field-wrapper .form-row-last,
+.mpd-billing-layout-stacked .mpd-billing-form .form-row,
+.mpd-billing-layout-stacked .mpd-billing-form .form-row-first,
+.mpd-billing-layout-stacked .mpd-billing-form .form-row-last {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    margin-right: 0 !important;
+    float: none !important;
+    flex: 1 1 100% !important;
+}
+
+/* Stacked Layout - Shipping */
+[class*="mpd-shipping-layout-stacked"] .woocommerce-shipping-fields__field-wrapper .form-row,
+[class*="mpd-shipping-layout-stacked"] .woocommerce-shipping-fields__field-wrapper .form-row-first,
+[class*="mpd-shipping-layout-stacked"] .woocommerce-shipping-fields__field-wrapper .form-row-last,
+[class*="mpd-shipping-layout-stacked"] .mpd-shipping-form .form-row,
+[class*="mpd-shipping-layout-stacked"] .mpd-shipping-form .form-row-first,
+[class*="mpd-shipping-layout-stacked"] .mpd-shipping-form .form-row-last,
+.mpd-shipping-layout-stacked .woocommerce-shipping-fields__field-wrapper .form-row,
+.mpd-shipping-layout-stacked .woocommerce-shipping-fields__field-wrapper .form-row-first,
+.mpd-shipping-layout-stacked .woocommerce-shipping-fields__field-wrapper .form-row-last,
+.mpd-shipping-layout-stacked .mpd-shipping-form .form-row,
+.mpd-shipping-layout-stacked .mpd-shipping-form .form-row-first,
+.mpd-shipping-layout-stacked .mpd-shipping-form .form-row-last {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+    margin-right: 0 !important;
+    float: none !important;
+    flex: 1 1 100% !important;
+}
+
+/* Inline Layout - Billing */
+[class*="mpd-billing-layout-inline"] .woocommerce-billing-fields__field-wrapper,
+[class*="mpd-billing-layout-inline"] .mpd-billing-form .woocommerce-billing-fields__field-wrapper,
+.mpd-billing-layout-inline .woocommerce-billing-fields__field-wrapper,
+.mpd-billing-layout-inline .mpd-billing-form .woocommerce-billing-fields__field-wrapper {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 15px;
+}
+
+[class*="mpd-billing-layout-inline"] .woocommerce-billing-fields__field-wrapper .form-row,
+[class*="mpd-billing-layout-inline"] .mpd-billing-form .form-row,
+.mpd-billing-layout-inline .woocommerce-billing-fields__field-wrapper .form-row,
+.mpd-billing-layout-inline .mpd-billing-form .form-row {
+    flex: 1 1 calc(50% - 15px) !important;
+    min-width: 200px;
+    max-width: calc(50% - 8px);
+    margin-bottom: 0 !important;
+    float: none !important;
+    width: auto !important;
+}
+
+[class*="mpd-billing-layout-inline"] .woocommerce-billing-fields__field-wrapper .form-row-wide,
+[class*="mpd-billing-layout-inline"] .mpd-billing-form .form-row-wide,
+.mpd-billing-layout-inline .woocommerce-billing-fields__field-wrapper .form-row-wide,
+.mpd-billing-layout-inline .mpd-billing-form .form-row-wide {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+}
+
+[class*="mpd-billing-layout-inline"] .woocommerce-billing-fields__field-wrapper .form-row-first,
+[class*="mpd-billing-layout-inline"] .woocommerce-billing-fields__field-wrapper .form-row-last,
+[class*="mpd-billing-layout-inline"] .mpd-billing-form .form-row-first,
+[class*="mpd-billing-layout-inline"] .mpd-billing-form .form-row-last,
+.mpd-billing-layout-inline .woocommerce-billing-fields__field-wrapper .form-row-first,
+.mpd-billing-layout-inline .woocommerce-billing-fields__field-wrapper .form-row-last,
+.mpd-billing-layout-inline .mpd-billing-form .form-row-first,
+.mpd-billing-layout-inline .mpd-billing-form .form-row-last {
+    flex: 1 1 calc(50% - 15px) !important;
+    max-width: calc(50% - 8px);
+}
+
+/* Inline Layout - Shipping */
+[class*="mpd-shipping-layout-inline"] .woocommerce-shipping-fields__field-wrapper,
+[class*="mpd-shipping-layout-inline"] .mpd-shipping-form .woocommerce-shipping-fields__field-wrapper,
+.mpd-shipping-layout-inline .woocommerce-shipping-fields__field-wrapper,
+.mpd-shipping-layout-inline .mpd-shipping-form .woocommerce-shipping-fields__field-wrapper {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 15px;
+}
+
+[class*="mpd-shipping-layout-inline"] .woocommerce-shipping-fields__field-wrapper .form-row,
+[class*="mpd-shipping-layout-inline"] .mpd-shipping-form .form-row,
+.mpd-shipping-layout-inline .woocommerce-shipping-fields__field-wrapper .form-row,
+.mpd-shipping-layout-inline .mpd-shipping-form .form-row {
+    flex: 1 1 calc(50% - 15px) !important;
+    min-width: 200px;
+    max-width: calc(50% - 8px);
+    margin-bottom: 0 !important;
+    float: none !important;
+    width: auto !important;
+}
+
+[class*="mpd-shipping-layout-inline"] .woocommerce-shipping-fields__field-wrapper .form-row-wide,
+[class*="mpd-shipping-layout-inline"] .mpd-shipping-form .form-row-wide,
+.mpd-shipping-layout-inline .mpd-shipping-form .form-row-wide {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+}
+
+[class*="mpd-shipping-layout-inline"] .woocommerce-shipping-fields__field-wrapper .form-row-first,
+[class*="mpd-shipping-layout-inline"] .woocommerce-shipping-fields__field-wrapper .form-row-last,
+[class*="mpd-shipping-layout-inline"] .mpd-shipping-form .form-row-first,
+[class*="mpd-shipping-layout-inline"] .mpd-shipping-form .form-row-last,
+.mpd-shipping-layout-inline .woocommerce-shipping-fields__field-wrapper .form-row-first,
+.mpd-shipping-layout-inline .woocommerce-shipping-fields__field-wrapper .form-row-last,
+.mpd-shipping-layout-inline .mpd-shipping-form .form-row-first,
+.mpd-shipping-layout-inline .mpd-shipping-form .form-row-last {
+    flex: 1 1 calc(50% - 15px) !important;
+    max-width: calc(50% - 8px);
+}
+
+/* ==========================================================================
+   Layout Variations - Checkout Coupon
+   ========================================================================== */
+
+/* Inline Layout (default) */
+.mpd-coupon-layout-inline .checkout_coupon {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.mpd-coupon-layout-inline .checkout_coupon .form-row {
+    margin: 0;
+}
+
+.mpd-coupon-layout-inline .checkout_coupon .form-row-first {
+    flex: 1;
+    min-width: 200px;
+    width: auto;
+}
+
+.mpd-coupon-layout-inline .checkout_coupon .form-row-last {
+    width: auto;
+}
+
+.mpd-coupon-layout-inline .checkout_coupon .clear {
+    display: none;
+}
+
+/* Stacked Layout */
+.mpd-coupon-layout-stacked .checkout_coupon .form-row {
+    width: 100%;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.mpd-coupon-layout-stacked .checkout_coupon .form-row-first,
+.mpd-coupon-layout-stacked .checkout_coupon .form-row-last {
+    width: 100%;
+    float: none;
+}
+
+.mpd-coupon-layout-stacked .mpd-checkout-coupon__button {
+    width: 100%;
+}
+
+/* ==========================================================================
+   Place Order Button Alignment & Full Width
+   ========================================================================== */
+
+.mpd-place-order .mpd-place-order__button-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Full width button via prefix class */
+.mpd-place-order-full-width-yes #place_order,
+.mpd-place-order-full-width-yes .mpd-place-order__button-wrapper button {
+    width: 100%;
+    flex: 1 1 100%;
+}
+
+/* Justify alignment is handled by control selectors_dictionary */
+
+/* ==========================================================================
+   Payment Methods Layout Variations
+   ========================================================================== */
+
+/* Hide descriptions when disabled */
+.mpd-payment-show-desc- .payment_box,
+[class*="mpd-payment-show-desc-"]:not(.mpd-payment-show-desc-yes) .payment_box {
+    display: none !important;
+}
+
+/* Ensure descriptions show when enabled */
+.mpd-payment-show-desc-yes .wc_payment_method input[type="radio"]:checked ~ .payment_box {
+    display: block !important;
+}
+
+/* Default/List Layout */
+.mpd-payment-layout-default .wc_payment_methods,
+.mpd-payment-methods .wc_payment_methods {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-payment-layout-default .wc_payment_method,
+.mpd-payment-methods .wc_payment_method {
+    margin-bottom: 10px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+.mpd-payment-layout-default .wc_payment_method label,
+.mpd-payment-methods .wc_payment_method label {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.mpd-payment-layout-default .wc_payment_method input[type="radio"],
+.mpd-payment-methods .wc_payment_method input[type="radio"] {
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+/* Tabs Layout */
+.mpd-payment-layout-tabs .wc_payment_methods {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px solid #eee;
+}
+
+.mpd-payment-layout-tabs .wc_payment_method {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.mpd-payment-layout-tabs .wc_payment_method > label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 12px 20px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-weight: 500;
+    color: #666;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.mpd-payment-layout-tabs .wc_payment_method > label img {
+    max-height: 24px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.mpd-payment-layout-tabs .wc_payment_method input[type="radio"] {
+    display: none;
+}
+
+.mpd-payment-layout-tabs .wc_payment_method input[type="radio"]:checked + label {
+    color: #3498db;
+}
+
+.mpd-payment-layout-tabs .wc_payment_method input[type="radio"]:checked + label::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #3498db;
+}
+
+.mpd-payment-layout-tabs .wc_payment_method .payment_box {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-top: none;
+}
+
+/* Accordion Layout */
+.mpd-payment-layout-accordion .wc_payment_methods {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-payment-layout-accordion .wc_payment_method {
+    border: none;
+    border-bottom: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-payment-layout-accordion .wc_payment_method > label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    cursor: pointer;
+    background: #fafafa;
+    font-weight: 500;
+}
+
+.mpd-payment-layout-accordion .wc_payment_method > label::after {
+    content: '+';
+    font-size: 20px;
+    font-weight: 300;
+    color: #999;
+}
+
+.mpd-payment-layout-accordion .wc_payment_method input[type="radio"]:checked + label::after {
+    content: '−';
+}
+
+.mpd-payment-layout-accordion .wc_payment_method input[type="radio"]:checked + label {
+    background: #e8f4f8;
+}
+
+.mpd-payment-layout-accordion .wc_payment_method input[type="radio"] {
+    margin-right: 12px;
+}
+
+.mpd-payment-layout-accordion .wc_payment_method .payment_box {
+    padding: 15px;
+    background: #fff;
+}
+
+/* ==========================================================================
+   Order Review - Product Image in Name
+   ========================================================================== */
+
+.mpd-order-review__product-image {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.mpd-order-review__product-image img,
+.mpd-order-review__product-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.mpd-order-review .woocommerce-checkout-review-order-table .product-name,
+.mpd-order-review__table .product-name,
+.mpd-order-review table .product-name {
+    display: flex;
+    align-items: center;
+}
+
+/* Order Review - Coupon Demo Row */
+.mpd-order-review .cart-discount .mpd-coupon-code {
+    font-weight: 600;
+    font-style: italic;
+}
+
+.mpd-order-review .cart-discount .woocommerce-remove-coupon {
+    color: #e2401c;
+    font-size: 0.9em;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+.mpd-order-review .cart-discount .woocommerce-remove-coupon:hover {
+    color: #c23015;
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Checkout Login - Full Width Button
+   ========================================================================== */
+
+.mpd-checkout-login__button--full,
+.mpd-checkout-login__button.mpd-checkout-login__button--full {
+    width: 100%;
+    display: block;
+}
+
+/* ==========================================================================
+   Additional WooCommerce Integration Fixes
+   ========================================================================== */
+
+/* Fix WooCommerce coupon toggle display */
+.mpd-checkout-coupon .woocommerce-form-coupon-toggle .woocommerce-info {
+    margin: 0;
+    position: relative;
+    padding-left: 45px;
+}
+
+/* Fix icon positioning to prevent text overlap */
+.mpd-checkout-coupon .woocommerce-form-coupon-toggle .woocommerce-info::before {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Editor preview form visibility when collapsible is enabled */
+.mpd-checkout-coupon .mpd-coupon-form-preview {
+    display: block !important;
+    opacity: 0.9;
+}
+
+/* Applied coupons empty state */
+.mpd-checkout-coupon__applied--empty {
+    padding: 10px 15px;
+    background: #f8f9fa;
+    border: 1px dashed #ddd;
+    border-radius: 4px;
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
+/* Fix icon overlay on success/error messages in coupon widget */
+.mpd-checkout-coupon .woocommerce-message,
+.mpd-checkout-coupon .woocommerce-error,
+.mpd-checkout-coupon .mpd-checkout-coupon__message {
+    position: relative !important;
+    padding-left: 50px !important;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.mpd-checkout-coupon .woocommerce-message::before,
+.mpd-checkout-coupon .woocommerce-error::before,
+.mpd-checkout-coupon .mpd-checkout-coupon__message::before {
+    position: absolute !important;
+    left: 15px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    float: none !important;
+}
+
+/* Ensure coupon messages don't have icon overlap */
+.mpd-checkout-coupon .mpd-checkout-coupon__message {
+    position: relative;
+    padding-left: 50px !important;
+}
+
+.mpd-checkout-coupon .mpd-checkout-coupon__message::before {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Ensure proper alignment in form rows */
+.mpd-checkout-coupon .checkout_coupon::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Fix payment method active state */
+.mpd-payment-methods .wc_payment_method input[type="radio"]:checked ~ .payment_box {
+    display: block;
+}
+
+/* Ensure shipping address toggle works */
+.mpd-shipping-form .shipping_address {
+    margin-top: 15px;
+}
+
+/* Order notes Pro gift wrapping */
+.mpd-order-notes .gift-wrapping {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+/* WooCommerce native class overrides for our widgets */
+.mpd-billing-form .woocommerce-billing-fields__field-wrapper,
+.mpd-shipping-form .woocommerce-shipping-fields__field-wrapper {
+    width: 100%;
+}
+
+/* Fix for Select2 in our forms */
+.mpd-billing-form .select2-container,
+.mpd-shipping-form .select2-container {
+    width: 100% !important;
+}
+
+/* Loading state for place order button */
+.mpd-place-order #place_order.loading,
+.mpd-place-order #place_order[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.mpd-place-order #place_order.loading::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: mpd-spin 0.8s linear infinite;
+}
+
+/* ==========================================
+   MODERN BLOCKUI LOADING OVERLAY
+   Replaces WooCommerce default loading spinner
+   ========================================== */
+
+.woocommerce .blockUI.blockOverlay,
+.woocommerce .loader {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+    background-image: none !important;
+    opacity: 1 !important;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+
+.woocommerce .blockUI.blockOverlay::before,
+.woocommerce .loader::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border-radius: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.08);
+    border-top-color: var(--mpd-primary-color, #3b82f6);
+    animation: mpd-blockui-spin 0.7s linear infinite;
+    box-sizing: border-box;
+}
+
+.woocommerce .blockUI.blockOverlay::after,
+.woocommerce .loader::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border-radius: 50%;
+    border: 3px solid rgba(0, 0, 0, 0.05);
+    border-bottom-color: var(--mpd-primary-color, #3b82f6);
+    animation: mpd-blockui-spin 1.1s linear infinite reverse;
+    box-sizing: border-box;
+}
+
+@keyframes mpd-blockui-spin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

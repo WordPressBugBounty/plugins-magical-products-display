@@ -1,0 +1,2031 @@
+/**
+ * MPD Shop Archive Widgets Styles
+ *
+ * Styles for all Shop/Archive page builder widgets.
+ *
+ * @package Magical_Products_Display
+ * @since 2.0.0
+ */
+
+/* ==========================================================================
+   1. Products Archive Widget
+   ========================================================================== */
+
+.mpd-products-archive {
+    position: relative;
+}
+
+/* BEM Style Grid Layout */
+.mpd-products-archive__grid {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.mpd-products-archive__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mpd-products-archive__item {
+    position: relative;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.mpd-products-archive__item:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* List Layout Item */
+.mpd-products-archive__list .mpd-products-archive__item {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.mpd-products-archive__list .mpd-products-archive__image {
+    flex: 0 0 250px;
+    max-width: 250px;
+}
+
+.mpd-products-archive__list .mpd-products-archive__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Image */
+.mpd-products-archive__image {
+    position: relative;
+    overflow: hidden;
+}
+
+.mpd-products-archive__image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.mpd-products-archive__item:hover .mpd-products-archive__image img {
+    transform: scale(1.05);
+}
+
+/* Content */
+.mpd-products-archive__content {
+    padding: 15px;
+}
+
+/* Title */
+.mpd-products-archive__title {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.mpd-products-archive__title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.mpd-products-archive__title a:hover {
+    color: var(--mpd-primary-color, #0073aa);
+}
+
+/* Price */
+.mpd-products-archive__price {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--mpd-price-color, #333);
+    margin-bottom: 10px;
+}
+
+.mpd-products-archive__price del {
+    font-weight: 400;
+    opacity: 0.6;
+    margin-right: 8px;
+}
+
+.mpd-products-archive__price ins {
+    text-decoration: none;
+    color: var(--mpd-sale-price-color, #e74c3c);
+}
+
+/* Rating */
+.mpd-products-archive__rating {
+    margin-bottom: 10px;
+}
+
+.mpd-products-archive__rating .star-rating {
+    display: inline-block;
+    font-size: 14px;
+    color: #ffc107;
+}
+
+/* Star Rating with Icons */
+.mpd-star-rating {
+    position: relative;
+    display: inline-flex;
+    font-size: 14px;
+    line-height: 1;
+}
+
+.mpd-star-rating__empty {
+    display: flex;
+    color: var(--mpd-star-empty-color, #d4d4d4);
+}
+
+.mpd-star-rating__empty i,
+.mpd-star-rating__filled i {
+    font-family: 'eicons' !important;
+    font-style: normal;
+    margin-right: 2px;
+}
+
+.mpd-star-rating__filled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    overflow: hidden;
+    color: var(--mpd-star-filled-color, #ffc107);
+}
+
+/* Category */
+.mpd-products-archive__category {
+    font-size: 12px;
+    color: var(--mpd-category-color, #666);
+    margin-bottom: 5px;
+}
+
+.mpd-products-archive__category a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mpd-products-archive__category a:hover {
+    color: var(--mpd-category-hover-color, #0073aa);
+}
+
+/* Sale Badge */
+.mpd-products-archive__badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--mpd-sale-badge-bg, #e74c3c);
+    color: var(--mpd-sale-badge-color, #fff);
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 3px;
+    z-index: 5;
+}
+
+/* Add to Cart */
+.mpd-products-archive__add-to-cart {
+    margin-top: 10px;
+}
+
+.mpd-products-archive__add-to-cart a.button,
+.mpd-products-archive__add-to-cart .add_to_cart_button {
+    display: inline-block;
+    background: var(--mpd-button-bg, #0073aa);
+    color: var(--mpd-button-color, #fff);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.3s ease;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.mpd-products-archive__add-to-cart a.button:hover,
+.mpd-products-archive__add-to-cart .add_to_cart_button:hover {
+    background: var(--mpd-button-hover-bg, #005177);
+    color:var(--mpd-button-hover-color, #fff);
+}
+
+/* Add to Cart Loading State */
+.mpd-products-archive__add-to-cart .add_to_cart_button.loading,
+.mpd-products-archive .add_to_cart_button.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.mpd-products-archive__add-to-cart .add_to_cart_button.loading::after,
+.mpd-products-archive .add_to_cart_button.loading::after {
+    content: "" !important;
+    display: inline-block !important;
+    width: 14px !important;
+    height: 14px !important;
+    margin-left: 8px !important;
+    border: 2px solid transparent !important;
+    border-top-color: currentColor !important;
+    border-right-color: currentColor !important;
+    border-radius: 50% !important;
+    animation: mpd-spin 0.6s linear infinite !important;
+    vertical-align: middle !important;
+    background: none !important;
+}
+
+@keyframes mpd-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Prevent AJAX in Elementor Editor Mode */
+.mpd-products-archive__add-to-cart.mpd-editor-mode .add_to_cart_button {
+    pointer-events: none;
+    cursor: default;
+}
+
+.mpd-products-archive__add-to-cart.mpd-editor-mode .add_to_cart_button.loading,
+.mpd-products-archive__add-to-cart.mpd-editor-mode .added_to_cart {
+    display: none !important;
+}
+
+/* View Cart Link */
+.mpd-products-archive__add-to-cart .added_to_cart {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 10px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--mpd-view-cart-color, #0073aa);
+    background: var(--mpd-view-cart-bg, transparent);
+    border: 1px solid var(--mpd-view-cart-border-color, #0073aa);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.mpd-products-archive__add-to-cart .added_to_cart:hover {
+    color: var(--mpd-view-cart-hover-color, #fff);
+    background: var(--mpd-view-cart-hover-bg, #0073aa);
+    border-color: var(--mpd-view-cart-hover-border-color, #0073aa);
+}
+
+/* No Results */
+.mpd-products-archive__no-results {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f7f7f7;
+    border-radius: 4px;
+}
+
+/* Legacy class names for backward compatibility */
+.mpd-products-archive .mpd-products-grid {
+    display: grid;
+    gap: 30px;
+}
+
+.mpd-products-archive .mpd-products-grid.mpd-columns-1 {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.mpd-products-archive .mpd-products-grid.mpd-columns-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.mpd-products-archive .mpd-products-grid.mpd-columns-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.mpd-products-archive .mpd-products-grid.mpd-columns-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.mpd-products-archive .mpd-products-grid.mpd-columns-5 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.mpd-products-archive .mpd-products-grid.mpd-columns-6 {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.mpd-products-archive .mpd-products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mpd-products-archive .mpd-product-item {
+    position: relative;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.mpd-products-archive .mpd-product-item:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mpd-products-archive .mpd-product-image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+.mpd-products-archive .mpd-product-image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.mpd-products-archive .mpd-product-item:hover .mpd-product-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.mpd-products-archive .mpd-product-content {
+    padding: 15px;
+}
+
+.mpd-products-archive .mpd-product-title {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.mpd-products-archive .mpd-product-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.mpd-products-archive .mpd-product-title a:hover {
+    color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-products-archive .mpd-product-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--mpd-price-color, #333);
+    margin-bottom: 10px;
+}
+
+.mpd-products-archive .mpd-product-price del {
+    font-weight: 400;
+    opacity: 0.6;
+    margin-right: 8px;
+}
+
+.mpd-products-archive .mpd-product-price ins {
+    text-decoration: none;
+    color: var(--mpd-sale-price-color, #e74c3c);
+}
+
+.mpd-products-archive .mpd-product-rating {
+    margin-bottom: 10px;
+}
+
+.mpd-products-archive .star-rating {
+    display: inline-block;
+    font-size: 14px;
+    color: #ffc107;
+}
+
+.mpd-products-archive .mpd-sale-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--mpd-sale-badge-bg, #e74c3c);
+    color: var(--mpd-sale-badge-color, #fff);
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 3px;
+    z-index: 5;
+}
+
+.mpd-products-archive .mpd-add-to-cart {
+    margin-top: 10px;
+}
+
+.mpd-products-archive .mpd-add-to-cart .button,
+.mpd-products-archive .mpd-add-to-cart .add_to_cart_button {
+    display: inline-block;
+    background: var(--mpd-button-bg, #0073aa);
+    color: var(--mpd-button-color, #fff);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.mpd-products-archive .mpd-add-to-cart .button:hover,
+.mpd-products-archive .mpd-add-to-cart .add_to_cart_button:hover {
+    background: var(--mpd-button-hover-bg, #005177);
+}
+
+/* --------------------------------------------------------------------------
+   1.4 Action Buttons
+   -------------------------------------------------------------------------- */
+
+.mpd-products-archive .mpd-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mpd-products-archive .mpd-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 8px;
+    background: #fff;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    line-height: 1;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mpd-products-archive .mpd-action-btn:hover {
+    background: #3498db;
+    color: #fff;
+}
+
+.mpd-products-archive .mpd-action-btn i {
+    font-family: 'eicons' !important;
+    font-style: normal;
+    font-size: 14px;
+}
+
+.mpd-products-archive .mpd-action-btn span {
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Action buttons - On Image (Hover) */
+.mpd-products-archive .mpd-action-buttons--on-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.mpd-products-archive__item:hover .mpd-action-buttons--on-image {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Action buttons - Image Center */
+.mpd-products-archive .mpd-action-buttons--image-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Action buttons - Top Right */
+.mpd-products-archive .mpd-action-buttons--top-right {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    flex-direction: column;
+    z-index: 10;
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Action buttons - Top Left */
+.mpd-products-archive .mpd-action-buttons--top-left {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    flex-direction: column;
+    z-index: 10;
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Action buttons - Hover Only (show on hover) - must come after position classes */
+.mpd-products-archive .mpd-action-buttons--hover-only.mpd-action-buttons--image-center,
+.mpd-products-archive .mpd-action-buttons--hover-only.mpd-action-buttons--top-right,
+.mpd-products-archive .mpd-action-buttons--hover-only.mpd-action-buttons--top-left {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.mpd-products-archive__item:hover .mpd-action-buttons--hover-only,
+.mpd-products-archive__image:hover .mpd-action-buttons--hover-only {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Action buttons - Below Image */
+.mpd-products-archive .mpd-action-buttons--below-image {
+    justify-content: center;
+    padding: 10px 0;
+}
+
+/* Ensure image container is relative for absolute positioning */
+.mpd-products-archive__image {
+    position: relative;
+    overflow: hidden;
+}
+
+/* List Layout */
+.mpd-products-archive .mpd-products-list .mpd-product-item {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.mpd-products-archive .mpd-products-list .mpd-product-image-wrapper {
+    flex: 0 0 250px;
+    max-width: 250px;
+}
+
+.mpd-products-archive .mpd-products-list .mpd-product-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* No Products Found */
+.mpd-products-archive .mpd-no-products {
+    text-align: center;
+    padding: 40px 20px;
+    background: #f7f7f7;
+    border-radius: 4px;
+}
+
+/* Responsive Styles for Products Archive */
+@media (max-width: 1024px) {
+    .mpd-products-archive__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .mpd-products-archive__list .mpd-products-archive__image {
+        flex: 0 0 200px;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mpd-products-archive__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .mpd-products-archive__list .mpd-products-archive__item {
+        flex-direction: column;
+    }
+    
+    .mpd-products-archive__list .mpd-products-archive__image {
+        flex: none;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .mpd-products-archive__grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   1.5 Masonry Layout
+   -------------------------------------------------------------------------- */
+
+.mpd-products-archive__grid--masonry {
+    display: block !important;
+    grid-template-columns: none !important;
+    column-gap: var(--mpd-gap, 20px);
+}
+
+.mpd-products-archive__grid--masonry .mpd-products-archive__item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: var(--mpd-gap, 20px);
+    break-inside: avoid;
+}
+
+/* --------------------------------------------------------------------------
+   1.6 Infinite Scroll
+   -------------------------------------------------------------------------- */
+
+.mpd-infinite-scroll-loader {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.mpd-infinite-scroll-loader.mpd-loading {
+    display: flex;
+}
+
+.mpd-infinite-scroll-loader.mpd-no-more {
+    display: flex;
+}
+
+.mpd-infinite-scroll-loader.mpd-no-more .mpd-loader-spinner {
+    display: none;
+}
+
+.mpd-loader-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e0e0e0;
+    border-top-color: var(--mpd-primary-color, #3498db);
+    border-radius: 50%;
+    animation: mpd-spin 0.8s linear infinite;
+}
+
+@keyframes mpd-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.mpd-loader-text {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* AJAX Filter Loading Overlay */
+.mpd-products-archive {
+    position: relative;
+}
+
+.mpd-filter-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.85);
+    z-index: 100;
+    gap: 12px;
+}
+
+.mpd-products-archive.mpd-filtering .mpd-products-archive__grid,
+.mpd-products-archive.mpd-filtering .mpd-products-archive__list {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.mpd-no-products {
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    width: 100%;
+}
+
+/* Load More Button (Alternative to auto infinite scroll) */
+.mpd-load-more-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+    width: 100%;
+}
+
+.mpd-load-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background-color: var(--mpd-primary-color, #3498db);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mpd-load-more-btn:hover {
+    background-color: var(--mpd-primary-color-dark, #2980b9);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.mpd-load-more-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.mpd-load-more-btn .mpd-btn-spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: mpd-spin 0.8s linear infinite;
+}
+
+.mpd-all-loaded {
+    padding: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+}
+
+/* Animation for new items loaded */
+.mpd-products-archive__item.mpd-item-new {
+    animation: mpd-fade-in-up 0.5s ease forwards;
+}
+
+@keyframes mpd-fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   2. Archive Title Widget
+   ========================================================================== */
+
+.mpd-archive-title {
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-archive-title .mpd-archive-prefix {
+    opacity: 0.7;
+    margin-right: 5px;
+}
+
+/* ==========================================================================
+   3. Archive Description Widget
+   ========================================================================== */
+
+.mpd-archive-description {
+    line-height: 1.8;
+}
+
+.mpd-archive-description p:last-child {
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   4. Result Count Widget
+   ========================================================================== */
+
+.mpd-result-count {
+    padding: 10px 0;
+}
+
+.mpd-result-count p {
+    margin: 0;
+}
+
+/* ==========================================================================
+   5. Ordering Widget
+   ========================================================================== */
+
+.mpd-ordering {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mpd-ordering .mpd-ordering-label {
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.mpd-ordering select {
+    padding: 10px 35px 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    min-width: 200px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.mpd-ordering select:focus {
+    outline: none;
+    border-color: var(--mpd-primary-color, #0073aa);
+}
+
+/* ==========================================================================
+   6. Pagination Widget (MPD Specific - No WooCommerce conflicts)
+   ========================================================================== */
+
+/* Main pagination container */
+nav.mpd-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 40px 0 20px;
+    padding: 0;
+}
+
+/* Pagination list wrapper */
+nav.mpd-pagination .mpd-pagination__list {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav.mpd-pagination .mpd-pagination__list--prev-next {
+    gap: 16px;
+}
+
+nav.mpd-pagination .mpd-pagination__item {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Page number buttons */
+nav.mpd-pagination .page-numbers li{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    margin: 0;
+    color: #374151;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+nav.mpd-pagination .page-numbers li:hover {
+    background: var(--mpd-primary-color, #0073aa);
+    color: #fff;
+    border-color: var(--mpd-primary-color, #0073aa);
+    box-shadow: 0 2px 8px rgba(0, 115, 170, 0.2);
+}
+nav.mpd-pagination .page-numbers li a,
+nav.mpd-pagination .page-numbers li span {
+    padding: 14px;
+}
+
+nav.mpd-pagination .page-numbers li a:hover,
+nav.mpd-pagination .page-numbers li:hover a{
+    color: #fff;
+    text-decoration: inherit;
+}
+
+nav.mpd-pagination .page-numbers li.is-current {
+    background: var(--mpd-primary-color, #0073aa);
+    color: #fff;
+    border-color: var(--mpd-primary-color, #0073aa);
+    font-weight: 600;
+    cursor: default;
+}
+
+nav.mpd-pagination .page-numbers.dots {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    pointer-events: none;
+    min-width: 24px;
+    color: #9ca3af;
+    padding: 0 4px;
+}
+
+/* Prev/Next buttons */
+nav.mpd-pagination .page-numbers.prev,
+nav.mpd-pagination .page-numbers.next {
+    padding: 0 16px;
+    font-weight: 500;
+}
+
+/* Prev/Next Only Layout */
+nav.mpd-pagination.mpd-pagination-prev-next {
+    justify-content: space-between;
+}
+
+nav.mpd-pagination.mpd-pagination-prev-next .page-numbers {
+    padding: 10px 20px;
+}
+
+/* Load More Button */
+nav.mpd-pagination .mpd-pagination__load-more-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+nav.mpd-pagination .mpd-pagination__load-more,
+nav.mpd-pagination .mpd-load-more-btn {
+    background: var(--mpd-primary-color, #0073aa);
+    color: #fff;
+    border: none;
+    padding: 12px 32px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 115, 170, 0.2);
+}
+
+nav.mpd-pagination .mpd-pagination__load-more:hover,
+nav.mpd-pagination .mpd-load-more-btn:hover {
+    background: var(--mpd-primary-color-dark, #005a87);
+    box-shadow: 0 4px 12px rgba(0, 115, 170, 0.3);
+}
+
+nav.mpd-pagination .mpd-pagination__load-more:disabled,
+nav.mpd-pagination .mpd-load-more-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Infinite Scroll Loader */
+nav.mpd-pagination .mpd-pagination__infinite-preview,
+nav.mpd-pagination .mpd-infinite-scroll-loader {
+    text-align: center;
+    padding: 24px 16px;
+    width: 100%;
+}
+
+nav.mpd-pagination .mpd-pagination__loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+nav.mpd-pagination .mpd-pagination__spinner,
+nav.mpd-pagination .mpd-loading-spinner {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e5e7eb;
+    border-top-color: var(--mpd-primary-color, #0073aa);
+    border-radius: 50%;
+    animation: mpd-pagination-spin 0.7s linear infinite;
+}
+
+nav.mpd-pagination .mpd-pagination__loading-text {
+    font-size: 14px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+@keyframes mpd-pagination-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Editor Preview Badge */
+nav.mpd-pagination.mpd-pagination--preview {
+    position: relative;
+}
+
+nav.mpd-pagination.mpd-pagination--preview::after {
+    content: "Preview";
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background: #f59e0b;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* Responsive Pagination */
+@media (max-width: 640px) {
+    nav.mpd-pagination {
+        gap: 4px;
+    }
+    
+    nav.mpd-pagination .page-numbers {
+        min-width: 36px;
+        height: 36px;
+        font-size: 13px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    nav.mpd-pagination .page-numbers.prev,
+    nav.mpd-pagination .page-numbers.next {
+        padding: 0 12px;
+    }
+    
+    nav.mpd-pagination .mpd-pagination__load-more,
+    nav.mpd-pagination .mpd-load-more-btn {
+        padding: 10px 24px;
+        font-size: 13px;
+    }
+}
+
+/* ==========================================================================
+   7. Active Filters Widget
+   ========================================================================== */
+
+.mpd-active-filters {
+    margin-bottom: 20px;
+}
+
+.mpd-active-filters .mpd-active-filters-title {
+    margin: 0 0 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mpd-active-filters .mpd-filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.mpd-active-filters .mpd-filter-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f0f0f0;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.mpd-active-filters .mpd-filter-chip:hover {
+    background: #e0e0e0;
+}
+
+.mpd-active-filters .mpd-filter-chip .mpd-chip-remove {
+    font-size: 16px;
+    line-height: 1;
+    opacity: 0.6;
+}
+
+.mpd-active-filters .mpd-filter-chip:hover .mpd-chip-remove {
+    opacity: 1;
+}
+
+.mpd-active-filters .mpd-clear-all {
+    display: inline-block;
+    background: #e74c3c;
+    color: #fff;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.mpd-active-filters .mpd-clear-all:hover {
+    background: #c0392b;
+}
+
+.mpd-active-filters .mpd-no-active-filters {
+    color: #666;
+    font-style: italic;
+}
+
+/* List Style - Matching other filter widgets */
+.mpd-active-filters .mpd-active-filters-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-active-filters .mpd-active-filters-list li {
+    margin-bottom: 5px;
+}
+
+.mpd-active-filters .mpd-active-filters-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: color 0.3s ease;
+}
+
+.mpd-active-filters .mpd-active-filters-list a:hover {
+    color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-active-filters .mpd-active-filters-list .mpd-filter-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+    line-height: 1;
+    color: #999;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.mpd-active-filters .mpd-active-filters-list a:hover .mpd-filter-remove {
+    color: var(--mpd-primary-color, #0073aa);
+    opacity: 1;
+}
+
+.mpd-active-filters .mpd-active-filters-list .mpd-filter-name {
+    flex: 1;
+}
+
+/* Bullet List Style */
+.mpd-active-filters .mpd-active-filters-list.mpd-list-style-bullet {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.mpd-active-filters .mpd-active-filters-list.mpd-list-style-bullet li {
+    margin-bottom: 8px;
+}
+
+.mpd-active-filters .mpd-active-filters-list.mpd-list-style-bullet a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    border-bottom: none;
+}
+
+/* Clear All Link - List Style */
+.mpd-active-filters .mpd-clear-all-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--mpd-primary-color, #0073aa);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.mpd-active-filters .mpd-clear-all-link:hover {
+    color: var(--mpd-primary-hover-color, #005177);
+    text-decoration: underline;
+}
+
+/* Compact List Style - No borders */
+.mpd-active-filters .mpd-active-filters-list.mpd-list-style-compact a {
+    padding: 5px 0;
+    border-bottom: none;
+}
+
+/* BEM Style Class Names */
+.mpd-active-filters__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-active-filters__item {
+    margin-bottom: 5px;
+}
+
+.mpd-active-filters__item a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: color 0.3s ease;
+}
+
+.mpd-active-filters__item a:hover {
+    color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-active-filters__name {
+    flex: 1;
+}
+
+.mpd-active-filters__remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+    line-height: 1;
+    color: #999;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.mpd-active-filters__item a:hover .mpd-active-filters__remove {
+    color: var(--mpd-primary-color, #0073aa);
+    opacity: 1;
+}
+
+.mpd-active-filters__clear-all {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--mpd-primary-color, #0073aa);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.mpd-active-filters__clear-all:hover {
+    color: var(--mpd-primary-hover-color, #005177);
+    text-decoration: underline;
+}
+
+/* Display Type: Chips (default) */
+.mpd-active-filters--chips .mpd-active-filters__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.mpd-active-filters--chips .mpd-active-filters__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f0f0f0;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.mpd-active-filters--chips .mpd-active-filters__chip:hover {
+    background: #e0e0e0;
+}
+
+.mpd-active-filters--chips .mpd-active-filters__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.mpd-active-filters--chips .mpd-active-filters__remove {
+    font-size: 16px;
+    line-height: 1;
+    opacity: 0.6;
+}
+
+.mpd-active-filters--chips .mpd-active-filters__chip:hover .mpd-active-filters__remove {
+    opacity: 1;
+}
+
+/* Display Type: List */
+.mpd-active-filters--list .mpd-active-filters__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-active-filters--list .mpd-active-filters__item {
+    margin: 0;
+}
+
+.mpd-active-filters--list .mpd-active-filters__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: color 0.3s ease;
+}
+
+.mpd-active-filters--list .mpd-active-filters__link:hover {
+    color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-active-filters--list .mpd-active-filters__label {
+    flex: 1;
+}
+
+.mpd-active-filters--list .mpd-active-filters__remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    font-size: 14px;
+    line-height: 1;
+    color: #999;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.mpd-active-filters--list .mpd-active-filters__link:hover .mpd-active-filters__remove {
+    color: var(--mpd-primary-color, #0073aa);
+    opacity: 1;
+}
+
+/* List Horizontal Layout */
+.mpd-active-filters--list .mpd-active-filters__list[style*="flex-direction: row"],
+.mpd-active-filters--list .mpd-active-filters__list.mpd-layout-horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.mpd-active-filters--list .mpd-active-filters__list[style*="flex-direction: row"] .mpd-active-filters__item,
+.mpd-active-filters--list .mpd-active-filters__list.mpd-layout-horizontal .mpd-active-filters__item {
+    margin: 0;
+}
+
+.mpd-active-filters--list .mpd-active-filters__list[style*="flex-direction: row"] .mpd-active-filters__link,
+.mpd-active-filters--list .mpd-active-filters__list.mpd-layout-horizontal .mpd-active-filters__link {
+    padding: 5px 0;
+    border-bottom: none;
+}
+
+/* ==========================================================================
+   8. Price Filter Widget
+   ========================================================================== */
+
+.mpd-price-filter {
+    margin-bottom: 20px;
+}
+
+.mpd-price-filter .mpd-price-filter-title {
+    margin: 0 0 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mpd-price-filter .mpd-price-slider-wrapper {
+    margin-bottom: 20px;
+}
+
+/* WooCommerce Price Slider Override */
+.mpd-price-filter .price_slider_wrapper {
+    padding-top: 10px;
+}
+
+.mpd-price-filter .price_slider {
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.mpd-price-filter .ui-slider-range {
+    background: var(--mpd-primary-color, #0073aa);
+    border-radius: 3px;
+    position: absolute;
+    height: 100%;
+}
+
+.mpd-price-filter .ui-slider-handle {
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border: 2px solid var(--mpd-primary-color, #0073aa);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+}
+
+.mpd-price-filter .ui-slider-handle:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 115, 170, 0.3);
+}
+
+.mpd-price-filter .mpd-price-inputs {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.mpd-price-filter .mpd-price-input-group {
+    flex: 1;
+}
+
+.mpd-price-filter .mpd-price-input-group label {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.mpd-price-filter .mpd-price-input-group input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.mpd-price-filter .mpd-price-input-group input:focus {
+    outline: none;
+    border-color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-price-filter .mpd-price-separator {
+    padding-top: 20px;
+    color: #999;
+}
+
+.mpd-price-filter .mpd-price-filter-btn {
+    background: var(--mpd-button-bg, #0073aa);
+    color: var(--mpd-button-color, #fff);
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+.mpd-price-filter .mpd-price-filter-btn:hover {
+    background: var(--mpd-button-hover-bg, #005177);
+}
+
+.mpd-price-filter .mpd-price-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Preview Slider for Elementor Editor */
+.mpd-price-filter__preview-slider {
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.mpd-price-filter__preview-slider .ui-slider-range {
+    background: var(--mpd-primary-color, #0073aa);
+    border-radius: 3px;
+    position: absolute;
+    height: 100%;
+    top: 0;
+}
+
+.mpd-price-filter__preview-slider .ui-slider-handle {
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border: 2px solid var(--mpd-primary-color, #0073aa);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+    margin-left: -9px;
+}
+
+/* ==========================================================================
+   9. Attribute Filter Widget
+   ========================================================================== */
+
+.mpd-attribute-filter {
+    margin-bottom: 20px;
+}
+
+.mpd-attribute-filter .mpd-attribute-filter-title {
+    margin: 0 0 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* List Style - Using BEM class names */
+.mpd-attribute-filter__list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.mpd-attribute-filter__item {
+    margin-bottom: 8px;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.mpd-attribute-filter__item a,
+.mpd-attribute-filter__item label {
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mpd-attribute-filter__item a:hover,
+.mpd-attribute-filter__item label:hover {
+    color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-attribute-filter__item.is-chosen a,
+.mpd-attribute-filter__item input:checked + label {
+    color: var(--mpd-primary-color, #0073aa);
+    font-weight: 600;
+}
+
+.mpd-attribute-filter__count {
+    font-size: 12px;
+    color: #999;
+    margin-left: 5px;
+}
+
+/* Legacy fallback class names */
+.mpd-attribute-filter .mpd-filter-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-attribute-filter .mpd-filter-list li {
+    margin-bottom: 8px;
+}
+
+.mpd-attribute-filter .mpd-filter-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: color 0.3s ease;
+}
+
+.mpd-attribute-filter .mpd-filter-list a:hover {
+    color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-attribute-filter .mpd-filter-list a.active {
+    color: var(--mpd-primary-color, #0073aa);
+    font-weight: 600;
+}
+
+.mpd-attribute-filter .mpd-filter-count {
+    font-size: 12px;
+    color: #999;
+    background: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* Dropdown Style */
+.mpd-attribute-filter select {
+    width: 100%;
+    padding: 10px 35px 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.mpd-attribute-filter select:focus {
+    outline: none;
+    border-color: var(--mpd-primary-color, #0073aa);
+}
+
+/* Checkbox Style */
+.mpd-attribute-filter .mpd-filter-checkboxes label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mpd-attribute-filter .mpd-filter-checkboxes input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--mpd-primary-color, #0073aa);
+}
+
+/* Label/Button Style */
+.mpd-attribute-filter .mpd-filter-labels {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.mpd-attribute-filter .mpd-filter-labels a {
+    display: inline-block;
+    padding: 8px 15px;
+    background: #f0f0f0;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.mpd-attribute-filter .mpd-filter-labels a:hover,
+.mpd-attribute-filter .mpd-filter-labels a.active {
+    background: var(--mpd-primary-color, #0073aa);
+    color: #fff;
+}
+
+/* Color Swatches (Pro) */
+.mpd-attribute-filter .mpd-color-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.mpd-attribute-filter .mpd-color-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.mpd-attribute-filter .mpd-color-swatch:hover {
+    transform: scale(1.1);
+}
+
+.mpd-attribute-filter .mpd-color-swatch.active {
+    border-color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-attribute-filter .mpd-color-swatch.active::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 14px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   10. Category Filter Widget
+   ========================================================================== */
+
+.mpd-category-filter {
+    margin-bottom: 20px;
+}
+
+.mpd-category-filter .mpd-category-filter-title,
+.mpd-category-filter__title {
+    margin: 0 0 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* List Style - Using BEM class names */
+.mpd-category-filter__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Horizontal Layout */
+.mpd-category-filter__list[style*="flex-direction: row"] {
+    gap: 15px;
+}
+
+.mpd-category-filter__list[style*="flex-direction: row"] .mpd-category-filter__item {
+    margin-bottom: 0;
+}
+
+/* Vertical Layout (default) */
+.mpd-category-filter__list[style*="flex-direction: column"] {
+    gap: 0;
+}
+
+.mpd-category-filter__item {
+    margin-bottom: 5px;
+}
+
+.mpd-category-filter__item a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.mpd-category-filter__item a:hover {
+    color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-category-filter__item.is-current a {
+    color: var(--mpd-primary-color, #0073aa);
+    font-weight: 600;
+}
+
+.mpd-category-filter__count {
+    font-size: 12px;
+    color: #999;
+    margin-left: 5px;
+}
+
+.mpd-category-filter__children {
+    padding-left: 15px;
+}
+
+/* Legacy fallback class names */
+.mpd-category-filter .mpd-category-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-category-filter .mpd-category-list li {
+    margin-bottom: 5px;
+}
+
+.mpd-category-filter .mpd-category-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333;
+    text-decoration: none;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    transition: color 0.3s ease;
+}
+
+.mpd-category-filter .mpd-category-list a:hover {
+    color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-category-filter .mpd-category-list a.active {
+    color: var(--mpd-primary-color, #0073aa);
+    font-weight: 600;
+}
+
+.mpd-category-filter .mpd-category-count {
+    font-size: 12px;
+    color: #999;
+    background: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* Children Categories */
+.mpd-category-filter .children {
+    list-style: none;
+    margin: 5px 0 0 0;
+    padding-left: 20px;
+}
+
+.mpd-category-filter .children a {
+    font-size: 14px;
+}
+
+/* Dropdown Style */
+.mpd-category-filter select {
+    width: 100%;
+    padding: 10px 35px 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.mpd-category-filter select:focus {
+    outline: none;
+    border-color: var(--mpd-primary-color, #0073aa);
+}
+
+/* Tree View with Checkboxes */
+.mpd-category-filter .mpd-category-tree {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-category-filter .mpd-category-tree li {
+    padding: 5px 0;
+}
+
+.mpd-category-filter .mpd-category-tree label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.mpd-category-filter .mpd-category-tree input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-category-filter .mpd-category-tree .children {
+    margin-top: 5px;
+    padding-left: 25px;
+}
+
+/* Accordion Style (Pro) */
+.mpd-category-filter .mpd-category-accordion {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-category-filter .mpd-accordion-item {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mpd-category-filter .mpd-accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.mpd-category-filter .mpd-accordion-header:hover {
+    color: var(--mpd-primary-color, #0073aa);
+}
+
+.mpd-category-filter .mpd-accordion-toggle {
+    font-size: 14px;
+    transition: transform 0.3s ease;
+}
+
+.mpd-category-filter .mpd-accordion-item.active .mpd-accordion-toggle {
+    transform: rotate(180deg);
+}
+
+.mpd-category-filter .mpd-accordion-content {
+    display: none;
+    padding: 0 0 15px 20px;
+}
+
+.mpd-category-filter .mpd-accordion-item.active .mpd-accordion-content {
+    display: block;
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    .mpd-products-archive .mpd-products-grid.mpd-columns-6 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .mpd-products-archive .mpd-products-grid.mpd-columns-5 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .mpd-products-archive .mpd-products-grid.mpd-columns-6,
+    .mpd-products-archive .mpd-products-grid.mpd-columns-5,
+    .mpd-products-archive .mpd-products-grid.mpd-columns-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .mpd-products-archive .mpd-products-grid.mpd-columns-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .mpd-products-archive .mpd-products-list .mpd-product-item {
+        flex-direction: column;
+    }
+    
+    .mpd-products-archive .mpd-products-list .mpd-product-image-wrapper {
+        flex: 0 0 auto;
+        max-width: 100%;
+    }
+    
+    .mpd-ordering {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .mpd-ordering select {
+        width: 100%;
+    }
+    
+    .mpd-price-filter .mpd-price-inputs {
+        flex-direction: column;
+    }
+    
+    .mpd-price-filter .mpd-price-separator {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .mpd-products-archive .mpd-products-grid.mpd-columns-6,
+    .mpd-products-archive .mpd-products-grid.mpd-columns-5,
+    .mpd-products-archive .mpd-products-grid.mpd-columns-4,
+    .mpd-products-archive .mpd-products-grid.mpd-columns-3,
+    .mpd-products-archive .mpd-products-grid.mpd-columns-2 {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    
+    .mpd-pagination .page-numbers {
+        min-width: 35px;
+        height: 35px;
+        font-size: 13px;
+    }
+}

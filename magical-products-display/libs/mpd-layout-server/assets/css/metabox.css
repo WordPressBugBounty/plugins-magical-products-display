@@ -1,0 +1,66 @@
+/**
+ * MPD Layout Server - Metabox Styles
+ *
+ * @package MPD_Layout_Server
+ * @since   1.0.0
+ */
+
+.mpd-metabox-wrap {
+	padding: 10px 0;
+}
+
+.mpd-metabox-wrap .form-table th {
+	width: 150px;
+	padding-top: 15px;
+}
+
+.mpd-metabox-wrap .form-table td {
+	padding-top: 10px;
+}
+
+.mpd-metabox-wrap textarea.code {
+	font-family: Consolas, Monaco, monospace;
+	font-size: 13px;
+	line-height: 1.5;
+	background-color: #f7f7f7;
+	border: 1px solid #ddd;
+}
+
+.mpd-metabox-wrap #mpd_json_status {
+	display: inline-block;
+	margin-left: 10px;
+	padding: 5px 10px;
+	border-radius: 3px;
+	font-size: 12px;
+}
+
+.mpd-metabox-wrap #mpd_json_status.valid {
+	background-color: #d4edda;
+	color: #155724;
+	border: 1px solid #c3e6cb;
+}
+
+.mpd-metabox-wrap #mpd_json_status.invalid {
+	background-color: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+}
+
+.mpd-widgets-wrap {
+	padding: 5px 0;
+}
+
+.mpd-widgets-wrap .mpd-widgets-list {
+	padding: 10px;
+	background: #f7f7f7;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+}
+
+.mpd-widgets-wrap .mpd-widgets-list label {
+	cursor: pointer;
+}
+
+.mpd-widgets-wrap .mpd-widgets-list label:hover {
+	color: #0073aa;
+}

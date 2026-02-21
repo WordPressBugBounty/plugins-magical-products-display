@@ -1,0 +1,184 @@
+[
+	{
+		"id": "auto_001",
+		"elType": "container",
+		"isInner": false,
+		"settings": {
+			"flex_direction": "column"
+		},
+		"elements": [
+			{
+				"id": "auto_002",
+				"elType": "container",
+				"isInner": true,
+				"settings": {
+					"content_width": "full",
+					"width": {
+						"unit": "%",
+						"size": 100,
+						"sizes": []
+					}
+				},
+				"elements": [
+					{
+						"id": "auto_003",
+						"elType": "widget",
+						"isInner": false,
+						"widgetType": "heading",
+						"settings": {
+							"title": "Shopping Cart",
+							"header_size": "h1"
+						},
+						"elements": []
+					}
+				]
+			},
+			{
+				"id": "auto_004",
+				"elType": "container",
+				"isInner": true,
+				"settings": {
+					"content_width": "full",
+					"width": {
+						"unit": "%",
+						"size": 100,
+						"sizes": []
+					},
+					"flex_direction": "row",
+					"flex_direction_mobile": "column",
+					"flex_gap": {
+						"column": "30",
+						"row": "30",
+						"isLinked": true,
+						"unit": "px",
+						"size": 30
+					},
+					"flex_wrap": "nowrap",
+					"flex_wrap_mobile": "wrap"
+				},
+				"elements": [
+					{
+						"id": "auto_005",
+						"elType": "container",
+						"isInner": true,
+						"settings": {
+							"content_width": "full",
+							"width": {
+								"unit": "%",
+								"size": 65,
+								"sizes": []
+							},
+							"width_tablet": {
+								"unit": "%",
+								"size": 60,
+								"sizes": []
+							},
+							"width_mobile": {
+								"unit": "%",
+								"size": 100,
+								"sizes": []
+							},
+							"flex_direction": "column",
+							"flex_gap": {
+								"column": "20",
+								"row": "20",
+								"isLinked": true,
+								"unit": "px",
+								"size": 20
+							}
+						},
+						"elements": [
+							{
+								"id": "auto_006",
+								"elType": "widget",
+								"isInner": false,
+								"widgetType": "mpd-cart-table",
+								"settings": {
+									"show_thumbnail": "yes",
+									"show_remove": "yes",
+									"show_quantity": "yes"
+								},
+								"elements": []
+							},
+							{
+								"id": "auto_007",
+								"elType": "widget",
+								"isInner": false,
+								"widgetType": "mpd-cart-coupon",
+								"settings": {},
+								"elements": []
+							}
+						]
+					},
+					{
+						"id": "auto_008",
+						"elType": "container",
+						"isInner": true,
+						"settings": {
+							"content_width": "full",
+							"width": {
+								"unit": "%",
+								"size": 35,
+								"sizes": []
+							},
+							"width_tablet": {
+								"unit": "%",
+								"size": 40,
+								"sizes": []
+							},
+							"width_mobile": {
+								"unit": "%",
+								"size": 100,
+								"sizes": []
+							},
+							"flex_direction": "column",
+							"flex_gap": {
+								"column": "20",
+								"row": "20",
+								"isLinked": true,
+								"unit": "px",
+								"size": 20
+							}
+						},
+						"elements": [
+							{
+								"id": "auto_009",
+								"elType": "widget",
+								"isInner": false,
+								"widgetType": "mpd-cart-totals",
+								"settings": {},
+								"elements": []
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": "auto_010",
+				"elType": "container",
+				"isInner": true,
+				"settings": {
+					"content_width": "full",
+					"width": {
+						"unit": "%",
+						"size": 100,
+						"sizes": []
+					}
+				},
+				"elements": [
+					{
+						"id": "auto_011",
+						"elType": "widget",
+						"isInner": false,
+						"widgetType": "mpd-cross-sells",
+						"settings": {
+							"columns": 4,
+							"posts_per_page": 4
+						},
+						"elements": []
+					}
+				]
+			}
+		]
+	}
+]

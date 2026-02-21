@@ -1,0 +1,195 @@
+[
+    {
+      "id": "auto_001",
+      "settings": {
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "50",
+          "right": "20",
+          "bottom": "50",
+          "left": "20",
+          "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#F8F9FA",
+        "magical_custom_attributes": []
+      },
+      "elements": [
+        {
+          "id": "auto_002",
+          "settings": {
+            "flex_direction": "column",
+            "max_width": {
+              "unit": "px",
+              "size": 700,
+              "sizes": []
+            },
+            "margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "auto",
+              "bottom": "30",
+              "left": "auto",
+              "isLinked": false
+            },
+            "flex_align_items": "center",
+            "background_background": "gradient",
+            "background_color": "#195DF3",
+            "background_color_b": "#000921",
+            "border_radius": {
+              "unit": "px",
+              "top": "16",
+              "right": "16",
+              "bottom": "16",
+              "left": "16",
+              "isLinked": true
+            },
+            "box_shadow_box_shadow_type": "yes",
+            "box_shadow_box_shadow": {
+              "horizontal": 0,
+              "vertical": 10,
+              "blur": 40,
+              "spread": 0,
+              "color": "rgba(37, 99, 235, 0.3)"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "50",
+              "right": "40",
+              "bottom": "50",
+              "left": "40",
+              "isLinked": false
+            },
+            "magical_custom_attributes": []
+          },
+          "elements": [
+            {
+              "id": "auto_003",
+              "settings": {
+                "title_text": "Thank you. Your order has been received.",
+                "order_number_prefix": "Order Number:",
+                "account_button_text": "View Order Details",
+                "account_button_guest_text": "Track Your Order",
+                "failed_message": "Unfortunately your order cannot be processed as the originating bank/merchant has declined your transaction. Please attempt your purchase again.",
+                "enable_confetti": "yes",
+                "show_social_share": "yes",
+                "dynamic_message": "yes",
+                "icon_color": "#FFFFFF",
+                "title_color": "#FFFFFF",
+                "order_number_color": "#7E8655",
+                "order_number_highlight_color": "#F5FF4A",
+                "account_button_bg_color": "#827C00",
+                "_element_width": "initial",
+                "_element_custom_width": {
+                  "unit": "%",
+                  "size": 104.957
+                },
+                "_flex_size": "none",
+                "magical_custom_attributes": []
+              },
+              "elements": [],
+              "isInner": false,
+              "widgetType": "mpd-order-confirmation",
+              "elType": "widget"
+            }
+          ],
+          "isInner": true,
+          "elType": "container"
+        },
+        {
+          "id": "auto_004",
+          "settings": {
+            "content_width": "full",
+            "width": {
+              "unit": "%",
+              "size": 100,
+              "sizes": []
+            },
+            "flex_direction": "column",
+            "max_width": {
+              "unit": "px",
+              "size": 800,
+              "sizes": []
+            },
+            "margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "auto",
+              "bottom": "30",
+              "left": "auto",
+              "isLinked": false
+            },
+            "background_background": "classic",
+            "background_color": "#FFFFFF",
+            "border_radius": {
+              "unit": "px",
+              "top": "12",
+              "right": "12",
+              "bottom": "12",
+              "left": "12",
+              "isLinked": true
+            },
+            "box_shadow_box_shadow_type": "yes",
+            "box_shadow_box_shadow": {
+              "horizontal": 0,
+              "vertical": 4,
+              "blur": 20,
+              "spread": 0,
+              "color": "rgba(0, 0, 0, 0.08)"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "30",
+              "right": "30",
+              "bottom": "30",
+              "left": "30",
+              "isLinked": true
+            },
+            "magical_custom_attributes": []
+          },
+          "elements": [
+            {
+              "id": "auto_005",
+              "settings": {
+                "section_title": "Order Details",
+                "label_order_number": "Order number:",
+                "label_date": "Date:",
+                "label_email": "Email:",
+                "label_total": "Total:",
+                "label_payment_method": "Payment method:",
+                "show_custom_fields": "yes",
+                "show_qr_code": "yes",
+                "entrance_animation": "zoom-in",
+                "magical_custom_attributes": []
+              },
+              "elements": [],
+              "isInner": false,
+              "widgetType": "mpd-order-details",
+              "elType": "widget"
+            }
+          ],
+          "isInner": true,
+          "elType": "container"
+        },
+        {
+          "id": "auto_006",
+          "settings": {
+            "section_title": "Order Items",
+            "header_product": "Product",
+            "header_quantity": "Qty",
+            "header_price": "Total",
+            "show_reorder_button": "yes",
+            "show_review_button": "yes",
+            "magical_custom_attributes": []
+          },
+          "elements": [],
+          "isInner": false,
+          "widgetType": "mpd-order-items",
+          "elType": "widget"
+        }
+      ],
+      "isInner": false,
+      "elType": "container"
+    }
+  ]

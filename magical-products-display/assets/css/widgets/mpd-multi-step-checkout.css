@@ -1,0 +1,1521 @@
+/**
+ * Multi-Step Checkout Widget Styles
+ *
+ * @package Magical_Shop_Builder
+ * @since 2.5.0
+ */
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+.mpd-hidden-field {
+	display: none !important;
+	visibility: hidden !important;
+	position: absolute !important;
+	left: -9999px !important;
+}
+
+/* ============================================
+   Container & Layout
+   ============================================ */
+.mpd-multi-step-checkout {
+	--msc-primary: #2563EB;
+	--msc-primary-hover: #1D4ED8;
+	--msc-success: #10B981;
+	--msc-danger: #DC2626;
+	--msc-text: #1F2937;
+	--msc-text-muted: #6B7280;
+	--msc-border: #E5E7EB;
+	--msc-bg: #ffffff;
+	--msc-bg-alt: #F9FAFB;
+	--msc-radius: 12px;
+	--msc-transition: 0.3s ease;
+	
+	position: relative;
+	font-family: inherit;
+}
+
+.mpd-msc-main {
+	display: flex;
+	gap: 30px;
+	align-items: flex-start;
+}
+
+.mpd-msc-main.has-sidebar .mpd-msc-steps-wrapper {
+	flex: 1;
+	min-width: 0;
+}
+
+.mpd-msc-main .mpd-msc-order-summary {
+	flex: 0 0 380px;
+	position: sticky;
+	top: 120px;
+}
+
+@media (max-width: 991px) {
+	.mpd-msc-main {
+		flex-direction: column;
+	}
+	
+	.mpd-msc-main .mpd-msc-order-summary {
+		flex: 1 1 100%;
+		width: 100%;
+		position: static;
+		order: -1;
+	}
+}
+
+/* ============================================
+   Progress Indicator - Circles Style
+   ============================================ */
+.mpd-msc-progress {
+	margin-bottom: 40px;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	background: var(--msc-bg);
+	padding: 15px 0;
+	margin-top: -15px;
+	border-bottom: 1px solid var(--msc-border);
+}
+
+/* Adjust sticky top for admin bar */
+.admin-bar .mpd-msc-progress {
+	top: 32px;
+}
+
+@media screen and (max-width: 782px) {
+	.admin-bar .mpd-msc-progress {
+		top: 46px;
+	}
+}
+
+.mpd-msc-steps {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.mpd-msc-step {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	cursor: default;
+	min-width: 80px;
+}
+
+.mpd-msc-step.is-clickable {
+	cursor: pointer;
+}
+
+.mpd-msc-step-circle {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 16px;
+	font-weight: 600;
+	background-color: var(--msc-border);
+	color: var(--msc-text-muted);
+	transition: all var(--msc-transition);
+	position: relative;
+	z-index: 2;
+}
+
+.mpd-msc-step-check {
+	display: none;
+}
+
+.mpd-msc-step.is-active .mpd-msc-step-circle,
+.mpd-msc-step.is-completed .mpd-msc-step-circle {
+	background-color: var(--msc-primary);
+	color: #fff;
+}
+
+.mpd-msc-step.is-completed .mpd-msc-step-circle .mpd-msc-step-number,
+.mpd-msc-step.is-completed .mpd-msc-step-circle > i,
+.mpd-msc-step.is-completed .mpd-msc-step-circle > svg:not(.mpd-msc-step-check svg) {
+	display: none;
+}
+
+.mpd-msc-step.is-completed .mpd-msc-step-check {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mpd-msc-step.is-completed .mpd-msc-step-check svg {
+	display: block;
+	width: 14px;
+	height: 14px;
+	fill: none;
+	stroke: currentColor;
+}
+
+/* SVG Icons in Step Circle */
+.mpd-msc-step-circle svg {
+	width: 20px;
+	height: 20px;
+	fill: currentColor;
+}
+
+.mpd-msc-step-circle i {
+	font-size: 18px;
+	line-height: 1;
+}
+
+.mpd-msc-step-label {
+	margin-top: 10px;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--msc-text-muted);
+	text-align: center;
+	transition: color var(--msc-transition);
+	max-width: 100px;
+}
+
+.mpd-msc-step.is-active .mpd-msc-step-label {
+	color: var(--msc-primary);
+	font-weight: 600;
+}
+
+.mpd-msc-step.is-completed .mpd-msc-step-label {
+	color: var(--msc-text);
+}
+
+/* Step Connector */
+.mpd-msc-step-connector {
+	flex: 1;
+	height: 3px;
+	background-color: var(--msc-border);
+	margin: 20px -10px 0;
+	min-width: 40px;
+	transition: background-color var(--msc-transition);
+}
+
+.mpd-msc-step.is-completed + .mpd-msc-step-connector,
+.mpd-msc-step.is-completed + .mpd-msc-step-connector + .mpd-msc-step.is-active ~ .mpd-msc-step-connector {
+	background-color: var(--msc-primary);
+}
+
+/* Fix connector placement */
+.mpd-msc-steps > .mpd-msc-step-connector {
+	align-self: flex-start;
+	margin-top: 18px;
+}
+
+/* ============================================
+   Progress Indicator - Bar Style
+   ============================================ */
+.mpd-msc-progress-bar {
+	width: 100%;
+	height: 6px;
+	background-color: var(--msc-border);
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+.mpd-msc-progress-bar-fill {
+	height: 100%;
+	background-color: var(--msc-primary);
+	border-radius: 3px;
+	transition: width var(--msc-transition);
+}
+
+.mpd-msc-progress-text {
+	text-align: center;
+	margin-top: 10px;
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--msc-text-muted);
+}
+
+.mpd-msc-progress-current {
+	color: var(--msc-primary);
+	font-weight: 700;
+}
+
+/* ============================================
+   Progress Indicator - Pills Style
+   ============================================ */
+.mpd-msc-progress-pills .mpd-msc-steps {
+	background-color: var(--msc-bg-alt);
+	border-radius: 10px;
+	padding: 5px;
+	display: inline-flex;
+}
+
+.mpd-msc-progress-pills .mpd-msc-step {
+	flex-direction: row;
+	gap: 8px;
+	padding: 10px 20px;
+	background-color: transparent;
+	border-radius: 8px;
+	transition: all var(--msc-transition);
+	min-width: auto;
+}
+
+.mpd-msc-progress-pills .mpd-msc-step.is-active {
+	background-color: var(--msc-bg);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.mpd-msc-progress-pills .mpd-msc-step-circle {
+	width: 28px;
+	height: 28px;
+	font-size: 13px;
+}
+
+.mpd-msc-progress-pills .mpd-msc-step-label {
+	margin-top: 0;
+	max-width: none;
+}
+
+.mpd-msc-progress-pills .mpd-msc-step-connector {
+	display: none;
+}
+
+/* ============================================
+   Progress Indicator - Arrows Style
+   ============================================ */
+.mpd-msc-progress-arrows .mpd-msc-steps {
+	display: flex;
+	overflow: hidden;
+	border-radius: 8px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.mpd-msc-progress-arrows .mpd-msc-step {
+	flex: 1;
+	flex-direction: row;
+	gap: 10px;
+	padding: 14px 20px 14px 30px;
+	background-color: var(--msc-bg-alt);
+	position: relative;
+	min-width: auto;
+	clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%, 15px 50%);
+	margin-left: -15px;
+}
+
+.mpd-msc-progress-arrows .mpd-msc-step:first-child {
+	margin-left: 0;
+	padding-left: 20px;
+	clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%);
+	border-radius: 8px 0 0 8px;
+}
+
+.mpd-msc-progress-arrows .mpd-msc-step:last-child {
+	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 15px 50%);
+	border-radius: 0 8px 8px 0;
+}
+
+.mpd-msc-progress-arrows .mpd-msc-step.is-active,
+.mpd-msc-progress-arrows .mpd-msc-step.is-completed {
+	background-color: var(--msc-primary);
+}
+
+.mpd-msc-progress-arrows .mpd-msc-step.is-active .mpd-msc-step-label,
+.mpd-msc-progress-arrows .mpd-msc-step.is-completed .mpd-msc-step-label {
+	color: #fff;
+}
+
+.mpd-msc-progress-arrows .mpd-msc-step-circle {
+	width: 26px;
+	height: 26px;
+	font-size: 12px;
+	background-color: rgba(0, 0, 0, 0.1);
+	color: inherit;
+}
+
+.mpd-msc-progress-arrows .mpd-msc-step.is-active .mpd-msc-step-circle,
+.mpd-msc-progress-arrows .mpd-msc-step.is-completed .mpd-msc-step-circle {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: #fff;
+}
+
+.mpd-msc-progress-arrows .mpd-msc-step-label {
+	margin-top: 0;
+	max-width: none;
+}
+
+.mpd-msc-progress-arrows .mpd-msc-step-connector {
+	display: none;
+}
+
+/* ============================================
+   Progress Indicator - Minimalist Dots
+   ============================================ */
+.mpd-msc-progress-minimalist .mpd-msc-dots {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+}
+
+.mpd-msc-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: var(--msc-border);
+	transition: all var(--msc-transition);
+}
+
+.mpd-msc-dot.is-active {
+	background-color: var(--msc-primary);
+	transform: scale(1.3);
+}
+
+.mpd-msc-dot.is-completed {
+	background-color: var(--msc-primary);
+}
+
+/* ============================================
+   Step Content Panels
+   ============================================ */
+.mpd-msc-steps-wrapper {
+	width: 100%;
+}
+
+.mpd-msc-steps-wrapper form.checkout {
+	margin: 0;
+	padding: 0;
+}
+
+.mpd-msc-step-panel {
+	display: none;
+	opacity: 0;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mpd-msc-step-panel.is-active {
+	display: block;
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* Slide Transition */
+.mpd-multi-step-checkout[data-transition="slide"] .mpd-msc-step-panel {
+	transform: translateX(20px);
+}
+
+.mpd-multi-step-checkout[data-transition="slide"] .mpd-msc-step-panel.is-active {
+	transform: translateX(0);
+}
+
+.mpd-multi-step-checkout[data-transition="slide"] .mpd-msc-step-panel.slide-out-left {
+	opacity: 0;
+	transform: translateX(-20px);
+}
+
+.mpd-multi-step-checkout[data-transition="slide"] .mpd-msc-step-panel.slide-in-right {
+	transform: translateX(20px);
+}
+
+/* Fade Transition */
+.mpd-multi-step-checkout[data-transition="fade"] .mpd-msc-step-panel {
+	transform: none;
+}
+
+/* None Transition */
+.mpd-multi-step-checkout[data-transition="none"] .mpd-msc-step-panel {
+	transition: none;
+	transform: none;
+}
+
+.mpd-msc-step-content {
+	background-color: var(--msc-bg);
+	padding: 30px;
+	border-radius: var(--msc-radius);
+	border: 1px solid var(--msc-border);
+}
+
+.mpd-msc-step-title {
+	font-size: 22px;
+	font-weight: 600;
+	color: var(--msc-text);
+	margin: 0 0 25px;
+	padding: 0;
+}
+
+/* ============================================
+   Form Fields
+   ============================================ */
+.mpd-multi-step-checkout .woocommerce-billing-fields,
+.mpd-multi-step-checkout .woocommerce-shipping-fields,
+.mpd-multi-step-checkout .woocommerce-additional-fields {
+	margin-bottom: 20px;
+}
+
+.mpd-multi-step-checkout .woocommerce-billing-fields h3,
+.mpd-multi-step-checkout .woocommerce-shipping-fields h3,
+.mpd-multi-step-checkout .woocommerce-additional-fields h4 {
+	display: none; /* Hidden as we use step titles */
+}
+
+.mpd-multi-step-checkout .form-row {
+	margin-bottom: 16px;
+}
+
+.mpd-multi-step-checkout label {
+	display: block;
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--msc-text);
+	margin-bottom: 6px;
+	line-height: 1.4;
+}
+
+.mpd-multi-step-checkout label .required {
+	color: var(--msc-danger);
+}
+
+.mpd-multi-step-checkout input.input-text,
+.mpd-multi-step-checkout select,
+.mpd-multi-step-checkout textarea {
+	width: 100%;
+	padding: 12px 14px;
+	font-size: 15px;
+	border: 1px solid var(--msc-border);
+	border-radius: 8px;
+	background-color: var(--msc-bg);
+	color: var(--msc-text);
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	box-sizing: border-box;
+}
+
+.mpd-multi-step-checkout input.input-text:focus,
+.mpd-multi-step-checkout select:focus,
+.mpd-multi-step-checkout textarea:focus {
+	outline: none;
+	border-color: var(--msc-primary);
+	box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.mpd-multi-step-checkout input.input-text::placeholder {
+	color: var(--msc-text-muted);
+	opacity: 0.7;
+}
+
+.mpd-multi-step-checkout .form-row.woocommerce-invalid input,
+.mpd-multi-step-checkout .form-row.woocommerce-invalid select,
+.mpd-multi-step-checkout .form-row.woocommerce-invalid textarea {
+	border-color: var(--msc-danger);
+}
+
+.mpd-multi-step-checkout .form-row.woocommerce-invalid label {
+	color: var(--msc-danger);
+}
+
+.mpd-multi-step-checkout .form-row.woocommerce-validated input,
+.mpd-multi-step-checkout .form-row.woocommerce-validated select {
+	border-color: var(--msc-success);
+}
+
+/* Form Row Layout */
+.mpd-multi-step-checkout .woocommerce-billing-fields__field-wrapper,
+.mpd-multi-step-checkout .woocommerce-shipping-fields__field-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -8px;
+}
+
+.mpd-multi-step-checkout .form-row-first,
+.mpd-multi-step-checkout .form-row-last {
+	width: 50%;
+	padding: 0 8px;
+	box-sizing: border-box;
+}
+
+.mpd-multi-step-checkout .form-row-wide {
+	width: 100%;
+	padding: 0 8px;
+	box-sizing: border-box;
+}
+
+@media (max-width: 575px) {
+	.mpd-multi-step-checkout .form-row-first,
+	.mpd-multi-step-checkout .form-row-last {
+		width: 100%;
+	}
+}
+
+/* Checkbox Styling */
+.mpd-multi-step-checkout input[type="checkbox"] {
+	width: auto;
+	margin-right: 8px;
+	accent-color: var(--msc-primary);
+}
+
+.mpd-multi-step-checkout #ship-to-different-address {
+	margin: 20px 0;
+	padding: 16px;
+	background-color: var(--msc-bg-alt);
+	border-radius: 8px;
+}
+
+.mpd-multi-step-checkout #ship-to-different-address label {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	cursor: pointer;
+	font-weight: 500;
+}
+
+/* ============================================
+   Login & Coupon Forms
+   ============================================ */
+.mpd-msc-login-reminder,
+.mpd-msc-coupon-wrapper {
+	margin-bottom: 25px;
+	padding: 15px 20px;
+	background-color: var(--msc-bg-alt);
+	border-radius: 8px;
+}
+
+.mpd-msc-login-text,
+.mpd-msc-coupon-toggle {
+	margin: 0;
+	font-size: 14px;
+	color: var(--msc-text-muted);
+}
+
+.mpd-msc-login-toggle,
+.mpd-msc-coupon-link {
+	color: var(--msc-primary);
+	text-decoration: none;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.mpd-msc-login-toggle:hover,
+.mpd-msc-coupon-link:hover {
+	text-decoration: underline;
+}
+
+.mpd-msc-login-form,
+.mpd-msc-coupon-form {
+	margin-top: 15px;
+	padding-top: 15px;
+	border-top: 1px solid var(--msc-border);
+}
+
+.mpd-msc-coupon-form .form-row {
+	margin-bottom: 10px;
+}
+
+.mpd-msc-coupon-form .form-row-first {
+	width: 65%;
+}
+
+.mpd-msc-coupon-form .form-row-last {
+	width: 35%;
+}
+
+.mpd-msc-apply-coupon {
+	width: 100%;
+	padding: 12px 16px;
+	background-color: var(--msc-text);
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: background-color var(--msc-transition);
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+}
+
+.mpd-msc-apply-coupon:hover {
+	background-color: var(--msc-primary);
+}
+
+.mpd-msc-apply-coupon.is-loading {
+	opacity: 0.7;
+	cursor: not-allowed;
+}
+
+.mpd-msc-apply-coupon .mpd-msc-spinner {
+	width: 16px;
+	height: 16px;
+	border: 2px solid transparent;
+	border-top-color: #fff;
+	border-radius: 50%;
+	animation: mpd-msc-spin 0.8s linear infinite;
+}
+
+/* Coupon Notice */
+.mpd-msc-coupon-notice {
+	margin-bottom: 15px;
+}
+
+.mpd-msc-coupon-notice .woocommerce-error,
+.mpd-msc-coupon-notice .woocommerce-message {
+	margin: 0 0 10px;
+	padding: 10px 15px;
+	border-radius: 6px;
+	font-size: 14px;
+	list-style: none;
+}
+
+.mpd-msc-coupon-notice .woocommerce-error {
+	background-color: #FEE2E2;
+	border: 1px solid #FECACA;
+	color: var(--msc-danger);
+}
+
+.mpd-msc-coupon-notice .woocommerce-message {
+	background-color: #D1FAE5;
+	border: 1px solid #A7F3D0;
+	color: var(--msc-success);
+}
+
+/* ============================================
+   Order Review (Inline)
+   ============================================ */
+.mpd-msc-order-review-inline {
+	margin-top: 25px;
+	padding-top: 25px;
+	border-top: 1px solid var(--msc-border);
+}
+
+.mpd-msc-order-review-inline h4 {
+	font-size: 18px;
+	font-weight: 600;
+	color: var(--msc-text);
+	margin: 0 0 15px;
+}
+
+/* ============================================
+   Order Table
+   ============================================ */
+.mpd-msc-order-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 14px;
+}
+
+.mpd-msc-order-table thead th {
+	text-align: left;
+	padding: 12px 0;
+	border-bottom: 2px solid var(--msc-border);
+	font-weight: 600;
+	color: var(--msc-text);
+}
+
+.mpd-msc-order-table thead th.product-total {
+	text-align: right;
+}
+
+.mpd-msc-order-table tbody td {
+	padding: 15px 0;
+	border-bottom: 1px solid var(--msc-border);
+	vertical-align: middle;
+}
+
+.mpd-msc-order-table tbody td.product-name {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.mpd-msc-order-table tbody td.product-total {
+	text-align: right;
+	font-weight: 500;
+}
+
+.mpd-msc-product-image {
+	flex: 0 0 50px;
+	width: 50px;
+	height: 50px;
+	min-width: 50px;
+	border-radius: 8px;
+	overflow: hidden;
+	background-color: var(--msc-bg-alt);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mpd-msc-product-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	max-width: 100%;
+}
+
+.mpd-msc-product-info {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+
+.mpd-msc-product-name {
+	font-weight: 500;
+	color: var(--msc-text);
+}
+
+.mpd-msc-product-qty {
+	font-size: 13px;
+	color: var(--msc-text-muted);
+}
+
+/* Quantity Controls */
+.mpd-msc-product-qty-controls {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 4px;
+}
+
+.mpd-msc-qty-btn {
+	width: 24px;
+	height: 24px;
+	border: 1px solid var(--msc-border);
+	background-color: var(--msc-bg);
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--msc-text);
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all var(--msc-transition);
+	padding: 0;
+	line-height: 1;
+}
+
+.mpd-msc-qty-btn:hover {
+	background-color: var(--msc-primary);
+	border-color: var(--msc-primary);
+	color: #fff;
+}
+
+.mpd-msc-qty-btn:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.mpd-msc-qty-value {
+	min-width: 24px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--msc-text);
+}
+
+.mpd-msc-order-table tfoot th,
+.mpd-msc-order-table tfoot td {
+	padding: 12px 0;
+	border-bottom: 1px solid var(--msc-border);
+}
+
+.mpd-msc-order-table tfoot th {
+	text-align: left;
+	font-weight: 500;
+}
+
+.mpd-msc-order-table tfoot td {
+	text-align: right;
+}
+
+.mpd-msc-order-table tfoot .order-total th,
+.mpd-msc-order-table tfoot .order-total td {
+	font-size: 18px;
+	font-weight: 700;
+	color: var(--msc-text);
+	border-bottom: none;
+	padding-top: 16px;
+}
+
+/* ============================================
+   Order Summary Sidebar
+   ============================================ */
+.mpd-msc-order-summary {
+	background-color: var(--msc-bg-alt);
+	padding: 25px;
+	border-radius: var(--msc-radius);
+}
+
+.mpd-msc-sidebar-title {
+	font-size: 18px;
+	font-weight: 600;
+	color: var(--msc-text);
+	margin: 0 0 20px;
+	padding: 0 0 15px;
+	border-bottom: 1px solid var(--msc-border);
+}
+
+/* ============================================
+   Payment Methods
+   ============================================ */
+.mpd-msc-payment-wrapper {
+	margin-top: 10px;
+}
+
+.mpd-msc-payment-wrapper .wc_payment_methods {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.mpd-msc-payment-wrapper .wc_payment_method {
+	margin-bottom: 12px;
+	padding: 16px;
+	background-color: var(--msc-bg-alt);
+	border-radius: 8px;
+	border: 2px solid transparent;
+	transition: all var(--msc-transition);
+}
+
+.mpd-msc-payment-wrapper .wc_payment_method:has(input:checked) {
+	border-color: var(--msc-primary);
+	background-color: rgba(37, 99, 235, 0.05);
+}
+
+.mpd-msc-payment-wrapper .wc_payment_method label {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+	font-weight: 500;
+	margin: 0;
+}
+
+.mpd-msc-payment-wrapper .wc_payment_method input[type="radio"] {
+	accent-color: var(--msc-primary);
+	width: 18px;
+	height: 18px;
+}
+
+.mpd-msc-payment-wrapper .payment_box {
+	margin-top: 12px;
+	padding-top: 12px;
+	border-top: 1px solid var(--msc-border);
+	font-size: 13px;
+	color: var(--msc-text-muted);
+}
+
+.mpd-msc-payment-wrapper .payment_box p {
+	margin: 0;
+}
+
+/* Privacy/Terms */
+.mpd-msc-privacy-policy {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid var(--msc-border);
+}
+
+.mpd-msc-privacy-policy .woocommerce-terms-and-conditions-wrapper {
+	font-size: 13px;
+	color: var(--msc-text-muted);
+}
+
+.mpd-msc-privacy-policy .woocommerce-terms-and-conditions-wrapper a {
+	color: var(--msc-primary);
+}
+
+.mpd-msc-step-content .mpd-msc-privacy-policy {
+    padding: 20px;
+}
+
+/* ============================================
+   Navigation Buttons
+   ============================================ */
+.mpd-msc-navigation {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 30px;
+	padding-top: 25px;
+	border-top: 1px solid var(--msc-border);
+	gap: 15px;
+}
+
+.mpd-msc-nav-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 14px 28px;
+	font-size: 15px;
+	font-weight: 600;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all var(--msc-transition);
+	text-decoration: none;
+	line-height: 1.2;
+}
+
+.mpd-msc-nav-btn:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.mpd-msc-nav-prev {
+	background-color: var(--msc-bg-alt);
+	color: var(--msc-text-muted);
+	border: 1px solid var(--msc-border);
+}
+
+.mpd-msc-nav-prev:hover:not(:disabled) {
+	background-color: var(--msc-border);
+	color: var(--msc-text);
+}
+
+.mpd-msc-nav-next,
+.mpd-msc-nav-submit {
+	background-color: var(--msc-primary);
+	color: #fff;
+	margin-left: auto;
+}
+
+.mpd-msc-nav-next:hover:not(:disabled),
+.mpd-msc-nav-submit:hover:not(:disabled) {
+	background-color: var(--msc-primary-hover);
+}
+
+.mpd-msc-nav-icon {
+	display: flex;
+	align-items: center;
+}
+
+.mpd-msc-nav-icon svg {
+	display: block;
+}
+
+/* Loading state */
+.mpd-msc-nav-btn.is-loading {
+	pointer-events: none;
+	position: relative;
+	opacity: 0.8;
+}
+
+.mpd-msc-spinner {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 8px;
+}
+
+.mpd-msc-spinner svg {
+	animation: mpd-msc-spin 0.8s linear infinite;
+}
+
+.mpd-msc-nav-btn.is-loading .mpd-msc-nav-icon {
+	display: none;
+}
+
+.mpd-msc-nav-btn.is-loading::after {
+	content: '';
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	border: 2px solid transparent;
+	border-top-color: currentColor;
+	border-radius: 50%;
+	animation: mpd-msc-spin 0.8s linear infinite;
+	display: none; /* Hide pseudo-element, using SVG instead */
+}
+
+.mpd-msc-nav-next.is-loading::after,
+.mpd-msc-nav-submit.is-loading::after {
+	border-top-color: #fff;
+}
+
+@keyframes mpd-msc-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* ============================================
+   Error Messages
+   ============================================ */
+.mpd-msc-field-error {
+	display: block;
+	margin-top: 5px;
+	font-size: 12px;
+	color: var(--msc-danger);
+}
+
+.mpd-multi-step-checkout .woocommerce-error {
+	margin-bottom: 20px;
+	padding: 15px 20px 15px 50px;
+	background-color: #FEE2E2;
+	border: 1px solid var(--msc-danger);
+	border-radius: 8px;
+	color: var(--msc-danger);
+	list-style: none;
+}
+
+.mpd-multi-step-checkout .woocommerce-error li {
+	margin: 0;
+}
+
+.mpd-multi-step-checkout .woocommerce-message {
+	margin-bottom: 20px;
+	background-color: #D1FAE5;
+	border: 1px solid var(--msc-success);
+	border-radius: 8px;
+	color: #065F46;
+}
+
+/* ============================================
+   Order Notes
+   ============================================ */
+.mpd-msc-order-notes h4 {
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--msc-text);
+	margin: 0 0 15px;
+}
+
+.mpd-msc-order-notes textarea {
+	min-height: 100px;
+	resize: vertical;
+}
+
+/* ============================================
+   Responsive Adjustments
+   ============================================ */
+@media (max-width: 767px) {
+	.mpd-msc-step-content {
+		padding: 20px;
+	}
+	
+	.mpd-msc-step-title {
+		font-size: 18px;
+		margin-bottom: 20px;
+	}
+	
+	.mpd-msc-step-label {
+		font-size: 11px;
+	}
+	
+	.mpd-msc-step-circle {
+		width: 32px;
+		height: 32px;
+		font-size: 14px;
+	}
+	
+	.mpd-msc-navigation {
+		flex-wrap: wrap;
+	}
+	
+	.mpd-msc-nav-btn {
+		padding: 12px 20px;
+		font-size: 14px;
+	}
+	
+	.mpd-msc-nav-prev {
+		order: 2;
+		flex: 0 0 auto;
+	}
+	
+	.mpd-msc-nav-next,
+	.mpd-msc-nav-submit {
+		order: 1;
+		flex: 1;
+		margin-left: 0;
+	}
+	
+	/* Arrows style responsive */
+	.mpd-msc-progress-arrows .mpd-msc-steps {
+		flex-direction: column;
+	}
+	
+	.mpd-msc-progress-arrows .mpd-msc-step {
+		clip-path: none;
+		margin-left: 0;
+		border-radius: 8px;
+		margin-bottom: 5px;
+		padding: 12px 16px;
+	}
+	
+	.mpd-msc-progress-arrows .mpd-msc-step:first-child,
+	.mpd-msc-progress-arrows .mpd-msc-step:last-child {
+		clip-path: none;
+	}
+}
+
+@media (max-width: 575px) {
+	.mpd-msc-steps {
+		flex-wrap: nowrap;
+		justify-content: space-between;
+	}
+	
+	.mpd-msc-step {
+		min-width: auto;
+		flex: 1;
+	}
+	
+	.mpd-msc-step-connector {
+		min-width: 20px;
+	}
+	
+	.mpd-msc-coupon-form .form-row-first,
+	.mpd-msc-coupon-form .form-row-last {
+		width: 100%;
+	}
+}
+
+/* ============================================
+   Elementor Editor Styles
+   ============================================ */
+.elementor-editor-active .mpd-multi-step-checkout {
+	min-height: 400px;
+}
+
+/* In editor mode, show all step panels as an accordion for editing */
+.mpd-multi-step-checkout.is-editor-mode .mpd-msc-step-panel {
+	display: block !important;
+	opacity: 1 !important;
+	transform: none !important;
+	margin-bottom: 20px;
+	border: 1px dashed var(--msc-border);
+	border-radius: 8px;
+	position: relative;
+}
+
+/* Editor Mode Notice */
+.mpd-msc-editor-notice {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 12px 16px;
+	margin-bottom: 20px;
+	background: linear-gradient(135deg, #e8f4fd 0%, #d4ebfc 100%);
+	border: 1px solid #93c5fd;
+	border-radius: 8px;
+	color: #1e40af;
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.mpd-msc-editor-notice-icon {
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	color: #3b82f6;
+}
+
+.mpd-msc-editor-notice-icon svg {
+	width: 16px;
+	height: 16px;
+}
+
+.mpd-msc-editor-notice-text {
+	flex: 1;
+}
+
+.mpd-multi-step-checkout.is-editor-mode .mpd-msc-step-panel::before {
+	content: 'Step ' attr(data-step);
+	position: absolute;
+	top: -10px;
+	left: 15px;
+	background: var(--msc-bg);
+	padding: 0 8px;
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--msc-primary);
+	text-transform: uppercase;
+}
+
+.mpd-multi-step-checkout.is-editor-mode .mpd-msc-step-panel .mpd-msc-step-content {
+	padding: 15px;
+}
+
+/* Don't animate step indicators in editor mode */
+.mpd-multi-step-checkout.is-editor-mode .mpd-msc-step.is-active .mpd-msc-step-circle,
+.mpd-multi-step-checkout.is-editor-mode .mpd-msc-step.is-completed .mpd-msc-step-circle {
+	background-color: var(--msc-primary);
+	color: #fff;
+}
+
+/* Hide navigation in editor mode */
+.mpd-multi-step-checkout.is-editor-mode .mpd-msc-navigation {
+	display: none;
+}
+
+.elementor-editor-active .mpd-msc-form-preview {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -8px;
+}
+
+.elementor-editor-active .mpd-msc-form-preview .form-row {
+	margin-bottom: 16px;
+}
+
+.elementor-editor-active .mpd-msc-form-preview .form-row-first,
+.elementor-editor-active .mpd-msc-form-preview .form-row-last {
+	width: 50%;
+	padding: 0 8px;
+	box-sizing: border-box;
+}
+
+.elementor-editor-active .mpd-msc-form-preview .form-row-wide {
+	width: 100%;
+	padding: 0 8px;
+	box-sizing: border-box;
+}
+
+/* ============================================
+   Progress Position Layouts
+   ============================================ */
+   
+/* Left Sidebar Progress */
+.mpd-msc-progress-pos-left {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 30px;
+}
+
+.mpd-msc-progress-pos-left > .mpd-msc-progress {
+	flex: 0 0 280px;
+	margin-bottom: 0;
+	position: sticky;
+	top: 120px;
+	align-self: flex-start;
+}
+
+.mpd-msc-progress-pos-left > .mpd-msc-main {
+	flex: 1;
+	min-width: 0;
+}
+
+.mpd-msc-progress-pos-left .mpd-msc-steps {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.mpd-msc-progress-pos-left .mpd-msc-step {
+	flex-direction: row;
+	width: 100%;
+	padding: 12px 0;
+	min-width: auto;
+}
+
+.mpd-msc-progress-pos-left .mpd-msc-step-circle {
+	flex-shrink: 0;
+	margin-right: 15px;
+}
+
+.mpd-msc-progress-pos-left .mpd-msc-step-number {
+	margin-right: 0;
+}
+
+.mpd-msc-progress-pos-left .mpd-msc-step-label {
+	margin-top: 0;
+	text-align: left;
+	max-width: none;
+}
+
+.mpd-msc-progress-pos-left .mpd-msc-connector {
+	display: none;
+}
+
+.mpd-msc-progress-pos-left .mpd-msc-step::after {
+	content: '';
+	position: absolute;
+	left: 20px;
+	top: 100%;
+	width: 2px;
+	height: 12px;
+	background-color: var(--msc-border);
+}
+
+.mpd-msc-progress-pos-left .mpd-msc-step:last-child::after {
+	display: none;
+}
+
+.mpd-msc-progress-pos-left .mpd-msc-step.is-completed::after,
+.mpd-msc-progress-pos-left .mpd-msc-step.is-active::after {
+	background-color: var(--msc-primary);
+}
+
+/* Right Sidebar Progress */
+.mpd-msc-progress-pos-right {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row-reverse;
+	gap: 30px;
+}
+
+.mpd-msc-progress-pos-right > .mpd-msc-progress {
+	flex: 0 0 280px;
+	margin-bottom: 0;
+	position: sticky;
+	top: 120px;
+	align-self: flex-start;
+}
+
+.mpd-msc-progress-pos-right > .mpd-msc-main {
+	flex: 1;
+	min-width: 0;
+}
+
+.mpd-msc-progress-pos-right .mpd-msc-steps {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.mpd-msc-progress-pos-right .mpd-msc-step {
+	flex-direction: row;
+	width: 100%;
+	padding: 12px 0;
+	min-width: auto;
+}
+
+.mpd-msc-progress-pos-right .mpd-msc-step-number {
+	margin-right: 15px;
+}
+
+.mpd-msc-progress-pos-right .mpd-msc-step-label {
+	margin-top: 0;
+	text-align: left;
+}
+
+.mpd-msc-progress-pos-right .mpd-msc-connector {
+	display: none;
+}
+
+.mpd-msc-progress-pos-right .mpd-msc-step::after {
+	content: '';
+	position: absolute;
+	left: 20px;
+	top: 100%;
+	width: 2px;
+	height: 12px;
+	background-color: var(--msc-border);
+}
+
+.mpd-msc-progress-pos-right .mpd-msc-step:last-child::after {
+	display: none;
+}
+
+.mpd-msc-progress-pos-right .mpd-msc-step.is-completed::after,
+.mpd-msc-progress-pos-right .mpd-msc-step.is-active::after {
+	background-color: var(--msc-primary);
+}
+
+/* Mobile: Fallback to top position */
+@media (max-width: 991px) {
+	.mpd-msc-progress-pos-left,
+	.mpd-msc-progress-pos-right {
+		flex-direction: column;
+	}
+	
+	.mpd-msc-progress-pos-left > .mpd-msc-progress,
+	.mpd-msc-progress-pos-right > .mpd-msc-progress {
+		flex: 1 1 100%;
+		position: static;
+		margin-bottom: 30px;
+	}
+	
+	.mpd-msc-progress-pos-left .mpd-msc-steps,
+	.mpd-msc-progress-pos-right .mpd-msc-steps {
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: center;
+	}
+	
+	.mpd-msc-progress-pos-left .mpd-msc-step,
+	.mpd-msc-progress-pos-right .mpd-msc-step {
+		flex-direction: column;
+		width: auto;
+		padding: 0;
+		min-width: 80px;
+	}
+	
+	.mpd-msc-progress-pos-left .mpd-msc-step-number,
+	.mpd-msc-progress-pos-right .mpd-msc-step-number {
+		margin-right: 0;
+	}
+	
+	.mpd-msc-progress-pos-left .mpd-msc-step-label,
+	.mpd-msc-progress-pos-right .mpd-msc-step-label {
+		margin-top: 10px;
+		text-align: center;
+	}
+	
+	.mpd-msc-progress-pos-left .mpd-msc-step::after,
+	.mpd-msc-progress-pos-right .mpd-msc-step::after {
+		display: none;
+	}
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+@media print {
+	.mpd-msc-navigation,
+	.mpd-msc-coupon-wrapper,
+	.mpd-msc-login-reminder {
+		display: none !important;
+	}
+	
+	.mpd-msc-step-panel {
+		display: block !important;
+		opacity: 1 !important;
+		transform: none !important;
+		page-break-inside: avoid;
+	}
+}
+
+/* ============================================
+   Reduced Motion Support (Accessibility)
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+	.mpd-multi-step-checkout,
+	.mpd-multi-step-checkout * {
+		--msc-transition: 0s !important;
+		transition-duration: 0s !important;
+		animation-duration: 0s !important;
+	}
+	
+	.mpd-msc-step-panel {
+		transition: none !important;
+	}
+	
+	.mpd-msc-progress-fill {
+		transition: none !important;
+	}
+	
+	.mpd-msc-step-circle {
+		transition: none !important;
+	}
+}
+
+/* ============================================
+   Empty Cart Notice
+   ============================================ */
+.mpd-msc-empty-cart-notice {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 15px;
+	padding: 40px 20px;
+	text-align: center;
+	background: var(--msc-bg-alt);
+	border-radius: var(--msc-radius);
+	border: 1px dashed var(--msc-border);
+}
+
+.mpd-msc-empty-cart-notice .button {
+	margin-top: 10px;
+}

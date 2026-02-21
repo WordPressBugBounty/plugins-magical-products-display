@@ -88,10 +88,12 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                 'bootstrap-custom',
                 'venobox.min',
                 'nouislider',
+                'mpd-global-widgets',
             ];
         } else {
             $style  = [
                 'bootstrap-grid',
+                'mpd-global-widgets',
             ];
         }
         return $style;
@@ -111,7 +113,8 @@ class mgProducts_Grid extends \Elementor\Widget_Base
             'bootstrap-bundle',
             'venobox.min',
             'nouislider',
-            'price-range-active'
+            'price-range-active',
+            'mpd-global-widgets',
         ];
     }
     /**
@@ -167,7 +170,7 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                 'default' => 'recent',
                 'options' => [
                     'recent' => esc_html__('Recent Products', 'magical-products-display'),
-                    'menu_order' => esc_html__('Default (Menu Order)', 'magical-products-display'),
+                    'menu_order' => esc_html__('Default (Menu Order)', 'magical-products-display'),                    
                     'featured' => esc_html__('Featured Products', 'magical-products-display'),
                     'best_selling' => esc_html__('Best Selling Products', 'magical-products-display'),
                     $pproducts => sprintf('%s %s', esc_html__('Popular Products', 'magical-products-display'), mpd_display_pro_only_text()),
@@ -257,6 +260,7 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                     'comment_count' => esc_html__('Comment count', 'magical-products-display'),
                     'rand'          => esc_html__('Random', 'magical-products-display'),
                     'menu_order'    => esc_html__('Menu Order (Manual)', 'magical-products-display'),
+
                 ],
                 'condition' => [
                     'mgpdeg_custom_order' => 'yes',
@@ -449,6 +453,112 @@ class mgProducts_Grid extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+
+        // Action Buttons Section (Compare, Wishlist, Quick View)
+        $this->start_controls_section(
+            'mgpdeg_action_buttons',
+            [
+                'label' => esc_html__('Action Buttons', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_show_compare_btn',
+            [
+                'label'     => __('Show Compare Button', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default'   => '',
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_show_wishlist_btn',
+            [
+                'label'     => __('Show Wishlist Button', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default'   => '',
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_show_quickview_btn',
+            [
+                'label'     => __('Show Quick View Button', 'magical-products-display'),
+                'type'      => \Elementor\Controls_Manager::SWITCHER,
+                'default'   => '',
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_action_btn_position',
+            [
+                'label' => esc_html__('Button Position', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'on_image',
+                'options' => [
+                    'on_image'     => esc_html__('On Image (Hover)', 'magical-products-display'),
+                    'below_image'  => esc_html__('Below Image', 'magical-products-display'),
+                    'top_right'    => esc_html__('Top Right', 'magical-products-display'),
+                    'top_left'     => esc_html__('Top Left', 'magical-products-display'),
+                ],
+                'conditions' => [
+                    'relation' => 'or',
+                    'terms' => [
+                        [
+                            'name' => 'mgpdeg_show_compare_btn',
+                            'operator' => '==',
+                            'value' => 'yes',
+                        ],
+                        [
+                            'name' => 'mgpdeg_show_wishlist_btn',
+                            'operator' => '==',
+                            'value' => 'yes',
+                        ],
+                        [
+                            'name' => 'mgpdeg_show_quickview_btn',
+                            'operator' => '==',
+                            'value' => 'yes',
+                        ],
+                    ],
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_action_btn_style',
+            [
+                'label' => esc_html__('Button Style', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'icon_only',
+                'options' => [
+                    'icon_only'     => esc_html__('Icon Only', 'magical-products-display'),
+                    'icon_text'     => esc_html__('Icon + Text', 'magical-products-display'),
+                ],
+                'conditions' => [
+                    'relation' => 'or',
+                    'terms' => [
+                        [
+                            'name' => 'mgpdeg_show_compare_btn',
+                            'operator' => '==',
+                            'value' => 'yes',
+                        ],
+                        [
+                            'name' => 'mgpdeg_show_wishlist_btn',
+                            'operator' => '==',
+                            'value' => 'yes',
+                        ],
+                        [
+                            'name' => 'mgpdeg_show_quickview_btn',
+                            'operator' => '==',
+                            'value' => 'yes',
+                        ],
+                    ],
+                ],
+            ]
+        );
+
+        $this->end_controls_section();
+
         // Product Content
         $this->start_controls_section(
             'mgpdeg_content',
@@ -1519,7 +1629,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card .mgpde-ptitle' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpde-ptitle' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1530,7 +1640,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card .mgpde-ptitle' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpde-ptitle' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1540,7 +1650,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'label' => __('Text Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card .mgpde-ptitle' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpde-ptitle, {{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpde-ptitle-link' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1550,7 +1660,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'label' => __('Background Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card .mgpde-ptitle' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpde-ptitle' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -1561,7 +1671,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card .mgpde-ptitle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpde-ptitle' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1570,7 +1680,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'mgpdeg_title_typography',
-                'selector' => '{{WRAPPER}} .mgpdeg-card .mgpde-ptitle',
+                'selector' => '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpde-ptitle',
             ]
         );
         $this->end_controls_section();
@@ -1593,7 +1703,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card-text p' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text p' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1604,7 +1714,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card-text p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text p' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1614,7 +1724,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'label' => __('Text Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card-text p' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text p' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1624,7 +1734,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'label' => __('Background Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card-text p' => 'background-color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text p' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
@@ -1635,7 +1745,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card-text p' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text p' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1644,7 +1754,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'mgpdeg_description_typography',
-                'selector' => '{{WRAPPER}} .mgpdeg-card-text p',
+                'selector' => '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text p',
             ]
         );
 
@@ -1668,7 +1778,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpde-card-text span.price' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpdeg-product-price span.price' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1678,7 +1788,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'label' => __('Price Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpde-card-text span.price' => 'color: {{VALUE}} !important;',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpdeg-product-price span.price, {{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpdeg-product-price span.price .woocommerce-Price-amount, {{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpdeg-product-price span.price bdi' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1688,7 +1798,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'label' => __('Deleted Price Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-product-price del' => 'color: {{VALUE}} !important;',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpdeg-product-price del, {{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpdeg-product-price del .woocommerce-Price-amount, {{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpdeg-product-price del bdi' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1697,7 +1807,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'mgpdeg_price_typography',
-                'selector' => '{{WRAPPER}} .mgpde-card-text span.price',
+                'selector' => '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpdeg-product-price span.price, {{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpdeg-product-price span.price .woocommerce-Price-amount',
             ]
         );
         $this->end_controls_section();
@@ -1885,7 +1995,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', 'em', '%'],
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card-text .mgpde-category a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpde-category a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
             ]
         );
@@ -1895,7 +2005,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'label' => __('Text Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-card-text .mgpde-category a' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpde-category a' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1904,7 +2014,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'mgpdeg_meta_cat_typography',
-                'selector' => '{{WRAPPER}} .mgpdeg-card-text .mgpde-category a',
+                'selector' => '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpde-category a',
             ]
         );
         $this->add_control(
@@ -1921,7 +2031,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'label' => __('Rating star Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-product-rating .wd-product-ratting i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mg-rating-out .star-rating::before, {{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpdeg-product-rating .wd-product-ratting i' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1931,7 +2041,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'label' => __('Rating star Fill Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .mgpdeg-product-rating .wd-product-ratting .wd-product-user-ratting i' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mg-rating-out .star-rating span::before, {{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mgpdeg-product-rating .wd-product-ratting .wd-product-user-ratting i' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -1941,7 +2051,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 'label' => __('Review Text Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} span.mgp-rating-count' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mg-rating-out span.mgp-rating-count, {{WRAPPER}} .mgpdeg-card .mgpdeg-card-text .mg-rating-out .woocommerce-review-link' => 'color: {{VALUE}} !important;',
                 ],
             ]
         );
@@ -2868,6 +2978,519 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
         );
 
         $this->end_controls_section();
+
+        // Action Buttons Style Section
+        $this->start_controls_section(
+            'mgpdeg_action_buttons_style',
+            [
+                'label' => __('Action Buttons', 'magical-products-display'),
+                'tab'   => \Elementor\Controls_Manager::TAB_STYLE,
+                'conditions' => [
+                    'relation' => 'or',
+                    'terms' => [
+                        ['name' => 'mgpdeg_show_compare_btn', 'value' => 'yes'],
+                        ['name' => 'mgpdeg_show_wishlist_btn', 'value' => 'yes'],
+                        ['name' => 'mgpdeg_show_quickview_btn', 'value' => 'yes'],
+                    ],
+                ],
+            ]
+        );
+
+        // General Action Buttons Settings
+        $this->add_control(
+            'mgpdeg_action_btn_general_heading',
+            [
+                'label' => __('General', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+            ]
+        );
+
+        $this->add_responsive_control(
+            'mgpdeg_action_btn_icon_size',
+            [
+                'label' => __('Icon Size', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 10,
+                        'max' => 40,
+                    ],
+                ],
+                'default' => [
+                    'size' => 14,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-action-btn i' => 'font-size: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'mgpdeg_action_btn_typography',
+                'label' => __('Typography', 'magical-products-display'),
+                'selector' => '{{WRAPPER}} .mpd-action-btn span',
+                'condition' => [
+                    'mgpdeg_action_btn_style' => 'icon_text',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'mgpdeg_action_btn_padding',
+            [
+                'label' => __('Padding', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em'],
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-action-btn' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_responsive_control(
+            'mgpdeg_action_btn_gap',
+            [
+                'label' => __('Buttons Gap', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 30,
+                    ],
+                ],
+                'default' => [
+                    'size' => 8,
+                    'unit' => 'px',
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-action-buttons' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_action_btn_border_radius',
+            [
+                'label' => __('Border Radius', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-action-btn' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        // Wishlist Button Style
+        $this->add_control(
+            'mgpdeg_wishlist_btn_heading',
+            [
+                'label' => __('Wishlist Button', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'mgpdeg_show_wishlist_btn' => 'yes',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs(
+            'mgpdeg_wishlist_btn_tabs',
+            [
+                'condition' => [
+                    'mgpdeg_show_wishlist_btn' => 'yes',
+                ],
+            ]
+        );
+
+        $this->start_controls_tab(
+            'mgpdeg_wishlist_btn_normal',
+            [
+                'label' => __('Normal', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_wishlist_btn_color',
+            [
+                'label' => __('Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-wishlist-btn' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_wishlist_btn_bg',
+            [
+                'label' => __('Background', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-wishlist-btn' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_wishlist_btn_border_color',
+            [
+                'label' => __('Border Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-wishlist-btn' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'mgpdeg_wishlist_btn_hover',
+            [
+                'label' => __('Hover', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_wishlist_btn_hover_color',
+            [
+                'label' => __('Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-wishlist-btn:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_wishlist_btn_hover_bg',
+            [
+                'label' => __('Background', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-wishlist-btn:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_wishlist_btn_hover_border_color',
+            [
+                'label' => __('Border Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-wishlist-btn:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'mgpdeg_wishlist_btn_active',
+            [
+                'label' => __('Active', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_wishlist_btn_active_color',
+            [
+                'label' => __('Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-wishlist-btn.in-wishlist' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_wishlist_btn_active_bg',
+            [
+                'label' => __('Background', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-wishlist-btn.in-wishlist' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_wishlist_btn_active_border_color',
+            [
+                'label' => __('Border Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-wishlist-btn.in-wishlist' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        // Compare Button Style
+        $this->add_control(
+            'mgpdeg_compare_btn_heading',
+            [
+                'label' => __('Compare Button', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'mgpdeg_show_compare_btn' => 'yes',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs(
+            'mgpdeg_compare_btn_tabs',
+            [
+                'condition' => [
+                    'mgpdeg_show_compare_btn' => 'yes',
+                ],
+            ]
+        );
+
+        $this->start_controls_tab(
+            'mgpdeg_compare_btn_normal',
+            [
+                'label' => __('Normal', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_compare_btn_color',
+            [
+                'label' => __('Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-compare-btn' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_compare_btn_bg',
+            [
+                'label' => __('Background', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-compare-btn' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_compare_btn_border_color',
+            [
+                'label' => __('Border Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-compare-btn' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'mgpdeg_compare_btn_hover',
+            [
+                'label' => __('Hover', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_compare_btn_hover_color',
+            [
+                'label' => __('Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-compare-btn:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_compare_btn_hover_bg',
+            [
+                'label' => __('Background', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-compare-btn:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_compare_btn_hover_border_color',
+            [
+                'label' => __('Border Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-compare-btn:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'mgpdeg_compare_btn_active',
+            [
+                'label' => __('Active', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_compare_btn_active_color',
+            [
+                'label' => __('Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-compare-btn.in-compare' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_compare_btn_active_bg',
+            [
+                'label' => __('Background', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-compare-btn.in-compare' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_compare_btn_active_border_color',
+            [
+                'label' => __('Border Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-compare-btn.in-compare' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        // Quick View Button Style
+        $this->add_control(
+            'mgpdeg_quickview_btn_heading',
+            [
+                'label' => __('Quick View Button', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+                'condition' => [
+                    'mgpdeg_show_quickview_btn' => 'yes',
+                ],
+            ]
+        );
+
+        $this->start_controls_tabs(
+            'mgpdeg_quickview_btn_tabs',
+            [
+                'condition' => [
+                    'mgpdeg_show_quickview_btn' => 'yes',
+                ],
+            ]
+        );
+
+        $this->start_controls_tab(
+            'mgpdeg_quickview_btn_normal',
+            [
+                'label' => __('Normal', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_quickview_btn_color',
+            [
+                'label' => __('Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-quick-view-btn' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_quickview_btn_bg',
+            [
+                'label' => __('Background', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-quick-view-btn' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_quickview_btn_border_color',
+            [
+                'label' => __('Border Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-quick-view-btn' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+
+        $this->start_controls_tab(
+            'mgpdeg_quickview_btn_hover',
+            [
+                'label' => __('Hover', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_quickview_btn_hover_color',
+            [
+                'label' => __('Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-quick-view-btn:hover' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_quickview_btn_hover_bg',
+            [
+                'label' => __('Background', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-quick-view-btn:hover' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpdeg_quickview_btn_hover_border_color',
+            [
+                'label' => __('Border Color', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .mpd-quick-view-btn:hover' => 'border-color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->end_controls_tab();
+        $this->end_controls_tabs();
+
+        $this->end_controls_section();
     }
 
     /**
@@ -2963,12 +3586,11 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
         // Only apply widget filter if products filter is not active
         if (!($settings['mgpdeg_filter_show'] == 'yes' && get_option('mgppro_is_active', 'no') == 'yes')) {
             switch ($mgpdeg_filter) {
-
+                
                 case 'menu_order':
                     $args['orderby']    = 'menu_order';
                     $args['order']      = 'ASC';
                     break;
-
                 case 'sale':
                 $args['meta_query'] = array(
                     array(
@@ -3165,7 +3787,9 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                                                         <?php do_action('mgproducts_pro_advance_icons', $mgpdeg_wishlist_show, $mgpdeg_wishlist_text, $mgpdeg_share_show, $mgpdeg_share_text, $mgpdeg_video_show, $mgpdeg_video_text, $mgpdeg_qrcode_show, $mgpdeg_qrcode_text); ?>
                                                     </div>
                                                 <?php endif; ?>
+                                                <?php $this->render_action_buttons($settings, 'on_image'); ?>
                                             </figure>
+                                            <?php $this->render_action_buttons($settings, 'below_image'); ?>
                                             <?php if ($mgpdeg_cart_btn == 'yes' && $mgpdeg_product_style == '2') : ?>
                                                 <div class="woocommerce mgpdeg-cart-btn">
                                                     <?php if ($mgpdeg_btn_type == 'cart') : ?>
@@ -3188,7 +3812,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                 </div>
             <?php else : ?>
                 <div class="alert alert-danger text-center mt-5 mb-5" role="alert">
-                    <?php echo esc_html('No Products found this query. Please try another way!!', 'magical-products-display'); ?>
+                    <?php echo esc_html__('No Products found this query. Please try another way!!', 'magical-products-display'); ?>
                 </div>
 
 
@@ -3331,5 +3955,85 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
 <?php
     } // products content
 
+    /**
+     * Render action buttons (Compare, Wishlist, Quick View)
+     *
+     * @param array  $settings Widget settings
+     * @param string $position Position context ('on_image', 'below_image', 'top_right', 'top_left')
+     */
+    protected function render_action_buttons($settings, $position) {
+        $btn_position = isset($settings['mgpdeg_action_btn_position']) ? $settings['mgpdeg_action_btn_position'] : 'on_image';
+        
+        // Only render if position matches
+        if ($position === 'below_image' && $btn_position !== 'below_image') {
+            return;
+        }
+        if ($position === 'on_image' && !in_array($btn_position, ['on_image', 'top_right', 'top_left'])) {
+            return;
+        }
+
+        $show_compare = isset($settings['mgpdeg_show_compare_btn']) && $settings['mgpdeg_show_compare_btn'] === 'yes';
+        $show_wishlist = isset($settings['mgpdeg_show_wishlist_btn']) && $settings['mgpdeg_show_wishlist_btn'] === 'yes';
+        $show_quickview = isset($settings['mgpdeg_show_quickview_btn']) && $settings['mgpdeg_show_quickview_btn'] === 'yes';
+
+        if (!$show_compare && !$show_wishlist && !$show_quickview) {
+            return;
+        }
+
+        global $product;
+        if (!$product) {
+            $product = wc_get_product(get_the_ID());
+        }
+        if (!$product) {
+            return;
+        }
+
+        $product_id = $product->get_id();
+        $btn_style = isset($settings['mgpdeg_action_btn_style']) ? $settings['mgpdeg_action_btn_style'] : 'icon_only';
+        $show_text = $btn_style === 'icon_text';
+
+        // Position classes
+        $position_class = 'mpd-action-buttons';
+        if ($btn_position === 'on_image') {
+            $position_class .= ' mpd-action-buttons--on-image';
+        } elseif ($btn_position === 'top_right') {
+            $position_class .= ' mpd-action-buttons--top-right';
+        } elseif ($btn_position === 'top_left') {
+            $position_class .= ' mpd-action-buttons--top-left';
+        } elseif ($btn_position === 'below_image') {
+            $position_class .= ' mpd-action-buttons--below-image';
+        }
+
+        ?>
+        <div class="<?php echo esc_attr($position_class); ?>">
+            <?php if ($show_wishlist) : ?>
+                <button type="button" class="mpd-wishlist-btn mpd-action-btn" data-product-id="<?php echo esc_attr($product_id); ?>" title="<?php esc_attr_e('Add to Wishlist', 'magical-products-display'); ?>">
+                    <i class="eicon-heart-o"></i>
+                    <?php if ($show_text) : ?>
+                        <span><?php esc_html_e('Wishlist', 'magical-products-display'); ?></span>
+                    <?php endif; ?>
+                </button>
+            <?php endif; ?>
+
+            <?php if ($show_compare) : ?>
+                <button type="button" class="mpd-compare-btn mpd-action-btn" data-product-id="<?php echo esc_attr($product_id); ?>" title="<?php esc_attr_e('Compare', 'magical-products-display'); ?>">
+                    <i class="eicon-exchange"></i>
+                    <?php if ($show_text) : ?>
+                        <span><?php esc_html_e('Compare', 'magical-products-display'); ?></span>
+                    <?php endif; ?>
+                </button>
+            <?php endif; ?>
+
+            <?php if ($show_quickview) : ?>
+                <button type="button" class="mpd-quick-view-btn mpd-action-btn" data-product-id="<?php echo esc_attr($product_id); ?>" title="<?php esc_attr_e('Quick View', 'magical-products-display'); ?>">
+                    <i class="eicon-zoom-in-bold"></i>
+                    <?php if ($show_text) : ?>
+                        <span><?php esc_html_e('Quick View', 'magical-products-display'); ?></span>
+                    <?php endif; ?>
+                </button>
+            <?php endif; ?>
+        </div>
+        <?php
+    }
 
 }

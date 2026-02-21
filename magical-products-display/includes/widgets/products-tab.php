@@ -7,6 +7,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
 {
 
     use mpdProHelpLink;
+    use MPD_Action_Buttons;
     /**
      * Get widget name.
      *
@@ -85,7 +86,8 @@ class mgProducts_Tab extends \Elementor\Widget_Base
     {
         return [
             'bootstrap-bundle',
-            'mpd-products-tab-ajax'
+            'mpd-products-tab-ajax',
+            'mpd-global-widgets',
         ];
     }
 
@@ -103,6 +105,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         return [
             'bootstrap-custom',
             'mgproducts-tab',
+            'mpd-global-widgets',
         ];
     }
     /**
@@ -420,7 +423,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
             [
                 'label' => esc_html__('Loader Color', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::COLOR,
-                'default' => '#0073aa',
+                'default' => '',
                 'condition' => [
                     'mgpd_ajax_load' => 'yes',
                 ],
@@ -1176,6 +1179,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+        $this->register_action_buttons_content_controls('mgpdt');
         $this->link_pro_added();
     }
 
@@ -2557,6 +2561,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+        $this->register_action_buttons_style_controls('mgpdt');
     }
 
     /**
@@ -2737,7 +2742,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                                        href="#" 
                                        role="tab" 
                                        aria-controls="bsktab<?php echo esc_attr($mgpd_rand . $index); ?>" 
-                                       aria-selected="<?php echo $index == 0 ? 'true' : 'false'; ?>"
+                                       aria-selected="<?php echo esc_attr( $index == 0 ? 'true' : 'false' ); ?>"
                                        <?php if ($ajax_load) : ?>
                                        data-ajax-load="yes"
                                        data-category-slug="<?php echo esc_attr($cat_slug); ?>"
@@ -2810,7 +2815,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                                     <?php if ($ajax_load && !$should_preload) : ?>
                                         <!-- AJAX Loading Placeholder -->
                                         <div class="mpd-tab-loader" style="display: flex; justify-content: center; align-items: center; padding: 40px;">
-                                            <?php echo $this->get_loader_svg($loader_type, $loader_color, $loader_size); ?>
+                                            <?php echo $this->get_loader_svg($loader_type, $loader_color, $loader_size); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG markup ?>
                                         </div>
                                         <div class="mpd-tab-content-wrapper">
                                             <!-- Content will be loaded via AJAX -->
@@ -2818,7 +2823,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                                     <?php else : ?>
                                         <!-- Preloaded Content -->
                                         <div class="mpd-tab-loader" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
-                                            <?php echo $this->get_loader_svg($loader_type, $loader_color, $loader_size); ?>
+                                            <?php echo $this->get_loader_svg($loader_type, $loader_color, $loader_size); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG markup ?>
                                         </div>
                                         <div class="mpd-tab-content-wrapper mpd-tab-loaded">
                                             <div class="row">
@@ -2873,7 +2878,9 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                                                                                     <?php do_action('mgproducts_pro_advance_icons', $mgpdeg_wishlist_show, $mgpdeg_wishlist_text, $mgpdeg_share_show, $mgpdeg_share_text, $mgpdeg_video_show, $mgpdeg_video_text, $mgpdeg_qrcode_show, $mgpdeg_qrcode_text); ?>
                                                                                 </div>
                                                                             <?php endif; ?>
+                                                                            <?php $this->render_action_buttons_html($settings, 'on_image', 'mgpdt'); ?>
                                                                         </figure>
+                                                                        <?php $this->render_action_buttons_html($settings, 'below_image', 'mgpdt'); ?>
                                                                         <?php if ($mgpdeg_cart_btn == 'yes' && $mgpdeg_product_style == '2') : ?>
                                                                             <div class="woocommerce mgpdeg-cart-btn">
                                                                                 <?php if ($mgpdeg_btn_type == 'cart') : ?>
@@ -2914,7 +2921,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
             </div>
         <?php else : ?>
             <div class="alert alert-danger text-center">
-                <?php echo esc_html('Please select products categories for display the Porducts.', 'magical-products-display'); ?>
+                <?php echo esc_html__('Please select products categories for display the Products.', 'magical-products-display'); ?>
             </div>
         <?php endif; ?>
 

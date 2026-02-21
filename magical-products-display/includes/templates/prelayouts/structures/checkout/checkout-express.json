@@ -1,0 +1,57 @@
+ [
+    {
+      "id": "auto_001",
+      "settings": {
+        "flex_direction": "column",
+        "magical_custom_attributes": []
+      },
+      "elements": [
+        {
+          "id": "auto_002",
+          "settings": {
+            "display_context": "anywhere",
+            "express_title": "Express Checkout",
+            "express_description": "Pay quickly with your saved payment methods.",
+            "show_description": "",
+            "divider_text": "OR",
+            "fallback_message": "Not Avilable payment method have",
+            "magical_custom_attributes": [],
+            "button_layout": "vertical"
+          },
+          "elements": [],
+          "isInner": false,
+          "widgetType": "mpd-express-checkout",
+          "elType": "widget"
+        },
+        {
+          "id": "auto_003",
+          "settings": {
+            "step_1_title": "Billing",
+            "step_2_title": "Shipping",
+            "step_3_title": "Review",
+            "step_final_title": "Payment",
+            "prev_button_text": "Back",
+            "next_button_text": "Continue",
+            "place_order_text": "Place Order",
+            "billing_full_name_label": "Full Name",
+            "shipping_full_name_label": "Full Name",
+            "_padding": {
+              "unit": "px",
+              "top": "40",
+              "right": "0",
+              "bottom": "40",
+              "left": "0",
+              "isLinked": false
+            },
+            "magical_custom_attributes": []
+          },
+          "elements": [],
+          "isInner": false,
+          "widgetType": "mpd-multi-step-checkout",
+          "elType": "widget"
+        }
+      ],
+      "isInner": false,
+      "elType": "container"
+    }
+  ]

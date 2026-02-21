@@ -8,6 +8,7 @@ if (!defined('ABSPATH')) {
 class mgProducts_carousel extends \Elementor\Widget_Base
 {
     use mpdProHelpLink;
+    use MPD_Action_Buttons;
 
     /**
      * Get widget name.
@@ -86,8 +87,9 @@ class mgProducts_carousel extends \Elementor\Widget_Base
     public function get_script_depends()
     {
         return [
-            'mg-swiper',
-            'mgproducts-carousel'
+            'swiper',
+            'mgproducts-carousel',
+            'mpd-global-widgets',
         ];
     }
 
@@ -105,6 +107,7 @@ class mgProducts_carousel extends \Elementor\Widget_Base
         return [
             'swiper',
             'mgproducts-style',
+            'mpd-global-widgets',
         ];
     }
 
@@ -619,6 +622,161 @@ class mgProducts_carousel extends \Elementor\Widget_Base
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'frontend_available' => true,
+            ]
+        );
+
+        // Carousel Effect
+        $this->add_control(
+            'mgpcar_effect',
+            [
+                'label' => __('Carousel Effect', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    'slide' => __('Slide', 'magical-products-display'),
+                    'fade' => __('Fade', 'magical-products-display'),
+                    'cube' => __('Cube', 'magical-products-display'),
+                    'coverflow' => __('Coverflow', 'magical-products-display'),
+                    'flip' => __('Flip', 'magical-products-display'),
+                    'cards' => __('Cards', 'magical-products-display'),
+                    'creative' => __('Creative', 'magical-products-display'),
+                ],
+                'default' => 'slide',
+                'frontend_available' => true,
+                'description' => __('Note: Fade, Flip effects work best with single slide view.', 'magical-products-display'),
+            ]
+        );
+
+        // Coverflow Settings
+        $this->add_control(
+            'mgpcar_coverflow_depth',
+            [
+                'label' => __('Coverflow Depth', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'min' => 0,
+                'max' => 500,
+                'default' => 100,
+                'frontend_available' => true,
+                'condition' => [
+                    'mgpcar_effect' => 'coverflow',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpcar_coverflow_rotate',
+            [
+                'label' => __('Coverflow Rotate', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'min' => 0,
+                'max' => 180,
+                'default' => 50,
+                'frontend_available' => true,
+                'condition' => [
+                    'mgpcar_effect' => 'coverflow',
+                ],
+            ]
+        );
+
+        // Continuous Scroll (Marquee) Effect - Pro Feature
+        $this->add_control(
+            'mgpcar_continuous_scroll_heading',
+            [
+                'label' => __('Continuous Scroll (Marquee)', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::HEADING,
+                'separator' => 'before',
+            ]
+        );
+
+        if (get_option('mgppro_is_active', 'no') == 'no') {
+            $this->add_control(
+                'mgpcar_continuous_scroll_pro_notice',
+                [
+                    'type' => \Elementor\Controls_Manager::RAW_HTML,
+                    'raw' => sprintf(
+                        '<div style="padding: 10px; background: #fff3cd; border-left: 4px solid #ff5722; margin: 5px 0;">
+                            <strong style="color: #ff5722;">%s</strong><br>
+                            <span style="color: #666;">%s</span><br>
+                            <a href="%s" target="_blank" style="display: inline-block; margin-top: 5px; color: #ff5722;">%s →</a>
+                        </div>',
+                        esc_html__('Pro Feature', 'magical-products-display'),
+                        esc_html__('Continuous scroll creates an infinite marquee effect - products scroll automatically without pause.', 'magical-products-display'),
+                        esc_url('https://wpthemespace.com/product/magical-shop-builder/#pricing'),
+                        esc_html__('Upgrade to Pro', 'magical-products-display')
+                    ),
+                ]
+            );
+            $continuous_scroll_default = '';
+        } else {
+            $continuous_scroll_default = '';
+        }
+
+        $this->add_control(
+            'mgpcar_continuous_scroll',
+            [
+                'label' => sprintf('%s %s', __('Enable Continuous Scroll', 'magical-products-display'), get_option('mgppro_is_active', 'no') == 'no' ? mpd_display_pro_only_text() : ''),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'magical-products-display'),
+                'label_off' => __('No', 'magical-products-display'),
+                'return_value' => 'yes',
+                'default' => $continuous_scroll_default,
+                'frontend_available' => true,
+                'description' => __('Creates an infinite marquee-style scrolling effect.', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'mgpcar_scroll_direction',
+            [
+                'label' => sprintf('%s %s', __('Scroll Direction', 'magical-products-display'), get_option('mgppro_is_active', 'no') == 'no' ? mpd_display_pro_only_text() : ''),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    'ltr' => __('Left to Right', 'magical-products-display'),
+                    'rtl' => __('Right to Left', 'magical-products-display'),
+                ],
+                'default' => 'rtl',
+                'frontend_available' => true,
+                'condition' => [
+                    'mgpcar_continuous_scroll' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpcar_scroll_speed',
+            [
+                'label' => sprintf('%s %s', __('Scroll Speed', 'magical-products-display'), get_option('mgppro_is_active', 'no') == 'no' ? mpd_display_pro_only_text() : ''),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 1,
+                        'max' => 100,
+                        'step' => 1,
+                    ]
+                ],
+                'default' => [
+                    'size' => 30,
+                ],
+                'frontend_available' => true,
+                'description' => __('Higher value = faster scroll', 'magical-products-display'),
+                'condition' => [
+                    'mgpcar_continuous_scroll' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'mgpcar_pause_on_hover',
+            [
+                'label' => sprintf('%s %s', __('Pause on Hover', 'magical-products-display'), get_option('mgppro_is_active', 'no') == 'no' ? mpd_display_pro_only_text() : ''),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => __('Yes', 'magical-products-display'),
+                'label_off' => __('No', 'magical-products-display'),
+                'return_value' => 'yes',
+                'default' => 'yes',
+                'frontend_available' => true,
+                'condition' => [
+                    'mgpcar_continuous_scroll' => 'yes',
+                ],
             ]
         );
 
@@ -1145,6 +1303,7 @@ class mgProducts_carousel extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+        $this->register_action_buttons_content_controls('mgpdec');
         $this->link_pro_added();
     }
 
@@ -2714,6 +2873,7 @@ class mgProducts_carousel extends \Elementor\Widget_Base
         );
 
         $this->end_controls_section();
+        $this->register_action_buttons_style_controls('mgpdec');
     }
 
     /**
@@ -2950,7 +3110,7 @@ class mgProducts_carousel extends \Elementor\Widget_Base
             ?>
 
                 <div id="mgpdeg-items" class="mgproductd mgpde-items style<?php echo esc_attr($mgpcar_product_style); ?>">
-                    <div class="mgproductd mgpc-pcarousel swiper swiper-container" data-loop="<?php echo esc_attr($settings['mgpcar_loop']); ?>" data-number="<?php echo esc_attr($settings['mgpcar_products_number']); ?>" data-margin="<?php echo esc_attr($settings['mgpcar_products_margin']['size']); ?>" data-direction="<?php echo esc_attr($settings['mgpcar_slide_direction']); ?>" data-autoplay="<?php echo esc_attr($settings['mgpcar_autoplay']); ?>" data-auto-delay="<?php echo esc_attr($settings['mgpcar_autoplay_delay']); ?>" data-speed="<?php echo esc_attr($settings['mgpcar_autoplay_speed']); ?>" data-grab-cursor="<?php echo esc_attr($settings['mgpcar_grab_cursor']); ?>" data-nav="<?php echo esc_attr($settings['mgpcar_navigation']); ?>" data-dots="<?php echo esc_attr($settings['mgpcar_dots']); ?>">
+                    <div class="mgproductd mgpc-pcarousel swiper swiper-container<?php echo ($settings['mgpcar_continuous_scroll'] == 'yes' && get_option('mgppro_is_active', 'no') == 'yes') ? ' mgpc-marquee' : ''; ?>" data-loop="<?php echo esc_attr($settings['mgpcar_loop']); ?>" data-number="<?php echo esc_attr($settings['mgpcar_products_number']); ?>" data-margin="<?php echo esc_attr($settings['mgpcar_products_margin']['size']); ?>" data-direction="<?php echo esc_attr($settings['mgpcar_slide_direction']); ?>" data-autoplay="<?php echo esc_attr($settings['mgpcar_autoplay']); ?>" data-auto-delay="<?php echo esc_attr($settings['mgpcar_autoplay_delay']); ?>" data-speed="<?php echo esc_attr($settings['mgpcar_autoplay_speed']); ?>" data-grab-cursor="<?php echo esc_attr($settings['mgpcar_grab_cursor']); ?>" data-nav="<?php echo esc_attr($settings['mgpcar_navigation']); ?>" data-dots="<?php echo esc_attr($settings['mgpcar_dots']); ?>" data-effect="<?php echo esc_attr($settings['mgpcar_effect'] ?? 'slide'); ?>" data-coverflow-depth="<?php echo esc_attr($settings['mgpcar_coverflow_depth'] ?? 100); ?>" data-coverflow-rotate="<?php echo esc_attr($settings['mgpcar_coverflow_rotate'] ?? 50); ?>" data-continuous-scroll="<?php echo (get_option('mgppro_is_active', 'no') == 'yes') ? esc_attr($settings['mgpcar_continuous_scroll'] ?? '') : ''; ?>" data-scroll-direction="<?php echo esc_attr($settings['mgpcar_scroll_direction'] ?? 'rtl'); ?>" data-scroll-speed="<?php echo esc_attr($settings['mgpcar_scroll_speed']['size'] ?? 30); ?>" data-pause-on-hover="<?php echo esc_attr($settings['mgpcar_pause_on_hover'] ?? 'yes'); ?>">
                         <div class="swiper-wrapper">
                             <?php while ($mgpcar_products->have_posts()) : $mgpcar_products->the_post(); ?>
                                 <div class="swiper-slide no-load">
@@ -2979,12 +3139,28 @@ class mgProducts_carousel extends \Elementor\Widget_Base
                                                         the_post_thumbnail($settings['mgpcar_img_size']);
                                                     }
                                                     ?>
-                                                    <?php if ($settings['mgpcar_adicons_show'] && get_option('mgppro_is_active', 'no') == 'yes') : ?>
+                                                    <?php if ($settings['mgpcar_adicons_show'] == 'yes') : ?>
                                                         <div class="mgp-exicons exicons-<?php echo esc_attr($settings['mgpcar_adicons_position']); ?>">
-                                                            <?php do_action('mgproducts_pro_advance_icons', $mgpcar_wishlist_show, $mgpcar_wishlist_text, $mgpcar_share_show, $mgpcar_share_text, $mgpcar_video_show, $mgpcar_video_text, $mgpcar_qrcode_show, $mgpcar_qrcode_text); ?>
+                                                            <?php if (get_option('mgppro_is_active', 'no') == 'yes') : ?>
+                                                                <?php do_action('mgproducts_pro_advance_icons', $mgpcar_wishlist_show, $mgpcar_wishlist_text, $mgpcar_share_show, $mgpcar_share_text, $mgpcar_video_show, $mgpcar_video_text, $mgpcar_qrcode_show, $mgpcar_qrcode_text); ?>
+                                                            <?php else : ?>
+                                                                <!-- Free Version Basic Icons -->
+                                                                <a href="<?php the_permalink(); ?>" class="mgp-adicon mgp-quickview-icon" title="<?php esc_attr_e('View Product', 'magical-products-display'); ?>">
+                                                                    <i class="eicon-preview-medium"></i>
+                                                                    <span><?php esc_html_e('Quick View', 'magical-products-display'); ?></span>
+                                                                </a>
+                                                                <?php if ($mgpcar_share_show == 'yes') : ?>
+                                                                <a href="javascript:void(0);" class="mgp-adicon mgp-share-icon" data-url="<?php the_permalink(); ?>" data-title="<?php echo esc_attr(get_the_title()); ?>" title="<?php echo esc_attr($mgpcar_share_text); ?>">
+                                                                    <i class="eicon-share"></i>
+                                                                    <span><?php echo esc_html($mgpcar_share_text); ?></span>
+                                                                </a>
+                                                                <?php endif; ?>
+                                                            <?php endif; ?>
                                                         </div>
                                                     <?php endif; ?>
+                                                    <?php $this->render_action_buttons_html($settings, 'on_image', 'mgpdec'); ?>
                                                 </figure>
+                                                <?php $this->render_action_buttons_html($settings, 'below_image', 'mgpdec'); ?>
                                                 <?php if ($mgpcar_cart_btn == 'yes' && $mgpcar_product_style == '2') : ?>
                                                     <div class="woocommerce mgpdeg-cart-btn">
                                                         <?php if ($mgpcar_btn_type == 'cart') : ?>
@@ -3022,7 +3198,7 @@ class mgProducts_carousel extends \Elementor\Widget_Base
                 </div>
             <?php else : ?>
                 <div class="alert alert-danger text-center mt-5 mb-5" role="alert">
-                    <?php echo esc_html('No Products found this query. Please try another way!!', 'magical-products-display'); ?>
+                    <?php echo esc_html__('No Products found this query. Please try another way!!', 'magical-products-display'); ?>
                 </div>
 
 

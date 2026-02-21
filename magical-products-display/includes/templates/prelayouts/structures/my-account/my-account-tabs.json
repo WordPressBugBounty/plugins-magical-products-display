@@ -1,0 +1,298 @@
+ [
+    {
+      "id": "auto_001",
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "40",
+          "right": "20",
+          "bottom": "40",
+          "left": "20",
+          "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#F8F9FA",
+        "magical_custom_attributes": []
+      },
+      "elements": [
+        {
+          "id": "auto_002",
+          "settings": {
+            "content_width": "full",
+            "width": {
+              "unit": "%",
+              "size": 100,
+              "sizes": []
+            },
+            "flex_direction": "column",
+            "background_background": "classic",
+            "background_color": "#FFFFFF",
+            "border_radius": {
+              "unit": "px",
+              "top": "12",
+              "right": "12",
+              "bottom": "12",
+              "left": "12",
+              "isLinked": true
+            },
+            "box_shadow_box_shadow_type": "yes",
+            "box_shadow_box_shadow": {
+              "horizontal": 0,
+              "vertical": 4,
+              "blur": 20,
+              "spread": 0,
+              "color": "rgba(0, 0, 0, 0.08)"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+            },
+            "overflow": "hidden",
+            "magical_custom_attributes": []
+          },
+          "elements": [
+            {
+              "id": "auto_003",
+              "settings": {
+                "background_background": "classic",
+                "background_color": "#FFFFFF",
+                "border_border": "solid",
+                "border_width": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "1",
+                  "left": "0",
+                  "isLinked": false
+                },
+                "border_color": "#E5E7EB",
+                "padding": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "20",
+                  "bottom": "0",
+                  "left": "20",
+                  "isLinked": false
+                },
+                "magical_custom_attributes": []
+              },
+              "elements": [
+                {
+                  "id": "auto_004",
+                  "settings": {
+                    "layout": "horizontal",
+                    "items_gap": {
+                      "unit": "px",
+                      "size": 11,
+                      "sizes": []
+                    },
+                    "alignment": "center",
+                    "logout_message": "Are you sure you want to logout?",
+                    "item_color": "#000000",
+                    "item_background_background": "classic",
+                    "item_background_color": "#FFFFFF00",
+                    "item_border_border": "solid",
+                    "item_border_width": {
+                      "unit": "px",
+                      "top": "1",
+                      "right": "1",
+                      "bottom": "1",
+                      "left": "1",
+                      "isLinked": true
+                    },
+                    "item_border_radius": {
+                      "unit": "px",
+                      "top": "0",
+                      "right": "0",
+                      "bottom": "0",
+                      "left": "0",
+                      "isLinked": true
+                    },
+                    "magical_custom_attributes": [],
+                    "enable_sticky": "yes",
+                    "show_avatar": "yes",
+                    "show_email": "yes",
+                    "show_order_badge": "yes",
+                    "show_download_badge": "yes",
+                    "divider_color": "#E7E7E7",
+                    "logout_confirmation": "yes",
+                    "item_hover_color": "#FFFFFF",
+                    "item_hover_background_background": "classic",
+                    "item_hover_background_color": "#000000",
+                    "item_margin": {
+                      "unit": "px",
+                      "top": "0",
+                      "right": "0",
+                      "bottom": "0",
+                      "left": "0",
+                      "isLinked": false
+                    },
+                    "icon_hover_color": "#FFFFFF",
+                    "sticky_offset": {
+                      "unit": "px",
+                      "size": 45,
+                      "sizes": []
+                    },
+                    "nav_background_background": "classic",
+                    "nav_background_color": "#FFFFFF",
+                    "_padding": {
+                      "unit": "px",
+                      "top": "10",
+                      "right": "0",
+                      "bottom": "10",
+                      "left": "0",
+                      "isLinked": false
+                    }
+                  },
+                  "elements": [],
+                  "isInner": false,
+                  "widgetType": "mpd-account-nav",
+                  "elType": "widget"
+                }
+              ],
+              "isInner": true,
+              "elType": "container"
+            },
+            {
+              "id": "auto_005",
+              "settings": {
+                "padding": {
+                  "unit": "px",
+                  "top": "30",
+                  "right": "30",
+                  "bottom": "30",
+                  "left": "30",
+                  "isLinked": true
+                },
+                "magical_custom_attributes": []
+              },
+              "elements": [
+                {
+                  "id": "auto_006",
+                  "settings": {
+                    "recent_orders_title": "Recent Orders",
+                    "welcome_message": "Hello {customer_name}! From your account dashboard you can manage your orders and account details.",
+                    "magical_custom_attributes": []
+                  },
+                  "elements": [],
+                  "isInner": false,
+                  "widgetType": "mpd-account-dashboard",
+                  "elType": "widget"
+                },
+                {
+                  "id": "auto_007",
+                  "settings": {
+                    "section_title": "My Orders",
+                    "empty_message": "No orders have been made yet.",
+                    "shop_button_text": "Browse Products",
+                    "magical_custom_attributes": []
+                  },
+                  "elements": [],
+                  "isInner": false,
+                  "widgetType": "mpd-account-orders",
+                  "elType": "widget"
+                },
+                {
+                  "id": "auto_008",
+                  "settings": {
+                    "section_title": "My Addresses",
+                    "description": "The following addresses will be used on the checkout page by default.",
+                    "billing_title": "Billing Address",
+                    "shipping_title": "Shipping Address",
+                    "edit_button_text": "Edit",
+                    "magical_custom_attributes": []
+                  },
+                  "elements": [],
+                  "isInner": false,
+                  "widgetType": "mpd-account-addresses",
+                  "elType": "widget"
+                },
+                {
+                  "id": "auto_009",
+                  "settings": {
+                    "section_title": "Account Details",
+                    "password_section_title": "Password Change",
+                    "save_button_text": "Save Changes",
+                    "magical_custom_attributes": []
+                  },
+                  "elements": [],
+                  "isInner": false,
+                  "widgetType": "mpd-account-details",
+                  "elType": "widget"
+                },
+                {
+                  "id": "auto_010",
+                  "settings": {
+                    "section_title": "My Downloads",
+                    "download_button_text": "Download",
+                    "empty_message": "No downloads available yet.",
+                    "shop_button_text": "Browse Products",
+                    "magical_custom_attributes": []
+                  },
+                  "elements": [],
+                  "isInner": false,
+                  "widgetType": "mpd-account-downloads",
+                  "elType": "widget"
+                },
+                {
+                  "id": "auto_011",
+                  "settings": {
+                    "button_text": "Logout",
+                    "alignment": "right",
+                    "modal_title": "Confirm Logout",
+                    "modal_message": "Are you sure you want to logout?",
+                    "confirm_button_text": "Yes, Logout",
+                    "cancel_button_text": "Cancel",
+                    "magical_custom_attributes": []
+                  },
+                  "elements": [],
+                  "isInner": false,
+                  "widgetType": "mpd-account-logout",
+                  "elType": "widget"
+                }
+              ],
+              "isInner": true,
+              "elType": "container"
+            },
+            {
+              "id": "auto_012",
+              "settings": {
+                "content_width": "full",
+                "magical_custom_attributes": []
+              },
+              "elements": [
+                {
+                  "id": "auto_013",
+                  "settings": {
+                    "login_title": "Login",
+                    "username_label": "Username or email address",
+                    "password_label": "Password",
+                    "login_button_text": "Log in",
+                    "register_title": "Register",
+                    "register_button_text": "Register",
+                    "magical_custom_attributes": []
+                  },
+                  "elements": [],
+                  "isInner": false,
+                  "widgetType": "mpd-account-login",
+                  "elType": "widget"
+                }
+              ],
+              "isInner": true,
+              "elType": "container"
+            }
+          ],
+          "isInner": true,
+          "elType": "container"
+        }
+      ],
+      "isInner": false,
+      "elType": "container"
+    }
+  ]

@@ -1075,4 +1075,152 @@ div#mgpdeg-items .swiper-container {
   display: none !important;
 }
 
+/* ==========================================================================
+   Advance Icons Styles
+   ========================================================================== */
+.mgp-exicons {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
 
+.mgpde-card:hover .mgp-exicons,
+.mgpdeg-card:hover .mgp-exicons,
+.mgpde-has-hover:hover .mgp-exicons {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mgp-exicons.exicons-right {
+  top: 10px;
+  right: 10px;
+  align-items: flex-end;
+}
+
+.mgp-exicons.exicons-left {
+  top: 10px;
+  left: 10px;
+  align-items: flex-start;
+}
+
+.mgp-adicon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.mgp-adicon:hover {
+  background: #333;
+  color: #fff;
+  width: auto;
+  border-radius: 20px;
+  padding: 0 15px;
+}
+
+.mgp-adicon i {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.mgp-adicon span {
+  display: none;
+  font-size: 12px;
+  white-space: nowrap;
+  margin-left: 6px;
+}
+
+.mgp-adicon:hover span {
+  display: inline;
+}
+
+.mgp-quickview-icon:hover {
+  background: #2196f3;
+}
+
+.mgp-share-icon:hover {
+  background: #4caf50;
+}
+
+/* ==========================================================================
+   Continuous Scroll (Marquee) Styles
+   ========================================================================== */
+.mgpc-pcarousel.mgpc-marquee,
+.mgpc-pcarousel.mgpc-continuous-scroll {
+  --swiper-navigation-size: 0;
+}
+
+.mgpc-pcarousel.mgpc-marquee .swiper-wrapper,
+.mgpc-pcarousel.mgpc-continuous-scroll .swiper-wrapper {
+  transition-timing-function: linear !important;
+}
+
+.mgpc-pcarousel.mgpc-marquee:hover .swiper-wrapper,
+.mgpc-pcarousel.mgpc-continuous-scroll:hover .swiper-wrapper {
+  /* Pause handled by JS when pause-on-hover is enabled */
+}
+
+/* ==========================================================================
+   Carousel Effect Styles
+   ========================================================================== */
+/* Coverflow effect adjustments */
+.mgpc-pcarousel[data-effect="coverflow"] {
+  padding: 30px 0;
+}
+
+.mgpc-pcarousel[data-effect="coverflow"] .swiper-slide {
+  transition: transform 0.3s ease;
+}
+
+/* Cube effect adjustments */
+.mgpc-pcarousel[data-effect="cube"] {
+  overflow: visible;
+  padding: 50px 0;
+}
+
+.mgpc-pcarousel[data-effect="cube"] .swiper-slide {
+  backface-visibility: hidden;
+}
+
+/* Cards effect adjustments */
+.mgpc-pcarousel[data-effect="cards"] {
+  padding: 30px 0;
+  overflow: visible;
+}
+
+/* Creative effect adjustments */
+.mgpc-pcarousel[data-effect="creative"] {
+  overflow: visible;
+}
+
+/* Flip effect adjustments */
+.mgpc-pcarousel[data-effect="flip"] {
+  overflow: visible;
+  padding: 30px 0;
+}
+
+/* Fade effect specific */
+.mgpc-pcarousel[data-effect="fade"] .swiper-slide {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+.mgpc-pcarousel[data-effect="fade"] .swiper-slide-active {
+  opacity: 1 !important;
+}

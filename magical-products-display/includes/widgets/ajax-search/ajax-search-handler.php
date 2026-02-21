@@ -51,9 +51,9 @@ class MPD_AJAX_Search_Handler {
         }
 
         // Sanitize and validate input
-        $query = isset($_POST['query']) ? sanitize_text_field($_POST['query']) : '';
+        $query = isset($_POST['query']) ? sanitize_text_field( wp_unslash( $_POST['query'] ) ) : '';
         $limit = max(1, min(50, isset($_POST['limit']) ? intval($_POST['limit']) : 10));
-        $filters = $this->sanitize_filters(isset($_POST['filters']) ? $_POST['filters'] : array());
+        $filters = $this->sanitize_filters(isset($_POST['filters']) ? wp_unslash( $_POST['filters'] ) : array());
 
         // Validate query length
         if (strlen($query) < 3) {
@@ -80,7 +80,7 @@ class MPD_AJAX_Search_Handler {
             wp_send_json_success($results);
             
         } catch (Exception $e) {
-            error_log('MPD Ajax Search Error: ' . $e->getMessage());
+            mpd_log( 'Ajax Search Error: ' . $e->getMessage(), 'error' );
             wp_send_json_error(array('message' => __('Search failed. Please try again.', 'magical-products-display')));
         }
     }
@@ -412,29 +412,8 @@ class MPD_AJAX_Search_Handler {
      * @return string Client IP
      */
     private function get_client_ip() {
-        $ip_headers = array(
-            'HTTP_CF_CONNECTING_IP',
-            'HTTP_X_REAL_IP',
-            'HTTP_X_FORWARDED_FOR',
-            'HTTP_CLIENT_IP',
-            'REMOTE_ADDR'
-        );
-
-        foreach ($ip_headers as $header) {
-            if (!empty($_SERVER[$header])) {
-                $ip = $_SERVER[$header];
-                // Handle comma-separated IPs (for forwarded headers)
-                if (strpos($ip, ',') !== false) {
-                    $ip = trim(explode(',', $ip)[0]);
-                }
-                
-                if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
-                    return $ip;
-                }
-            }
-        }
-
-        return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '127.0.0.1';
+        // Use REMOTE_ADDR as primary — proxy headers are spoofable.
+        return isset( $_SERVER['REMOTE_ADDR'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REMOTE_ADDR'] ) ) : '127.0.0.1';
     }
 
     /**

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa"/>
+      <stop offset="100%" style="stop-color:#e9ecef"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGrad)"/>
+  
+  <!-- Title -->
+  <rect x="140" y="12" width="120" height="16" rx="2" fill="#212529"/>
+  
+  <!-- Two Column Layout -->
+  <!-- Left: Navigation (25%) -->
+  <rect x="20" y="40" width="90" height="210" rx="6" fill="#ffffff" stroke="#dee2e6" stroke-width="1"/>
+  
+  <!-- Nav Items -->
+  <rect x="30" y="55" width="70" height="22" rx="3" fill="#007bff"/>
+  <rect x="30" y="85" width="70" height="22" rx="3" fill="#f8f9fa" stroke="#ced4da" stroke-width="1"/>
+  <rect x="30" y="115" width="70" height="22" rx="3" fill="#f8f9fa" stroke="#ced4da" stroke-width="1"/>
+  <rect x="30" y="145" width="70" height="22" rx="3" fill="#f8f9fa" stroke="#ced4da" stroke-width="1"/>
+  <rect x="30" y="175" width="70" height="22" rx="3" fill="#f8f9fa" stroke="#ced4da" stroke-width="1"/>
+  <rect x="30" y="205" width="70" height="22" rx="3" fill="#f8f9fa" stroke="#ced4da" stroke-width="1"/>
+  
+  <!-- Right: Content (75%) -->
+  <rect x="120" y="40" width="260" height="210" rx="6" fill="#ffffff" stroke="#dee2e6" stroke-width="1"/>
+  
+  <!-- Dashboard Welcome -->
+  <rect x="135" y="55" width="120" height="14" rx="2" fill="#343a40"/>
+  <rect x="135" y="75" width="200" height="8" rx="1" fill="#6c757d"/>
+  
+  <!-- Quick Links -->
+  <rect x="135" y="100" width="110" height="50" rx="4" fill="#f8f9fa" stroke="#ced4da" stroke-width="1"/>
+  <rect x="145" y="110" width="40" height="8" rx="1" fill="#495057"/>
+  <rect x="145" y="125" width="70" height="6" rx="1" fill="#adb5bd"/>
+  <rect x="145" y="138" width="50" height="6" rx="1" fill="#007bff"/>
+  
+  <rect x="255" y="100" width="110" height="50" rx="4" fill="#f8f9fa" stroke="#ced4da" stroke-width="1"/>
+  <rect x="265" y="110" width="40" height="8" rx="1" fill="#495057"/>
+  <rect x="265" y="125" width="70" height="6" rx="1" fill="#adb5bd"/>
+  <rect x="265" y="138" width="50" height="6" rx="1" fill="#007bff"/>
+  
+  <!-- Recent Orders -->
+  <rect x="135" y="165" width="80" height="10" rx="1" fill="#343a40"/>
+  
+  <!-- Order Table -->
+  <rect x="135" y="182" width="230" height="18" rx="0" fill="#f8f9fa"/>
+  <rect x="135" y="202" width="230" height="35" rx="0" fill="#fff" stroke="#eee" stroke-width="1"/>
+  <rect x="145" y="212" width="40" height="8" rx="1" fill="#495057"/>
+  <rect x="200" y="212" width="50" height="8" rx="1" fill="#adb5bd"/>
+  <rect x="270" y="212" width="30" height="8" rx="1" fill="#28a745"/>
+  <rect x="320" y="210" width="35" height="12" rx="2" fill="#007bff"/>
+  
+  <!-- Label -->
+  <text x="200" y="290" font-family="Arial, sans-serif" font-size="11" fill="#6c757d" text-anchor="middle">Classic My Account</text>
+</svg>

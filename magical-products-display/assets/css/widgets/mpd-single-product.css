@@ -1,0 +1,4587 @@
+/**
+ * Single Product Widgets Styles
+ *
+ * Styles for all single product page widgets.
+ *
+ * @package Magical_Shop_Builder
+ * @since   2.0.0
+ */
+
+/* ==========================================================================
+   MPD Template Full Width Layout
+   ========================================================================== */
+.mpd-template-main.mpd-full-width {
+	width: 100%;
+	max-width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+.mpd-template-main.mpd-full-width .mpd-template-content {
+	width: 100%;
+	max-width: 100%;
+}
+
+/* Override theme container constraints for full width */
+.mpd-full-width .elementor-section.elementor-section-boxed > .elementor-container {
+	max-width: 100%;
+}
+
+/* ==========================================================================
+   Product Title Widget
+   ========================================================================== */
+.mpd-product-title {
+	margin: 0;
+	padding: 0;
+}
+
+.mpd-product-title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.mpd-product-title a:hover {
+	color: inherit;
+}
+
+/* ==========================================================================
+   Product Price Widget
+   ========================================================================== */
+.mpd-product-price {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+}
+
+/* Handle both editor (.price wrapper) and frontend (no wrapper) markup */
+.mpd-product-price .price {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+}
+
+/* Stacked Layout - handles both markup structures */
+.mpd-price-layout-stacked .mpd-product-price,
+.mpd-price-layout-stacked .mpd-product-price .price {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+/* Inline Layout (default) - handles both markup structures */
+.mpd-price-layout-inline .mpd-product-price,
+.mpd-price-layout-inline .mpd-product-price .price {
+	flex-direction: row;
+	align-items: center;
+}
+
+/* Price element styles - work for both markup structures */
+.mpd-product-price del,
+.mpd-product-price .price del {
+	opacity: 0.6;
+}
+
+.mpd-product-price ins,
+.mpd-product-price .price ins {
+	text-decoration: none;
+	font-weight: 600;
+}
+
+/* Screen reader text should be hidden visually but accessible */
+.mpd-product-price .screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Discount Badge */
+.mpd-discount-badge {
+	display: inline-block;
+	padding: 4px 10px;
+	font-size: 12px;
+	font-weight: 600;
+	background: #e74c3c;
+	color: #fff;
+	border-radius: 4px;
+	margin-left: 10px;
+}
+
+.mpd-price-layout-stacked .mpd-discount-badge {
+	margin-left: 0;
+	margin-top: 5px;
+}
+
+.mpd-price-sale-badge {
+	display: inline-block;
+	padding: 2px 8px;
+	font-size: 12px;
+	font-weight: 600;
+	background: #e74c3c;
+	color: #fff;
+	border-radius: 3px;
+}
+
+.mpd-price-savings {
+	font-size: 14px;
+	color: #27ae60;
+}
+
+/* ==========================================================================
+   Product Gallery Widget
+   ========================================================================== */
+.mpd-product-gallery {
+	position: relative;
+}
+
+.mpd-product-gallery .mpd-gallery-inner {
+	position: relative;
+}
+
+/* ==========================================================================
+   Gallery Main Image Container
+   ========================================================================== */
+.mpd-product-gallery .mpd-gallery-main-image {
+	position: relative;
+	flex: 1;
+	min-width: 0;
+}
+
+.mpd-product-gallery .mpd-gallery-slide {
+	display: none;
+}
+
+.mpd-product-gallery .mpd-gallery-slide.mpd-slide-active {
+	display: block;
+}
+
+.mpd-product-gallery .mpd-gallery-slide a {
+	display: block;
+}
+
+.mpd-product-gallery .mpd-gallery-slide img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* ==========================================================================
+   Sale Badge & Lightbox Trigger - Inside Main Image
+   ========================================================================== */
+.mpd-product-gallery .mpd-gallery-main-image .onsale {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 10;
+	background: #e74c3c;
+	color: #fff;
+	padding: 5px 10px;
+	font-size: 12px;
+	font-weight: 600;
+	border-radius: 3px;
+}
+
+.mpd-product-gallery .mpd-gallery-main-image .mpd-gallery-lightbox-trigger {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 10;
+	width: 40px;
+	height: 40px;
+	background: rgba(255, 255, 255, 0.95);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+	color: #333;
+	transition: all 0.3s ease;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.mpd-product-gallery .mpd-gallery-main-image .mpd-gallery-lightbox-trigger:hover {
+	background: #fff;
+	transform: scale(1.1);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.mpd-product-gallery .mpd-gallery-main-image .mpd-gallery-lightbox-trigger svg {
+	width: 20px;
+	height: 20px;
+}
+
+/* ==========================================================================
+   Gallery Thumbnails (Unified)
+   ========================================================================== */
+.mpd-product-gallery .mpd-gallery-thumbs {
+	margin: 0;
+	padding: 0;
+}
+
+.mpd-product-gallery .mpd-thumb-item {
+	cursor: pointer;
+	overflow: hidden;
+	transition: all 0.3s ease;
+}
+
+.mpd-product-gallery .mpd-thumb-item img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	object-fit: cover;
+	display: block;
+	transition: opacity 0.3s ease;
+}
+
+.mpd-product-gallery .mpd-thumb-item.mpd-thumb-active {
+	border-color: var(--mpd-primary-color, #333);
+}
+
+/* ==========================================================================
+   Gallery Layout: Default (Thumbnails Below)
+   ========================================================================== */
+.mpd-gallery-layout-default .mpd-thumbs-horizontal {
+	--mpd-thumb-columns: 4;
+	display: grid;
+	grid-template-columns: repeat(var(--mpd-thumb-columns), 1fr);
+	gap: 10px;
+	margin-top: 15px;
+}
+
+/* ==========================================================================
+   Gallery Layout: Thumbnails Left / Right (Vertical)
+   ========================================================================== */
+.mpd-gallery-layout-thumbnails-left .mpd-gallery-flex-container,
+.mpd-gallery-layout-thumbnails-right .mpd-gallery-flex-container {
+	display: flex;
+	gap: 15px;
+	align-items: flex-start;
+}
+
+.mpd-gallery-layout-thumbnails-left .mpd-thumbs-vertical {
+	order: -1;
+}
+
+.mpd-gallery-layout-thumbnails-right .mpd-thumbs-vertical {
+	order: 1;
+}
+
+.mpd-gallery-layout-thumbnails-right .mpd-gallery-main-image {
+	order: 0;
+}
+
+/* Vertical Thumbnails */
+.mpd-product-gallery .mpd-thumbs-vertical {
+	--mpd-thumb-rows: 4;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 100px;
+	flex-shrink: 0;
+	max-height: 500px;
+	overflow-y: auto;
+}
+
+.mpd-product-gallery .mpd-thumbs-vertical .mpd-thumb-item img {
+	width: 100%;
+	height: auto;
+}
+
+/* ==========================================================================
+   Gallery Layout: Grid
+   ========================================================================== */
+.mpd-product-gallery .mpd-gallery-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+}
+
+.mpd-product-gallery .mpd-gallery-grid-item img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* ==========================================================================
+   Responsive Gallery
+   ========================================================================== */
+@media (max-width: 768px) {
+	.mpd-gallery-layout-thumbnails-left .mpd-gallery-flex-container,
+	.mpd-gallery-layout-thumbnails-right .mpd-gallery-flex-container {
+		flex-direction: column;
+	}
+	
+	.mpd-gallery-layout-thumbnails-left .mpd-thumbs-vertical,
+	.mpd-gallery-layout-thumbnails-right .mpd-thumbs-vertical {
+		order: 1;
+		width: 100%;
+		flex-direction: row;
+		max-height: none;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+	
+	.mpd-gallery-layout-thumbnails-left .mpd-thumbs-vertical .mpd-thumb-item,
+	.mpd-gallery-layout-thumbnails-right .mpd-thumbs-vertical .mpd-thumb-item {
+		width: 80px;
+		flex-shrink: 0;
+	}
+}
+
+/* Legacy flexslider compatibility - hide WooCommerce generated thumbnails */
+.mpd-product-gallery .flex-control-thumbs,
+.mpd-product-gallery .flex-control-nav,
+.mpd-product-gallery .woocommerce-product-gallery__trigger {
+	display: none !important;
+}
+
+/* Gallery Placeholder */
+.mpd-gallery-placeholder {
+	text-align: center;
+}
+
+.mpd-gallery-placeholder img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* ==========================================================================
+   Gallery Zoom Features (Pro)
+   ========================================================================== */
+
+/* Zoomable image cursor */
+.mpd-product-gallery .mpd-zoomable {
+	cursor: zoom-in;
+	transition: opacity 0.2s ease;
+}
+
+/* Inner Zoom - image scales inside its container */
+.mpd-product-gallery .mpd-gallery-slide {
+	overflow: hidden;
+	position: relative;
+}
+
+.mpd-product-gallery .mpd-gallery-slide img.mpd-zoomable {
+	will-change: opacity;
+}
+
+/* Zoom overlay for inner zoom */
+.mpd-product-gallery .mpd-zoom-overlay {
+	transition: opacity 0.15s ease;
+	cursor: zoom-in;
+}
+
+/* Lens Zoom - magnifying glass lens */
+.mpd-product-gallery .mpd-zoom-lens {
+	position: absolute;
+	display: none;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	border: 3px solid #fff;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+	pointer-events: none;
+	z-index: 100;
+	background-repeat: no-repeat;
+	cursor: none;
+}
+
+/* Window Zoom - separate zoom window */
+.mpd-product-gallery .mpd-zoom-window {
+	position: absolute;
+	display: none;
+	width: 400px;
+	height: 400px;
+	right: -420px;
+	top: 0;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+	z-index: 100;
+	pointer-events: none;
+}
+
+/* Adjust zoom window position for different layouts */
+.mpd-gallery-layout-thumbnails-right .mpd-zoom-window {
+	right: auto;
+	left: -420px;
+}
+
+@media (max-width: 1200px) {
+	.mpd-product-gallery .mpd-zoom-window {
+		width: 300px;
+		height: 300px;
+		right: -320px;
+	}
+	
+	.mpd-gallery-layout-thumbnails-right .mpd-zoom-window {
+		left: -320px;
+	}
+}
+
+@media (max-width: 992px) {
+	/* On smaller screens, position zoom window below or hide */
+	.mpd-product-gallery .mpd-zoom-window {
+		display: none !important;
+	}
+}
+
+/* ==========================================================================
+   Gallery Video Support (Pro Feature)
+   ========================================================================== */
+
+/* Video Slide Styles */
+.mpd-product-gallery .mpd-gallery-video-slide {
+	position: relative;
+}
+
+.mpd-product-gallery .mpd-video-thumbnail-wrapper {
+	position: relative;
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	background: #000;
+	aspect-ratio: 16 / 9;
+}
+
+.mpd-product-gallery .mpd-video-thumbnail {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mpd-product-gallery .mpd-video-thumbnail-wrapper:hover .mpd-video-thumbnail {
+	transform: scale(1.02);
+	opacity: 0.85;
+}
+
+/* Video Play Button */
+.mpd-product-gallery .mpd-video-play-button {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 5;
+	pointer-events: none;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.mpd-product-gallery .mpd-video-thumbnail-wrapper:hover .mpd-video-play-button {
+	transform: translate(-50%, -50%) scale(1.1);
+}
+
+.mpd-product-gallery .mpd-video-play-button svg {
+	display: block;
+	width: 68px;
+	height: 48px;
+	filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.mpd-product-gallery .mpd-video-play-bg {
+	fill: #f00;
+	transition: fill 0.3s ease;
+}
+
+.mpd-product-gallery .mpd-video-thumbnail-wrapper:hover .mpd-video-play-bg {
+	fill: #cc0000;
+}
+
+/* Video Placeholder (when no thumbnail) */
+.mpd-product-gallery .mpd-video-placeholder {
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mpd-product-gallery .mpd-video-icon::before {
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 20px 0 20px 35px;
+	border-color: transparent transparent transparent rgba(255, 255, 255, 0.8);
+}
+
+/* Video Embed Container */
+.mpd-product-gallery .mpd-video-embed-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	z-index: 10;
+	display: none;
+}
+
+.mpd-product-gallery .mpd-gallery-video-slide.mpd-video-playing .mpd-video-embed-container {
+	display: block;
+}
+
+.mpd-product-gallery .mpd-gallery-video-slide.mpd-video-playing .mpd-video-thumbnail-wrapper {
+	display: none;
+}
+
+.mpd-product-gallery .mpd-video-embed-container iframe {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+
+/* Video Trigger - Make clickable */
+.mpd-product-gallery .mpd-video-trigger {
+	cursor: pointer;
+}
+
+/* Hide lightbox trigger icon when video slide is active */
+.mpd-product-gallery .mpd-gallery-video-slide.mpd-slide-active ~ .mpd-gallery-lightbox-trigger,
+.mpd-product-gallery:has(.mpd-gallery-video-slide.mpd-slide-active) .mpd-gallery-lightbox-trigger {
+	display: none !important;
+}
+
+/* Disable zoom cursor on video slides */
+.mpd-product-gallery .mpd-gallery-video-slide .mpd-video-thumbnail {
+	cursor: pointer !important;
+}
+
+.mpd-product-gallery .mpd-gallery-video-slide .mpd-zoomable {
+	cursor: pointer !important;
+}
+
+/* Video Lightbox Trigger */
+.mpd-product-gallery .mpd-video-lightbox-trigger {
+	display: block;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* Video Thumbnail in Gallery Thumbnails */
+.mpd-product-gallery .mpd-thumb-video {
+	position: relative;
+}
+
+.mpd-product-gallery .mpd-thumb-video img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1;
+	object-fit: cover;
+}
+
+.mpd-product-gallery .mpd-thumb-video-icon {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 30px;
+	height: 30px;
+	background: rgba(255, 0, 0, 0.9);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	transition: all 0.3s ease;
+	pointer-events: none;
+}
+
+.mpd-product-gallery .mpd-thumb-video:hover .mpd-thumb-video-icon {
+	background: #cc0000;
+	transform: translate(-50%, -50%) scale(1.1);
+}
+
+.mpd-product-gallery .mpd-thumb-video-icon svg {
+	width: 14px;
+	height: 14px;
+	margin-left: 2px;
+}
+
+/* Grid Gallery Video Item */
+.mpd-product-gallery .mpd-gallery-grid-video {
+	position: relative;
+}
+
+.mpd-product-gallery .mpd-gallery-grid-video .mpd-video-thumbnail-wrapper {
+	aspect-ratio: auto;
+	height: 100%;
+}
+
+.mpd-product-gallery .mpd-gallery-grid-video .mpd-video-thumbnail {
+	aspect-ratio: 1;
+	height: 100%;
+}
+
+/* Responsive Video Styles */
+@media (max-width: 768px) {
+	.mpd-product-gallery .mpd-video-play-button svg {
+		width: 54px;
+		height: 38px;
+	}
+	
+	.mpd-product-gallery .mpd-thumb-video-icon {
+		width: 24px;
+		height: 24px;
+	}
+	
+	.mpd-product-gallery .mpd-thumb-video-icon svg {
+		width: 12px;
+		height: 12px;
+	}
+}
+
+/* ==========================================================================
+   Add to Cart Widget
+   ========================================================================== */
+.mpd-add-to-cart {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 15px;
+}
+
+/* Add to Cart form (WooCommerce) styles */
+.mpd-add-to-cart form.cart {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 15px;
+	width: 100%;
+}
+
+/* Stacked Layout */
+.mpd-add-to-cart-layout-stacked .mpd-add-to-cart,
+.mpd-add-to-cart-layout-stacked .mpd-add-to-cart form.cart {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+/* Inline Layout (default) */
+.mpd-add-to-cart-layout-inline .mpd-add-to-cart,
+.mpd-add-to-cart-layout-inline .mpd-add-to-cart form.cart {
+	flex-direction: row;
+	align-items: center;
+}
+
+.mpd-add-to-cart .quantity {
+	display: inline-flex;
+	align-items: center;
+}
+
+.mpd-add-to-cart .quantity input[type="number"] {
+	width: 60px;
+	text-align: center;
+	padding: 8px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+.mpd-add-to-cart .quantity input[type="number"]::-webkit-inner-spin-button,
+.mpd-add-to-cart .quantity input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Hide quantity when disabled */
+.mpd-add-to-cart .quantity.hidden {
+	display: none !important;
+}
+
+.mpd-add-to-cart button,
+.mpd-add-to-cart .button,
+.mpd-add-to-cart .single_add_to_cart_button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-weight: 600;
+	transition: all 0.3s ease;
+}
+
+.mpd-add-to-cart button:hover,
+.mpd-add-to-cart .button:hover,
+.mpd-add-to-cart .single_add_to_cart_button:hover {
+	opacity: 0.9;
+}
+
+/* Variable product variations table */
+.mpd-add-to-cart .variations {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.mpd-add-to-cart .variations tr {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.mpd-add-to-cart .variations td.label {
+	padding: 0;
+	min-width: 80px;
+}
+
+.mpd-add-to-cart .variations td.value {
+	padding: 0;
+	flex: 1;
+}
+
+.mpd-add-to-cart .variations select {
+	width: 100%;
+	padding: 8px 12px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+}
+
+/* Reset variation link */
+.mpd-add-to-cart .reset_variations {
+	margin-left: 10px;
+	font-size: 13px;
+}
+
+/* ==========================================================================
+   Add to Cart Pro Features
+   ========================================================================== */
+
+/* Stock Info */
+.mpd-stock-info {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 12px;
+	border-radius: 4px;
+	font-size: 14px;
+	font-weight: 500;
+	margin-bottom: 15px;
+}
+
+.mpd-stock-info i {
+	font-size: 16px;
+}
+
+.mpd-stock-in-stock {
+	background: rgba(39, 174, 96, 0.1);
+	color: #27ae60;
+}
+
+.mpd-stock-out-of-stock {
+	background: rgba(231, 76, 60, 0.1);
+	color: #e74c3c;
+}
+
+.mpd-stock-on-backorder {
+	background: rgba(243, 156, 18, 0.1);
+	color: #f39c12;
+}
+
+/* Modern Quantity Style (+/-) */
+.mpd-quantity-wrapper {
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.mpd-quantity-wrapper .mpd-qty-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	padding: 0;
+	margin: 0;
+	border: none;
+	background: #f5f5f5;
+	color: #333;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: 500;
+	transition: all 0.2s ease;
+}
+
+.mpd-quantity-wrapper .mpd-qty-btn:hover {
+	background: #e5e5e5;
+}
+
+.mpd-quantity-wrapper .mpd-qty-btn:active {
+	background: #ddd;
+}
+
+/* Hide the original WooCommerce quantity wrapper when using our custom styles */
+.mpd-add-to-cart .quantity:has(.mpd-qty-styled) {
+	display: contents;
+}
+
+/* Style the input inside our wrapper */
+.mpd-quantity-wrapper input.qty,
+.mpd-quantity-wrapper input.mpd-qty-input,
+.mpd-quantity-wrapper input[type="number"] {
+	width: 50px !important;
+	height: 36px;
+	padding: 0;
+	margin: 0;
+	border: none;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	-moz-appearance: textfield;
+	border-radius: 0;
+	box-shadow: none;
+	outline: none;
+}
+
+.mpd-quantity-wrapper input.qty::-webkit-inner-spin-button,
+.mpd-quantity-wrapper input.qty::-webkit-outer-spin-button,
+.mpd-quantity-wrapper input[type="number"]::-webkit-inner-spin-button,
+.mpd-quantity-wrapper input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Buttons style specific */
+.mpd-qty-buttons .mpd-qty-btn {
+	background: transparent;
+	width: 40px;
+	height: 40px;
+}
+
+.mpd-qty-buttons .mpd-qty-btn i {
+	font-size: 12px;
+}
+
+.mpd-qty-buttons input.qty,
+.mpd-qty-buttons input.mpd-qty-input,
+.mpd-qty-buttons input[type="number"] {
+	height: 40px;
+	width: 60px !important;
+}
+
+/* Hide input for dropdown replacement */
+.mpd-qty-hidden-for-dropdown {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* Quantity Dropdown Style */
+.mpd-qty-dropdown {
+	border: none;
+}
+
+.mpd-qty-dropdown select,
+.mpd-qty-dropdown .mpd-qty-select {
+	padding: 8px 30px 8px 12px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E") no-repeat right 10px center;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	font-size: 14px;
+	min-width: 70px;
+	cursor: pointer;
+}
+
+.mpd-qty-dropdown select:focus {
+	outline: none;
+	border-color: #0073aa;
+}
+
+/* Cart Icon */
+.mpd-cart-icon {
+	display: inline-flex;
+	align-items: center;
+}
+
+.mpd-cart-icon-before {
+	margin-right: 8px;
+}
+
+.mpd-cart-icon-after {
+	margin-left: 8px;
+}
+
+.mpd-cart-icon i,
+.mpd-cart-icon svg {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+.mpd-btn-icon {
+	display: inline-flex;
+	align-items: center;
+	margin: 0 5px;
+}
+
+/* Sticky Cart Bar */
+.mpd-sticky-cart-enabled {
+	position: relative;
+}
+
+@media (max-width: 767px) {
+	.mpd-sticky-cart-bar {
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 9999;
+		background: #fff;
+		box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+		padding: 10px 15px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+	}
+
+	.mpd-sticky-cart-bar .mpd-sticky-product-info {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex: 1;
+		min-width: 0;
+	}
+
+	.mpd-sticky-cart-bar .mpd-sticky-product-image img {
+		width: 40px;
+		height: 40px;
+		object-fit: cover;
+		border-radius: 4px;
+	}
+
+	.mpd-sticky-cart-bar .mpd-sticky-product-title {
+		font-size: 14px;
+		font-weight: 500;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.mpd-sticky-cart-bar .mpd-sticky-product-price {
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	.mpd-sticky-cart-bar .mpd-sticky-add-to-cart {
+		flex-shrink: 0;
+	}
+
+	.mpd-sticky-cart-bar .button,
+	.mpd-sticky-cart-bar .single_add_to_cart_button {
+		padding: 10px 20px;
+		font-size: 14px;
+	}
+}
+
+/* ==========================================================================
+   AJAX Add to Cart - Loading & View Cart
+   ========================================================================== */
+
+/* Loading spinner SVG animation */
+@keyframes mpdSpin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+.mpd-btn-spinner {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	animation: mpdSpin 0.8s linear infinite;
+	flex-shrink: 0;
+}
+
+.mpd-spinner-hidden {
+	display: none !important;
+}
+
+/* Button loading state */
+.mpd-add-to-cart .single_add_to_cart_button.mpd-loading,
+.mpd-add-to-cart .mpd-buy-now-btn.mpd-loading {
+	pointer-events: none;
+	opacity: 0.7;
+	position: relative;
+}
+
+.mpd-add-to-cart .single_add_to_cart_button.mpd-loading .mpd-btn-spinner,
+.mpd-add-to-cart .mpd-buy-now-btn.mpd-loading .mpd-btn-spinner {
+	display: inline-block !important;
+}
+
+/* Button added state */
+.mpd-add-to-cart .single_add_to_cart_button.mpd-added {
+	background-color: #27ae60 !important;
+	border-color: #27ae60 !important;
+	color: #fff !important;
+}
+
+/* Checkmark icon for added state */
+.mpd-added-icon {
+	display: none;
+	width: 16px;
+	height: 16px;
+	flex-shrink: 0;
+}
+
+.mpd-add-to-cart .single_add_to_cart_button.mpd-added .mpd-added-icon {
+	display: inline-block;
+}
+
+/* View Cart Button */
+.mpd-view-cart-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 10px 24px;
+	border: 2px solid #333;
+	border-radius: 4px;
+	background: transparent;
+	color: #333;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 14px;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	animation: mpdFadeSlideIn 0.4s ease;
+}
+
+.mpd-view-cart-btn:hover {
+	background: #333;
+	color: #fff;
+}
+
+.mpd-view-cart-btn svg {
+	width: 16px;
+	height: 16px;
+	flex-shrink: 0;
+}
+
+@keyframes mpdFadeSlideIn {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* ==========================================================================
+   Buy Now Button
+   ========================================================================== */
+.mpd-buy-now-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 12px 24px;
+	border: none;
+	border-radius: 4px;
+	background-color: #e74c3c;
+	color: #fff;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 15px;
+	transition: all 0.3s ease;
+	margin-left: 10px;
+}
+
+.mpd-buy-now-btn:hover {
+	background-color: #c0392b;
+	opacity: 0.95;
+}
+
+/* Stacked layout: buy now full width */
+.mpd-add-to-cart-layout-stacked .mpd-buy-now-btn {
+	width: 100%;
+	margin-left: 0;
+	margin-top: 10px;
+}
+
+/* ==========================================================================
+   Product Description Widget
+   ========================================================================== */
+.mpd-product-description-wrapper {
+	position: relative;
+}
+
+.mpd-product-description {
+	line-height: 1.7;
+}
+
+.mpd-product-description p:last-child {
+	margin-bottom: 0;
+}
+
+/* Description Heading */
+.mpd-description-heading {
+	margin-bottom: 15px;
+	font-weight: 700;
+	color: #1a1a2e;
+}
+
+/* Toggle Expand Feature */
+.mpd-product-description.mpd-toggleable {
+	position: relative;
+	overflow: hidden;
+	transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mpd-product-description.mpd-collapsed {
+	position: relative;
+}
+
+.mpd-product-description.mpd-collapsed::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 60px;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+	pointer-events: none;
+}
+
+.mpd-product-description.mpd-expanded::after {
+	display: none;
+}
+
+/* Read More / Read Less Button */
+.mpd-toggle-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 15px;
+	padding: 12px 28px;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #fff;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: 0.3px;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
+	position: relative;
+	overflow: hidden;
+}
+
+.mpd-toggle-btn::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+	transition: left 0.5s ease;
+}
+
+.mpd-toggle-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px rgba(102, 126, 234, 0.45);
+}
+
+.mpd-toggle-btn:hover::before {
+	left: 100%;
+}
+
+.mpd-toggle-btn:active {
+	transform: translateY(0);
+}
+
+.mpd-toggle-btn::after {
+	content: '↓';
+	font-size: 12px;
+	transition: transform 0.3s ease;
+}
+
+.mpd-toggle-btn.active::after {
+	transform: rotate(180deg);
+}
+
+/* Alternative Style: Outline Button */
+.mpd-product-description-wrapper.mpd-btn-style-outline .mpd-toggle-btn {
+	background: transparent;
+	color: #667eea;
+	border: 2px solid #667eea;
+	box-shadow: none;
+}
+
+.mpd-product-description-wrapper.mpd-btn-style-outline .mpd-toggle-btn:hover {
+	background: #667eea;
+	color: #fff;
+}
+
+/* Alternative Style: Link Button */
+.mpd-product-description-wrapper.mpd-btn-style-link .mpd-toggle-btn {
+	background: transparent;
+	color: #667eea;
+	padding: 5px 0;
+	border-radius: 0;
+	box-shadow: none;
+	font-weight: 600;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.mpd-product-description-wrapper.mpd-btn-style-link .mpd-toggle-btn:hover {
+	color: #764ba2;
+	transform: none;
+}
+
+/* Alternative Style: Minimal */
+.mpd-product-description-wrapper.mpd-btn-style-minimal .mpd-toggle-btn {
+	background: #f5f5f5;
+	color: #333;
+	box-shadow: none;
+	border-radius: 8px;
+}
+
+.mpd-product-description-wrapper.mpd-btn-style-minimal .mpd-toggle-btn:hover {
+	background: #eee;
+	transform: none;
+	box-shadow: none;
+}
+
+/* Legacy classes for backward compatibility */
+.mpd-description-collapsible {
+	position: relative;
+	overflow: hidden;
+	transition: max-height 0.3s ease;
+}
+
+.mpd-description-toggle {
+	display: inline-block;
+	margin-top: 10px;
+	cursor: pointer;
+	color: var(--mpd-primary-color, #0073aa);
+}
+
+/* ==========================================================================
+   Product Short Description Widget
+   ========================================================================== */
+.mpd-product-short-description {
+	line-height: 1.6;
+}
+
+.mpd-product-short-description p:last-child {
+	margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Product Meta Widget
+   ========================================================================== */
+.mpd-product-meta {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+/* Inline layout - uses prefix_class on wrapper */
+.mpd-product-meta-layout-inline .mpd-product-meta {
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.mpd-product-meta-layout-inline .mpd-product-meta-item {
+	margin-right: 15px;
+}
+
+.mpd-product-meta-item {
+	display: flex;
+	align-items: baseline;
+	gap: 5px;
+	flex-wrap: wrap;
+}
+
+.mpd-product-meta-label {
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.mpd-product-meta-value {
+	display: inline;
+}
+
+.mpd-product-meta-value a {
+	color: inherit;
+}
+
+.mpd-product-meta-value a:hover {
+	text-decoration: underline;
+}
+
+/* ==========================================================================
+   Product Rating Widget
+   ========================================================================== */
+.mpd-product-rating {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+/* Rating Row - contains stars, average, and review count */
+.mpd-rating-row {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+/* Custom Stars */
+.mpd-custom-stars {
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+}
+
+.mpd-custom-stars i {
+	display: inline-block;
+	line-height: 1;
+}
+
+.mpd-custom-stars .mpd-star-filled {
+	color: #FFD700;
+}
+
+.mpd-custom-stars .mpd-star-half {
+	color: #FFD700;
+}
+
+.mpd-custom-stars .mpd-star-empty {
+	color: #E0E0E0;
+}
+
+.mpd-rating-stars {
+	display: inline-flex;
+	gap: 2px;
+}
+
+.mpd-rating-star {
+	color: #ffc107;
+}
+
+.mpd-rating-star.empty {
+	color: #ddd;
+}
+
+.mpd-average-rating {
+	font-weight: 600;
+	font-size: 1.1em;
+	color: #333;
+}
+
+.mpd-review-count {
+	color: #666;
+	font-size: 14px;
+}
+
+.mpd-review-count a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.mpd-review-count a:hover {
+	text-decoration: underline;
+}
+
+.mpd-no-rating {
+	color: #999;
+	font-style: italic;
+}
+
+/* Rating Distribution */
+.mpd-rating-distribution {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 300px;
+	margin-top: 10px;
+	gap: 6px;
+}
+
+.mpd-distribution-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.mpd-distribution-label {
+	min-width: 35px;
+	font-size: 13px;
+	font-weight: 500;
+	color: #333;
+	display: flex;
+	align-items: center;
+	gap: 2px;
+}
+
+.mpd-dist-star {
+	color: #FFD700;
+}
+
+.mpd-distribution-bar {
+	flex: 1;
+	height: 10px;
+	background: #e0e0e0;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.mpd-distribution-bar-fill {
+	height: 100%;
+	background-color: #FFD700;
+	border-radius: 5px;
+	transition: width 0.3s ease;
+}
+
+.mpd-distribution-count {
+	min-width: 25px;
+	text-align: right;
+	font-size: 12px;
+	font-weight: 500;
+	color: #666;
+}
+
+/* Rating Breakdown (legacy) */
+.mpd-rating-breakdown {
+	margin-top: 15px;
+}
+
+.mpd-rating-breakdown-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 5px;
+}
+
+.mpd-rating-breakdown-label {
+	min-width: 60px;
+}
+
+.mpd-rating-breakdown-bar {
+	flex: 1;
+	height: 8px;
+	background: #eee;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.mpd-rating-breakdown-fill {
+	height: 100%;
+	background: #ffc107;
+	transition: width 0.3s ease;
+}
+
+.mpd-rating-breakdown-count {
+	min-width: 30px;
+	text-align: right;
+	font-size: 12px;
+	color: #666;
+}
+
+/* ==========================================================================
+   Product Reviews Widget
+   ========================================================================== */
+.mpd-product-reviews {
+	margin: 0;
+}
+
+/* ==========================================================================
+   Modern Reviews Styling for Tabs
+   ========================================================================== */
+
+/* Reviews Container in Tabs */
+.mpd-product-tabs #reviews,
+.mpd-tabs-accordion #reviews,
+.woocommerce-Tabs-panel--reviews #reviews {
+	margin: 0;
+}
+
+/* Reviews Title */
+.mpd-product-tabs #reviews h2,
+.mpd-tabs-accordion #reviews h2,
+.woocommerce-Tabs-panel--reviews #reviews h2 {
+	font-size: 1.5em;
+	font-weight: 700;
+	margin-bottom: 25px;
+	color: #1a1a2e;
+	position: relative;
+	padding-bottom: 15px;
+}
+
+.mpd-product-tabs #reviews h2::after,
+.mpd-tabs-accordion #reviews h2::after,
+.woocommerce-Tabs-panel--reviews #reviews h2::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 60px;
+	height: 3px;
+	background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+	border-radius: 3px;
+}
+
+/* Comments Container */
+.mpd-product-tabs #reviews #comments,
+.mpd-tabs-accordion #reviews #comments,
+.woocommerce-Tabs-panel--reviews #reviews #comments {
+	margin-bottom: 40px;
+}
+
+/* Comment List */
+.mpd-product-tabs #reviews .commentlist,
+.mpd-tabs-accordion #reviews .commentlist,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.mpd-product-tabs #reviews .commentlist li,
+.mpd-tabs-accordion #reviews .commentlist li,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist li {
+	margin: 0 0 20px 0;
+	padding: 0;
+}
+
+/* Individual Review Card */
+.mpd-product-tabs #reviews .commentlist .comment_container,
+.mpd-tabs-accordion #reviews .commentlist .comment_container,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .comment_container {
+	display: flex;
+	gap: 20px;
+	padding: 25px;
+	background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+	border: 1px solid #e8eaf6;
+	border-radius: 16px;
+	box-shadow: 0 2px 12px rgba(102, 126, 234, 0.08);
+	transition: all 0.3s ease;
+}
+
+.mpd-product-tabs #reviews .commentlist .comment_container:hover,
+.mpd-tabs-accordion #reviews .commentlist .comment_container:hover,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .comment_container:hover {
+	box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+	transform: translateY(-2px);
+}
+
+.mpd-product-tabs #reviews .commentlist li:last-child .comment_container,
+.mpd-tabs-accordion #reviews .commentlist li:last-child .comment_container,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist li:last-child .comment_container {
+	border-bottom: 1px solid #e8eaf6;
+}
+
+/* Avatar */
+.mpd-product-tabs #reviews .commentlist img.avatar,
+.mpd-tabs-accordion #reviews .commentlist img.avatar,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist img.avatar {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	border: 3px solid #fff;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Comment Text Container */
+.mpd-product-tabs #reviews .commentlist .comment-text,
+.mpd-tabs-accordion #reviews .commentlist .comment-text,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .comment-text {
+	flex: 1;
+}
+
+/* Star Rating */
+.mpd-product-tabs #reviews .commentlist .star-rating,
+.mpd-tabs-accordion #reviews .commentlist .star-rating,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .star-rating {
+	float: none;
+	margin-bottom: 12px;
+	font-size: 14px;
+	color: #ffc107;
+}
+
+/* Meta Info */
+.mpd-product-tabs #reviews .commentlist .meta,
+.mpd-tabs-accordion #reviews .commentlist .meta,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .meta {
+	margin-bottom: 12px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+}
+
+.mpd-product-tabs #reviews .commentlist .meta strong,
+.mpd-tabs-accordion #reviews .commentlist .meta strong,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .meta strong {
+	display: inline;
+	font-weight: 700;
+	font-size: 16px;
+	color: #1a1a2e;
+}
+
+.mpd-product-tabs #reviews .commentlist .meta .woocommerce-review__published-date,
+.mpd-tabs-accordion #reviews .commentlist .meta .woocommerce-review__published-date,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .meta .woocommerce-review__published-date {
+	color: #8e8ea0;
+	font-size: 13px;
+	position: relative;
+	padding-left: 15px;
+}
+
+.mpd-product-tabs #reviews .commentlist .meta .woocommerce-review__published-date::before,
+.mpd-tabs-accordion #reviews .commentlist .meta .woocommerce-review__published-date::before,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .meta .woocommerce-review__published-date::before {
+	content: '•';
+	position: absolute;
+	left: 0;
+	color: #ccc;
+}
+
+/* Verified Badge */
+.mpd-product-tabs #reviews .commentlist .woocommerce-review__verified,
+.mpd-tabs-accordion #reviews .commentlist .woocommerce-review__verified,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .woocommerce-review__verified {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 4px 10px;
+	background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+	color: #fff;
+	font-size: 11px;
+	font-weight: 600;
+	border-radius: 20px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.mpd-product-tabs #reviews .commentlist .woocommerce-review__verified::before,
+.mpd-tabs-accordion #reviews .commentlist .woocommerce-review__verified::before,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .woocommerce-review__verified::before {
+	content: '✓';
+	font-weight: bold;
+}
+
+/* Review Description */
+.mpd-product-tabs #reviews .commentlist .description,
+.mpd-tabs-accordion #reviews .commentlist .description,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .description {
+	padding: 15px;
+	background: #fff;
+	border-radius: 10px;
+	border-left: 3px solid #667eea;
+}
+
+.mpd-product-tabs #reviews .commentlist .description p,
+.mpd-tabs-accordion #reviews .commentlist .description p,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .description p {
+	margin: 0;
+	color: #4a4a68;
+	line-height: 1.7;
+	font-size: 14px;
+}
+
+/* Reply Link */
+.mpd-product-tabs #reviews .commentlist .reply,
+.mpd-tabs-accordion #reviews .commentlist .reply,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .reply {
+	margin-top: 12px;
+}
+
+.mpd-product-tabs #reviews .commentlist .reply a,
+.mpd-tabs-accordion #reviews .commentlist .reply a,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .reply a {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	color: #667eea;
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.mpd-product-tabs #reviews .commentlist .reply a:hover,
+.mpd-tabs-accordion #reviews .commentlist .reply a:hover,
+.woocommerce-Tabs-panel--reviews #reviews .commentlist .reply a:hover {
+	color: #764ba2;
+}
+
+/* ==========================================================================
+   Modern Review Form Styling
+   ========================================================================== */
+
+/* Review Form Wrapper */
+.mpd-product-tabs #review_form_wrapper,
+.mpd-tabs-accordion #review_form_wrapper,
+.woocommerce-Tabs-panel--reviews #review_form_wrapper {
+	margin-top: 40px;
+	padding: 30px;
+	background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+	border: 1px solid #e8eaf6;
+	border-radius: 16px;
+}
+
+.mpd-product-tabs #review_form #respond,
+.mpd-tabs-accordion #review_form #respond,
+.woocommerce-Tabs-panel--reviews #review_form #respond {
+	margin: 0;
+}
+
+/* Form Title */
+.mpd-product-tabs #review_form #respond .comment-reply-title,
+.mpd-tabs-accordion #review_form #respond .comment-reply-title,
+.woocommerce-Tabs-panel--reviews #review_form #respond .comment-reply-title {
+	margin-bottom: 25px;
+	font-size: 1.4em;
+	font-weight: 700;
+	color: #1a1a2e;
+}
+
+/* Logged In As */
+.mpd-product-tabs #review_form .logged-in-as,
+.mpd-tabs-accordion #review_form .logged-in-as,
+.woocommerce-Tabs-panel--reviews #review_form .logged-in-as {
+	padding: 12px 16px;
+	background: #fff;
+	border-radius: 8px;
+	margin-bottom: 20px;
+	font-size: 14px;
+	color: #666;
+}
+
+.mpd-product-tabs #review_form .logged-in-as a,
+.mpd-tabs-accordion #review_form .logged-in-as a,
+.woocommerce-Tabs-panel--reviews #review_form .logged-in-as a {
+	color: #667eea;
+	font-weight: 600;
+}
+
+/* Rating Stars Selection */
+.mpd-product-tabs #review_form #respond .comment-form-rating,
+.mpd-tabs-accordion #review_form #respond .comment-form-rating,
+.woocommerce-Tabs-panel--reviews #review_form #respond .comment-form-rating {
+	margin-bottom: 20px;
+}
+
+.mpd-product-tabs #review_form #respond .comment-form-rating label,
+.mpd-tabs-accordion #review_form #respond .comment-form-rating label,
+.woocommerce-Tabs-panel--reviews #review_form #respond .comment-form-rating label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 600;
+	color: #1a1a2e;
+}
+
+.mpd-product-tabs #review_form #respond .stars,
+.mpd-tabs-accordion #review_form #respond .stars,
+.woocommerce-Tabs-panel--reviews #review_form #respond .stars {
+	margin: 0;
+	padding: 0;
+	display: inline-flex;
+	gap: 8px;
+}
+
+.mpd-product-tabs #review_form #respond .stars a,
+.mpd-tabs-accordion #review_form #respond .stars a,
+.woocommerce-Tabs-panel--reviews #review_form #respond .stars a {
+	color: #ddd;
+	text-decoration: none;
+	font-size: 24px;
+	transition: all 0.2s ease;
+}
+
+.mpd-product-tabs #review_form #respond .stars a:hover,
+.mpd-product-tabs #review_form #respond .stars a.active,
+.mpd-tabs-accordion #review_form #respond .stars a:hover,
+.mpd-tabs-accordion #review_form #respond .stars a.active,
+.woocommerce-Tabs-panel--reviews #review_form #respond .stars a:hover,
+.woocommerce-Tabs-panel--reviews #review_form #respond .stars a.active {
+	color: #ffc107;
+	transform: scale(1.2);
+}
+
+/* Form Comment Field */
+.mpd-product-tabs #review_form #respond .comment-form-comment,
+.mpd-tabs-accordion #review_form #respond .comment-form-comment,
+.woocommerce-Tabs-panel--reviews #review_form #respond .comment-form-comment {
+	margin-bottom: 20px;
+}
+
+.mpd-product-tabs #review_form #respond .comment-form-comment label,
+.mpd-tabs-accordion #review_form #respond .comment-form-comment label,
+.woocommerce-Tabs-panel--reviews #review_form #respond .comment-form-comment label {
+	display: block;
+	margin-bottom: 8px;
+	font-weight: 600;
+	color: #1a1a2e;
+}
+
+.mpd-product-tabs #review_form #respond .comment-form-comment textarea,
+.mpd-tabs-accordion #review_form #respond .comment-form-comment textarea,
+.woocommerce-Tabs-panel--reviews #review_form #respond .comment-form-comment textarea {
+	width: 100%;
+	padding: 16px;
+	border: 2px solid #e8eaf6;
+	border-radius: 12px;
+	resize: vertical;
+	min-height: 140px;
+	font-size: 14px;
+	line-height: 1.6;
+	transition: all 0.3s ease;
+	background: #fff;
+}
+
+.mpd-product-tabs #review_form #respond .comment-form-comment textarea:focus,
+.mpd-tabs-accordion #review_form #respond .comment-form-comment textarea:focus,
+.woocommerce-Tabs-panel--reviews #review_form #respond .comment-form-comment textarea:focus {
+	border-color: #667eea;
+	box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+	outline: none;
+}
+
+/* Submit Button */
+.mpd-product-tabs #review_form #respond .form-submit,
+.mpd-tabs-accordion #review_form #respond .form-submit,
+.woocommerce-Tabs-panel--reviews #review_form #respond .form-submit {
+	margin: 0;
+}
+
+.mpd-product-tabs #review_form #respond .form-submit input[type="submit"],
+.mpd-tabs-accordion #review_form #respond .form-submit input[type="submit"],
+.woocommerce-Tabs-panel--reviews #review_form #respond .form-submit input[type="submit"] {
+	padding: 14px 32px;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #fff;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+	font-weight: 700;
+	font-size: 14px;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
+}
+
+.mpd-product-tabs #review_form #respond .form-submit input[type="submit"]:hover,
+.mpd-tabs-accordion #review_form #respond .form-submit input[type="submit"]:hover,
+.woocommerce-Tabs-panel--reviews #review_form #respond .form-submit input[type="submit"]:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px rgba(102, 126, 234, 0.45);
+}
+
+/* No Reviews Message */
+.mpd-product-tabs #reviews .woocommerce-noreviews,
+.mpd-tabs-accordion #reviews .woocommerce-noreviews,
+.woocommerce-Tabs-panel--reviews #reviews .woocommerce-noreviews {
+	padding: 30px;
+	text-align: center;
+	background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+	border: 2px dashed #e8eaf6;
+	border-radius: 16px;
+	color: #8e8ea0;
+	font-size: 15px;
+}
+
+/* ==========================================================================
+   Responsive Reviews
+   ========================================================================== */
+@media (max-width: 768px) {
+	.mpd-product-tabs #reviews .commentlist .comment_container,
+	.mpd-tabs-accordion #reviews .commentlist .comment_container,
+	.woocommerce-Tabs-panel--reviews #reviews .commentlist .comment_container {
+		flex-direction: column;
+		padding: 20px;
+	}
+
+	.mpd-product-tabs #reviews .commentlist img.avatar,
+	.mpd-tabs-accordion #reviews .commentlist img.avatar,
+	.woocommerce-Tabs-panel--reviews #reviews .commentlist img.avatar {
+		width: 50px;
+		height: 50px;
+	}
+
+	.mpd-product-tabs #review_form_wrapper,
+	.mpd-tabs-accordion #review_form_wrapper,
+	.woocommerce-Tabs-panel--reviews #review_form_wrapper {
+		padding: 20px;
+	}
+}
+
+/* WooCommerce Default Reviews Styling (for standalone reviews widget) */
+.mpd-product-reviews #reviews {
+	margin: 0;
+}
+
+.mpd-product-reviews #reviews h2 {
+	margin-bottom: 20px;
+	font-size: 1.3em;
+}
+
+.mpd-product-reviews #reviews #comments {
+	margin-bottom: 30px;
+}
+
+.mpd-product-reviews #reviews .commentlist {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.mpd-product-reviews #reviews .commentlist li {
+	margin: 0;
+	padding: 0;
+}
+
+.mpd-product-reviews #reviews .commentlist .comment_container {
+	display: flex;
+	gap: 15px;
+	padding: 20px 0;
+	border-bottom: 1px solid #eee;
+}
+
+.mpd-product-reviews #reviews .commentlist li:last-child .comment_container {
+	border-bottom: none;
+}
+
+.mpd-product-reviews #reviews .commentlist img.avatar {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.mpd-product-reviews #reviews .commentlist .comment-text {
+	flex: 1;
+}
+
+.mpd-product-reviews #reviews .commentlist .star-rating {
+	float: none;
+	margin-bottom: 5px;
+}
+
+.mpd-product-reviews #reviews .commentlist .meta {
+	margin-bottom: 10px;
+}
+
+.mpd-product-reviews #reviews .commentlist .meta strong {
+	display: block;
+	font-weight: 600;
+}
+
+.mpd-product-reviews #reviews .commentlist .meta .woocommerce-review__published-date {
+	color: #666;
+	font-size: 13px;
+}
+
+.mpd-product-reviews #reviews .commentlist .woocommerce-review__verified {
+	display: inline-block;
+	padding: 2px 6px;
+	background: #27ae60;
+	color: #fff;
+	font-size: 11px;
+	border-radius: 3px;
+	margin-left: 8px;
+}
+
+.mpd-product-reviews #reviews .commentlist .description p {
+	margin: 0;
+}
+
+/* ==========================================================================
+   MPD Product Reviews Widget - Modern Styles
+   ========================================================================== */
+
+/* Base Reviews Widget Styles */
+.mpd-product-reviews {
+	width: 100%;
+}
+
+.mpd-product-reviews #reviews {
+	margin: 0;
+}
+
+.mpd-product-reviews #reviews h2 {
+	font-size: 1.4em;
+	font-weight: 700;
+	margin-bottom: 25px;
+	color: #1a1a2e;
+}
+
+.mpd-product-reviews #reviews .commentlist {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.mpd-product-reviews #reviews .commentlist li {
+	margin: 0 0 20px 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* Reviews Toolbar */
+.mpd-reviews-toolbar {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 15px;
+	margin-bottom: 25px;
+	padding: 15px 20px;
+	background: #f8f9ff;
+	border-radius: 12px;
+}
+
+.mpd-reviews-filters {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.mpd-filter-label {
+	font-weight: 600;
+	color: #666;
+	margin-right: 5px;
+}
+
+.mpd-filter-btn {
+	padding: 6px 14px;
+	border: 2px solid #e0e0e0;
+	background: #fff;
+	border-radius: 20px;
+	cursor: pointer;
+	font-size: 13px;
+	font-weight: 500;
+	transition: all 0.3s ease;
+}
+
+.mpd-filter-btn:hover {
+	border-color: #667eea;
+	color: #667eea;
+}
+
+.mpd-filter-btn.active {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #fff;
+	border-color: transparent;
+}
+
+.mpd-reviews-sort {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.mpd-reviews-sort label {
+	font-weight: 500;
+	color: #666;
+	min-width: 70px;
+}
+
+.mpd-sort-select {
+	padding: 8px 30px 8px 12px;
+	border: 2px solid #e0e0e0;
+	border-radius: 8px;
+	background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E") right 10px center no-repeat;
+	appearance: none;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.mpd-sort-select:focus {
+	border-color: #667eea;
+	outline: none;
+}
+
+/* ==========================================================================
+   Style 1: Modern (Default)
+   ========================================================================== */
+.mpd-reviews-style-modern #reviews .commentlist .comment_container,
+.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist .comment_container {
+	display: flex;
+	gap: 20px;
+	padding: 25px;
+	background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+	border: 1px solid #e8eaf6;
+	border-radius: 16px;
+	box-shadow: 0 2px 12px rgba(102, 126, 234, 0.08);
+	transition: all 0.3s ease;
+}
+
+.mpd-reviews-style-modern #reviews .commentlist .comment_container:hover,
+.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist .comment_container:hover {
+	box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+	transform: translateY(-2px);
+}
+
+.mpd-reviews-style-modern #reviews .commentlist img.avatar,
+.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist img.avatar {
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	border: 3px solid #fff;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mpd-reviews-style-modern #reviews .commentlist .comment-text,
+.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist .comment-text {
+	flex: 1;
+}
+
+.mpd-reviews-style-modern #reviews .commentlist .star-rating,
+.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist .star-rating {
+	float: none;
+	margin-bottom: 12px;
+	font-size: 14px;
+}
+
+.mpd-reviews-style-modern #reviews .commentlist .meta,
+.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist .meta {
+	margin-bottom: 12px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}
+
+.mpd-reviews-style-modern #reviews .commentlist .meta strong,
+.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist .meta strong {
+	font-weight: 700;
+	font-size: 16px;
+	color: #1a1a2e;
+}
+
+.mpd-reviews-style-modern #reviews .commentlist .meta .woocommerce-review__published-date,
+.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist .meta .woocommerce-review__published-date {
+	color: #8e8ea0;
+	font-size: 13px;
+}
+
+.mpd-reviews-style-modern #reviews .commentlist .woocommerce-review__verified,
+.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist .woocommerce-review__verified {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 4px 10px;
+	background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+	color: #fff;
+	font-size: 11px;
+	font-weight: 600;
+	border-radius: 20px;
+}
+
+.mpd-reviews-style-modern #reviews .commentlist .description,
+.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist .description {
+	padding: 15px;
+	background: #fff;
+	border-radius: 10px;
+	border-left: 3px solid #667eea;
+}
+
+.mpd-reviews-style-modern #reviews .commentlist .description p,
+.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist .description p {
+	margin: 0;
+	color: #4a4a68;
+	line-height: 1.7;
+}
+
+/* ==========================================================================
+   Style 2: Classic
+   ========================================================================== */
+.mpd-reviews-style-classic #reviews .commentlist .comment_container {
+	display: flex;
+	gap: 20px;
+	padding: 25px 0;
+	border-bottom: 1px solid #e5e5e5;
+	background: transparent;
+}
+
+.mpd-reviews-style-classic #reviews .commentlist li:last-child .comment_container {
+	border-bottom: none;
+}
+
+.mpd-reviews-style-classic #reviews .commentlist img.avatar {
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	flex-shrink: 0;
+	border: 2px solid #e5e5e5;
+}
+
+.mpd-reviews-style-classic #reviews .commentlist .comment-text {
+	flex: 1;
+}
+
+.mpd-reviews-style-classic #reviews .commentlist .star-rating {
+	float: none;
+	margin-bottom: 10px;
+}
+
+.mpd-reviews-style-classic #reviews .commentlist .meta {
+	margin-bottom: 15px;
+}
+
+.mpd-reviews-style-classic #reviews .commentlist .meta strong {
+	display: block;
+	font-weight: 700;
+	font-size: 16px;
+	color: #333;
+	margin-bottom: 2px;
+}
+
+.mpd-reviews-style-classic #reviews .commentlist .meta .woocommerce-review__published-date {
+	color: #888;
+	font-size: 13px;
+	font-style: italic;
+}
+
+.mpd-reviews-style-classic #reviews .commentlist .woocommerce-review__verified {
+	display: inline-block;
+	padding: 3px 8px;
+	background: #4CAF50;
+	color: #fff;
+	font-size: 11px;
+	font-weight: 500;
+	border-radius: 3px;
+	margin-left: 10px;
+}
+
+.mpd-reviews-style-classic #reviews .commentlist .description {
+	position: relative;
+	padding-left: 20px;
+}
+
+.mpd-reviews-style-classic #reviews .commentlist .description::before {
+	content: '"';
+	position: absolute;
+	left: 0;
+	top: -5px;
+	font-size: 40px;
+	color: #ddd;
+	font-family: Georgia, serif;
+	line-height: 1;
+}
+
+.mpd-reviews-style-classic #reviews .commentlist .description p {
+	margin: 0;
+	color: #555;
+	line-height: 1.8;
+	font-size: 15px;
+}
+
+/* ==========================================================================
+   Style 3: Card
+   ========================================================================== */
+.mpd-reviews-style-card #reviews .commentlist .comment_container {
+	display: block;
+	padding: 30px;
+	background: #fff;
+	border: none;
+	border-radius: 20px;
+	box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+	transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+	position: relative;
+	overflow: hidden;
+}
+
+.mpd-reviews-style-card #reviews .commentlist .comment_container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+}
+
+.mpd-reviews-style-card #reviews .commentlist .comment_container:hover {
+	box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+	transform: translateY(-5px);
+}
+
+.mpd-reviews-style-card #reviews .commentlist img.avatar {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	margin: 0 auto 20px;
+	display: block;
+	border: 4px solid #f0f0f0;
+}
+
+.mpd-reviews-style-card #reviews .commentlist .comment-text {
+	text-align: center;
+}
+
+.mpd-reviews-style-card #reviews .commentlist .star-rating {
+	float: none;
+	display: inline-flex;
+	justify-content: center;
+	margin-bottom: 15px;
+	font-size: 16px;
+}
+
+.mpd-reviews-style-card #reviews .commentlist .meta {
+	margin-bottom: 20px;
+}
+
+.mpd-reviews-style-card #reviews .commentlist .meta strong {
+	display: block;
+	font-weight: 700;
+	font-size: 18px;
+	color: #1a1a2e;
+	margin-bottom: 5px;
+}
+
+.mpd-reviews-style-card #reviews .commentlist .meta .woocommerce-review__published-date {
+	color: #999;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.mpd-reviews-style-card #reviews .commentlist .woocommerce-review__verified {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	padding: 6px 15px;
+	background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+	color: #fff;
+	font-size: 11px;
+	font-weight: 700;
+	border-radius: 25px;
+	margin-top: 10px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.mpd-reviews-style-card #reviews .commentlist .description {
+	padding: 20px;
+	background: #f9f9f9;
+	border-radius: 15px;
+	margin-top: 15px;
+}
+
+.mpd-reviews-style-card #reviews .commentlist .description p {
+	margin: 0;
+	color: #555;
+	line-height: 1.8;
+	font-size: 15px;
+	font-style: italic;
+}
+
+/* ==========================================================================
+   Style 4: Minimal
+   ========================================================================== */
+.mpd-reviews-style-minimal #reviews .commentlist .comment_container {
+	display: flex;
+	gap: 15px;
+	padding: 20px 0;
+	background: transparent;
+	border-bottom: 1px dashed #e0e0e0;
+}
+
+.mpd-reviews-style-minimal #reviews .commentlist li:last-child .comment_container {
+	border-bottom: none;
+}
+
+.mpd-reviews-style-minimal #reviews .commentlist img.avatar {
+	width: 45px;
+	height: 45px;
+	border-radius: 8px;
+	flex-shrink: 0;
+}
+
+.mpd-reviews-style-minimal #reviews .commentlist .comment-text {
+	flex: 1;
+}
+
+.mpd-reviews-style-minimal #reviews .commentlist .star-rating {
+	float: none;
+	display: inline-block;
+	margin-bottom: 8px;
+	font-size: 12px;
+}
+
+.mpd-reviews-style-minimal #reviews .commentlist .meta {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+.mpd-reviews-style-minimal #reviews .commentlist .meta strong {
+	font-weight: 600;
+	font-size: 14px;
+	color: #333;
+}
+
+.mpd-reviews-style-minimal #reviews .commentlist .meta .woocommerce-review__dash {
+	display: none;
+}
+
+.mpd-reviews-style-minimal #reviews .commentlist .meta .woocommerce-review__published-date {
+	color: #999;
+	font-size: 12px;
+}
+
+.mpd-reviews-style-minimal #reviews .commentlist .meta .woocommerce-review__published-date::before {
+	content: '•';
+	margin-right: 8px;
+	color: #ccc;
+}
+
+.mpd-reviews-style-minimal #reviews .commentlist .woocommerce-review__verified {
+	display: inline-block;
+	padding: 2px 8px;
+	background: #e8f5e9;
+	color: #2e7d32;
+	font-size: 10px;
+	font-weight: 600;
+	border-radius: 4px;
+	text-transform: uppercase;
+}
+
+.mpd-reviews-style-minimal #reviews .commentlist .description p {
+	margin: 0;
+	color: #666;
+	line-height: 1.6;
+	font-size: 14px;
+}
+
+/* ==========================================================================
+   Layout Variations
+   ========================================================================== */
+
+/* Grid Layout */
+.mpd-reviews-layout-grid #reviews .commentlist {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+}
+
+.mpd-reviews-layout-grid #reviews .commentlist li {
+	margin: 0;
+}
+
+/* Masonry Layout */
+.mpd-reviews-layout-masonry #reviews .commentlist {
+	column-count: 2;
+	column-gap: 20px;
+}
+
+.mpd-reviews-layout-masonry #reviews .commentlist li {
+	break-inside: avoid;
+	margin-bottom: 20px;
+}
+
+/* Grid Columns Responsive */
+.mpd-reviews-layout-grid.mpd-grid-columns-1 #reviews .commentlist,
+.mpd-reviews-layout-masonry.mpd-grid-columns-1 #reviews .commentlist {
+	grid-template-columns: 1fr;
+	column-count: 1;
+}
+
+.mpd-reviews-layout-grid.mpd-grid-columns-3 #reviews .commentlist {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.mpd-reviews-layout-masonry.mpd-grid-columns-3 #reviews .commentlist {
+	column-count: 3;
+}
+
+/* ==========================================================================
+   Review Form Styling for Widget
+   ========================================================================== */
+.mpd-product-reviews #review_form_wrapper {
+	margin-top: 40px;
+	padding: 30px;
+	background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+	border: 1px solid #e8eaf6;
+	border-radius: 16px;
+}
+
+.mpd-product-reviews #review_form #respond {
+	margin: 0;
+}
+
+.mpd-product-reviews #review_form #respond .comment-reply-title {
+	font-size: 1.3em;
+	font-weight: 700;
+	color: #1a1a2e;
+	margin-bottom: 20px;
+}
+
+.mpd-product-reviews #review_form .comment-notes {
+	color: #888;
+	font-size: 13px;
+	margin-bottom: 20px;
+}
+
+.mpd-product-reviews #review_form .comment-form-rating {
+	margin-bottom: 20px;
+}
+
+.mpd-product-reviews #review_form .comment-form-rating label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 8px;
+	color: #333;
+}
+
+.mpd-product-reviews #review_form .stars {
+	display: inline-flex;
+	gap: 8px;
+}
+
+.mpd-product-reviews #review_form .stars a {
+	color: #ddd;
+	text-decoration: none;
+	font-size: 24px;
+	transition: all 0.2s ease;
+}
+
+.mpd-product-reviews #review_form .stars a:hover,
+.mpd-product-reviews #review_form .stars a.active {
+	color: #ffc107;
+	transform: scale(1.2);
+}
+
+.mpd-product-reviews #review_form .comment-form-comment label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 8px;
+	color: #333;
+}
+
+.mpd-product-reviews #review_form .comment-form-comment textarea {
+	width: 100%;
+	padding: 16px;
+	border: 2px solid #e8eaf6;
+	border-radius: 12px;
+	min-height: 140px;
+	font-size: 14px;
+	line-height: 1.6;
+	transition: all 0.3s ease;
+	resize: vertical;
+}
+
+.mpd-product-reviews #review_form .comment-form-comment textarea:focus {
+	border-color: #667eea;
+	box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+	outline: none;
+}
+
+.mpd-product-reviews #review_form .form-submit input[type="submit"] {
+	padding: 14px 32px;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #fff;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+	font-weight: 700;
+	font-size: 14px;
+	letter-spacing: 0.5px;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
+}
+
+.mpd-product-reviews #review_form .form-submit input[type="submit"]:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 25px rgba(102, 126, 234, 0.45);
+}
+
+/* No Reviews Message */
+.mpd-product-reviews .woocommerce-noreviews {
+	padding: 40px;
+	text-align: center;
+	background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+	border: 2px dashed #e8eaf6;
+	border-radius: 16px;
+	color: #8e8ea0;
+	font-size: 15px;
+}
+
+/* ==========================================================================
+   Responsive Reviews Widget
+   ========================================================================== */
+@media (max-width: 991px) {
+	.mpd-reviews-layout-grid #reviews .commentlist,
+	.mpd-reviews-layout-grid.mpd-grid-columns-3 #reviews .commentlist {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.mpd-reviews-layout-masonry #reviews .commentlist,
+	.mpd-reviews-layout-masonry.mpd-grid-columns-3 #reviews .commentlist {
+		column-count: 2;
+	}
+}
+
+@media (max-width: 767px) {
+	.mpd-reviews-toolbar {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.mpd-reviews-layout-grid #reviews .commentlist,
+	.mpd-reviews-layout-grid.mpd-grid-columns-3 #reviews .commentlist,
+	.mpd-reviews-layout-grid.mpd-grid-columns-2 #reviews .commentlist {
+		grid-template-columns: 1fr;
+	}
+
+	.mpd-reviews-layout-masonry #reviews .commentlist,
+	.mpd-reviews-layout-masonry.mpd-grid-columns-3 #reviews .commentlist,
+	.mpd-reviews-layout-masonry.mpd-grid-columns-2 #reviews .commentlist {
+		column-count: 1;
+	}
+
+	.mpd-reviews-style-modern #reviews .commentlist .comment_container,
+	.mpd-product-reviews:not([class*="mpd-reviews-style"]) #reviews .commentlist .comment_container,
+	.mpd-reviews-style-classic #reviews .commentlist .comment_container,
+	.mpd-reviews-style-minimal #reviews .commentlist .comment_container {
+		flex-direction: column;
+		padding: 20px;
+	}
+
+	.mpd-reviews-style-card #reviews .commentlist .comment_container {
+		padding: 25px;
+	}
+
+	.mpd-product-reviews #review_form_wrapper {
+		padding: 20px;
+	}
+}
+
+/* Custom MPD Reviews Styles */
+.mpd-product-tabs {
+	margin: 0;
+}
+
+/* WooCommerce Default Tabs Styling */
+.mpd-product-tabs .woocommerce-tabs {
+	margin: 0;
+}
+
+.mpd-product-tabs .woocommerce-tabs ul.tabs,
+.mpd-product-tabs .wc-tabs {
+	list-style: none;
+	margin: 0 0 20px;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	border-bottom: 2px solid #eee;
+	gap: 0;
+}
+
+.mpd-product-tabs .woocommerce-tabs ul.tabs li,
+.mpd-product-tabs .wc-tabs li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background: none;
+	border: none;
+}
+
+.mpd-product-tabs .woocommerce-tabs ul.tabs li a,
+.mpd-product-tabs .wc-tabs li a {
+	display: block;
+	padding: 12px 24px;
+	color: #666;
+	text-decoration: none;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -2px;
+	transition: all 0.3s ease;
+	font-weight: 500;
+}
+
+.mpd-product-tabs .woocommerce-tabs ul.tabs li a:hover,
+.mpd-product-tabs .woocommerce-tabs ul.tabs li.active a,
+.mpd-product-tabs .wc-tabs li a:hover,
+.mpd-product-tabs .wc-tabs li.active a {
+	color: var(--mpd-primary-color, #333);
+	border-bottom-color: var(--mpd-primary-color, #333);
+}
+
+.mpd-product-tabs .woocommerce-tabs .panel,
+.mpd-product-tabs .wc-tab {
+	padding: 20px;
+	animation: mpdTabFadeIn 0.3s ease;
+}
+
+@keyframes mpdTabFadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(6px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.mpd-product-tabs .woocommerce-tabs .panel h2,
+.mpd-product-tabs .wc-tab h2 {
+	margin-top: 0;
+	margin-bottom: 15px;
+	font-size: 1.3em;
+}
+
+/* Vertical Tabs Layout */
+.mpd-product-tabs.mpd-tabs-layout-vertical .woocommerce-tabs {
+	display: flex;
+	gap: 30px;
+}
+
+.mpd-product-tabs.mpd-tabs-layout-vertical .woocommerce-tabs ul.tabs {
+	flex-direction: column;
+	border-bottom: none;
+	border-right: 2px solid #eee;
+	min-width: 200px;
+	margin-bottom: 0;
+}
+
+.mpd-product-tabs.mpd-tabs-layout-vertical .woocommerce-tabs ul.tabs li a {
+	border-bottom: none;
+	border-right: 2px solid transparent;
+	margin-bottom: 0;
+	margin-right: -2px;
+}
+
+.mpd-product-tabs.mpd-tabs-layout-vertical .woocommerce-tabs ul.tabs li a:hover,
+.mpd-product-tabs.mpd-tabs-layout-vertical .woocommerce-tabs ul.tabs li.active a {
+	border-bottom-color: transparent;
+	border-right-color: var(--mpd-primary-color, #333);
+}
+
+.mpd-product-tabs.mpd-tabs-layout-vertical .woocommerce-tabs .panel {
+	flex: 1;
+	padding: 0;
+}
+
+/* Custom MPD Tabs (for custom implementations) */
+.mpd-tabs-nav {
+	display: flex;
+	border-bottom: 2px solid #eee;
+	margin-bottom: 20px;
+}
+
+.mpd-tabs-nav-item {
+	padding: 12px 20px;
+	cursor: pointer;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -2px;
+	transition: all 0.3s ease;
+}
+
+.mpd-tabs-nav-item:hover,
+.mpd-tabs-nav-item.active {
+	border-bottom-color: var(--mpd-primary-color, #333);
+	color: var(--mpd-primary-color, #333);
+}
+
+.mpd-tab-content {
+	display: none;
+}
+
+.mpd-tab-content.active {
+	display: block;
+}
+
+/* Vertical Tabs */
+.mpd-tabs-vertical {
+	display: flex;
+	gap: 30px;
+}
+
+.mpd-tabs-vertical .mpd-tabs-nav {
+	flex-direction: column;
+	border-bottom: none;
+	border-right: 2px solid #eee;
+	min-width: 200px;
+}
+
+.mpd-tabs-vertical .mpd-tabs-nav-item {
+	border-bottom: none;
+	border-right: 2px solid transparent;
+	margin-bottom: 0;
+	margin-right: -2px;
+}
+
+.mpd-tabs-vertical .mpd-tabs-nav-item:hover,
+.mpd-tabs-vertical .mpd-tabs-nav-item.active {
+	border-right-color: var(--mpd-primary-color, #333);
+}
+
+.mpd-tabs-vertical .mpd-tabs-content {
+	flex: 1;
+}
+
+/* Accordion Mode */
+.mpd-tabs-accordion {
+	width: 100%;
+}
+
+.mpd-tabs-accordion .mpd-accordion-item {
+	border: 1px solid #e0e0e0;
+	margin-bottom: 10px;
+	border-radius: 6px;
+	overflow: hidden;
+	background: #fff;
+}
+
+.mpd-tabs-accordion .mpd-accordion-item:last-child {
+	margin-bottom: 0;
+}
+
+.mpd-tabs-accordion .mpd-accordion-header {
+	padding: 15px 20px;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: #f8f9fa;
+	transition: all 0.3s ease;
+	border: none;
+	user-select: none;
+}
+
+.mpd-tabs-accordion .mpd-accordion-header:hover {
+	background: #e9ecef;
+}
+
+.mpd-tabs-accordion .mpd-accordion-item.active .mpd-accordion-header {
+	background: #e9ecef;
+}
+
+.mpd-tabs-accordion .mpd-accordion-title {
+	font-weight: 600;
+	font-size: 16px;
+	color: #333;
+	margin: 0;
+}
+
+.mpd-tabs-accordion .mpd-accordion-icon {
+	transition: transform 0.3s ease;
+	font-size: 12px;
+	color: #666;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mpd-tabs-accordion .mpd-accordion-item.active .mpd-accordion-icon {
+	transform: rotate(180deg);
+}
+
+.mpd-tabs-accordion .mpd-accordion-content {
+	padding: 20px;
+	display: none;
+	border-top: 1px solid #e0e0e0;
+	background: #fff;
+	overflow: hidden;
+}
+
+.mpd-tabs-accordion .mpd-accordion-item.active > .mpd-accordion-content {
+	display: block;
+}
+
+/* Accordion Content Elements */
+.mpd-tabs-accordion .mpd-accordion-content h2 {
+	font-size: 1.5em;
+	margin-top: 0;
+	margin-bottom: 15px;
+}
+
+.mpd-tabs-accordion .mpd-accordion-content p {
+	margin-bottom: 15px;
+}
+
+.mpd-tabs-accordion .mpd-accordion-content p:last-child {
+	margin-bottom: 0;
+}
+
+.mpd-tabs-accordion .mpd-accordion-content ul,
+.mpd-tabs-accordion .mpd-accordion-content ol {
+	margin: 0 0 15px 20px;
+	padding: 0;
+}
+
+.mpd-tabs-accordion .mpd-accordion-content li {
+	margin-bottom: 8px;
+}
+
+/* ==========================================================================
+   Unified Product Grid Base Styles
+   Shared by: Related Products, Upsells, Cross-sells
+   ========================================================================== */
+
+/* Base Container Reset */
+.mpd-related-products,
+.mpd-upsells-products {
+	margin: 0;
+}
+
+/* Section Heading */
+.mpd-related-heading,
+.mpd-upsells-heading {
+	font-size: 1.4em;
+	font-weight: 700;
+	margin-bottom: 25px;
+	color: #1a1a2e;
+}
+
+/* ==========================================================================
+   MPD Products Grid - Unified Grid System
+   ========================================================================== */
+.mpd-products-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+	list-style: none !important;
+	margin: 0;
+	padding: 0;
+}
+
+/* Grid Column Classes */
+.mpd-products-grid.mpd-columns-1 {
+	grid-template-columns: 1fr;
+}
+
+.mpd-products-grid.mpd-columns-2 {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.mpd-products-grid.mpd-columns-3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.mpd-products-grid.mpd-columns-4 {
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.mpd-products-grid.mpd-columns-5 {
+	grid-template-columns: repeat(5, 1fr);
+}
+
+.mpd-products-grid.mpd-columns-6 {
+	grid-template-columns: repeat(6, 1fr);
+}
+
+/* Responsive Grid using CSS Custom Property */
+.mpd-related-products-grid,
+.mpd-upsells-grid {
+	grid-template-columns: repeat(var(--mpd-columns, 4), 1fr);
+}
+
+/* ==========================================================================
+   MPD Product Item - Unified Card Styles
+   ========================================================================== */
+.mpd-product-item {
+	text-align: center;
+	margin: 0;
+	padding: 20px;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+	transition: all 0.3s ease;
+}
+
+.mpd-product-item:hover {
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+	transform: translateY(-3px);
+}
+
+/* Product Image Wrapper */
+.mpd-product-item .mpd-product-image-wrapper {
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 15px;
+	border-radius: 8px;
+}
+
+.mpd-product-item .mpd-product-image-wrapper img {
+	width: 100%;
+	height: auto;
+	display: block;
+	transition: transform 0.3s ease;
+}
+
+.mpd-product-item:hover .mpd-product-image-wrapper img {
+	transform: scale(1.05);
+}
+
+/* Sale Badge */
+.mpd-product-item .mpd-sale-badge {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background: #e74c3c;
+	color: #fff;
+	padding: 5px 12px;
+	border-radius: 20px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	z-index: 2;
+}
+
+/* Product Content */
+.mpd-product-item .mpd-product-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	padding: 10px 10px 20px 10px;
+}
+
+/* Product Title */
+.mpd-product-item .mpd-product-title {
+	font-size: 14px;
+	font-weight: 600;
+	margin: 0;
+	padding: 0;
+	color: #1a1a2e;
+	line-height: 1.4;
+}
+
+.mpd-product-item .mpd-product-title a {
+	color: inherit;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.mpd-product-item .mpd-product-title a:hover {
+	color: #667eea;
+}
+
+/* Product Rating */
+.mpd-product-item .mpd-product-rating {
+	display: flex;
+	justify-content: center;
+}
+
+.mpd-product-item .mpd-product-rating .star-rating {
+	margin: 0;
+}
+
+/* Product Price */
+.mpd-product-item .mpd-product-price {
+	font-size: 16px;
+	font-weight: 700;
+	color: #333;
+}
+
+.mpd-product-item .mpd-product-price del {
+	color: #999;
+	font-weight: 400;
+	opacity: 0.6;
+	margin-right: 8px;
+}
+
+.mpd-product-item .mpd-product-price ins {
+	text-decoration: none;
+	color: #e74c3c;
+}
+
+/* Product Button */
+.mpd-product-item .mpd-product-button .button,
+.mpd-product-item .mpd-product-button .mpd-add-to-cart,
+.mpd-product-item .mpd-product-button .add_to_cart_button {
+	display: inline-block;
+	padding: 10px 20px;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #fff !important;
+	border: none;
+	border-radius: 25px;
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.mpd-product-item .mpd-product-button .button:hover,
+.mpd-product-item .mpd-product-button .mpd-add-to-cart:hover,
+.mpd-product-item .mpd-product-button .add_to_cart_button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* ==========================================================================
+   Responsive Grid
+   ========================================================================== */
+@media (max-width: 991px) {
+	.mpd-products-grid.mpd-columns-4,
+	.mpd-products-grid.mpd-columns-5,
+	.mpd-products-grid.mpd-columns-6 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 767px) {
+	.mpd-products-grid.mpd-columns-3,
+	.mpd-products-grid.mpd-columns-4,
+	.mpd-products-grid.mpd-columns-5,
+	.mpd-products-grid.mpd-columns-6 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 480px) {
+	.mpd-products-grid.mpd-columns-2,
+	.mpd-products-grid.mpd-columns-3,
+	.mpd-products-grid.mpd-columns-4,
+	.mpd-products-grid.mpd-columns-5,
+	.mpd-products-grid.mpd-columns-6 {
+		grid-template-columns: 1fr;
+	}
+	
+	.mpd-product-item {
+		padding: 15px;
+	}
+}
+
+/* ==========================================================================
+   Legacy Support - WooCommerce Default Templates
+   (For backward compatibility)
+   ========================================================================== */
+
+/* WooCommerce Default Section Reset */
+.mpd-related-products section.related,
+.mpd-related-products .related.products,
+.mpd-upsells-products section.up-sells,
+.mpd-upsells-products .up-sells.upsells.products {
+	margin: 0;
+}
+
+.mpd-related-products section.related > h2,
+.mpd-related-products .related.products > h2,
+.mpd-upsells-products section.up-sells > h2,
+.mpd-upsells-products .up-sells.upsells.products > h2 {
+	font-size: 1.3em;
+	margin-bottom: 20px;
+}
+
+/* Legacy Products Grid (ul.products) */
+.mpd-related-products .products,
+.mpd-upsells-products .products {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 20px;
+	list-style: none !important;
+	margin: 0;
+	padding: 0;
+}
+
+/* Legacy Grid Column Classes */
+.mpd-related-products .products.columns-1,
+.mpd-upsells-products .products.columns-1 {
+	grid-template-columns: 1fr;
+}
+
+.mpd-related-products .products.columns-2,
+.mpd-upsells-products .products.columns-2 {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.mpd-related-products .products.columns-3,
+.mpd-upsells-products .products.columns-3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.mpd-related-products .products.columns-4,
+.mpd-upsells-products .products.columns-4 {
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.mpd-related-products .products.columns-5,
+.mpd-upsells-products .products.columns-5 {
+	grid-template-columns: repeat(5, 1fr);
+}
+
+.mpd-related-products .products.columns-6,
+.mpd-upsells-products .products.columns-6 {
+	grid-template-columns: repeat(6, 1fr);
+}
+
+/* Legacy Unified Product Card */
+.mpd-related-products .products li.product,
+.mpd-related-products .products li,
+.mpd-upsells-products .products li.product,
+.mpd-upsells-products .products li,
+.mpd-related-item,
+.mpd-upsell-item {
+	text-align: center;
+	margin: 0;
+	padding: 20px;
+	list-style: none !important;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+	transition: all 0.3s ease;
+}
+
+.mpd-related-products .products li.product:hover,
+.mpd-related-products .products li:hover,
+.mpd-upsells-products .products li.product:hover,
+.mpd-upsells-products .products li:hover,
+.mpd-related-item:hover,
+.mpd-upsell-item:hover {
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+	transform: translateY(-3px);
+}
+
+.mpd-related-products .products li::before,
+.mpd-upsells-products .products li::before {
+	display: none !important;
+	content: none !important;
+}
+
+/* Legacy Unified Product Image */
+.mpd-related-products .products li.product a img,
+.mpd-related-products .products li img,
+.mpd-upsells-products .products li.product a img,
+.mpd-upsells-products .products li img,
+.mpd-related-image img,
+.mpd-upsell-image img {
+	width: 100%;
+	height: auto;
+	display: block;
+	margin-bottom: 15px;
+	border-radius: 8px;
+	transition: transform 0.3s ease;
+}
+
+.mpd-related-products .products li.product:hover a img,
+.mpd-related-products .products li:hover img,
+.mpd-upsells-products .products li.product:hover a img,
+.mpd-upsells-products .products li:hover img,
+.mpd-related-item:hover .mpd-related-image img,
+.mpd-upsell-item:hover .mpd-upsell-image img {
+	transform: scale(1.05);
+}
+
+.mpd-related-image,
+.mpd-upsell-image {
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 15px;
+	border-radius: 8px;
+}
+
+/* Legacy Unified Product Title */
+.mpd-related-products .products li.product .woocommerce-loop-product__title,
+.mpd-related-products .products li.product h2,
+.mpd-related-products .products li h2,
+.mpd-upsells-products .products li.product .woocommerce-loop-product__title,
+.mpd-upsells-products .products li.product h2,
+.mpd-upsells-products .products li h2,
+.mpd-related-title,
+.mpd-upsell-title {
+	font-size: 14px;
+	font-weight: 600;
+	margin: 0 0 8px;
+	padding: 0;
+	color: #1a1a2e;
+	line-height: 1.4;
+}
+
+.mpd-related-products .products li.product .woocommerce-loop-product__title a,
+.mpd-related-products .products li h2 a,
+.mpd-upsells-products .products li.product .woocommerce-loop-product__title a,
+.mpd-upsells-products .products li h2 a,
+.mpd-related-title a,
+.mpd-upsell-title a {
+	color: inherit;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.mpd-related-products .products li.product .woocommerce-loop-product__title a:hover,
+.mpd-related-products .products li h2 a:hover,
+.mpd-upsells-products .products li.product .woocommerce-loop-product__title a:hover,
+.mpd-upsells-products .products li h2 a:hover,
+.mpd-related-title a:hover,
+.mpd-upsell-title a:hover {
+	color: #667eea;
+}
+
+/* Unified Product Price */
+.mpd-related-products .products li.product .price,
+.mpd-related-products .products li .price,
+.mpd-upsells-products .products li.product .price,
+.mpd-upsells-products .products li .price,
+.mpd-related-price,
+.mpd-upsell-price {
+	font-size: 16px;
+	font-weight: 700;
+	margin-bottom: 12px;
+	display: block;
+	color: #333;
+}
+
+.mpd-related-products .products li .price del,
+.mpd-upsells-products .products li .price del {
+	color: #999;
+	font-weight: 400;
+	opacity: 0.6;
+	margin-right: 8px;
+}
+
+.mpd-related-products .products li .price ins,
+.mpd-upsells-products .products li .price ins {
+	text-decoration: none;
+	color: #e74c3c;
+}
+
+/* Unified Star Rating */
+.mpd-related-products .products li .star-rating,
+.mpd-upsells-products .products li .star-rating {
+	margin: 8px auto 12px;
+}
+
+/* Unified Button */
+.mpd-related-products .products li.product .button,
+.mpd-related-products .products li .button,
+.mpd-related-products .products li .add_to_cart_button,
+.mpd-upsells-products .products li.product .button,
+.mpd-upsells-products .products li .button,
+.mpd-upsells-products .products li .add_to_cart_button,
+.mpd-related-item .button,
+.mpd-related-item .add_to_cart_button,
+.mpd-upsell-item .button,
+.mpd-upsell-item .add_to_cart_button {
+	display: inline-block;
+	padding: 10px 20px;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: #fff;
+	border: none;
+	border-radius: 25px;
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: none;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.mpd-related-products .products li.product .button:hover,
+.mpd-related-products .products li .button:hover,
+.mpd-related-products .products li .add_to_cart_button:hover,
+.mpd-upsells-products .products li.product .button:hover,
+.mpd-upsells-products .products li .button:hover,
+.mpd-upsells-products .products li .add_to_cart_button:hover,
+.mpd-related-item .button:hover,
+.mpd-related-item .add_to_cart_button:hover,
+.mpd-upsell-item .button:hover,
+.mpd-upsell-item .add_to_cart_button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* ==========================================================================
+   Unified Carousel Styles
+   ========================================================================== */
+.mpd-related-carousel,
+.mpd-upsells-carousel {
+	position: relative;
+	padding-bottom: 50px;
+}
+
+.mpd-related-carousel .swiper-slide,
+.mpd-upsells-carousel .swiper-slide {
+	height: auto;
+}
+
+.mpd-related-carousel .mpd-related-item,
+.mpd-upsells-carousel .mpd-upsell-item {
+	height: 100%;
+}
+
+/* Carousel Navigation */
+.mpd-related-carousel .swiper-button-prev,
+.mpd-related-carousel .swiper-button-next,
+.mpd-upsells-carousel .swiper-button-prev,
+.mpd-upsells-carousel .swiper-button-next {
+	width: 40px;
+	height: 40px;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+	color: #333;
+	transition: all 0.3s ease;
+}
+
+.mpd-related-carousel .swiper-button-prev:hover,
+.mpd-related-carousel .swiper-button-next:hover,
+.mpd-upsells-carousel .swiper-button-prev:hover,
+.mpd-upsells-carousel .swiper-button-next:hover {
+	background: #667eea;
+	color: #fff;
+	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.mpd-related-carousel .swiper-button-prev::after,
+.mpd-related-carousel .swiper-button-next::after,
+.mpd-upsells-carousel .swiper-button-prev::after,
+.mpd-upsells-carousel .swiper-button-next::after {
+	display: none;
+}
+
+.mpd-related-carousel .swiper-button-prev svg,
+.mpd-related-carousel .swiper-button-next svg,
+.mpd-upsells-carousel .swiper-button-prev svg,
+.mpd-upsells-carousel .swiper-button-next svg {
+	width: 18px;
+	height: 18px;
+}
+
+.mpd-related-carousel .swiper-button-prev,
+.mpd-upsells-carousel .swiper-button-prev {
+	left: 0;
+}
+
+.mpd-related-carousel .swiper-button-next,
+.mpd-upsells-carousel .swiper-button-next {
+	right: 0;
+}
+
+/* Carousel Pagination */
+.mpd-related-carousel .swiper-pagination,
+.mpd-upsells-carousel .swiper-pagination {
+	bottom: 10px;
+	position: absolute;
+}
+
+.mpd-related-carousel .swiper-pagination-bullet,
+.mpd-upsells-carousel .swiper-pagination-bullet {
+	width: 10px;
+	height: 10px;
+	background: #ddd;
+	opacity: 1;
+	transition: all 0.3s ease;
+}
+
+.mpd-related-carousel .swiper-pagination-bullet-active,
+.mpd-upsells-carousel .swiper-pagination-bullet-active {
+	background: #667eea;
+	transform: scale(1.2);
+}
+
+.mpd-upsell-item span.price {
+    display: block;
+    margin: 15px 0 20px;
+}
+
+/* ==========================================================================
+   Unified List Layout Styles
+   ========================================================================== */
+.mpd-upsell-list,
+.mpd-related-list {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.mpd-upsell-list .mpd-upsell-item,
+.mpd-related-list .mpd-related-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+	text-align: left;
+}
+
+.mpd-upsell-list .mpd-upsell-image,
+.mpd-related-list .mpd-related-image {
+	flex-shrink: 0;
+	width: 120px;
+	margin-bottom: 0;
+}
+
+.mpd-upsell-list .mpd-upsell-content,
+.mpd-related-list .mpd-related-content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.mpd-upsell-list .mpd-upsell-title,
+.mpd-related-list .mpd-related-title {
+	font-size: 16px;
+}
+
+.mpd-upsell-list .button,
+.mpd-related-list .button {
+	align-self: flex-start;
+	margin-top: 5px;
+}
+
+.mpd-upsell-list .mpd-upsell-item span.price {
+    display: block;
+    margin: 5px;
+}
+
+/* List Image Position - Right */
+.mpd-list-image-right .mpd-upsell-item,
+.mpd-list-image-right .mpd-related-item {
+	flex-direction: row-reverse;
+}
+
+/* ==========================================================================
+   Unified Responsive Styles
+   ========================================================================== */
+@media (max-width: 991px) {
+	.mpd-related-products .products.columns-4,
+	.mpd-related-products .products.columns-5,
+	.mpd-related-products .products.columns-6,
+	.mpd-upsells-products .products.columns-4,
+	.mpd-upsells-products .products.columns-5,
+	.mpd-upsells-products .products.columns-6 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 767px) {
+	.mpd-related-products .products.columns-3,
+	.mpd-related-products .products.columns-4,
+	.mpd-related-products .products.columns-5,
+	.mpd-related-products .products.columns-6,
+	.mpd-upsells-products .products.columns-3,
+	.mpd-upsells-products .products.columns-4,
+	.mpd-upsells-products .products.columns-5,
+	.mpd-upsells-products .products.columns-6 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.mpd-upsell-list .mpd-upsell-item,
+	.mpd-related-list .mpd-related-item {
+		flex-direction: column;
+		text-align: center;
+		align-items: center;
+	}
+
+	/* Override image-right on mobile */
+	.mpd-list-image-right .mpd-upsell-item,
+	.mpd-list-image-right .mpd-related-item {
+		flex-direction: column;
+	}
+
+	.mpd-upsell-list .mpd-upsell-image,
+	.mpd-related-list .mpd-related-image {
+		width: 100%;
+		max-width: 200px;
+	}
+
+	.mpd-upsell-list .mpd-upsell-content,
+	.mpd-related-list .mpd-related-content {
+		align-items: center;
+	}
+
+	.mpd-upsell-list .button,
+	.mpd-related-list .button {
+		align-self: center;
+	}
+}
+
+@media (max-width: 480px) {
+	.mpd-related-products .products.columns-2,
+	.mpd-related-products .products.columns-3,
+	.mpd-related-products .products.columns-4,
+	.mpd-related-products .products.columns-5,
+	.mpd-related-products .products.columns-6,
+	.mpd-upsells-products .products.columns-2,
+	.mpd-upsells-products .products.columns-3,
+	.mpd-upsells-products .products.columns-4,
+	.mpd-upsells-products .products.columns-5,
+	.mpd-upsells-products .products.columns-6 {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ==========================================================================
+   Product Stock Widget
+   ========================================================================== */
+.mpd-product-stock {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.mpd-stock-wrapper {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.mpd-stock-status {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+/* Stock Icon - Font Icons & SVG */
+.mpd-stock-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 18px;
+	line-height: 1;
+	flex-shrink: 0;
+}
+
+/* SVG Icon Sizing - Critical for uploaded SVGs */
+.mpd-stock-icon svg {
+	width: 18px;
+	height: 18px;
+	max-width: 24px;
+	max-height: 24px;
+	display: block;
+	fill: currentColor;
+}
+
+/* Image-based icons (uploaded SVGs via Media Library) */
+.mpd-stock-icon img {
+	width: 18px;
+	height: 18px;
+	max-width: 24px;
+	max-height: 24px;
+	display: block;
+	object-fit: contain;
+}
+
+/* Font Awesome & other icon fonts */
+.mpd-stock-icon i {
+	font-size: inherit;
+	line-height: 1;
+}
+
+.mpd-stock-text {
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.mpd-stock-in-stock {
+	color: #27ae60;
+}
+
+.mpd-stock-in-stock .mpd-stock-icon svg {
+	fill: currentColor;
+}
+
+.mpd-stock-out-of-stock {
+	color: #e74c3c;
+}
+
+.mpd-stock-out-of-stock .mpd-stock-icon svg {
+	fill: currentColor;
+}
+
+.mpd-stock-on-backorder {
+	color: #f39c12;
+}
+
+.mpd-stock-on-backorder .mpd-stock-icon svg {
+	fill: currentColor;
+}
+
+.mpd-stock-backorder {
+	color: #f39c12;
+}
+
+.mpd-stock-quantity {
+	color: #666;
+	font-size: 14px;
+}
+
+/* Stock Progress Bar */
+.mpd-stock-progress-wrapper {
+	width: 100%;
+	margin-top: 15px;
+}
+
+.mpd-stock-progress-bar {
+	height: 8px;
+	background: #eee;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.mpd-stock-progress-fill {
+	height: 100%;
+	background: linear-gradient(90deg, #27ae60, #f39c12);
+	transition: width 0.3s ease;
+	border-radius: 4px;
+}
+
+/* Low stock state - red gradient */
+.mpd-stock-progress-wrapper.mpd-low-stock .mpd-stock-progress-fill {
+	background: linear-gradient(90deg, #e74c3c, #f39c12);
+}
+
+.mpd-stock-progress-text {
+	display: flex;
+	justify-content: space-between;
+	font-size: 12px;
+	color: #666;
+	margin-top: 8px;
+}
+
+.mpd-stock-progress-text .mpd-stock-available {
+	color: #27ae60;
+	font-weight: 500;
+}
+
+.mpd-stock-progress-text .mpd-stock-sold-count {
+	color: #999;
+}
+
+.mpd-stock-progress-wrapper.mpd-low-stock .mpd-stock-progress-text .mpd-stock-available {
+	color: #e74c3c;
+}
+
+/* Stock Urgency Message */
+.mpd-stock-urgency {
+	padding: 12px 15px;
+	background: linear-gradient(135deg, #fff3cd 0%, #ffe8a1 100%);
+	border-left: 4px solid #f39c12;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #856404;
+	margin-top: 10px;
+	font-weight: 500;
+	animation: mpd-urgency-pulse 2s ease-in-out infinite;
+}
+
+@keyframes mpd-urgency-pulse {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.8;
+	}
+}
+
+/* Sold Count */
+.mpd-stock-sold {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 14px;
+	color: #666;
+}
+
+/* ==========================================================================
+   Product Attributes Widget
+   ========================================================================== */
+.mpd-product-attributes {
+	margin: 0;
+}
+
+.mpd-attributes-heading {
+	margin-bottom: 15px;
+}
+
+/* Table Layout */
+.mpd-attributes-table {
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.mpd-attributes-table tr {
+	border-bottom: 1px solid #eee;
+}
+
+.mpd-attributes-table th,
+.mpd-attributes-table td {
+	padding: 12px 15px;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.mpd-attributes-table th {
+	width: 35%;
+	font-weight: 600;
+	background: #f9f9f9;
+	white-space: nowrap;
+}
+
+.mpd-attributes-table td {
+	width: 65%;
+}
+
+.mpd-attributes-table td p {
+	margin: 0;
+}
+
+.mpd-attributes-table tr:last-child {
+	border-bottom: none;
+}
+
+/* List Layout */
+.mpd-attributes-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.mpd-attribute-item {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+}
+
+.mpd-attribute-icon {
+	color: var(--mpd-primary-color, #333);
+	margin-top: 3px;
+}
+
+.mpd-attribute-label {
+	font-weight: 600;
+	min-width: 120px;
+}
+
+.mpd-attribute-value {
+	flex: 1;
+}
+
+/* Attribute Icons */
+.mpd-attribute-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 8px;
+	font-size: 14px;
+	color: var(--mpd-primary-color, #333);
+}
+
+.mpd-attribute-icon i,
+.mpd-attribute-icon svg {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+}
+
+.mpd-attribute-label {
+	display: flex;
+	align-items: center;
+}
+
+/* Collapsible Attributes */
+.mpd-attributes-collapsible .mpd-attributes-toggle {
+	cursor: pointer;
+	width: 100%;
+	padding: 12px 16px;
+	background: #f9f9f9;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 15px;
+	font-weight: 600;
+	color: #333;
+	transition: all 0.3s ease;
+}
+
+.mpd-attributes-collapsible .mpd-attributes-toggle:hover {
+	background: #f0f0f0;
+}
+
+.mpd-attributes-collapsible .mpd-toggle-text {
+	flex: 1;
+	text-align: left;
+}
+
+.mpd-attributes-collapsible .mpd-toggle-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.3s ease;
+}
+
+.mpd-attributes-collapsible .mpd-toggle-icon i,
+.mpd-attributes-collapsible .mpd-toggle-icon svg {
+	font-size: 12px;
+	width: 12px;
+	height: 12px;
+}
+
+.mpd-attributes-collapsible.mpd-attributes-expanded .mpd-toggle-icon {
+	transform: rotate(180deg);
+}
+
+.mpd-attributes-collapsible .mpd-attributes-content {
+	padding-top: 15px;
+}
+
+/* ==========================================================================
+   Product Navigation Widget
+   ========================================================================== */
+.mpd-product-navigation {
+	display: flex;
+	align-items: center;
+}
+
+.mpd-product-navigation.mpd-nav-layout-column {
+	flex-direction: column;
+}
+
+.mpd-nav-link {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	text-decoration: none;
+	color: inherit;
+	padding: 15px 20px;
+	transition: all 0.3s ease;
+}
+
+.mpd-nav-link:hover {
+	background: rgba(0, 0, 0, 0.05);
+}
+
+/* Navigation Icons */
+.mpd-nav-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	font-size: 16px;
+	line-height: 1;
+	color: currentColor;
+	transition: all 0.3s ease;
+}
+
+.mpd-nav-icon i {
+	display: inline-block;
+	font-size: inherit;
+	line-height: 1;
+}
+
+.mpd-nav-icon svg {
+	display: block;
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+.mpd-nav-link:hover .mpd-nav-icon {
+	color: inherit;
+}
+
+.mpd-nav-prev .mpd-nav-icon {
+	margin-right: 5px;
+}
+
+.mpd-nav-next .mpd-nav-icon {
+	margin-left: 5px;
+}
+
+.mpd-nav-prev .mpd-nav-content {
+	text-align: left;
+}
+
+.mpd-nav-next {
+	margin-left: auto;
+}
+
+.mpd-nav-next .mpd-nav-content {
+	text-align: right;
+}
+
+.mpd-nav-content {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+}
+
+.mpd-nav-label {
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #666;
+}
+
+.mpd-nav-product-title {
+	font-weight: 600;
+}
+
+.mpd-nav-product-price {
+	font-size: 14px;
+	color: #666;
+}
+
+.mpd-nav-thumbnail img {
+	border-radius: 4px;
+	object-fit: cover;
+}
+
+/* Popup Preview */
+.mpd-nav-popup-preview .mpd-nav-link {
+	position: relative;
+}
+
+.mpd-nav-popup {
+	position: absolute;
+	bottom: calc(100% + 10px);
+	left: 50%;
+	transform: translateX(-50%) translateY(10px);
+	background: #fff;
+	padding: 0;
+	border-radius: 12px;
+	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.3s ease;
+	z-index: 1000;
+	width: 280px;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.mpd-nav-popup::before {
+	content: '';
+	position: absolute;
+	bottom: -8px;
+	left: 50%;
+	transform: translateX(-50%);
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-top: 8px solid #fff;
+}
+
+.mpd-nav-popup-prev {
+	left: 0;
+	transform: translateX(0) translateY(10px);
+}
+
+.mpd-nav-popup-prev::before {
+	left: 30px;
+	transform: none;
+}
+
+.mpd-nav-popup-next {
+	left: auto;
+	right: 0;
+	transform: translateX(0) translateY(10px);
+}
+
+.mpd-nav-popup-next::before {
+	left: auto;
+	right: 30px;
+	transform: none;
+}
+
+.mpd-nav-link:hover .mpd-nav-popup {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(-50%) translateY(0);
+	pointer-events: auto;
+}
+
+.mpd-nav-link:hover .mpd-nav-popup-prev {
+	transform: translateX(0) translateY(0);
+}
+
+.mpd-nav-link:hover .mpd-nav-popup-next {
+	transform: translateX(0) translateY(0);
+}
+
+.mpd-nav-popup-image {
+	width: 100%;
+	height: 180px;
+	overflow: hidden;
+	background: #f5f5f5;
+}
+
+.mpd-nav-popup-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.3s ease;
+}
+
+.mpd-nav-link:hover .mpd-nav-popup-image img {
+	transform: scale(1.05);
+}
+
+.mpd-nav-popup-content {
+	padding: 15px;
+	text-align: left;
+}
+
+.mpd-nav-popup-title {
+	font-size: 15px;
+	font-weight: 600;
+	margin: 0 0 8px;
+	color: #333;
+	line-height: 1.3;
+}
+
+.mpd-nav-popup-rating {
+	margin-bottom: 8px;
+}
+
+.mpd-nav-popup-rating .star-rating {
+	font-size: 13px;
+}
+
+.mpd-nav-popup-price {
+	font-size: 16px;
+	font-weight: 700;
+	color: #333;
+	margin-bottom: 8px;
+}
+
+.mpd-nav-popup-price del {
+	color: #999;
+	font-weight: 400;
+	font-size: 14px;
+}
+
+.mpd-nav-popup-price ins {
+	text-decoration: none;
+	color: #e74c3c;
+}
+
+.mpd-nav-popup-excerpt {
+	font-size: 13px;
+	color: #666;
+	line-height: 1.5;
+}
+
+/* ==========================================================================
+   Editor Placeholder
+   ========================================================================== */
+.mpd-editor-placeholder {
+	padding: 30px;
+	background: #f9f9f9;
+	border: 2px dashed #ddd;
+	border-radius: 8px;
+	text-align: center;
+}
+
+.mpd-editor-placeholder-icon {
+	font-size: 48px;
+	color: #999;
+	margin-bottom: 15px;
+}
+
+.mpd-editor-placeholder-title {
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+.mpd-editor-placeholder-message {
+	color: #666;
+}
+
+/* ==========================================================================
+   Pro Feature Lock Notice
+   ========================================================================== */
+.mpd-pro-feature-notice {
+	padding: 15px;
+	background: linear-gradient(135deg, #f6f7f9 0%, #e9ebee 100%);
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	margin-bottom: 20px;
+}
+
+.mpd-pro-feature-notice h4 {
+	margin: 0 0 10px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.mpd-pro-feature-notice h4 i {
+	color: #f39c12;
+}
+
+.mpd-pro-feature-notice p {
+	margin: 0;
+	font-size: 13px;
+	color: #666;
+}
+
+/* ==========================================================================
+   Responsive Styles
+   ========================================================================== */
+@media (max-width: 991px) {
+	.mpd-related-products .products,
+	.mpd-upsells .products {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media (max-width: 767px) {
+	.mpd-product-navigation {
+		flex-direction: column;
+	}
+	
+	.mpd-nav-next {
+		margin-left: 0;
+	}
+	
+	.mpd-reviews-grid {
+		grid-template-columns: 1fr;
+	}
+	
+	/* Vertical tabs mobile */
+	.mpd-tabs-vertical,
+	.mpd-product-tabs.mpd-tabs-layout-vertical .woocommerce-tabs {
+		flex-direction: column;
+	}
+	
+	.mpd-tabs-vertical .mpd-tabs-nav,
+	.mpd-product-tabs.mpd-tabs-layout-vertical .woocommerce-tabs ul.tabs {
+		flex-direction: row;
+		border-right: none;
+		border-bottom: 2px solid #eee;
+		min-width: auto;
+		overflow-x: auto;
+	}
+	
+	.mpd-tabs-vertical .mpd-tabs-nav-item,
+	.mpd-product-tabs.mpd-tabs-layout-vertical .woocommerce-tabs ul.tabs li a {
+		border-right: none;
+		border-bottom: 2px solid transparent;
+		margin-right: 0;
+		margin-bottom: -2px;
+		white-space: nowrap;
+	}
+	
+	.mpd-tabs-vertical .mpd-tabs-nav-item:hover,
+	.mpd-tabs-vertical .mpd-tabs-nav-item.active,
+	.mpd-product-tabs.mpd-tabs-layout-vertical .woocommerce-tabs ul.tabs li a:hover,
+	.mpd-product-tabs.mpd-tabs-layout-vertical .woocommerce-tabs ul.tabs li.active a {
+		border-right-color: transparent;
+		border-bottom-color: var(--mpd-primary-color, #333);
+	}
+	
+	/* WooCommerce products grid mobile */
+	.mpd-related-products .products,
+	.mpd-upsells .products {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	
+	/* Gallery left/right layout to stacked on tablet */
+	.mpd-product-gallery .mpd-gallery-flex-container {
+		flex-direction: column;
+	}
+	
+	.mpd-product-gallery .mpd-thumbs-vertical {
+		width: 100%;
+		flex-direction: row;
+		max-height: none;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+	
+	.mpd-product-gallery .mpd-thumbs-vertical li img {
+		width: 60px;
+		height: 60px;
+	}
+	
+	.mpd-gallery-layout-thumbnails-left .mpd-thumbs-vertical,
+	.mpd-gallery-layout-thumbnails-right .mpd-thumbs-vertical {
+		order: 1;
+	}
+	
+	.mpd-gallery-layout-thumbnails-left .woocommerce-product-gallery__wrapper,
+	.mpd-gallery-layout-thumbnails-right .woocommerce-product-gallery__wrapper {
+		order: 0;
+	}
+	
+	/* Gallery thumbnails mobile */
+	.mpd-product-gallery .woocommerce-product-gallery .flex-control-thumbs li {
+		width: 60px;
+	}
+	
+	.mpd-product-gallery .woocommerce-product-gallery .flex-control-thumbs li img {
+		height: 60px;
+	}
+	
+	/* Reviews mobile */
+	.mpd-product-reviews #reviews .commentlist .comment_container {
+		flex-direction: column;
+		text-align: center;
+	}
+	
+	.mpd-upsells-list .mpd-upsell-item {
+		flex-direction: column;
+		text-align: center;
+	}
+	
+	.mpd-upsells-list .mpd-upsell-image {
+		width: 100%;
+		max-width: 200px;
+	}
+	
+	.mpd-attributes-table th,
+	.mpd-attributes-table td {
+		display: block;
+		width: 100%;
+	}
+	
+	.mpd-attributes-table th {
+		border-bottom: none;
+		padding-bottom: 5px;
+	}
+	
+	.mpd-attributes-table td {
+		padding-top: 5px;
+		border-bottom: 1px solid #eee;
+		margin-bottom: 10px;
+	}
+}
+
+@media (max-width: 480px) {
+	.mpd-related-products .products,
+	.mpd-upsells .products {
+		grid-template-columns: 1fr;
+	}
+	
+	.mpd-product-tabs .woocommerce-tabs ul.tabs li a {
+		padding: 10px 15px;
+	}
+	
+	/* Gallery thumbnails smaller on mobile */
+	.mpd-product-gallery .mpd-thumbs-horizontal li img,
+	.mpd-product-gallery .mpd-thumbs-vertical li img {
+		width: 50px;
+		height: 50px;
+	}
+}
+
+/* ==========================================================================
+   Action Buttons Widget (Compare, Wishlist, Quick View)
+   ========================================================================== */
+.mpd-action-buttons-widget {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+/* Horizontal Layout (default) */
+.mpd-action-buttons-widget.mpd-action-btn-layout--horizontal {
+	flex-direction: row;
+}
+
+/* Vertical Layout */
+.mpd-action-buttons-widget.mpd-action-btn-layout--vertical {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.mpd-action-buttons-widget .mpd-action-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 10px 16px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	background: #fff;
+	color: #333;
+	cursor: pointer;
+	text-decoration: none;
+	transition: all 0.3s ease;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.mpd-action-buttons-widget .mpd-action-btn:hover {
+	background: #f5f5f5;
+	border-color: #ccc;
+}
+
+.mpd-action-buttons-widget .mpd-action-btn i,
+.mpd-action-buttons-widget .mpd-action-btn svg {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+
+/* Compare Button */
+.mpd-action-buttons-widget .mpd-compare-btn {
+	--btn-color: #3498db;
+}
+
+.mpd-action-buttons-widget .mpd-compare-btn:hover {
+	background: var(--btn-color);
+	border-color: var(--btn-color);
+	color: #fff;
+}
+
+.mpd-action-buttons-widget .mpd-compare-btn.active {
+	background: var(--btn-color);
+	border-color: var(--btn-color);
+	color: #fff;
+}
+
+/* Wishlist Button */
+.mpd-action-buttons-widget .mpd-wishlist-btn {
+	--btn-color: #e74c3c;
+}
+
+.mpd-action-buttons-widget .mpd-wishlist-btn:hover {
+	background: var(--btn-color);
+	border-color: var(--btn-color);
+	color: #fff;
+}
+
+.mpd-action-buttons-widget .mpd-wishlist-btn.active {
+	background: var(--btn-color);
+	border-color: var(--btn-color);
+	color: #fff;
+}
+
+/* Quick View Button */
+.mpd-action-buttons-widget .mpd-quick-view-btn {
+	--btn-color: #9b59b6;
+}
+
+.mpd-action-buttons-widget .mpd-quick-view-btn:hover {
+	background: var(--btn-color);
+	border-color: var(--btn-color);
+	color: #fff;
+}
+
+/* Icon-only mode */
+.mpd-action-buttons-widget .mpd-action-btn.mpd-btn-icon-only {
+	padding: 10px;
+	width: 40px;
+	height: 40px;
+}
+
+.mpd-action-buttons-widget .mpd-action-btn.mpd-btn-icon-only span:not(.mpd-btn-icon) {
+	display: none;
+}
+
+/* Loading state */
+.mpd-action-buttons-widget .mpd-action-btn.loading {
+	pointer-events: none;
+	opacity: 0.7;
+}
+
+.mpd-action-buttons-widget .mpd-action-btn.loading::after {
+	content: '';
+	width: 14px;
+	height: 14px;
+	border: 2px solid transparent;
+	border-top-color: currentColor;
+	border-radius: 50%;
+	animation: mpd-btn-spin 0.8s linear infinite;
+}
+
+@keyframes mpd-btn-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* Tooltip */
+.mpd-action-buttons-widget .mpd-action-btn[data-tooltip] {
+	position: relative;
+}
+
+.mpd-action-buttons-widget .mpd-action-btn[data-tooltip]::before {
+	content: attr(data-tooltip);
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 6px 10px;
+	background: #333;
+	color: #fff;
+	font-size: 12px;
+	white-space: nowrap;
+	border-radius: 4px;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.2s ease;
+	margin-bottom: 8px;
+	pointer-events: none;
+}
+
+.mpd-action-buttons-widget .mpd-action-btn[data-tooltip]:hover::before {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Editor Mode - Disable button clicks */
+.mpd-action-buttons-widget.mpd-editor-mode {
+	pointer-events: none;
+}
+
+.mpd-action-buttons-widget.mpd-editor-mode .mpd-action-btn {
+	cursor: default;
+}
+
+/* In-wishlist state */
+.mpd-action-buttons-widget .mpd-wishlist-btn.in-wishlist {
+	background: #e74c3c;
+	border-color: #e74c3c;
+	color: #fff;
+}
+
+.mpd-action-buttons-widget .mpd-wishlist-btn.in-wishlist i::before {
+	content: '\e80f'; /* Elementor filled heart icon */
+}
+
+/* In-comparison state */
+.mpd-action-buttons-widget .mpd-compare-btn.in-comparison {
+	background: #3498db;
+	border-color: #3498db;
+	color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+	.mpd-action-buttons-widget.mpd-action-btn-layout--horizontal {
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	
+	.mpd-action-buttons-widget.mpd-action-btn-layout--vertical {
+		align-items: center;
+	}
+}

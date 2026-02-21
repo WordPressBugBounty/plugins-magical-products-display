@@ -1,0 +1,490 @@
+/**
+ * MPD Thank You Page Widgets Styles
+ *
+ * Styles for order confirmation, order details, order items,
+ * and customer details widgets.
+ *
+ * @package Magical_Shop_Builder
+ * @since   2.1.0
+ */
+
+/* ==========================================================================
+   Order Confirmation Widget
+   ========================================================================== */
+
+.mpd-order-confirmation {
+	text-align: center;
+	padding: 30px;
+}
+
+.mpd-order-confirmation-icon {
+	margin-bottom: 15px;
+}
+
+.mpd-order-confirmation-icon i,
+.mpd-order-confirmation-icon svg {
+	color: #22c55e;
+	font-size: 60px;
+	width: 60px;
+	height: 60px;
+}
+
+.mpd-order-confirmation-title {
+	margin: 0 0 10px 0;
+	font-size: 24px;
+	font-weight: 600;
+	color: #1e293b;
+}
+
+.mpd-order-confirmation-number {
+	margin: 0;
+	font-size: 16px;
+	color: #64748b;
+}
+
+.mpd-order-confirmation-number strong {
+	color: #7c3aed;
+}
+
+.mpd-order-confirmation-failed {
+	padding: 20px;
+	background-color: #fef2f2;
+	border-radius: 8px;
+}
+
+.mpd-order-confirmation-failed .mpd-order-confirmation-message {
+	color: #dc2626;
+	margin-bottom: 15px;
+}
+
+.mpd-order-confirmation-retry .button {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #7c3aed;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 6px;
+	font-weight: 500;
+	transition: background-color 0.2s ease;
+}
+
+.mpd-order-confirmation-retry .button:hover {
+	background-color: #6d28d9;
+}
+
+.mpd-order-confirmation-empty {
+	text-align: center;
+	padding: 40px;
+	color: #64748b;
+}
+
+/* ==========================================================================
+   Order Details Widget
+   ========================================================================== */
+
+.mpd-order-details {
+	padding: 20px;
+	background-color: #f8fafc;
+	border-radius: 8px;
+}
+
+.mpd-order-details-title {
+	margin: 0 0 15px 0;
+	font-size: 20px;
+	font-weight: 600;
+	color: #1e293b;
+}
+
+/* List Layout */
+.mpd-order-details-list .mpd-order-details-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 0;
+	border-bottom: 1px solid #e2e8f0;
+}
+
+.mpd-order-details-list .mpd-order-details-item:last-child {
+	border-bottom: none;
+}
+
+/* Grid Layout */
+.mpd-order-details-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 15px;
+}
+
+.mpd-order-details-grid .mpd-order-details-item {
+	display: flex;
+	flex-direction: column;
+	padding: 15px;
+	background-color: #fff;
+	border-radius: 6px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Inline Layout */
+.mpd-order-details-inline {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.mpd-order-details-inline .mpd-order-details-item {
+	display: inline-flex;
+	gap: 5px;
+	padding: 8px 15px;
+	background-color: #fff;
+	border-radius: 20px;
+	border: 1px solid #e2e8f0;
+}
+
+.mpd-order-details-label {
+	font-size: 14px;
+	color: #64748b;
+}
+
+.mpd-order-details-value {
+	font-size: 14px;
+	font-weight: 600;
+	color: #1e293b;
+}
+
+.mpd-order-details-empty {
+	text-align: center;
+	padding: 30px;
+	color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.mpd-order-details-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (max-width: 480px) {
+	.mpd-order-details-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.mpd-order-details-inline {
+		flex-direction: column;
+	}
+}
+
+/* ==========================================================================
+   Order Items Widget
+   ========================================================================== */
+
+.mpd-order-items {
+	padding: 0;
+}
+
+.mpd-order-items-title {
+	margin: 0 0 15px 0;
+	font-size: 20px;
+	font-weight: 600;
+	color: #1e293b;
+}
+
+.mpd-order-items-table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.mpd-order-items-table thead th {
+	text-align: left;
+	padding: 12px 15px;
+	background-color: #f1f5f9;
+	font-weight: 600;
+	font-size: 14px;
+	color: #475569;
+	border-bottom: 1px solid #e2e8f0;
+}
+
+.mpd-order-items-table tbody td {
+	padding: 12px 15px;
+	border-bottom: 1px solid #e2e8f0;
+	vertical-align: middle;
+}
+
+.mpd-order-items-table tbody tr:last-child td {
+	border-bottom: none;
+}
+
+.mpd-order-items-col-image {
+	width: 80px;
+}
+
+.mpd-order-items-col-quantity {
+	width: 80px;
+	text-align: center;
+}
+
+.mpd-order-items-col-price {
+	width: 120px;
+	text-align: right;
+}
+
+.mpd-order-items-table thead th.mpd-order-items-col-quantity,
+.mpd-order-items-table thead th.mpd-order-items-col-price {
+	text-align: center;
+}
+
+.mpd-order-items-table thead th.mpd-order-items-col-price {
+	text-align: right;
+}
+
+.mpd-order-items-thumbnail img {
+	width: 60px;
+	height: 60px;
+	object-fit: cover;
+	border-radius: 6px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.mpd-order-items-product-name {
+	display: block;
+	font-weight: 500;
+	color: #1e293b;
+}
+
+.mpd-order-items-product-name a {
+	color: inherit;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.mpd-order-items-product-name a:hover {
+	color: #7c3aed;
+}
+
+.mpd-order-items-sku {
+	display: block;
+	font-size: 12px;
+	color: #94a3b8;
+	margin-top: 4px;
+}
+
+.mpd-order-items-quantity {
+	text-align: center;
+	font-weight: 500;
+}
+
+.mpd-order-items-price {
+	text-align: right;
+	font-weight: 600;
+}
+
+/* Order Totals */
+.mpd-order-items-totals {
+	background-color: #f8fafc;
+}
+
+.mpd-order-items-totals tr th,
+.mpd-order-items-totals tr td {
+	padding: 10px 15px;
+	border-top: 1px solid #e2e8f0;
+}
+
+.mpd-order-items-totals tr th {
+	text-align: right;
+	font-weight: 500;
+	color: #64748b;
+}
+
+.mpd-order-items-totals tr td {
+	text-align: right;
+	font-weight: 500;
+	color: #1e293b;
+}
+
+.mpd-order-items-totals tr.order-total th,
+.mpd-order-items-totals tr.order-total td {
+	font-weight: 700;
+	font-size: 16px;
+	color: #1e293b;
+}
+
+.mpd-order-items-empty {
+	text-align: center;
+	padding: 40px;
+	color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.mpd-order-items-table {
+		display: block;
+	}
+
+	.mpd-order-items-table thead {
+		display: none;
+	}
+
+	.mpd-order-items-table tbody,
+	.mpd-order-items-table tfoot {
+		display: block;
+	}
+
+	.mpd-order-items-table tbody tr {
+		display: flex;
+		flex-wrap: wrap;
+		padding: 15px 0;
+		border-bottom: 1px solid #e2e8f0;
+	}
+
+	.mpd-order-items-table tbody td {
+		border: none;
+		padding: 5px 10px;
+	}
+
+	.mpd-order-items-table tbody td.mpd-order-items-thumbnail {
+		width: 70px;
+	}
+
+	.mpd-order-items-table tbody td.mpd-order-items-product {
+		flex: 1;
+	}
+
+	.mpd-order-items-table tbody td.mpd-order-items-quantity,
+	.mpd-order-items-table tbody td.mpd-order-items-price {
+		width: auto;
+	}
+
+	.mpd-order-items-totals tr {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.mpd-order-items-totals tr th,
+	.mpd-order-items-totals tr td {
+		display: block;
+	}
+
+	.mpd-order-items-totals tr th {
+		text-align: left;
+	}
+}
+
+/* ==========================================================================
+   Customer Details Widget
+   ========================================================================== */
+
+.mpd-customer-details {
+	padding: 0;
+}
+
+.mpd-customer-details-title {
+	margin: 0 0 20px 0;
+	font-size: 20px;
+	font-weight: 600;
+	color: #1e293b;
+}
+
+/* Columns Layout */
+.mpd-customer-details-columns {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 30px;
+}
+
+/* Stacked Layout */
+.mpd-customer-details-stacked {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.mpd-customer-details-address {
+	padding: 20px;
+	background-color: #f8fafc;
+	border-radius: 8px;
+}
+
+.mpd-customer-details-address-title {
+	margin: 0 0 10px 0;
+	font-size: 16px;
+	font-weight: 600;
+	color: #1e293b;
+}
+
+.mpd-customer-details-address address {
+	font-style: normal;
+	line-height: 1.6;
+	color: #475569;
+}
+
+.mpd-customer-details-contact {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #e2e8f0;
+}
+
+.mpd-customer-details-contact p {
+	margin: 0 0 10px 0;
+	font-size: 14px;
+	color: #475569;
+}
+
+.mpd-customer-details-contact p:last-child {
+	margin-bottom: 0;
+}
+
+.mpd-customer-details-contact strong {
+	font-weight: 600;
+	color: #1e293b;
+	margin-right: 5px;
+}
+
+.mpd-customer-details-contact a {
+	color: #7c3aed;
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+
+.mpd-customer-details-contact a:hover {
+	color: #6d28d9;
+	text-decoration: underline;
+}
+
+.mpd-customer-details-empty {
+	text-align: center;
+	padding: 40px;
+	color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+	.mpd-customer-details-columns {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* ==========================================================================
+   WooCommerce Item Meta Display
+   ========================================================================== */
+
+.mpd-order-items .wc-item-meta {
+	margin-top: 8px;
+	padding: 0;
+	list-style: none;
+}
+
+.mpd-order-items .wc-item-meta li {
+	font-size: 12px;
+	color: #64748b;
+	margin-bottom: 2px;
+}
+
+.mpd-order-items .wc-item-meta li strong {
+	font-weight: 500;
+}
+
+.mpd-order-items .wc-item-meta li p {
+	display: inline;
+	margin: 0;
+}

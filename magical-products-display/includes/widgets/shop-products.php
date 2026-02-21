@@ -6,6 +6,7 @@ if (!defined('ABSPATH')) {
 class mgProducts_Shop extends \Elementor\Widget_Base
 {
 	use mpdProHelpLink;
+	use \MPD\MagicalShopBuilder\Traits\Pro_Lock;
 
 	/**
 	 * Get widget name.
@@ -404,6 +405,125 @@ class mgProducts_Shop extends \Elementor\Widget_Base
 		);
 
 		
+
+		$this->end_controls_section();
+
+		// Compare & Wishlist Section (Pro)
+		$this->start_controls_section(
+			'mgpshop_compare_wishlist',
+			[
+				'label' => $this->pro_label( esc_html__('Compare & Wishlist', 'magical-products-display') ),
+			]
+		);
+
+		if ( ! $this->is_pro() ) {
+			$this->add_pro_notice( 'pro_action_buttons_notice', __( 'Compare & Wishlist Buttons', 'magical-products-display' ) );
+		}
+
+		$this->add_control(
+			'mgpshop_show_compare_btn',
+			[
+				'label'     => __('Show Compare Button', 'magical-products-display'),
+				'type'      => \Elementor\Controls_Manager::SWITCHER,
+				'default'   => '',
+			]
+		);
+
+		$this->add_control(
+			'mgpshop_show_wishlist_btn',
+			[
+				'label'     => __('Show Wishlist Button', 'magical-products-display'),
+				'type'      => \Elementor\Controls_Manager::SWITCHER,
+				'default'   => '',
+			]
+		);
+
+		$this->end_controls_section();
+
+		// Action Buttons Section (Quick View & Settings)
+		$this->start_controls_section(
+			'mgpshop_action_buttons',
+			[
+				'label' => esc_html__('Action Buttons', 'magical-products-display'),
+			]
+		);
+
+		$this->add_control(
+			'mgpshop_show_quickview_btn',
+			[
+				'label'     => __('Show Quick View Button', 'magical-products-display'),
+				'type'      => \Elementor\Controls_Manager::SWITCHER,
+				'default'   => '',
+			]
+		);
+
+		$this->add_control(
+			'mgpshop_action_btn_position',
+			[
+				'label' => esc_html__('Button Position', 'magical-products-display'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'on_image',
+				'options' => [
+					'on_image'     => esc_html__('On Image (Hover)', 'magical-products-display'),
+					'below_image'  => esc_html__('Below Image', 'magical-products-display'),
+					'top_right'    => esc_html__('Top Right', 'magical-products-display'),
+					'top_left'     => esc_html__('Top Left', 'magical-products-display'),
+				],
+				'conditions' => [
+					'relation' => 'or',
+					'terms' => [
+						[
+							'name' => 'mgpshop_show_compare_btn',
+							'operator' => '==',
+							'value' => 'yes',
+						],
+						[
+							'name' => 'mgpshop_show_wishlist_btn',
+							'operator' => '==',
+							'value' => 'yes',
+						],
+						[
+							'name' => 'mgpshop_show_quickview_btn',
+							'operator' => '==',
+							'value' => 'yes',
+						],
+					],
+				],
+			]
+		);
+
+		$this->add_control(
+			'mgpshop_action_btn_style',
+			[
+				'label' => esc_html__('Button Style', 'magical-products-display'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'icon_only',
+				'options' => [
+					'icon_only'     => esc_html__('Icon Only', 'magical-products-display'),
+					'icon_text'     => esc_html__('Icon + Text', 'magical-products-display'),
+				],
+				'conditions' => [
+					'relation' => 'or',
+					'terms' => [
+						[
+							'name' => 'mgpshop_show_compare_btn',
+							'operator' => '==',
+							'value' => 'yes',
+						],
+						[
+							'name' => 'mgpshop_show_wishlist_btn',
+							'operator' => '==',
+							'value' => 'yes',
+						],
+						[
+							'name' => 'mgpshop_show_quickview_btn',
+							'operator' => '==',
+							'value' => 'yes',
+						],
+					],
+				],
+			]
+		);
 
 		$this->end_controls_section();
 	}

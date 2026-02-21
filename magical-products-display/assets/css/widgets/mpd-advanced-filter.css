@@ -1,0 +1,996 @@
+/**
+ * MPD Advanced Filter Widget Styles
+ *
+ * @package Magical_Shop_Builder
+ * @since   2.0.0
+ */
+
+/* ========================================
+   Toggle Button
+   ======================================== */
+.mpd-advanced-filter__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mpd-advanced-filter__toggle:hover {
+    background-color: #555;
+}
+
+.mpd-advanced-filter__toggle svg,
+.mpd-advanced-filter__toggle i {
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    color: #fff;
+    fill: #fff;
+}
+
+.mpd-advanced-filter__toggle svg path {
+    fill: currentColor;
+}
+
+/* ========================================
+   Filter Container - Normal
+   ======================================== */
+.mpd-advanced-filter--normal .mpd-advanced-filter__content {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+/* ========================================
+   Filter Container - Sidebar
+   ======================================== */
+.mpd-advanced-filter--sidebar .mpd-advanced-filter__content {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 320px;
+    max-width: 90vw;
+    background: #fff;
+    z-index: 9999;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Sidebar header - fixed at top */
+.mpd-advanced-filter--sidebar .mpd-advanced-filter__header {
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 10;
+}
+
+.mpd-advanced-filter--sidebar .mpd-advanced-filter__header .mpd-advanced-filter__title {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.mpd-advanced-filter--sidebar .mpd-advanced-filter__header .mpd-advanced-filter__close {
+    position: relative;
+    top: auto;
+    right: auto;
+    flex-shrink: 0;
+}
+
+/* Sidebar body - scrollable */
+.mpd-advanced-filter--sidebar .mpd-advanced-filter__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.mpd-advanced-filter--sidebar-left .mpd-advanced-filter__content {
+    left: 0;
+    transform: translateX(-100%);
+}
+
+.mpd-advanced-filter--sidebar-right .mpd-advanced-filter__content {
+    right: 0;
+    left: auto;
+    transform: translateX(100%);
+}
+
+/* Support both main wrapper and inner container having is-open */
+.mpd-advanced-filter--sidebar.is-open .mpd-advanced-filter__content,
+.mpd-advanced-filter__desktop.mpd-advanced-filter--sidebar.is-open .mpd-advanced-filter__content,
+.mpd-advanced-filter__mobile.mpd-advanced-filter--sidebar.is-open .mpd-advanced-filter__content {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ========================================
+   Filter Container - Popup
+   ======================================== */
+.mpd-advanced-filter--popup .mpd-advanced-filter__content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 500px;
+    max-width: 90vw;
+    max-height: 80vh;
+    background: #fff;
+    z-index: 9999;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Popup header - fixed at top */
+.mpd-advanced-filter--popup .mpd-advanced-filter__header {
+    position: sticky;
+    top: 0;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    z-index: 10;
+}
+
+.mpd-advanced-filter--popup .mpd-advanced-filter__header .mpd-advanced-filter__title {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.mpd-advanced-filter--popup .mpd-advanced-filter__header .mpd-advanced-filter__close {
+    position: relative;
+    top: auto;
+    right: auto;
+    flex-shrink: 0;
+}
+
+/* Popup body - scrollable */
+.mpd-advanced-filter--popup .mpd-advanced-filter__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Support both main wrapper and inner container having is-open */
+.mpd-advanced-filter--popup.is-open .mpd-advanced-filter__content,
+.mpd-advanced-filter__desktop.mpd-advanced-filter--popup.is-open .mpd-advanced-filter__content,
+.mpd-advanced-filter__mobile.mpd-advanced-filter--popup.is-open .mpd-advanced-filter__content {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* ========================================
+   Overlay
+   ======================================== */
+.mpd-advanced-filter__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Support both main wrapper and inner container having is-open */
+.mpd-advanced-filter.is-open .mpd-advanced-filter__overlay,
+.mpd-advanced-filter__desktop.is-open .mpd-advanced-filter__overlay,
+.mpd-advanced-filter__mobile.is-open .mpd-advanced-filter__overlay {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* ========================================
+   Close Button
+   ======================================== */
+.mpd-advanced-filter__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 1;
+    color: #666;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.mpd-advanced-filter__close:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* ========================================
+   Filter Title
+   ======================================== */
+.mpd-advanced-filter__title {
+    margin: 0 0 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* ========================================
+   Filter Sections
+   ======================================== */
+.mpd-advanced-filter__section {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.mpd-advanced-filter__section:last-of-type {
+    border-bottom: none;
+}
+
+.mpd-advanced-filter__section-title {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ========================================
+   Filter Lists
+   ======================================== */
+.mpd-advanced-filter__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mpd-advanced-filter__item {
+    margin-bottom: 8px;
+}
+
+.mpd-advanced-filter__item:last-child {
+    margin-bottom: 0;
+}
+
+.mpd-advanced-filter__item a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    color: #555;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.mpd-advanced-filter__item a:hover,
+.mpd-advanced-filter__item.is-active a {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.mpd-advanced-filter__item label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    color: #555;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.mpd-advanced-filter__item label:hover {
+    color: #333;
+}
+
+.mpd-advanced-filter__item.is-active label {
+    color: #333;
+    font-weight: 500;
+}
+
+.mpd-advanced-filter__count {
+    color: #999;
+    font-size: 12px;
+    margin-left: auto;
+}
+
+/* ========================================
+   Checkboxes & Radios
+   ======================================== */
+.mpd-advanced-filter__checkbox,
+.mpd-advanced-filter__radio {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: #333;
+}
+
+/* ========================================
+   Dropdowns
+   ======================================== */
+.mpd-advanced-filter__dropdown {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.mpd-advanced-filter__dropdown:hover,
+.mpd-advanced-filter__dropdown:focus {
+    border-color: #999;
+    outline: none;
+}
+
+/* ========================================
+   Price Filter
+   ======================================== */
+.mpd-advanced-filter__price-inputs {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.mpd-advanced-filter__price-input {
+    flex: 1;
+}
+
+.mpd-advanced-filter__price-input label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #666;
+}
+
+.mpd-advanced-filter__input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+.mpd-advanced-filter__input:hover,
+.mpd-advanced-filter__input:focus {
+    border-color: #999;
+    outline: none;
+}
+
+.mpd-advanced-filter__price-separator {
+    padding-bottom: 10px;
+    color: #999;
+    font-weight: 500;
+}
+
+/* Price Slider (WooCommerce style) */
+.mpd-advanced-filter__section--price .price_slider_wrapper {
+    padding: 10px 0;
+}
+
+.mpd-advanced-filter__section--price .price_slider {
+    margin-bottom: 15px;
+    background-color: #e0e0e0;
+    height: 4px;
+    position: relative;
+    border-radius: 2px;
+}
+
+.mpd-advanced-filter__section--price .price_slider .ui-slider-range {
+    background-color: var(--mpd-primary-color, #333);
+    height: 100%;
+    position: absolute;
+    border-radius: 2px;
+}
+
+.mpd-advanced-filter__section--price .price_slider .ui-slider-handle {
+    width: 16px;
+    height: 16px;
+    background-color: var(--mpd-primary-color, #333);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: -8px;
+    cursor: pointer;
+    z-index: 2;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.mpd-advanced-filter__section--price .price_slider .ui-slider-handle:focus {
+    outline: none;
+}
+
+.mpd-advanced-filter__section--price .price_label {
+    font-size: 14px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.mpd-advanced-filter__section--price .price_label .from,
+.mpd-advanced-filter__section--price .price_label .to {
+    font-weight: 600;
+    color: var(--mpd-primary-color, #333);
+}
+
+/* Preview slider for Elementor editor */
+.mpd-advanced-filter__section--price .mpd-price-filter__preview-slider {
+    margin-bottom: 15px;
+    background-color: #e0e0e0;
+    height: 4px;
+    position: relative;
+    border-radius: 2px;
+}
+
+.mpd-advanced-filter__section--price .mpd-price-filter__preview-slider .ui-slider-range {
+    background-color: var(--mpd-primary-color, #333);
+    height: 100%;
+    position: absolute;
+    border-radius: 2px;
+}
+
+.mpd-advanced-filter__section--price .mpd-price-filter__preview-slider .ui-slider-handle {
+    width: 16px;
+    height: 16px;
+    background-color: var(--mpd-primary-color, #333);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: -8px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   Tag Cloud
+   ======================================== */
+.mpd-advanced-filter__cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.mpd-advanced-filter__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 12px;
+    background: #f5f5f5;
+    color: #555;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.mpd-advanced-filter__tag:hover,
+.mpd-advanced-filter__tag.is-active {
+    background: #333;
+    color: #fff;
+}
+
+/* ========================================
+   Rating Filter
+   ======================================== */
+.mpd-advanced-filter__stars {
+    display: inline-flex;
+    gap: 2px;
+}
+
+.mpd-advanced-filter__stars .star {
+    color: #ffc107;
+    font-size: 16px;
+}
+
+.mpd-advanced-filter__stars .star.empty {
+    color: #ddd;
+}
+
+.mpd-advanced-filter__rating-text {
+    font-size: 13px;
+    color: #666;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+.mpd-advanced-filter__buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.mpd-advanced-filter__button {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mpd-advanced-filter__button--apply {
+    background: #333;
+    color: #fff;
+}
+
+.mpd-advanced-filter__button--apply:hover {
+    background: #555;
+}
+
+.mpd-advanced-filter__button--reset {
+    background: #f5f5f5;
+    color: #666;
+}
+
+.mpd-advanced-filter__button--reset:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+/* ========================================
+   Loading State
+   ======================================== */
+.mpd-advanced-filter.is-loading .mpd-advanced-filter__content {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.mpd-advanced-filter.is-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #333;
+    border-radius: 50%;
+    animation: mpd-spin 0.8s linear infinite;
+}
+
+@keyframes mpd-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 768px) {
+    .mpd-advanced-filter--popup .mpd-advanced-filter__content {
+        width: 95vw;
+        max-height: 90vh;
+        padding: 20px;
+    }
+
+    .mpd-advanced-filter__buttons {
+        flex-direction: column;
+    }
+
+    .mpd-advanced-filter__button {
+        width: 100%;
+    }
+}
+
+/* ========================================
+   Inline Dropdown Bar Style
+   ======================================== */
+.mpd-advanced-filter--inline .mpd-advanced-filter__inline-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Inline Dropdown */
+.mpd-inline-dropdown {
+    position: relative;
+}
+
+.mpd-inline-dropdown__trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.mpd-inline-dropdown__trigger:hover {
+    border-color: #333;
+}
+
+.mpd-inline-dropdown.is-open .mpd-inline-dropdown__trigger {
+    border-color: #333;
+}
+
+.mpd-inline-dropdown__icon {
+    transition: transform 0.2s ease;
+}
+
+.mpd-inline-dropdown.is-open .mpd-inline-dropdown__icon {
+    transform: rotate(180deg);
+}
+
+.mpd-inline-dropdown__content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 100;
+    min-width: 180px;
+    margin-top: 5px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+}
+
+.mpd-inline-dropdown.is-open .mpd-inline-dropdown__content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.mpd-inline-dropdown__list {
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.mpd-inline-dropdown__item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    color: #555;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: none;
+    transition: all 0.2s ease;
+}
+
+.mpd-inline-dropdown__item a:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.mpd-inline-dropdown__item.is-active a {
+    background: #f0f0f0;
+    color: #333;
+    font-weight: 500;
+}
+
+.mpd-inline-dropdown__item.is-active a::after {
+    content: '✓';
+    font-size: 12px;
+    color: #333;
+}
+
+.mpd-inline-dropdown__count {
+    font-size: 12px;
+    color: #999;
+    margin-left: 8px;
+}
+
+/* Inline Price Filter */
+.mpd-inline-dropdown--price .mpd-inline-dropdown__content--price {
+    padding: 15px;
+    min-width: 200px;
+}
+
+.mpd-inline-price-inputs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.mpd-inline-price-input {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 70px;
+    text-align: center;
+}
+
+.mpd-inline-price-input:focus {
+    border-color: #333;
+    outline: none;
+}
+
+.mpd-inline-price-separator {
+    color: #999;
+    font-size: 14px;
+}
+
+.mpd-inline-price-apply {
+    display: block;
+    width: 100%;
+    padding: 8px 15px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.mpd-inline-price-apply:hover {
+    background: #555;
+}
+
+/* Inline Rating Stars */
+.mpd-inline-dropdown__stars {
+    display: inline-flex;
+    gap: 2px;
+    margin-right: 5px;
+}
+
+.mpd-inline-dropdown__stars .star {
+    font-size: 14px;
+}
+
+.mpd-inline-dropdown__stars .star.filled {
+    color: #ffc107;
+}
+
+.mpd-inline-dropdown__stars .star.empty {
+    color: #ddd;
+}
+
+.mpd-inline-dropdown__rating-text {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Reset Link */
+.mpd-advanced-filter__reset-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 16px;
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.mpd-advanced-filter__reset-link:hover {
+    color: #004999;
+    text-decoration: underline;
+}
+
+/* Active Filter Indicator */
+.mpd-inline-dropdown.has-selection .mpd-inline-dropdown__trigger {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.mpd-inline-dropdown.has-selection .mpd-inline-dropdown__trigger .mpd-inline-dropdown__icon {
+    color: #fff;
+}
+
+/* Inline Responsive */
+@media (max-width: 768px) {
+    .mpd-advanced-filter--inline .mpd-advanced-filter__inline-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .mpd-inline-dropdown {
+        width: 100%;
+    }
+
+    .mpd-inline-dropdown__trigger {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .mpd-inline-dropdown__content {
+        left: 0;
+        right: 0;
+        min-width: 100%;
+    }
+
+    .mpd-advanced-filter__reset-link {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        border: 1px solid #0066cc;
+        border-radius: 4px;
+    }
+
+    .mpd-inline-toggle {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ========================================
+   Inline Toggle Buttons (Featured, Sale)
+   ======================================== */
+.mpd-inline-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.mpd-inline-toggle:hover {
+    border-color: #333;
+}
+
+.mpd-inline-toggle.is-active {
+    background: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+.mpd-inline-toggle__icon {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.mpd-inline-toggle.is-active .mpd-inline-toggle__icon {
+    color: #ffc107;
+}
+
+/* Rating Stars in Dropdown */
+.mpd-inline-dropdown__stars {
+    display: inline-flex;
+    gap: 1px;
+    margin-right: 8px;
+}
+
+.mpd-inline-dropdown__stars .star {
+    font-size: 14px;
+    line-height: 1;
+}
+
+.mpd-inline-dropdown__stars .star.filled {
+    color: #ffc107;
+}
+
+.mpd-inline-dropdown__stars .star.empty {
+    color: #ddd;
+}
+
+.mpd-inline-dropdown__rating-text {
+    font-size: 12px;
+    color: #666;
+}
+
+/* ========================================
+   Responsive Display Mode Utilities
+   ======================================== */
+
+/* Responsive container for different desktop/mobile styles */
+.mpd-advanced-filter--responsive {
+    position: relative;
+}
+
+/* Desktop layout - visible on desktop (768px+), hidden on mobile */
+.mpd-advanced-filter--responsive .mpd-advanced-filter__desktop {
+    display: block !important;
+}
+
+.mpd-advanced-filter--responsive .mpd-advanced-filter__mobile {
+    display: none !important;
+}
+
+/* Mobile breakpoint - typically 767px and below */
+@media (max-width: 767px) {
+    /* Hide desktop layout on mobile */
+    .mpd-advanced-filter--responsive .mpd-advanced-filter__desktop {
+        display: none !important;
+    }
+
+    /* Show mobile layout on mobile */
+    .mpd-advanced-filter--responsive .mpd-advanced-filter__mobile {
+        display: block !important;
+    }
+}
+
+/* Responsive mode specific styling */
+.mpd-advanced-filter--responsive .mpd-advanced-filter__desktop,
+.mpd-advanced-filter--responsive .mpd-advanced-filter__mobile {
+    width: 100%;
+}

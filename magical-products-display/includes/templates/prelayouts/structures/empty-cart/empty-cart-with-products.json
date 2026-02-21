@@ -1,0 +1,126 @@
+ [
+    {
+      "id": "auto_001",
+      "settings": {
+        "content_width": "full",
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "50",
+          "right": "20",
+          "bottom": "50",
+          "left": "20",
+          "isLinked": false
+        },
+        "background_background": "classic",
+        "background_color": "#F8F9FA",
+        "magical_custom_attributes": []
+      },
+      "elements": [
+        {
+          "id": "auto_002",
+          "settings": {
+            "content_width": "full",
+            "width": {
+              "unit": "%",
+              "size": 100,
+              "sizes": []
+            },
+            "flex_direction": "column",
+            "background_background": "classic",
+            "background_color": "#FFFFFF",
+            "border_radius": {
+              "unit": "px",
+              "top": "12",
+              "right": "12",
+              "bottom": "12",
+              "left": "12",
+              "isLinked": true
+            },
+            "box_shadow_box_shadow_type": "yes",
+            "box_shadow_box_shadow": {
+              "horizontal": 0,
+              "vertical": 4,
+              "blur": 20,
+              "spread": 0,
+              "color": "rgba(0, 0, 0, 0.08)"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "30",
+              "right": "30",
+              "bottom": "30",
+              "left": "30",
+              "isLinked": true
+            },
+            "magical_custom_attributes": []
+          },
+          "elements": [
+            {
+              "id": "auto_003",
+              "settings": {
+                "title": "Your cart is empty",
+                "description": "Looks like you haven't added any items to your cart yet. Browse our products and find something you like!",
+                "button_text": "Return to Shop",
+                "show_suggestions": "yes",
+                "suggestions_title": "You might like these",
+                "container_background_background": "classic",
+                "icon_color": "#A8A8A8",
+                "magical_custom_attributes": []
+              },
+              "elements": [],
+              "isInner": false,
+              "widgetType": "mpd-empty-cart",
+              "elType": "widget"
+            }
+          ],
+          "isInner": true,
+          "elType": "container"
+        },
+        {
+          "id": "auto_004",
+          "settings": {
+            "content_width": "full",
+            "width": {
+              "unit": "%",
+              "size": 100,
+              "sizes": []
+            },
+            "flex_direction": "column",
+            "background_background": "classic",
+            "background_color": "#FFFFFF",
+            "border_radius": {
+              "unit": "px",
+              "top": "12",
+              "right": "12",
+              "bottom": "12",
+              "left": "12",
+              "isLinked": true
+            },
+            "box_shadow_box_shadow_type": "yes",
+            "box_shadow_box_shadow": {
+              "horizontal": 0,
+              "vertical": 4,
+              "blur": 20,
+              "spread": 0,
+              "color": "rgba(0, 0, 0, 0.08)"
+            },
+            "padding": {
+              "unit": "px",
+              "top": "30",
+              "right": "30",
+              "bottom": "30",
+              "left": "30",
+              "isLinked": true
+            },
+            "magical_custom_attributes": []
+          },
+          "elements": [],
+          "isInner": true,
+          "elType": "container"
+        }
+      ],
+      "isInner": false,
+      "elType": "container"
+    }
+  ]

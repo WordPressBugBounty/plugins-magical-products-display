@@ -1,0 +1,156 @@
+[
+    {
+      "id": "auto_001",
+      "settings": {
+        "flex_direction": "column",
+        "padding": {
+          "unit": "px",
+          "top": "40",
+          "right": "0",
+          "bottom": "40",
+          "left": "0",
+          "isLinked": false
+        },
+        "magical_custom_attributes": []
+      },
+      "elements": [
+        {
+          "id": "auto_002",
+          "settings": {
+            "content_width": "full",
+            "magical_custom_attributes": []
+          },
+          "elements": [
+            {
+              "id": "auto_003",
+              "settings": {
+                "title": "Cart",
+                "align": "center",
+                "title_color": "#181818",
+                "magical_custom_attributes": []
+              },
+              "elements": [],
+              "isInner": false,
+              "widgetType": "heading",
+              "elType": "widget"
+            }
+          ],
+          "isInner": true,
+          "elType": "container"
+        },
+        {
+          "id": "auto_004",
+          "settings": {
+            "show_sku": "yes",
+            "update_cart_button_text": "Update cart",
+            "quantity_style": "modern",
+            "ajax_update": "yes",
+            "show_stock_status": "yes",
+            "coupon_button_color": "#FFFFFF",
+            "coupon_button_background": "#880C0C",
+            "magical_custom_attributes": [],
+            "table_style": "minimal",
+            "show_coupon_form": "",
+            "coupon_button_hover_color": "#FFFFFF",
+            "coupon_button_hover_background": "#4B0606"
+          },
+          "elements": [],
+          "isInner": false,
+          "widgetType": "mpd-cart-table",
+          "elType": "widget"
+        },
+        {
+          "id": "auto_005",
+          "settings": {
+            "content_width": "full",
+            "flex_direction": "row",
+            "magical_custom_attributes": []
+          },
+          "elements": [
+            {
+              "id": "auto_006",
+              "settings": {
+                "content_width": "full",
+                "magical_custom_attributes": []
+              },
+              "elements": [
+                {
+                  "id": "auto_007",
+                  "settings": {
+                    "title": "Have a coupon?",
+                    "input_placeholder": "Coupon code",
+                    "button_text": "Apply coupon",
+                    "ajax_apply": "yes",
+                    "show_suggestions": "yes",
+                    "suggestions_title": "Available Coupons",
+                    "auto_apply_url": "yes",
+                    "success_message": "Coupon applied successfully!",
+                    "error_message": "Invalid coupon code.",
+                    "magical_custom_attributes": []
+                  },
+                  "elements": [],
+                  "isInner": false,
+                  "widgetType": "mpd-coupon-form",
+                  "elType": "widget"
+                }
+              ],
+              "isInner": true,
+              "elType": "container"
+            },
+            {
+              "id": "auto_008",
+              "settings": {
+                "content_width": "full",
+                "magical_custom_attributes": []
+              },
+              "elements": [
+                {
+                  "id": "auto_009",
+                  "settings": {
+                    "title": "",
+                    "checkout_button_text": "Proceed to checkout",
+                    "savings_text": "You save",
+                    "button_background_background": "classic",
+                    "button_background_color": "#880C0C",
+                    "magical_custom_attributes": []
+                  },
+                  "elements": [],
+                  "isInner": false,
+                  "widgetType": "mpd-cart-totals",
+                  "elType": "widget"
+                }
+              ],
+              "isInner": true,
+              "elType": "container"
+            }
+          ],
+          "isInner": true,
+          "elType": "container"
+        },
+        {
+          "id": "auto_010",
+          "settings": {
+            "content_width": "full",
+            "magical_custom_attributes": []
+          },
+          "elements": [
+            {
+              "id": "auto_011",
+              "settings": {
+                "title": "You may be interested in...",
+                "magical_custom_attributes": []
+              },
+              "elements": [],
+              "isInner": false,
+              "widgetType": "mpd-cross-sells",
+              "elType": "widget"
+            }
+          ],
+          "isInner": true,
+          "elType": "container"
+        }
+      ],
+      "isInner": false,
+      "elType": "container"
+    }
+  ]

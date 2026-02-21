@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f9fa"/>
+      <stop offset="100%" style="stop-color:#e9ecef"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#bgGrad)"/>
+  
+  <!-- Success Checkmark -->
+  <circle cx="200" cy="45" r="25" fill="#28a745" opacity="0.1"/>
+  <circle cx="200" cy="45" r="18" fill="#28a745"/>
+  <path d="M192 45 L198 51 L210 39" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Thank You Text -->
+  <rect x="120" y="80" width="160" height="18" rx="2" fill="#212529"/>
+  <rect x="90" y="105" width="220" height="8" rx="1" fill="#6c757d"/>
+  
+  <!-- Order Details Box -->
+  <rect x="50" y="125" width="300" height="125" rx="6" fill="#ffffff" stroke="#dee2e6" stroke-width="1"/>
+  
+  <!-- Order Header -->
+  <rect x="65" y="138" width="80" height="12" rx="1" fill="#343a40"/>
+  <rect x="280" y="138" width="55" height="12" rx="2" fill="#28a745"/>
+  
+  <!-- Order Info Row -->
+  <rect x="65" y="160" width="50" height="8" rx="1" fill="#6c757d"/>
+  <rect x="150" y="160" width="80" height="8" rx="1" fill="#495057"/>
+  
+  <rect x="65" y="176" width="40" height="8" rx="1" fill="#6c757d"/>
+  <rect x="150" y="176" width="100" height="8" rx="1" fill="#495057"/>
+  
+  <rect x="65" y="192" width="55" height="8" rx="1" fill="#6c757d"/>
+  <rect x="150" y="192" width="70" height="8" rx="1" fill="#495057"/>
+  
+  <!-- Divider -->
+  <line x1="65" y1="210" x2="335" y2="210" stroke="#dee2e6" stroke-width="1"/>
+  
+  <!-- Total -->
+  <rect x="65" y="220" width="35" height="12" rx="1" fill="#212529"/>
+  <rect x="300" y="220" width="35" height="12" rx="1" fill="#28a745"/>
+  
+  <!-- Action Buttons -->
+  <rect x="100" y="260" width="90" height="28" rx="4" fill="#f8f9fa" stroke="#ced4da" stroke-width="1"/>
+  <rect x="210" y="260" width="90" height="28" rx="4" fill="#007bff"/>
+  
+  <!-- Label -->
+  <text x="200" y="290" font-family="Arial, sans-serif" font-size="11" fill="#6c757d" text-anchor="middle">Classic Thank You</text>
+</svg>
