@@ -3,7 +3,7 @@
  * Plugin Name:       Magical Shop Builder
  * Plugin URI:        https://wpthemespace.com/magical-shop-builder
  * Description:       Complete WooCommerce Shop Builder with Elementor - Build custom product pages, cart, checkout, my-account, Thank you page and more.
- * Version:           2.0.0
+ * Version:           2.0.1
  * Author:            Noor alam
  * Author URI:        https://wpthemespace.com
  * License:           GPL-2.0+
@@ -39,7 +39,7 @@ final class Magical_Shop_Builder {
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '2.0.0';
+	const VERSION = '2.0.1';
 
 	/**
 	 * Minimum Elementor Version

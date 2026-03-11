@@ -532,12 +532,13 @@ class Template_Manager {
 	 * @return void
 	 */
 	public function init_template_system() {
+		// Always initialize our custom template system so MPD templates work
+		// regardless of whether Elementor Pro is active.
+		$this->init_custom_template_system();
+
 		if ( $this->has_elementor_pro_theme_builder() ) {
-			// For Elementor Pro users - integrate with Theme Builder.
+			// Additionally register conditions in Elementor Pro Theme Builder.
 			$this->init_elementor_pro_integration();
-		} else {
-			// For Elementor Free users - use our custom template system.
-			$this->init_custom_template_system();
 		}
 	}
 
@@ -799,6 +800,11 @@ class Template_Manager {
 	 * @return int|false Template ID or false.
 	 */
 	public function get_template_for_current_page( $type ) {
+		// Check if this specific template type is enabled.
+		if ( ! $this->is_template_type_enabled( $type ) ) {
+			return false;
+		}
+
 		$templates = $this->get_templates_by_type( $type );
 
 		if ( empty( $templates ) ) {
@@ -824,6 +830,47 @@ class Template_Manager {
 	}
 
 	/**
+	 * Check if a specific template type is enabled in settings.
+	 *
+	 * Maps template types to their per-type enable/disable settings
+	 * stored across different option groups.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $type Template type (archive-product, single-product, cart, etc.).
+	 * @return bool True if enabled, false if disabled.
+	 */
+	public function is_template_type_enabled( $type ) {
+		switch ( $type ) {
+			case 'archive-product':
+				$settings = get_option( 'mpd_general_settings', array() );
+				// Default to true for backward compatibility.
+				return isset( $settings['enable_custom_archive'] ) ? (bool) $settings['enable_custom_archive'] : true;
+
+			case 'single-product':
+				$settings = get_option( 'mpd_single_product_settings', array() );
+				return isset( $settings['enable_custom_template'] ) ? (bool) $settings['enable_custom_template'] : false;
+
+			case 'cart':
+			case 'empty-cart':
+				$settings = get_option( 'mpd_cart_checkout_settings', array() );
+				return isset( $settings['enable_custom_cart'] ) ? (bool) $settings['enable_custom_cart'] : false;
+
+			case 'checkout':
+			case 'thankyou':
+				$settings = get_option( 'mpd_cart_checkout_settings', array() );
+				return isset( $settings['enable_custom_checkout'] ) ? (bool) $settings['enable_custom_checkout'] : false;
+
+			case 'my-account':
+				$settings = get_option( 'mpd_my_account_settings', array() );
+				return isset( $settings['enable_custom_my_account'] ) ? (bool) $settings['enable_custom_my_account'] : false;
+
+			default:
+				return true;
+		}
+	}
+
+	/**
 	 * Check if using custom template system (not Elementor Pro).
 	 *
 	 * @since 2.0.0
@@ -831,6 +878,6 @@ class Template_Manager {
 	 * @return bool
 	 */
 	public function is_using_custom_system() {
-		return ! $this->has_elementor_pro_theme_builder();
+		return true;
 	}
 }

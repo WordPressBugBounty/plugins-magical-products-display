@@ -46,6 +46,16 @@ class Template_Renderer {
 	private $is_rendering = false;
 
 	/**
+	 * Original WooCommerce archive query.
+	 *
+	 * Saved before Elementor's get_builder_content_for_display() runs,
+	 * which replaces the global $wp_query with the template post.
+	 *
+	 * @var \WP_Query|null
+	 */
+	private $original_archive_query = null;
+
+	/**
 	 * Get instance.
 	 *
 	 * @since 2.0.0
@@ -91,11 +101,6 @@ class Template_Renderer {
 	public function template_include( $template ) {
 		// Don't override if templates are disabled.
 		if ( ! Template_Manager::instance()->is_enabled() ) {
-			return $template;
-		}
-
-		// Don't override if using Elementor Pro Theme Builder.
-		if ( Template_Manager::instance()->has_elementor_pro_theme_builder() ) {
 			return $template;
 		}
 
@@ -620,7 +625,17 @@ class Template_Renderer {
 
 		// Dynamic WooCommerce pages must NOT be cached because the same
 		// template renders different content per endpoint / cart state / user.
-		$allow_cache = ! $needs_wc_wrapper;
+		// Archive pages must also not be cached because content varies by page number.
+		$allow_cache = ! $needs_wc_wrapper && 'archive-product' !== $page_type;
+
+		// Save the original WC archive query before Elementor replaces $wp_query.
+		// Elementor's get_builder_content_for_display() switches global $wp_query
+		// to query the template post, so the Products Archive widget would see
+		// no products on first load. Store the real query so the widget can use it.
+		if ( 'archive-product' === $page_type ) {
+			global $wp_query;
+			$this->original_archive_query = clone $wp_query;
+		}
 
 		// Get Elementor content.
 		$content = $this->get_elementor_content( $this->current_template, $allow_cache );
@@ -713,6 +728,17 @@ class Template_Renderer {
 	 */
 	public function is_rendering() {
 		return $this->is_rendering;
+	}
+
+	/**
+	 * Get the saved original archive query.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return \WP_Query|null The original WC archive query or null.
+	 */
+	public function get_original_archive_query() {
+		return $this->original_archive_query;
 	}
 
 	/**

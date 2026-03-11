@@ -159,6 +159,28 @@ class Add_To_Cart extends Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'view_cart_text',
+			array(
+				'label'       => __( 'View Cart Text', 'magical-products-display' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => __( 'View Cart', 'magical-products-display' ),
+				'placeholder' => __( 'View Cart', 'magical-products-display' ),
+				'separator'   => 'before',
+			)
+		);
+
+		$this->add_control(
+			'added_to_cart_text',
+			array(
+				'label'       => __( 'Added to Cart Text', 'magical-products-display' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'placeholder' => __( 'e.g., Added!', 'magical-products-display' ),
+				'description' => __( 'Text shown on the button after successfully adding to cart.', 'magical-products-display' ),
+			)
+		);
+
 		$this->end_controls_section();
 
 		// Pro Features Section.
@@ -171,7 +193,7 @@ class Add_To_Cart extends Widget_Base {
 		);
 
 		if ( ! $this->is_pro() ) {
-			$this->add_pro_notice( 'pro_features_notice', __( 'Quantity Style & Sticky Cart', 'magical-products-display' ) );
+			$this->add_pro_notice( 'pro_features_notice', __( 'Quantity Style, Sticky Cart & More', 'magical-products-display' ) );
 		}
 			$this->add_control(
 				'quantity_style',
@@ -213,59 +235,6 @@ class Add_To_Cart extends Widget_Base {
 					'label_off'    => __( 'No', 'magical-products-display' ),
 					'return_value' => 'yes',
 					'default'      => '',
-				)
-			);
-
-			// AJAX Add to Cart.
-			$this->add_control(
-				'ajax_add_to_cart_heading',
-				array(
-					'label'     => __( 'AJAX Add to Cart', 'magical-products-display' ),
-					'type'      => Controls_Manager::HEADING,
-					'separator' => 'before',
-				)
-			);
-
-			$this->add_control(
-				'ajax_add_to_cart',
-				array(
-					'label'        => __( 'AJAX Add to Cart', 'magical-products-display' ),
-					'type'         => Controls_Manager::SWITCHER,
-					'label_on'     => __( 'Yes', 'magical-products-display' ),
-					'label_off'    => __( 'No', 'magical-products-display' ),
-					'return_value' => 'yes',
-					'default'      => 'yes',
-					'description'  => __( 'Add to cart without page reload with loading animation.', 'magical-products-display' ),
-				)
-			);
-
-			$this->add_control(
-				'show_view_cart',
-				array(
-					'label'        => __( 'Show View Cart Button', 'magical-products-display' ),
-					'type'         => Controls_Manager::SWITCHER,
-					'label_on'     => __( 'Yes', 'magical-products-display' ),
-					'label_off'    => __( 'No', 'magical-products-display' ),
-					'return_value' => 'yes',
-					'default'      => 'yes',
-					'description'  => __( 'Show a View Cart button after adding to cart.', 'magical-products-display' ),
-					'condition'    => array(
-						'ajax_add_to_cart' => 'yes',
-					),
-				)
-			);
-
-			$this->add_control(
-				'view_cart_text',
-				array(
-					'label'       => __( 'View Cart Text', 'magical-products-display' ),
-					'type'        => Controls_Manager::TEXT,
-					'default'     => __( 'View Cart', 'magical-products-display' ),
-					'placeholder' => __( 'View Cart', 'magical-products-display' ),
-					'condition'   => array(
-						'ajax_add_to_cart' => 'yes',
-						'show_view_cart'   => 'yes',
-					),
 				)
 			);
 
@@ -322,20 +291,6 @@ class Add_To_Cart extends Widget_Base {
 					'type'        => Controls_Manager::TEXT,
 					'default'     => '',
 					'placeholder' => __( 'e.g., Add to Bag', 'magical-products-display' ),
-				)
-			);
-
-			$this->add_control(
-				'added_to_cart_text',
-				array(
-					'label'       => __( 'Added to Cart Text', 'magical-products-display' ),
-					'type'        => Controls_Manager::TEXT,
-					'default'     => '',
-					'placeholder' => __( 'e.g., Added!', 'magical-products-display' ),
-					'description' => __( 'Text shown on the button after successfully adding to cart.', 'magical-products-display' ),
-					'condition'   => array(
-						'ajax_add_to_cart' => 'yes',
-					),
 				)
 			);
 
@@ -680,16 +635,12 @@ class Add_To_Cart extends Widget_Base {
 
 		$this->end_controls_section();
 
-		// View Cart Button Style (Pro).
+		// View Cart Button Style.
 		$this->start_controls_section(
 			'section_style_view_cart',
 			array(
 				'label'     => __( 'View Cart Button', 'magical-products-display' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
-				'condition' => array(
-					'ajax_add_to_cart' => 'yes',
-					'show_view_cart'   => 'yes',
-				),
 			)
 		);
 
@@ -1043,22 +994,18 @@ class Add_To_Cart extends Widget_Base {
 			} );
 		}
 
-		// Pro: AJAX Add to Cart data attributes.
-		if ( $this->is_pro() && 'yes' === ( $settings['ajax_add_to_cart'] ?? '' ) ) {
-			$this->add_render_attribute( 'wrapper', 'class', 'mpd-ajax-add-to-cart' );
-			$this->add_render_attribute( 'wrapper', 'data-product-id', $product->get_id() );
-			$this->add_render_attribute( 'wrapper', 'data-product-type', $product->get_type() );
+		// AJAX Add to Cart data attributes (always enabled).
+		$this->add_render_attribute( 'wrapper', 'class', 'mpd-ajax-add-to-cart' );
+		$this->add_render_attribute( 'wrapper', 'data-product-id', $product->get_id() );
+		$this->add_render_attribute( 'wrapper', 'data-product-type', $product->get_type() );
+		$this->add_render_attribute( 'wrapper', 'data-show-view-cart', 'yes' );
 
-			if ( 'yes' === ( $settings['show_view_cart'] ?? '' ) ) {
-				$this->add_render_attribute( 'wrapper', 'data-show-view-cart', 'yes' );
-				$view_cart_text = ! empty( $settings['view_cart_text'] ) ? $settings['view_cart_text'] : __( 'View Cart', 'magical-products-display' );
-				$this->add_render_attribute( 'wrapper', 'data-view-cart-text', esc_attr( $view_cart_text ) );
-				$this->add_render_attribute( 'wrapper', 'data-cart-url', esc_url( wc_get_cart_url() ) );
-			}
+		$view_cart_text = ! empty( $settings['view_cart_text'] ) ? $settings['view_cart_text'] : __( 'View Cart', 'magical-products-display' );
+		$this->add_render_attribute( 'wrapper', 'data-view-cart-text', esc_attr( $view_cart_text ) );
+		$this->add_render_attribute( 'wrapper', 'data-cart-url', esc_url( wc_get_cart_url() ) );
 
-			$added_text = ! empty( $settings['added_to_cart_text'] ) ? $settings['added_to_cart_text'] : __( 'Added!', 'magical-products-display' );
-			$this->add_render_attribute( 'wrapper', 'data-added-text', esc_attr( $added_text ) );
-		}
+		$added_text = ! empty( $settings['added_to_cart_text'] ) ? $settings['added_to_cart_text'] : __( 'Added!', 'magical-products-display' );
+		$this->add_render_attribute( 'wrapper', 'data-added-text', esc_attr( $added_text ) );
 
 		// Pro: Buy Now button settings.
 		$show_buy_now = $this->is_pro() && 'yes' === ( $settings['show_buy_now'] ?? '' );

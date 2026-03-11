@@ -246,7 +246,18 @@ const Templates = () => {
 	 */
 	const handlePreLayoutSelect = ( layout ) => {
 		setSelectedPreLayout( layout );
-		setNewTemplate( { ...newTemplate, prelayout: layout.id } );
+
+		// Generate a default template name from the layout name or template type label.
+		const typeLabel = templateTypes.find( ( t ) => t.value === newTemplate.type )?.label || newTemplate.type;
+		const defaultTitle = layout.is_custom
+			? typeLabel
+			: `${ layout.name } - ${ typeLabel }`;
+
+		setNewTemplate( {
+			...newTemplate,
+			prelayout: layout.id,
+			title: newTemplate.title || defaultTitle,
+		} );
 		setCreationStep( STEPS.CONFIGURE );
 	};
 

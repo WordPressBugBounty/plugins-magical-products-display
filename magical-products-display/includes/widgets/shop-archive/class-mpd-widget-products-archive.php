@@ -1552,8 +1552,17 @@ class Products_Archive extends Widget_Base {
 		// Get products.
 		if ( $use_current_query && ( is_shop() || is_product_taxonomy() || is_search() ) ) {
 			// Use WooCommerce's main query.
-			global $wp_query;
-			$products_query = $wp_query;
+			// When rendering inside an MPD template, Elementor replaces global
+			// $wp_query with the template post query. Use the saved original
+			// archive query from the renderer instead.
+			$renderer = \MPD\MagicalShopBuilder\Templates\Template_Renderer::instance();
+			$saved_query = $renderer->get_original_archive_query();
+			if ( $saved_query && $saved_query->have_posts() ) {
+				$products_query = $saved_query;
+			} else {
+				global $wp_query;
+				$products_query = $wp_query;
+			}
 		} else {
 			// Build custom query.
 			$products_query = $this->get_products_query( $settings );

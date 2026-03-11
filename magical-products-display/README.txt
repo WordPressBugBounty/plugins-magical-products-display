@@ -386,6 +386,15 @@ Please use the WordPress.org support forum or contact us directly at [wpthemespa
 
 == Changelog ==
 
+= 2.0.1 - March 11, 2026 =
+* Fixed: Shop/Archive template enable/disable toggle not working
+* Fixed: Shop page showing blank products on first load when using custom template
+* Fixed: Pagination not working on archive pages due to template caching
+* Fixed: Templates not working when Elementor Pro is active
+* Fixed: Default template name not auto-filling when creating new templates
+* Improved: AJAX Add to Cart is now a default feature (no longer Pro-only)
+* Improved: View Cart button and Added to Cart text controls moved to main Add to Cart section
+
 = 2.0.0 - February 2026 =
 🎉 **MAJOR UPDATE: Magical Products Display is now Magical Shop Builder!**
 
