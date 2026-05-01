@@ -371,6 +371,165 @@
 					startAutoplay();
 				});
 			}
+
+			// WooCommerce Variation Image Handler
+			(function() {
+				var productId = $gallery.data('product-id');
+				var variationImagesEnabled = $gallery.data('variation-images') === 'yes';
+				var $variationsForm = null;
+
+				// Find the variations form for this product
+				if (productId) {
+					$variationsForm = $('form.variations_form[data-product_id="' + productId + '"]');
+				}
+				if (!$variationsForm || !$variationsForm.length) {
+					$variationsForm = $gallery.closest('.product, .mpd-single-product, .elementor-widget-container').find('form.variations_form');
+				}
+				if (!$variationsForm || !$variationsForm.length) {
+					$variationsForm = $('form.variations_form').first();
+				}
+
+				if (!$variationsForm || !$variationsForm.length) {
+					return;
+				}
+
+				// Store original first slide and thumbnail data for reset
+				var $firstSlide = $slides.filter('[data-index="0"]');
+				var $firstThumb = $thumbs.filter('[data-index="0"]');
+				var originalSlideHtml = $firstSlide.html();
+				var originalThumbHtml = $firstThumb.length ? $firstThumb.html() : '';
+				var originalAttachmentId = $firstSlide.data('attachment-id');
+				var isSwapped = false;
+
+				// Pro: Bidirectional sync — click variation image in gallery → select variation in form
+				if (variationImagesEnabled) {
+					var variationsData = $variationsForm.data('product_variations');
+
+					// Click handler on slides/thumbs with data-variation-id
+					$gallery.on('click', '.mpd-gallery-slide[data-variation-id], .mpd-thumb-item[data-variation-id]', function(e) {
+						var variationId = $(this).data('variation-id');
+						if (!variationId || !variationsData) {
+							return;
+						}
+
+						// Find the matching variation
+						var matchedVariation = null;
+						for (var i = 0; i < variationsData.length; i++) {
+							if (variationsData[i].variation_id == variationId) {
+								matchedVariation = variationsData[i];
+								break;
+							}
+						}
+
+						if (!matchedVariation || !matchedVariation.attributes) {
+							return;
+						}
+
+						// Set each attribute select to match the variation
+						$.each(matchedVariation.attributes, function(attrName, attrValue) {
+							var $select = $variationsForm.find('select[name="' + attrName + '"]');
+							if ($select.length && attrValue) {
+								$select.val(attrValue).trigger('change');
+							}
+						});
+
+						// Trigger WooCommerce to check for matching variation
+						$variationsForm.trigger('check_variations');
+					});
+				}
+
+				$variationsForm.on('found_variation', function(event, variation) {
+					if (!variation || !variation.image || !variation.image.src || variation.image.src === '') {
+						return;
+					}
+
+					var img = variation.image;
+					var variationImageId = variation.image_id || 0;
+
+					// Check if variation image already exists in gallery (covers both regular and variation-images mode)
+					if (variationImageId) {
+						var $existingSlide = $slides.filter('[data-attachment-id="' + variationImageId + '"]');
+						if ($existingSlide.length) {
+							// Image already in gallery - navigate to it
+							if (isSwapped) {
+								// Restore original first slide before navigating
+								$firstSlide.html(originalSlideHtml);
+								$firstSlide.attr('data-attachment-id', originalAttachmentId);
+								if ($firstThumb.length) {
+									$firstThumb.html(originalThumbHtml);
+									$firstThumb.attr('data-attachment-id', originalAttachmentId);
+								}
+								isSwapped = false;
+							}
+							goToSlide(parseInt($existingSlide.data('index')));
+							return;
+						}
+					}
+
+					// Variation image not in gallery - swap the first slide
+					var imgAttrs = 'src="' + img.src + '"';
+					if (img.srcset) imgAttrs += ' srcset="' + img.srcset + '"';
+					if (img.sizes) imgAttrs += ' sizes="' + img.sizes + '"';
+					imgAttrs += ' alt="' + (img.alt || '') + '"';
+					imgAttrs += ' title="' + (img.title || '') + '"';
+					imgAttrs += ' class="wp-post-image"';
+
+					var newSlideHtml = '<a href="' + (img.full_src || img.src) + '" data-lightbox="mpd-gallery">' +
+						'<img ' + imgAttrs + ' />' +
+						'</a>';
+
+					$firstSlide.html(newSlideHtml);
+					$firstSlide.attr('data-attachment-id', variationImageId);
+
+					// Update first thumbnail
+					if ($firstThumb.length) {
+						var thumbSrc = img.gallery_thumbnail_src || img.thumb_src || img.src;
+						$firstThumb.html('<img src="' + thumbSrc + '" alt="' + (img.alt || '') + '" />');
+						$firstThumb.attr('data-attachment-id', variationImageId);
+					}
+
+					isSwapped = true;
+
+					// Navigate to first slide
+					goToSlide(0);
+
+					// Update lightbox trigger
+					if (enableLightbox && $lightboxTrigger.length) {
+						$lightboxTrigger.attr('href', img.full_src || img.src);
+					}
+
+					// Reinitialize zoom on swapped slide
+					if (enableZoom) {
+						initZoomOnSlide($firstSlide);
+					}
+				});
+
+				$variationsForm.on('reset_image', function() {
+					if (!isSwapped) {
+						goToSlide(0);
+						return;
+					}
+
+					// Restore original first slide
+					$firstSlide.html(originalSlideHtml);
+					$firstSlide.attr('data-attachment-id', originalAttachmentId);
+
+					if ($firstThumb.length) {
+						$firstThumb.html(originalThumbHtml);
+						$firstThumb.attr('data-attachment-id', originalAttachmentId);
+					}
+
+					isSwapped = false;
+
+					// Navigate to first slide
+					goToSlide(0);
+
+					// Reinitialize zoom on restored slide
+					if (enableZoom && !isVideoSlide($firstSlide)) {
+						initZoomOnSlide($firstSlide);
+					}
+				});
+			})();
 		});
 	}
 

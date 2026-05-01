@@ -3742,7 +3742,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
             <?php endif; ?>
             <?php
             if ($settings['mgpdeg_filter_show'] == 'yes' && get_option('mgppro_is_active', 'no') == 'yes') {
-                do_action('mgproducts_pro_filter', $settings);
+                do_action('mgshop_builder_pro_filter', $settings);
             }
 
             if ($mgpdeg_products->have_posts()) :

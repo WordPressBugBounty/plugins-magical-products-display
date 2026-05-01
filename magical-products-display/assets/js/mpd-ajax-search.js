@@ -61,6 +61,15 @@
             // Clear button
             this.clearBtn.on('click', this.clearSearch.bind(this));
 
+            // Inline category dropdown
+            this.element.find('.mpd-ajax-search__category-select').on('change', () => {
+                this.cache.clear();
+                const query = this.input.val().trim();
+                if (query.length >= this.minChars) {
+                    this.performSearch(query);
+                }
+            });
+
             // Results events
             this.results.on('click', '.mpd-ajax-search__result-link', this.handleResultClick.bind(this));
             this.results.on('keydown', '.mpd-ajax-search__result-link', this.handleResultKeydown.bind(this));
@@ -429,6 +438,16 @@
 
         getActiveFilters() {
             const filters = {};
+
+            // Inline category dropdown (inside search bar)
+            const inlineCategorySelect = this.element.find('.mpd-ajax-search__category-select');
+            if (inlineCategorySelect.length) {
+                const inlineCategory = inlineCategorySelect.val();
+                if (inlineCategory && inlineCategory !== '') {
+                    filters.category = inlineCategory;
+                }
+            }
+
             const filterContainer = this.element.find('.mpd-ajax-search__filters');
             
             if (!filterContainer.length) {

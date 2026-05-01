@@ -34,8 +34,8 @@ class MPD_AJAX_Search_Handler {
         }
 
         // Verify nonce
-        $widget_id = isset($_POST['widget_id']) ? sanitize_text_field($_POST['widget_id']) : '';
-        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+        $widget_id = isset($_POST['widget_id']) ? sanitize_text_field( wp_unslash( $_POST['widget_id'] ) ) : '';
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field( wp_unslash( $_POST['nonce'] ) ) : '';
         
         // Verify nonce for security
         $nonce_valid = wp_verify_nonce($nonce, 'mpd_ajax_search_' . $widget_id);

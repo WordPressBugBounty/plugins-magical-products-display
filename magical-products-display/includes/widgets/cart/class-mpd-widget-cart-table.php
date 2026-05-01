@@ -1387,7 +1387,7 @@ class Cart_Table extends Widget_Base {
 												$stock_status = $_product->get_stock_status();
 												$stock_class = 'instock' === $stock_status ? 'in-stock' : ( 'outofstock' === $stock_status ? 'out-of-stock' : 'on-backorder' );
 												$stock_text = 'instock' === $stock_status ? __( 'In stock', 'magical-products-display' ) : ( 'outofstock' === $stock_status ? __( 'Out of stock', 'magical-products-display' ) : __( 'On backorder', 'magical-products-display' ) );
-												echo '<span class="product-stock"><p class="stock ' . esc_attr( $stock_class ) . '">' . esc_html( $stock_text ) . '</p></span>';
+												echo '<span class="product-stock"><span class="stock ' . esc_attr( $stock_class ) . '">' . esc_html( $stock_text ) . '</span></span>';
 											} else {
 												echo '<span class="product-stock">' . wp_kses_post( $stock_html ) . '</span>';
 											}
@@ -1634,7 +1634,7 @@ class Cart_Table extends Widget_Base {
 		$show_stock     = $this->is_pro() && isset( $settings['show_stock_status'] ) && 'yes' === $settings['show_stock_status'];
 		$quantity_style = $this->is_pro() && isset( $settings['quantity_style'] ) ? $settings['quantity_style'] : 'default';
 		
-		$wrapper_class = 'mpd-cart-table-wrapper mpd-cart-table-style-' . esc_attr( $table_style ) . ' mpd-editor-preview';
+		$wrapper_class = 'mpd-cart-table-wrapper mpd-cart-table-style-' . $table_style . ' mpd-editor-preview';
 		?>
 		<div class="<?php echo esc_attr( $wrapper_class ); ?>">
 			<table class="mpd-cart-table shop_table" cellspacing="0">
@@ -1704,7 +1704,7 @@ class Cart_Table extends Widget_Base {
 											$stock_status = $product->get_stock_status();
 											$stock_class = 'instock' === $stock_status ? 'in-stock' : ( 'outofstock' === $stock_status ? 'out-of-stock' : 'on-backorder' );
 											$stock_text = 'instock' === $stock_status ? __( 'In stock', 'magical-products-display' ) : ( 'outofstock' === $stock_status ? __( 'Out of stock', 'magical-products-display' ) : __( 'On backorder', 'magical-products-display' ) );
-											echo '<span class="product-stock"><p class="stock ' . esc_attr( $stock_class ) . '">' . esc_html( $stock_text ) . '</p></span>';
+											echo '<span class="product-stock"><span class="stock ' . esc_attr( $stock_class ) . '">' . esc_html( $stock_text ) . '</span></span>';
 										} else {
 											echo '<span class="product-stock">' . wp_kses_post( $stock_html ) . '</span>';
 										}
@@ -1724,7 +1724,7 @@ class Cart_Table extends Widget_Base {
 
 								<?php if ( $show_subtotal ) : ?>
 									<td class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'magical-products-display' ); ?>">
-										<?php echo wc_price( $product->get_price() * $sample_qty ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+										<?php echo wc_price( (float) $product->get_price() * $sample_qty ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 									</td>
 								<?php endif; ?>
 							</tr>
@@ -1744,7 +1744,7 @@ class Cart_Table extends Widget_Base {
 				</div>
 				<?php endif; ?>
 				<div class="mpd-update-cart-wrapper">
-					<button type="button" class="button" name="update_cart" disabled><?php echo esc_html( $settings['update_cart_button_text'] ); ?></button>
+					<button type="button" class="button" name="update_cart" disabled><?php echo esc_html( ! empty( $settings['update_cart_button_text'] ) ? $settings['update_cart_button_text'] : __( 'Update cart', 'magical-products-display' ) ); ?></button>
 				</div>
 			</div>
 			<p class="mpd-editor-notice" style="text-align: center; padding: 10px; background: #e8f4fd; color: #0c5460; margin-top: 10px; border-radius: 4px;">

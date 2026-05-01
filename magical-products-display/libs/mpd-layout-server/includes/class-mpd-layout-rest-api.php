@@ -204,9 +204,13 @@ class MPD_Layout_REST_API {
 	 * @return bool
 	 */
 	public function public_permission_check() {
-		// Allow public access to layout endpoints.
-		// In production, implement API key validation here.
-		return true;
+		$public_access = (bool) apply_filters( 'mpd_layout_server_public_access', false );
+
+		if ( $public_access ) {
+			return true;
+		}
+
+		return current_user_can( 'manage_options' );
 	}
 
 	/**

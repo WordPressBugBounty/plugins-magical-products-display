@@ -225,39 +225,70 @@
 		init: function() {
 			var self = this;
 
-			// Intercept add to cart form submit for AJAX wrappers
+			// Intercept form submit for simple/subscription products
 			$(document).on('submit', '.mpd-ajax-add-to-cart form.cart', function(e) {
 				var $wrapper = $(this).closest('.mpd-ajax-add-to-cart');
 				var productType = $wrapper.data('product-type');
 
-				// Only AJAX for simple products (variable needs page validation)
 				if (productType === 'simple' || productType === 'subscription') {
 					e.preventDefault();
 					self.handleAddToCart($(this), $wrapper);
 				}
 			});
 
-			// For variable products, intercept the button click after validation
-			$(document).on('click', '.mpd-ajax-add-to-cart .single_add_to_cart_button', function(e) {
-				var $wrapper = $(this).closest('.mpd-ajax-add-to-cart');
-				var productType = $wrapper.data('product-type');
-				var $form = $(this).closest('form.cart');
+			// For variable products, use capture-phase native click listener
+			// to intercept BEFORE WooCommerce's variation form JS triggers page submit
+			document.addEventListener('click', function(e) {
+				var btn = e.target.closest ? e.target.closest('.mpd-ajax-add-to-cart .single_add_to_cart_button') : null;
+				if (!btn) return;
+				if (btn.classList.contains('disabled') || btn.classList.contains('mpd-loading')) return;
 
-				if (productType === 'variable' || productType === 'variable-subscription') {
-					// Check if a variation is selected
-					var variationId = $form.find('input[name="variation_id"]').val();
-					if (variationId && variationId !== '0') {
-						e.preventDefault();
-						self.handleAddToCart($form, $wrapper);
-					}
-				}
-			});
+				var wrapper = btn.closest('.mpd-ajax-add-to-cart');
+				if (!wrapper) return;
+
+				var productType = wrapper.getAttribute('data-product-type');
+				if (productType !== 'variable' && productType !== 'variable-subscription') return;
+
+				var form = btn.closest('form.cart');
+				if (!form) return;
+
+				var variationInput = form.querySelector('input[name="variation_id"]');
+				var variationId = variationInput ? variationInput.value : '';
+				if (!variationId || variationId === '0') return;
+
+				e.preventDefault();
+				e.stopImmediatePropagation();
+				self.handleAddToCart($(form), $(wrapper));
+			}, true);
 
 			// Buy Now button handler
 			$(document).on('click', '.mpd-buy-now-btn', function(e) {
 				e.preventDefault();
 				self.handleBuyNow($(this));
 			});
+		},
+
+		buildAjaxFormData: function($form, $wrapper) {
+			var formData = $form.serializeArray().filter(function(field) {
+				return field.name !== 'add-to-cart';
+			});
+			var productId = $wrapper.data('product-id');
+			var nonce = $wrapper.data('nonce') || (
+				typeof mpd_add_to_cart_params !== 'undefined' && mpd_add_to_cart_params.nonce
+					? mpd_add_to_cart_params.nonce
+					: ''
+			);
+
+			if (productId && !formData.some(function(field) { return field.name === 'product_id'; })) {
+				formData.push({ name: 'product_id', value: productId });
+			}
+
+			formData.push({ name: 'action', value: 'mpd_single_add_to_cart' });
+			if (nonce) {
+				formData.push({ name: 'nonce', value: nonce });
+			}
+
+			return $.param(formData);
 		},
 
 		handleAddToCart: function($form, $wrapper) {
@@ -269,14 +300,23 @@
 			// Already loading
 			if ($btn.hasClass('mpd-loading')) return;
 
+			// Build form data for admin-ajax.php without add-to-cart to avoid WC's native handler adding first.
+			var formData = self.buildAjaxFormData($form, $wrapper);
+
 			// Add loading state
 			$btn.addClass('mpd-loading');
 			self.injectSpinner($btn);
 
+			var ajaxUrl = (typeof mpd_add_to_cart_params !== 'undefined' && mpd_add_to_cart_params.ajax_url)
+				? mpd_add_to_cart_params.ajax_url
+				: (typeof wc_add_to_cart_params !== 'undefined' && wc_add_to_cart_params.ajax_url)
+					? wc_add_to_cart_params.ajax_url
+					: '/wp-admin/admin-ajax.php';
+
 			$.ajax({
-				url: wc_add_to_cart_params ? wc_add_to_cart_params.wc_ajax_url.toString().replace('%%endpoint%%', 'add_to_cart') : '/?wc-ajax=add_to_cart',
+				url: ajaxUrl,
 				type: 'POST',
-				data: $form.serialize(),
+				data: formData,
 				success: function(response) {
 					if (response.error) {
 						// Show WooCommerce notices
@@ -291,8 +331,14 @@
 						return;
 					}
 
-					// Trigger WooCommerce added_to_cart event
+					// Update WooCommerce cart fragments (mini-cart, cart count, etc.)
+					if (response.fragments) {
+						$.each(response.fragments, function(key, value) {
+							$(key).replaceWith(value);
+						});
+					}
 					$(document.body).trigger('added_to_cart', [response.fragments, response.cart_hash, $btn]);
+					$(document.body).trigger('wc_fragments_refreshed');
 
 					// Show added state
 					$btn.removeClass('mpd-loading').addClass('mpd-added');
@@ -305,6 +351,10 @@
 					if ($wrapper.data('show-view-cart') === 'yes') {
 						self.showViewCartButton($wrapper);
 					}
+
+					// Remove WC's default "View cart" link to prevent duplicate
+					$btn.siblings('.added_to_cart').remove();
+					$wrapper.find('a.added_to_cart').remove();
 
 					// Reset button after 3 seconds
 					setTimeout(function() {
@@ -329,14 +379,23 @@
 
 			if ($btn.hasClass('mpd-loading')) return;
 
+			// Build form data for admin-ajax.php without add-to-cart to avoid WC's native handler adding first.
+			var formData = self.buildAjaxFormData($form, $wrapper);
+
 			// Add loading state
 			$btn.addClass('mpd-loading');
 			$btn.find('.mpd-btn-spinner').removeClass('mpd-spinner-hidden');
 
+			var ajaxUrl = (typeof mpd_add_to_cart_params !== 'undefined' && mpd_add_to_cart_params.ajax_url)
+				? mpd_add_to_cart_params.ajax_url
+				: (typeof wc_add_to_cart_params !== 'undefined' && wc_add_to_cart_params.ajax_url)
+					? wc_add_to_cart_params.ajax_url
+					: '/wp-admin/admin-ajax.php';
+
 			$.ajax({
-				url: wc_add_to_cart_params ? wc_add_to_cart_params.wc_ajax_url.toString().replace('%%endpoint%%', 'add_to_cart') : '/?wc-ajax=add_to_cart',
+				url: ajaxUrl,
 				type: 'POST',
-				data: $form.serialize(),
+				data: formData,
 				success: function(response) {
 					if (response.error) {
 						$btn.removeClass('mpd-loading');

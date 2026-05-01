@@ -175,6 +175,42 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
         );
 
         $this->add_control(
+            'show_category_dropdown',
+            [
+                'label' => __('Show Category Dropdown', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::SWITCHER,
+                'label_on' => __('Show', 'magical-products-display'),
+                'label_off' => __('Hide', 'magical-products-display'),
+                'return_value' => 'yes',
+                'default' => 'no',
+                'description' => __('Show a category filter dropdown inside the search bar.', 'magical-products-display'),
+            ]
+        );
+
+        $this->add_control(
+            'category_dropdown_position',
+            [
+                'label' => __('Category Dropdown Position', 'magical-products-display'),
+                'type' => \Elementor\Controls_Manager::CHOOSE,
+                'options' => [
+                    'left' => [
+                        'title' => __('Left', 'magical-products-display'),
+                        'icon' => 'eicon-h-align-left',
+                    ],
+                    'right' => [
+                        'title' => __('Right', 'magical-products-display'),
+                        'icon' => 'eicon-h-align-right',
+                    ],
+                ],
+                'default' => 'left',
+                'toggle' => false,
+                'condition' => [
+                    'show_category_dropdown' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
             'show_clear_button',
             [
                 'label' => __('Show Clear Button', 'magical-products-display'),
@@ -366,13 +402,6 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
                 'label' => __('Border Radius', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::DIMENSIONS,
                 'size_units' => ['px', '%'],
-                'default' => [
-                    'top' => 25,
-                    'right' => 25,
-                    'bottom' => 25,
-                    'left' => 25,
-                    'unit' => 'px',
-                ],
                 'selectors' => [
                     '{{WRAPPER}} .mpd-ajax-search__input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
                 ],
@@ -452,7 +481,7 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
             [
                 'label' => __('Icon Position', 'magical-products-display'),
                 'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'left',
+                'default' => 'right',
                 'options' => [
                     'left' => __('Left', 'magical-products-display'),
                     'right' => __('Right', 'magical-products-display'),
@@ -669,6 +698,14 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
             $container_classes[] = 'mpd-ajax-search--has-clear';
         }
 
+        $show_category_dropdown = !empty($settings['show_category_dropdown']) && $settings['show_category_dropdown'] === 'yes';
+        $category_position = !empty($settings['category_dropdown_position']) ? $settings['category_dropdown_position'] : 'left';
+
+        if ($show_category_dropdown) {
+            $container_classes[] = 'mpd-ajax-search--has-category';
+            $container_classes[] = 'mpd-ajax-search--category-' . $category_position;
+        }
+
         ?>
         <div class="<?php echo esc_attr(implode(' ', $container_classes)); ?>" 
              data-widget-id="<?php echo esc_attr($widget_id); ?>"
@@ -679,26 +716,22 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
             
             <div class="mpd-ajax-search__container">
                 <div class="mpd-ajax-search__input-wrapper">
-                    <?php if ($settings['show_search_icon'] === 'yes' && $settings['icon_position'] === 'left') : ?>
+                    <?php if ($settings['show_search_icon'] === 'yes') : ?>
                         <button type="button" class="mpd-ajax-search__button">
                             <svg class="mpd-ajax-search__icon" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
                             </svg>
                         </button>
                     <?php endif; ?>
+
+                    <?php if ($show_category_dropdown) : ?>
+                        <?php $this->render_category_dropdown_select(); ?>
+                    <?php endif; ?>
                     
                     <input type="text" 
                            class="mpd-ajax-search__input" 
                            placeholder="<?php echo esc_attr($settings['placeholder_text']); ?>"
                            autocomplete="off">
-                    
-                    <?php if ($settings['show_search_icon'] === 'yes' && $settings['icon_position'] === 'right') : ?>
-                        <button type="button" class="mpd-ajax-search__button mpd-ajax-search__button--right">
-                            <svg class="mpd-ajax-search__icon" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                            </svg>
-                        </button>
-                    <?php endif; ?>
                     
                     <?php if ($settings['show_clear_button'] === 'yes') : ?>
                         <button type="button" class="mpd-ajax-search__clear" style="display: none;">
@@ -749,6 +782,29 @@ class mgProducts_AJAX_Search extends \Elementor\Widget_Base
         if (!empty($settings['custom_css'])) {
             echo '<style>' . wp_kses_post($settings['custom_css']) . '</style>';
         }
+    }
+
+    /**
+     * Render the inline category dropdown select element.
+     */
+    protected function render_category_dropdown_select()
+    {
+        $categories = get_terms([
+            'taxonomy'   => 'product_cat',
+            'hide_empty' => true,
+        ]);
+        ?>
+        <select class="mpd-ajax-search__category-select" aria-label="<?php esc_attr_e('Filter by category', 'magical-products-display'); ?>">
+            <option value=""><?php esc_html_e('All Categories', 'magical-products-display'); ?></option>
+            <?php if (!is_wp_error($categories) && !empty($categories)) : ?>
+                <?php foreach ($categories as $cat) : ?>
+                    <option value="<?php echo esc_attr($cat->term_id); ?>">
+                        <?php echo esc_html($cat->name); ?>
+                    </option>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </select>
+        <?php
     }
 
     /**

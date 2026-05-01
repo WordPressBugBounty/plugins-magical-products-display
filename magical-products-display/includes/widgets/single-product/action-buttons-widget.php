@@ -96,7 +96,7 @@ class Action_Buttons extends Widget_Base {
 	 * @return array Style dependencies.
 	 */
 	public function get_style_depends() {
-		return array( 'mpd-single-product', 'mpd-global-widgets' );
+		return array( 'mpd-single-product', 'mpd-global-widgets', 'mpd-wc-action-buttons' );
 	}
 
 	/**

@@ -690,6 +690,18 @@ class Product_Stock extends Widget_Base {
 			return;
 		}
 
+		// On multisite, object cache can hold stale stock data from another blog.
+		// Re-fetch a fresh product instance after clearing the cache.
+		if ( is_multisite() ) {
+			$product_id = $product->get_id();
+			clean_post_cache( $product_id );
+			wp_cache_delete( 'wc_product_' . $product_id, 'products' );
+			$fresh = wc_get_product( $product_id );
+			if ( $fresh instanceof \WC_Product ) {
+				$product = $fresh;
+			}
+		}
+
 		$this->add_render_attribute( 'wrapper', 'class', 'mpd-product-stock' );
 
 		$stock_status = $product->get_stock_status();

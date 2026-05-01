@@ -1977,6 +1977,9 @@ figure:hover .mpd-action-buttons--top-left {
         grid-template-columns: 1fr;
     }
 }
+.woocommerce table.shop_attributes td p {
+   padding: 8px;
+}
 
 /* Wishlist Table Layout */
 .mpd-wishlist-table {
@@ -2288,7 +2291,7 @@ figure:hover .mpd-action-buttons--top-left {
     cursor: pointer;
     z-index: 10;
     transition: all 0.2s ease;
-    padding: 0 0 5px 0;
+    padding: 0;
 }
 
 .mpd-quick-view-close:hover {

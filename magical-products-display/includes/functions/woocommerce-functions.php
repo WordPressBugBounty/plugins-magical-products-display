@@ -415,8 +415,24 @@ if ( ! function_exists( 'mpd_ajax_add_to_cart' ) ) {
 function mpd_ajax_add_to_cart() {
 	check_ajax_referer( 'mpd_add_to_cart', 'nonce' );
 
+	if ( function_exists( 'wc_load_cart' ) && function_exists( 'WC' ) && WC() && ! WC()->cart ) {
+		wc_load_cart();
+	}
+
+	if ( ! function_exists( 'WC' ) || ! WC() || ! WC()->cart ) {
+		wp_send_json_error( array( 'message' => __( 'Cart not available.', 'magical-products-display' ) ) );
+	}
+
 	$product_id = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
 	$quantity   = isset( $_POST['quantity'] ) ? absint( $_POST['quantity'] ) : 1;
+	$variation_id = ! empty( $_POST['variation_id'] ) ? absint( $_POST['variation_id'] ) : 0;
+	$variations   = array();
+
+	foreach ( $_POST as $key => $value ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified above.
+		if ( 0 === strpos( $key, 'attribute_' ) ) {
+			$variations[ sanitize_title( wp_unslash( $key ) ) ] = sanitize_text_field( wp_unslash( $value ) );
+		}
+	}
 
 	if ( ! $product_id ) {
 		wp_send_json_error( array( 'message' => __( 'Invalid product.', 'magical-products-display' ) ) );
@@ -428,7 +444,7 @@ function mpd_ajax_add_to_cart() {
 		wp_send_json_error( array( 'message' => __( 'Product not found.', 'magical-products-display' ) ) );
 	}
 
-	$added = WC()->cart->add_to_cart( $product_id, $quantity );
+	$added = WC()->cart->add_to_cart( $product_id, $quantity, $variation_id, $variations );
 
 	if ( $added ) {
 		wp_send_json_success(
@@ -444,6 +460,173 @@ function mpd_ajax_add_to_cart() {
 }
 add_action( 'wp_ajax_mpd_add_to_cart', 'mpd_ajax_add_to_cart' );
 add_action( 'wp_ajax_nopriv_mpd_add_to_cart', 'mpd_ajax_add_to_cart' );
+}
+
+/**
+ * Single product AJAX add to cart handler.
+ *
+ * Supports all product types including variable products with variation data.
+ * Returns WooCommerce cart fragments for mini-cart updates.
+ *
+ * @since 2.0.0
+ * @return void
+ */
+if ( ! function_exists( 'mpd_single_product_add_to_cart' ) ) {
+function mpd_single_product_add_to_cart() {
+	check_ajax_referer( 'mpd_single_add_to_cart', 'nonce' );
+
+	if ( function_exists( 'wc_load_cart' ) && function_exists( 'WC' ) && WC() && ! WC()->cart ) {
+		wc_load_cart();
+	}
+
+	if ( ! function_exists( 'WC' ) || ! WC() || ! WC()->cart ) {
+		wp_send_json( array( 'error' => true, 'notices' => esc_html__( 'Cart not available.', 'magical-products-display' ) ) );
+		return;
+	}
+
+	$product_id = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
+
+	// Fallback: WC variable form uses add-to-cart hidden input for the parent product ID.
+	if ( ! $product_id && isset( $_POST['add-to-cart'] ) ) {
+		$product_id = absint( $_POST['add-to-cart'] );
+	}
+
+	$quantity     = empty( $_POST['quantity'] ) ? 1 : wc_stock_amount( wp_unslash( $_POST['quantity'] ) );
+	$variation_id = ! empty( $_POST['variation_id'] ) ? absint( $_POST['variation_id'] ) : 0;
+	$variations   = array();
+
+	// Collect attribute_* fields for variable products.
+	foreach ( $_POST as $key => $value ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verified above.
+		if ( strpos( $key, 'attribute_' ) === 0 ) {
+			$variations[ sanitize_title( wp_unslash( $key ) ) ] = sanitize_text_field( wp_unslash( $value ) );
+		}
+	}
+
+	if ( ! $product_id ) {
+		wp_send_json( array( 'error' => true, 'notices' => esc_html__( 'Invalid product.', 'magical-products-display' ) ) );
+		return;
+	}
+
+	$product_status    = get_post_status( $product_id );
+	$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $quantity, $variation_id, $variations );
+
+	if ( $passed_validation && 'publish' === $product_status && false !== WC()->cart->add_to_cart( $product_id, $quantity, $variation_id, $variations ) ) {
+		do_action( 'woocommerce_ajax_added_to_cart', $product_id );
+
+		if ( 'yes' === get_option( 'woocommerce_cart_redirect_after_add' ) ) {
+			wc_add_to_cart_message( array( $product_id => $quantity ), true );
+		}
+
+		wp_send_json( array(
+			'fragments' => apply_filters( 'woocommerce_add_to_cart_fragments', array() ),
+			'cart_hash' => WC()->cart->get_cart_hash(),
+		) );
+	} else {
+		$notices        = wc_get_notices( 'error' );
+		$error_messages = array();
+		if ( ! empty( $notices ) ) {
+			foreach ( $notices as $notice ) {
+				$error_messages[] = isset( $notice['notice'] ) ? $notice['notice'] : $notice;
+			}
+			wc_clear_notices();
+		}
+
+		wp_send_json( array(
+			'error'   => true,
+			'notices' => ! empty( $error_messages ) ? implode( '<br>', $error_messages ) : esc_html__( 'Could not add product to cart.', 'magical-products-display' ),
+		) );
+	}
+}
+add_action( 'wp_ajax_mpd_single_add_to_cart', 'mpd_single_product_add_to_cart' );
+add_action( 'wp_ajax_nopriv_mpd_single_add_to_cart', 'mpd_single_product_add_to_cart' );
+}
+
+/**
+ * Add MPD Mini Cart elements to WooCommerce cart fragments.
+ *
+ * Registers the counter, subtotal, and products content so they update
+ * instantly after any AJAX add-to-cart action.
+ *
+ * @since 2.0.0
+ *
+ * @param array $fragments Existing WooCommerce fragments.
+ * @return array Updated fragments.
+ */
+if ( ! function_exists( 'mpd_add_mini_cart_fragments' ) ) {
+function mpd_add_mini_cart_fragments( $fragments ) {
+	if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
+		return $fragments;
+	}
+
+	$cart     = WC()->cart;
+	$count    = $cart->get_cart_contents_count();
+	$subtotal = $cart->get_cart_subtotal();
+
+	// Update counter badge.
+	$fragments['.mpd-mini-cart-counter'] = '<span class="mpd-mini-cart-counter">' . esc_html( $count ) . '</span>';
+
+	// Update subtotal text.
+	$fragments['.mpd-mini-cart-subtotal'] = '<span class="mpd-mini-cart-subtotal">' . wp_kses_post( $subtotal ) . '</span>';
+
+	// Update the products content area.
+	ob_start();
+	$cart_items = $cart->get_cart();
+	$max_items  = 5;
+
+	if ( empty( $cart_items ) ) {
+		echo '<div class="mpd-mini-cart-products-wrap"><div class="mpd-mini-cart-empty"><p>' . esc_html__( 'Your cart is currently empty.', 'magical-products-display' ) . '</p></div></div>';
+	} else {
+		echo '<div class="mpd-mini-cart-products-wrap">';
+		echo '<div class="mpd-mini-cart-products">';
+		$count_items = 0;
+		foreach ( $cart_items as $cart_item_key => $cart_item ) {
+			if ( ++$count_items > $max_items ) {
+				break;
+			}
+			$product = $cart_item['data'];
+			if ( ! $product || ! $product instanceof \WC_Product ) {
+				continue;
+			}
+			$price     = WC()->cart->get_product_price( $product );
+			$quantity  = $cart_item['quantity'];
+			$thumbnail = $product->get_image( 'woocommerce_thumbnail' );
+			?>
+			<div class="mpd-mini-cart-product">
+				<div class="mpd-mini-cart-product-image">
+					<a href="<?php echo esc_url( $product->get_permalink() ); ?>"><?php echo wp_kses_post( $thumbnail ); ?></a>
+				</div>
+				<div class="mpd-mini-cart-product-details">
+					<h4 class="mpd-mini-cart-product-name">
+						<a href="<?php echo esc_url( $product->get_permalink() ); ?>"><?php echo esc_html( $product->get_name() ); ?></a>
+					</h4>
+					<span class="mpd-mini-cart-product-price"><?php echo wp_kses_post( $price ); ?> &times; <?php echo esc_html( $quantity ); ?></span>
+				</div>
+				<a href="<?php echo esc_url( wc_get_cart_remove_url( $cart_item_key ) ); ?>" class="mpd-mini-cart-remove" title="<?php esc_attr_e( 'Remove', 'magical-products-display' ); ?>">&times;</a>
+			</div>
+			<?php
+		}
+		if ( count( $cart_items ) > $max_items ) {
+			echo '<div class="mpd-mini-cart-more">' . sprintf(
+				/* translators: %d: number of additional items */
+				esc_html__( '+ %d more items', 'magical-products-display' ),
+				count( $cart_items ) - $max_items
+			) . '</div>';
+		}
+		echo '</div>';
+
+		echo '<div class="mpd-mini-cart-subtotal-row"><strong>' . esc_html__( 'Subtotal:', 'magical-products-display' ) . '</strong><span>' . wp_kses_post( $cart->get_cart_subtotal() ) . '</span></div>';
+
+		echo '<div class="mpd-mini-cart-buttons">';
+		echo '<a href="' . esc_url( wc_get_cart_url() ) . '" class="button view-cart">' . esc_html__( 'View Cart', 'magical-products-display' ) . '</a>';
+		echo '<a href="' . esc_url( wc_get_checkout_url() ) . '" class="button checkout">' . esc_html__( 'Checkout', 'magical-products-display' ) . '</a>';
+		echo '</div>';
+		echo '</div>';
+	}
+	$fragments['.mpd-mini-cart-products-wrap'] = ob_get_clean();
+
+	return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'mpd_add_mini_cart_fragments' );
 }
 
 /**
@@ -596,10 +779,10 @@ function mpd_ajax_get_wishlist_items() {
 		
 		$html .= '<div class="mpd-header-wc-item-row" data-product-id="' . esc_attr( $product_id ) . '">';
 		$html .= '<a href="' . esc_url( $permalink ) . '" class="mpd-header-wc-item-link">';
-		$html .= '<span class="mpd-header-wc-item-image">' . $thumbnail . '</span>';
+		$html .= '<span class="mpd-header-wc-item-image">' . wp_kses_post( $thumbnail ) . '</span>';
 		$html .= '<span class="mpd-header-wc-item-details">';
 		$html .= '<span class="mpd-header-wc-item-name">' . esc_html( $title ) . '</span>';
-		$html .= '<span class="mpd-header-wc-item-price">' . $price . '</span>';
+		$html .= '<span class="mpd-header-wc-item-price">' . wp_kses_post( $price ) . '</span>';
 		$html .= '</span>';
 		$html .= '</a>';
 		$html .= '<button type="button" class="mpd-header-wc-remove-item" data-product-id="' . esc_attr( $product_id ) . '" title="' . esc_attr__( 'Remove', 'magical-products-display' ) . '"><i class="eicon-close"></i></button>';
@@ -651,10 +834,10 @@ function mpd_ajax_get_compare_items() {
 		
 		$html .= '<div class="mpd-header-wc-item-row" data-product-id="' . esc_attr( $product_id ) . '">';
 		$html .= '<a href="' . esc_url( $permalink ) . '" class="mpd-header-wc-item-link">';
-		$html .= '<span class="mpd-header-wc-item-image">' . $thumbnail . '</span>';
+		$html .= '<span class="mpd-header-wc-item-image">' . wp_kses_post( $thumbnail ) . '</span>';
 		$html .= '<span class="mpd-header-wc-item-details">';
 		$html .= '<span class="mpd-header-wc-item-name">' . esc_html( $title ) . '</span>';
-		$html .= '<span class="mpd-header-wc-item-price">' . $price . '</span>';
+		$html .= '<span class="mpd-header-wc-item-price">' . wp_kses_post( $price ) . '</span>';
 		$html .= '</span>';
 		$html .= '</a>';
 		$html .= '<button type="button" class="mpd-header-compare-remove-item" data-product-id="' . esc_attr( $product_id ) . '" title="' . esc_attr__( 'Remove', 'magical-products-display' ) . '"><i class="eicon-close"></i></button>';

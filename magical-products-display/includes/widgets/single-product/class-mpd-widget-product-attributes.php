@@ -313,7 +313,7 @@ class Product_Attributes extends Widget_Base {
 				'label'     => __( 'Color', 'magical-products-display' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .mpd-attributes-heading' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mpd-attributes-collapsible .mpd-attributes-toggle' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -322,7 +322,7 @@ class Product_Attributes extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'heading_typography',
-				'selector' => '{{WRAPPER}} .mpd-attributes-heading',
+				'selector' => '{{WRAPPER}} .mpd-attributes-collapsible .mpd-attributes-toggle',
 			)
 		);
 
@@ -339,7 +339,7 @@ class Product_Attributes extends Widget_Base {
 					),
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} .mpd-attributes-heading' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mpd-attributes-collapsible .mpd-attributes-toggle' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -763,7 +763,7 @@ class Product_Attributes extends Widget_Base {
 						<?php \Elementor\Icons_Manager::render_icon( $toggle_icon, array( 'aria-hidden' => 'true' ) ); ?>
 					</span>
 				</button>
-				<div class="mpd-attributes-content" <?php echo esc_attr( $is_collapsed ? 'style="display: none;"' : '' ); ?>>
+				<div class="mpd-attributes-content"<?php echo $is_collapsed ? ' style="display: none;"' : ''; ?>>
 				<?php
 			}
 

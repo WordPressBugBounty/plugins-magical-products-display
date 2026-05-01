@@ -1713,6 +1713,10 @@
 	border-radius: 10px;
 }
 
+.mpd-mini-cart-counter.mpd-counter-hidden {
+	display: none;
+}
+
 .mpd-mini-cart-text {
 	font-weight: 500;
 }

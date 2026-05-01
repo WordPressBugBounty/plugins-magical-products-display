@@ -126,6 +126,14 @@ class MPD_Products_Tab_Ajax
 
         $settings = wp_parse_args($settings, $defaults);
 
+        $settings['bsktab_products_count'] = max(1, min(24, absint($settings['bsktab_products_count'])));
+        $settings['mgpdeg_rownumber'] = self::sanitize_grid_column($settings['mgpdeg_rownumber'], '4');
+        $settings['mgpdeg_rownumber_tab'] = self::sanitize_grid_column($settings['mgpdeg_rownumber_tab'], '6');
+        $settings['mgpdeg_rownumber_mob'] = self::sanitize_grid_column($settings['mgpdeg_rownumber_mob'], '12');
+        $settings['mgpdeg_product_style'] = in_array($settings['mgpdeg_product_style'], ['1', '2', '3'], true) ? $settings['mgpdeg_product_style'] : '1';
+        $settings['mgpdeg_btn_type'] = in_array($settings['mgpdeg_btn_type'], ['cart', 'details'], true) ? $settings['mgpdeg_btn_type'] : 'cart';
+        $settings['mgpdeg_title_tag'] = in_array($settings['mgpdeg_title_tag'], ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div', 'span', 'p'], true) ? $settings['mgpdeg_title_tag'] : 'h2';
+
         // Extract settings
         $bsktab_products_count = intval($settings['bsktab_products_count']);
         $mgpdeg_rownumber = $settings['mgpdeg_rownumber'];
@@ -365,6 +373,15 @@ class MPD_Products_Tab_Ajax
             ?>
         </div>
         <?php
+    }
+
+    /**
+     * Sanitize Bootstrap grid column values.
+     */
+    private static function sanitize_grid_column($value, $default)
+    {
+        $value = (string) absint($value);
+        return in_array($value, ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'], true) ? $value : $default;
     }
 }
 

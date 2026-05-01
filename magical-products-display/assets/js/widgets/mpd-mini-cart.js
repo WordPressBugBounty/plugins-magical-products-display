@@ -212,45 +212,46 @@
         initFragmentRefresh: function () {
             var self = this;
 
-            // Listen for cart fragment updates
+            // Listen for cart fragment updates (remove, quantity change, etc.)
             $(document.body).on('wc_fragments_refreshed wc_fragments_loaded', function () {
                 self.cacheElements();
             });
 
-            // Listen for added to cart event
+            // Listen for added to cart event (fired by mpd-add-to-cart.js and WC core)
             $(document.body).on('added_to_cart', function (event, fragments, cart_hash, $button) {
-                self.handleAddedToCart($button);
+                self.handleAddedToCart(fragments, $button);
             });
         },
 
         /**
          * Handle added to cart event.
          *
-         * @param {jQuery} $button Add to cart button.
+         * @param {object} fragments WooCommerce fragments returned by server.
+         * @param {jQuery} $button   Add to cart button.
          */
-        handleAddedToCart: function ($button) {
-            // Show dropdown briefly to indicate item was added
-            var $miniCarts = this.$miniCarts;
-            
-            $miniCarts.each(function () {
+        handleAddedToCart: function (fragments, $button) {
+            var self = this;
+
+            // Apply any fragments not already replaced (e.g. from WC core AJAX add-to-cart)
+            if (fragments && typeof fragments === 'object') {
+                $.each(fragments, function (key, value) {
+                    $(key).replaceWith(value);
+                });
+            }
+
+            // Re-cache elements after DOM update
+            self.cacheElements();
+
+            // Animate the counter on each mini cart instance
+            self.$miniCarts.each(function () {
                 var $cart = $(this);
-                var $dropdown = $cart.find('.mpd-mini-cart-dropdown');
                 var $counter = $cart.find('.mpd-mini-cart-counter');
 
-                // Pulse animation on counter
                 if ($counter.length) {
                     $counter.addClass('mpd-pulse');
                     setTimeout(function () {
                         $counter.removeClass('mpd-pulse');
                     }, 600);
-                }
-
-                // Briefly show dropdown (optional)
-                if ($dropdown.length && !$dropdown.hasClass('active')) {
-                    $dropdown.addClass('mpd-flash');
-                    setTimeout(function () {
-                        $dropdown.removeClass('mpd-flash');
-                    }, 2000);
                 }
             });
         }

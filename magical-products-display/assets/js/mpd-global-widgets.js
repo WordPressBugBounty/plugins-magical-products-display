@@ -30,29 +30,30 @@
         },
 
         bindEvents: function() {
+            // Use namespaced events and off() first to prevent duplicate bindings on re-init.
             // Add to wishlist buttons (supports both class names)
-            $(document).on('click', '.mpd-add-to-wishlist, .mpd-wishlist-btn', this.addToWishlist.bind(this));
+            $(document).off('click.mpdWishlist').on('click.mpdWishlist', '.mpd-add-to-wishlist, .mpd-wishlist-btn', this.addToWishlist.bind(this));
             
             // Remove from wishlist
-            $(document).on('click', '.mpd-wishlist-remove', this.removeFromWishlist.bind(this));
+            $(document).off('click.mpdWishlistRemove').on('click.mpdWishlistRemove', '.mpd-wishlist-remove', this.removeFromWishlist.bind(this));
             
             // Remove from header dropdown
-            $(document).on('click', '.mpd-header-wc-remove-item', this.removeFromHeaderDropdown.bind(this));
+            $(document).off('click.mpdWishlistHeaderRemove').on('click.mpdWishlistHeaderRemove', '.mpd-header-wc-remove-item', this.removeFromHeaderDropdown.bind(this));
             
             // Clear all wishlist items from header
-            $(document).on('click', '.mpd-clear-wishlist', this.clearWishlist.bind(this));
+            $(document).off('click.mpdWishlistClear').on('click.mpdWishlistClear', '.mpd-clear-wishlist', this.clearWishlist.bind(this));
             
             // Add all to cart
-            $(document).on('click', '.mpd-wishlist-add-all', this.addAllToCart.bind(this));
+            $(document).off('click.mpdWishlistAddAll').on('click.mpdWishlistAddAll', '.mpd-wishlist-add-all', this.addAllToCart.bind(this));
             
             // Share wishlist toggle
-            $(document).on('click', '.mpd-wishlist-share-toggle', this.toggleShare.bind(this));
+            $(document).off('click.mpdWishlistShare').on('click.mpdWishlistShare', '.mpd-wishlist-share-toggle', this.toggleShare.bind(this));
             
             // Copy link
-            $(document).on('click', '.mpd-wishlist-copy-link', this.copyLink.bind(this));
+            $(document).off('click.mpdWishlistCopy').on('click.mpdWishlistCopy', '.mpd-wishlist-copy-link', this.copyLink.bind(this));
             
             // Listen for WooCommerce added_to_cart event to show View Cart
-            $(document.body).on('added_to_cart', this.onAddedToCart.bind(this));
+            $(document.body).off('added_to_cart.mpdWishlist').on('added_to_cart.mpdWishlist', this.onAddedToCart.bind(this));
             
             // Listen for new products loaded (infinite scroll)
             $(document).on('mpd_products_loaded', this.updateButtonStates.bind(this));
@@ -479,20 +480,21 @@
         },
 
         bindEvents: function() {
+            // Use namespaced events and off() first to prevent duplicate bindings on re-init.
             // Add to comparison buttons (supports both class names)
-            $(document).on('click', '.mpd-add-to-compare, .mpd-compare-btn', this.addToCompare.bind(this));
+            $(document).off('click.mpdCompare').on('click.mpdCompare', '.mpd-add-to-compare, .mpd-compare-btn', this.addToCompare.bind(this));
             
             // Remove from comparison
-            $(document).on('click', '.mpd-comparison-remove', this.removeFromCompare.bind(this));
+            $(document).off('click.mpdCompareRemove').on('click.mpdCompareRemove', '.mpd-comparison-remove', this.removeFromCompare.bind(this));
             
             // Remove from header dropdown
-            $(document).on('click', '.mpd-header-compare-remove-item', this.removeFromHeaderDropdown.bind(this));
+            $(document).off('click.mpdCompareHeaderRemove').on('click.mpdCompareHeaderRemove', '.mpd-header-compare-remove-item', this.removeFromHeaderDropdown.bind(this));
             
             // Clear all (both comparison page and header dropdown)
-            $(document).on('click', '.mpd-comparison-clear, .mpd-clear-compare', this.clearAll.bind(this));
+            $(document).off('click.mpdCompareClear').on('click.mpdCompareClear', '.mpd-comparison-clear, .mpd-clear-compare', this.clearAll.bind(this));
             
             // Listen for new products loaded (infinite scroll)
-            $(document).on('mpd_products_loaded', this.updateButtonStates.bind(this));
+            $(document).off('mpd_products_loaded.mpdCompare').on('mpd_products_loaded.mpdCompare', this.updateButtonStates.bind(this));
         },
         
         /**

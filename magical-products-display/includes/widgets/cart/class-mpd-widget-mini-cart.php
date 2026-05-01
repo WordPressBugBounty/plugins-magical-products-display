@@ -1103,12 +1103,15 @@ class Mini_Cart extends Widget_Base {
 		$cart_items = $cart ? $cart->get_cart() : array();
 		$max_items  = isset( $settings['max_products'] ) ? absint( $settings['max_products'] ) : 5;
 
+		echo '<div class="mpd-mini-cart-products-wrap">';
+
 		if ( empty( $cart_items ) ) {
 			?>
 			<div class="mpd-mini-cart-empty">
 				<p><?php echo esc_html( $settings['empty_cart_message'] ); ?></p>
 			</div>
 			<?php
+			echo '</div>';
 			return;
 		}
 
@@ -1182,6 +1185,6 @@ class Mini_Cart extends Widget_Base {
 				</a>
 			<?php endif; ?>
 		</div>
-		<?php
+		</div><?php // .mpd-mini-cart-products-wrap
 	}
 }

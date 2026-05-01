@@ -53,22 +53,33 @@ trait WC_Helpers {
 			return $this->get_preview_product();
 		}
 
+		// Resolve product ID from available sources.
+		$product_id = 0;
+
 		if ( $product instanceof \WC_Product ) {
-			return $product;
+			$product_id = $product->get_id();
+		} elseif ( in_the_loop() ) {
+			$product_id = get_the_ID();
+		} else {
+			global $post;
+			if ( $post && 'product' === $post->post_type ) {
+				$product_id = $post->ID;
+			}
 		}
 
-		// Try to get from the loop.
-		if ( in_the_loop() ) {
-			return wc_get_product( get_the_ID() );
+		if ( ! $product_id ) {
+			return false;
 		}
 
-		// Try to get from global post.
-		global $post;
-		if ( $post && 'product' === $post->post_type ) {
-			return wc_get_product( $post->ID );
+		// On multisite, the object cache can hold stale data (e.g. stock status)
+		// from a different blog. Clear the cache so WooCommerce reads fresh meta
+		// from the current blog's database.
+		if ( is_multisite() ) {
+			clean_post_cache( $product_id );
+			wp_cache_delete( 'wc_product_' . $product_id, 'products' );
 		}
 
-		return false;
+		return wc_get_product( $product_id );
 	}
 
 	/**
@@ -99,21 +110,37 @@ trait WC_Helpers {
 		$preview_product_id = $this->get_preview_product_id();
 
 		if ( $preview_product_id ) {
+			// On multisite, bust the cache before fetching so editor shows fresh stock data.
+			if ( is_multisite() ) {
+				clean_post_cache( $preview_product_id );
+				wp_cache_delete( 'wc_product_' . $preview_product_id, 'products' );
+			}
 			$product = wc_get_product( $preview_product_id );
 			if ( $product ) {
 				return $product;
 			}
 		}
 
-		// Fallback: get the first published product.
+		// Fallback: get the first published in-stock product.
 		$products = wc_get_products( array(
-			'status' => 'publish',
-			'limit'  => 1,
-			'orderby' => 'date',
-			'order'  => 'DESC',
+			'status'       => 'publish',
+			'stock_status' => 'instock',
+			'limit'        => 1,
+			'orderby'      => 'date',
+			'order'        => 'DESC',
 		) );
 
 		if ( ! empty( $products ) ) {
+			// On multisite, bust the cache so editor shows fresh stock data.
+			if ( is_multisite() ) {
+				$pid = $products[0]->get_id();
+				clean_post_cache( $pid );
+				wp_cache_delete( 'wc_product_' . $pid, 'products' );
+				$fresh = wc_get_product( $pid );
+				if ( $fresh ) {
+					return $fresh;
+				}
+			}
 			return $products[0];
 		}
 

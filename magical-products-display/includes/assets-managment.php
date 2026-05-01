@@ -119,6 +119,10 @@ class mpdAssetsManagement
         wp_register_script('mpd-shop-archive', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/mpd-shop-archive.js', array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script('mpd-advanced-filter', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/mpd-advanced-filter.js', array('jquery', 'jquery-ui-slider', 'wc-price-slider', 'mpd-shop-archive'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script('mpd-add-to-cart', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets/mpd-add-to-cart.js', array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
+        wp_localize_script('mpd-add-to-cart', 'mpd_add_to_cart_params', array(
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'nonce'    => wp_create_nonce( 'mpd_single_add_to_cart' ),
+        ));
         wp_register_script('mpd-cart-table', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets/mpd-cart-table.js', array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script('mpd-mini-cart', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets/mpd-mini-cart.js', array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script('mpd-cross-sells', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets/mpd-cross-sells.js', array('jquery', 'mg-swiper'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
@@ -192,7 +196,7 @@ class mpdAssetsManagement
         // Localize Checkout Widgets script.
         wp_localize_script('mpd-checkout-widgets', 'mpd_checkout_params', array(
             'ajax_url' => admin_url('admin-ajax.php'),
-            'nonce'    => wp_create_nonce('mpd_checkout_nonce'),
+            'nonce'    => wp_create_nonce('mpd-checkout-nonce'),
         ));
         
         // Localize My Account Widgets script.

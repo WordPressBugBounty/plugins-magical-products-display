@@ -551,10 +551,9 @@ function mpd_refresh_order_review_ajax() {
         wp_die();
     }
 
-    // Initialize WooCommerce session if needed.
-    if ( ! WC()->session ) {
-        WC()->session = new \WC_Session_Handler();
-        WC()->session->init();
+    // Load WooCommerce cart/session using WooCommerce's normal bootstrap path when available.
+    if ( function_exists( 'wc_load_cart' ) && ( ! WC()->session || ! WC()->cart ) ) {
+        wc_load_cart();
     }
 
     // Make sure cart is loaded.
@@ -630,10 +629,9 @@ function mpd_update_cart_quantity_ajax() {
         wp_send_json_error( array( 'message' => __( 'Invalid cart item', 'magical-products-display' ) ) );
     }
 
-    // Initialize WooCommerce session if needed.
-    if ( ! WC()->session ) {
-        WC()->session = new \WC_Session_Handler();
-        WC()->session->init();
+    // Load WooCommerce cart/session using WooCommerce's normal bootstrap path when available.
+    if ( function_exists( 'wc_load_cart' ) && ( ! WC()->session || ! WC()->cart ) ) {
+        wc_load_cart();
     }
 
     // Make sure cart is loaded.

@@ -1806,7 +1806,18 @@
 .woocommerce-Tabs-panel--reviews #review_form #respond .stars {
 	margin: 0;
 	padding: 0;
+}
+
+/* WooCommerce wraps anchors in a <span> inside .stars.
+   row-reverse on the span makes stars display 1-2-3-4-5 left-to-right visually
+   while keeping DOM order 1→5, so `a:hover ~ a` (selects higher-numbered DOM
+   siblings = visually to the LEFT with row-reverse) fills all preceding stars. */
+.mpd-product-tabs #review_form #respond .stars span,
+.mpd-tabs-accordion #review_form #respond .stars span,
+.woocommerce-Tabs-panel--reviews #review_form #respond .stars span {
 	display: inline-flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
 	gap: 8px;
 }
 
@@ -1816,9 +1827,10 @@
 	color: #ddd;
 	text-decoration: none;
 	font-size: 24px;
-	transition: all 0.2s ease;
+	transition: color 0.2s ease, transform 0.2s ease;
 }
 
+/* Fill the hovered/active star itself */
 .mpd-product-tabs #review_form #respond .stars a:hover,
 .mpd-product-tabs #review_form #respond .stars a.active,
 .mpd-tabs-accordion #review_form #respond .stars a:hover,
@@ -1826,7 +1838,19 @@
 .woocommerce-Tabs-panel--reviews #review_form #respond .stars a:hover,
 .woocommerce-Tabs-panel--reviews #review_form #respond .stars a.active {
 	color: #ffc107;
-	transform: scale(1.2);
+	transform: scale(1.1);
+}
+
+/* Fill all stars to the LEFT of hovered/active star.
+   With row-reverse on the span, DOM siblings that come AFTER (higher star number)
+   are displayed to the LEFT visually — so ~ correctly fills them. */
+.mpd-product-tabs #review_form #respond .stars a:hover ~ a,
+.mpd-product-tabs #review_form #respond .stars a.active ~ a,
+.mpd-tabs-accordion #review_form #respond .stars a:hover ~ a,
+.mpd-tabs-accordion #review_form #respond .stars a.active ~ a,
+.woocommerce-Tabs-panel--reviews #review_form #respond .stars a:hover ~ a,
+.woocommerce-Tabs-panel--reviews #review_form #respond .stars a.active ~ a {
+	color: #ffc107;
 }
 
 /* Form Comment Field */
@@ -1879,7 +1903,6 @@
 .mpd-tabs-accordion #review_form #respond .form-submit input[type="submit"],
 .woocommerce-Tabs-panel--reviews #review_form #respond .form-submit input[type="submit"] {
 	padding: 14px 32px;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 	color: #fff;
 	border: none;
 	border-radius: 30px;
@@ -1890,6 +1913,7 @@
 	text-transform: uppercase;
 	transition: all 0.3s ease;
 	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.35);
+	width: auto;
 }
 
 .mpd-product-tabs #review_form #respond .form-submit input[type="submit"]:hover,
@@ -3122,7 +3146,6 @@
 .mpd-product-item .mpd-product-button .add_to_cart_button {
 	display: inline-block;
 	padding: 10px 20px;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 	color: #fff !important;
 	border: none;
 	border-radius: 25px;
@@ -3387,7 +3410,6 @@
 .mpd-upsell-item .add_to_cart_button {
 	display: inline-block;
 	padding: 10px 20px;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 	color: #fff;
 	border: none;
 	border-radius: 25px;
@@ -4564,7 +4586,7 @@
 }
 
 .mpd-action-buttons-widget .mpd-wishlist-btn.in-wishlist i::before {
-	content: '\e80f'; /* Elementor filled heart icon */
+	content: '\e93f'; /* Elementor eicon-heart (filled) */
 }
 
 /* In-comparison state */

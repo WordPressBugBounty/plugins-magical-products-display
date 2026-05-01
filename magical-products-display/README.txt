@@ -386,6 +386,19 @@ Please use the WordPress.org support forum or contact us directly at [wpthemespa
 
 == Changelog ==
 
+= 2.0.2 - May 1, 2026 =
+* Security: Added nonce verification to AJAX add-to-cart handler
+* Security: Checkout nonce name aligned across enqueue and AJAX handler
+* Security: Layout REST API endpoints now require authentication by default
+* Security: Added wp_unslash() before sanitization in AJAX search handler
+* Fixed: Mini cart dropdown now shows View Cart and Checkout buttons immediately after AJAX add-to-cart (no page refresh needed)
+* Fixed: WooCommerce session loaded correctly via wc_load_cart() in checkout and cart quantity AJAX handlers
+* Fixed: Variation attributes now forwarded correctly in legacy AJAX add-to-cart handler
+* Fixed: Products tab AJAX settings clamped and whitelisted to prevent out-of-range values
+* Fixed: Wishlist and compare product thumbnail/price output properly escaped
+* Improved: Pro-only controls in Add to Cart widget now hidden from free users
+* Improved: Added WordPress Coding Standards and PHP compatibility tooling to dev dependencies
+
 = 2.0.1 - March 11, 2026 =
 * Fixed: Shop/Archive template enable/disable toggle not working
 * Fixed: Shop page showing blank products on first load when using custom template

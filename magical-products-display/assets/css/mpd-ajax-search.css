@@ -14,54 +14,41 @@
 .mpd-ajax-search__input-wrapper {
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     background: #ffffff;
+    border: 2px solid #e1e5e9;
     border-radius: 25px;
-    transition: all 0.3s ease;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.mpd-ajax-search select:not([multiple]) {
-  appearance: none;            
-  -webkit-appearance: none;    
-  -moz-appearance: none;       
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 10px;
-  padding-right: 40px;         /* Space for arrow */
-
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20,50 70,100 120,50' stroke='%23000' stroke-width='15' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 10px center;
-  background-size: 10px;
-  cursor: pointer;
-}
 
 .mpd-ajax-search__input-wrapper:focus-within {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-    transform: translateY(-1px);
-}
-
-.mpd-ajax-search__input-wrapper:focus-within .mpd-ajax-search__input {
-    outline: none;
     border-color: #007cba;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .mpd-ajax-search__input-wrapper:hover {
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+    border-color: #cbd5e1;
 }
 
 .mpd-ajax-search__input-wrapper .mpd-ajax-search__input {
     flex: 1;
-    border: 2px solid #e1e5e9;
+    min-width: 0;
+    order: 0;
+    border: none;
     background: transparent;
-    padding: 12px 60px 12px 48px; /* Increased left padding for search icon */
+    padding: 12px 16px;
     font-size: 16px;
     line-height: 1.4;
     color: #333333;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-    min-height: 44px;
+    border-radius: 0;
+    transition: none;
+    min-height: 48px;
+    outline: none;
+    box-shadow: none;
+    align-self: center;
 }
 
 .mpd-ajax-search__input::placeholder {
@@ -71,8 +58,7 @@
 
 .mpd-ajax-search__input:focus {
     outline: none;
-    border-color: #007cba;
-    box-shadow: 0 0 0 3px rgba(0, 124, 186, 0.1);
+    box-shadow: none;
 }
 
 .mpd-ajax-search__input:disabled {
@@ -81,28 +67,44 @@
     cursor: not-allowed;
 }
 
+/* Search icon button — flex item, not absolute */
 .mpd-ajax-search__button {
-    position: absolute;
-    left: 8px; /* Better positioning with more space */
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    flex-shrink: 0;
+    order: 5; /* default: after input (right side) */
+    align-self: center;
     background: transparent;
-    color: white;
+    color: #64748b;
     border: none;
-    border-radius: 50%;
-    width: 32px; /* Slightly smaller for better fit */
-    height: 32px;
+    border-left: 1px solid #e1e5e9;
+    border-radius: 0;
+    width: 44px;
+    height: 100%;
+    min-height: 44px;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: background 0.2s ease, color 0.2s ease;
     box-shadow: none;
     z-index: 2;
+    cursor: pointer;
+}
+
+/* When icon is left of everything (before category) */
+.mpd-ajax-search--icon-left .mpd-ajax-search__button:not(.mpd-ajax-search__button--right) {
+    order: -2;
+    border-left: none;
+    border-right: 1px solid #e1e5e9;
 }
 
 .mpd-ajax-search__button:hover {
-    background: transparent;
-    transform: translateY(-50%) scale(1.05);
+    background: rgba(0, 124, 186, 0.08);
+    color: #007cba;
     box-shadow: none;
 }
 
@@ -112,23 +114,21 @@
 }
 
 .mpd-ajax-search__button:active {
-    transform: translateY(-50%) scale(0.98);
+    background: rgba(0, 124, 186, 0.14);
 }
 
 .mpd-ajax-search__button:disabled {
-    background: #94a3b8;
+    background: #f1f5f9;
+    color: #94a3b8;
     cursor: not-allowed;
-    transform: translateY(-50%);
 }
 
 .mpd-ajax-search__icon {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     fill: currentColor;
     flex-shrink: 0;
-    position: absolute;
-    left: 10px;
-    top: 25%;
+    display: block;
 }
 
 .mpd-ajax-search__loading {
@@ -154,10 +154,15 @@
 .mpd-ajax-search__spinner {
     position: absolute;
     right: 12px;
-    top: 25%;
-    transform: translateY(-25%);
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 3;
-    display: none; /* Hidden by default, shown via JavaScript */
+    display: none;
+}
+
+/* When icon is on right, spinner sits left of the icon button */
+.mpd-ajax-search--has-icon.mpd-ajax-search--icon-right .mpd-ajax-search__spinner {
+    right: 48px;
 }
 
 /* Dots Spinner */
@@ -227,14 +232,14 @@
 
 .mpd-ajax-search__clear {
     position: absolute;
-    right: 12px; /* Adjust position since search icon is now on left */
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
     border: none;
     color: #64748b;
     cursor: pointer;
-    padding: 4px;
+    padding: 0;
     border-radius: 50%;
     width: 24px;
     height: 24px;
@@ -242,7 +247,12 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
-    z-index: 2;
+    z-index: 4;
+}
+
+/* When icon is on right, clear sits left of the icon button */
+.mpd-ajax-search--has-icon.mpd-ajax-search--icon-right .mpd-ajax-search__clear {
+    right: 48px;
 }
 
 .mpd-ajax-search__clear:hover {
@@ -800,5 +810,95 @@
         min-width: auto;
         max-width: none;
         width: 100%;
+    }
+}
+
+/* =========================================
+   Category Dropdown Inside Search Bar
+   ========================================= */
+
+/* Input padding: icon on right (default) */
+.mpd-ajax-search--has-icon.mpd-ajax-search--icon-right .mpd-ajax-search__input {
+    padding-right: 44px;
+    padding-left: 16px;
+}
+
+/* Input padding: icon on left */
+.mpd-ajax-search--has-icon.mpd-ajax-search--icon-left .mpd-ajax-search__input {
+    padding-left: 44px;
+    padding-right: 16px;
+}
+
+/* The inline category select */
+.mpd-ajax-search__category-select {
+    flex-shrink: 0;
+    align-self: center;
+    padding: 0 28px 0 14px;
+    font-size: 14px;
+    color: #475569;
+    background-color: #f8fafc;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20,50 70,100 120,50' stroke='%2364748b' stroke-width='15' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 10px;
+    transition: background-color 0.2s ease;
+    max-width: 160px;
+    border-radius: 0;
+    height: 100%;
+    padding:14px;
+    order: -1; /* default: sits after icon, before input */
+}
+
+/* Category left: right-side divider, sits after icon (order -1) */
+.mpd-ajax-search--category-left .mpd-ajax-search__category-select {
+    border-right: 1px solid #e1e5e9;
+    border-left: none;
+    order: -1;
+}
+
+/* Category right: left-side divider, sits after input */
+.mpd-ajax-search--category-right .mpd-ajax-search__category-select {
+    border-left: 1px solid #e1e5e9;
+    border-right: none;
+    order: 10;
+}
+
+/* Icon right: button order 5, sits after input and before right-category */
+.mpd-ajax-search--icon-right .mpd-ajax-search__button {
+    order: 5;
+    border-left: 1px solid #e1e5e9;
+    border-right: none;
+}
+
+/* Icon right + category right: button between input and category */
+.mpd-ajax-search--icon-right.mpd-ajax-search--category-right .mpd-ajax-search__button {
+    order: 5; /* before category (order 10) */
+}
+
+.mpd-ajax-search__category-select:hover {
+    background-color: #f1f5f9;
+}
+
+.mpd-ajax-search__category-select:focus {
+    background-color: #f1f5f9;
+    outline: none;
+}
+
+/* Divider element not needed — border on select handles it */
+.mpd-ajax-search__category-divider {
+    display: none;
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+    .mpd-ajax-search__category-select {
+        max-width: 110px;
+        font-size: 12px;
+        padding: 0 22px 0 8px;
     }
 }

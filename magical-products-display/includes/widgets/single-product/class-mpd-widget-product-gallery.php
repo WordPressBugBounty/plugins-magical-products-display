@@ -283,6 +283,28 @@ class Product_Gallery extends Widget_Base {
 				)
 			);
 
+			$this->add_control(
+				'variation_images_heading',
+				array(
+					'label'     => __( 'Variation Images', 'magical-products-display' ),
+					'type'      => Controls_Manager::HEADING,
+					'separator' => 'before',
+				)
+			);
+
+			$this->add_control(
+				'variation_images',
+				array(
+					'label'        => __( 'Show Variation Images in Gallery', 'magical-products-display' ),
+					'type'         => Controls_Manager::SWITCHER,
+					'label_on'     => __( 'Yes', 'magical-products-display' ),
+					'label_off'    => __( 'No', 'magical-products-display' ),
+					'return_value' => 'yes',
+					'default'      => '',
+					'description'  => __( 'Display all variation images in the gallery. Clicking a variation image auto-selects the variation, and selecting a variation scrolls to its image.', 'magical-products-display' ),
+				)
+			);
+
 		$this->end_controls_section();
 	}
 
@@ -530,6 +552,7 @@ class Product_Gallery extends Widget_Base {
 		$this->add_render_attribute( 'wrapper', 'class', 'mpd-product-gallery' );
 		$this->add_render_attribute( 'wrapper', 'class', 'mpd-gallery-layout-' . $layout );
 		$this->add_render_attribute( 'wrapper', 'data-layout', $layout );
+		$this->add_render_attribute( 'wrapper', 'data-product-id', $product->get_id() );
 
 		// Add data attributes for JS.
 		if ( $this->is_pro() ) {
@@ -539,6 +562,7 @@ class Product_Gallery extends Widget_Base {
 			$this->add_render_attribute( 'wrapper', 'data-video-support', $settings['video_support'] ?? '' );
 			$this->add_render_attribute( 'wrapper', 'data-autoplay', $settings['autoplay_slider'] ?? '' );
 			$this->add_render_attribute( 'wrapper', 'data-autoplay-speed', $settings['autoplay_speed'] ?? '5000' );
+			$this->add_render_attribute( 'wrapper', 'data-variation-images', $settings['variation_images'] ?? '' );
 		}
 		?>
 		<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
@@ -601,11 +625,29 @@ class Product_Gallery extends Widget_Base {
 		$columns       = absint( $settings['thumbnails_columns'] ?? 4 );
 		$layout        = $settings['gallery_layout'] ?? 'default';
 		$all_images    = $main_image_id ? array_merge( array( $main_image_id ), $attachment_ids ) : $attachment_ids;
+
+		// Collect variation images if pro feature is enabled.
+		$variation_map = array(); // attachment_id => variation_id
+		if ( $this->is_pro() && 'yes' === ( $settings['variation_images'] ?? '' ) && $product->is_type( 'variable' ) ) {
+			$variations = $product->get_available_variations();
+			foreach ( $variations as $variation ) {
+				$var_image_id = $variation['image_id'] ?? 0;
+				if ( $var_image_id && ! in_array( $var_image_id, $all_images, true ) && ! isset( $variation_map[ $var_image_id ] ) ) {
+					$all_images[]                    = $var_image_id;
+					$variation_map[ $var_image_id ] = $variation['variation_id'];
+				}
+				// Also track existing images that belong to variations.
+				if ( $var_image_id && in_array( $var_image_id, $all_images, true ) && ! isset( $variation_map[ $var_image_id ] ) ) {
+					$variation_map[ $var_image_id ] = $variation['variation_id'];
+				}
+			}
+		}
+
 		$has_thumbs    = count( $all_images ) > 1 || $has_video;
 		$is_vertical   = in_array( $layout, array( 'thumbnails-left', 'thumbnails-right' ), true );
 
 		// Build gallery items array with video.
-		$gallery_items = $this->build_gallery_items( $all_images, $video_url, $video_position, $has_video );
+		$gallery_items = $this->build_gallery_items( $all_images, $video_url, $video_position, $has_video, $variation_map );
 		?>
 		<div class="mpd-gallery-inner" data-columns="<?php echo esc_attr( $columns ); ?>" data-has-video="<?php echo esc_attr( $has_video ? 'yes' : 'no' ); ?>">
 			<?php
@@ -683,16 +725,20 @@ class Product_Gallery extends Widget_Base {
 	 * @param bool   $has_video      Whether video is available.
 	 * @return array Gallery items.
 	 */
-	private function build_gallery_items( $images, $video_url, $video_position, $has_video ) {
+	private function build_gallery_items( $images, $video_url, $video_position, $has_video, $variation_map = array() ) {
 		$items = array();
 
 		// Build image items.
 		$image_items = array();
 		foreach ( $images as $attachment_id ) {
-			$image_items[] = array(
+			$item = array(
 				'type' => 'image',
 				'id'   => $attachment_id,
 			);
+			if ( isset( $variation_map[ $attachment_id ] ) ) {
+				$item['variation_id'] = $variation_map[ $attachment_id ];
+			}
+			$image_items[] = $item;
 		}
 
 		// Add video based on position.
@@ -727,8 +773,12 @@ class Product_Gallery extends Widget_Base {
 	private function render_image_slide( $item, $index, $active_class ) {
 		$full_size_image = wp_get_attachment_image_src( $item['id'], 'full' );
 		$image_title     = get_post_field( 'post_title', $item['id'] );
+		$variation_attr  = '';
+		if ( ! empty( $item['variation_id'] ) ) {
+			$variation_attr = ' data-variation-id="' . esc_attr( $item['variation_id'] ) . '"';
+		}
 		?>
-		<div class="mpd-gallery-slide<?php echo esc_attr( $active_class ); ?>" data-index="<?php echo esc_attr( $index ); ?>" data-type="image">
+		<div class="mpd-gallery-slide<?php echo esc_attr( $active_class ); ?>" data-index="<?php echo esc_attr( $index ); ?>" data-type="image" data-attachment-id="<?php echo esc_attr( $item['id'] ); ?>"<?php echo $variation_attr; ?>>
 			<a href="<?php echo esc_url( $full_size_image[0] ?? '' ); ?>" data-lightbox="mpd-gallery">
 				<?php echo wp_get_attachment_image( $item['id'], 'woocommerce_single', false, array( 'title' => $image_title ) ); ?>
 			</a>
@@ -862,7 +912,13 @@ class Product_Gallery extends Widget_Base {
 						</div>
 					</div>
 				<?php else : ?>
-					<div class="mpd-thumb-item<?php echo 0 === $index ? ' mpd-thumb-active' : ''; ?>" data-index="<?php echo esc_attr( $index ); ?>" data-type="image">
+					<?php
+					$thumb_variation_attr = '';
+					if ( ! empty( $item['variation_id'] ) ) {
+						$thumb_variation_attr = ' data-variation-id="' . esc_attr( $item['variation_id'] ) . '"';
+					}
+					?>
+					<div class="mpd-thumb-item<?php echo 0 === $index ? ' mpd-thumb-active' : ''; ?>" data-index="<?php echo esc_attr( $index ); ?>" data-type="image" data-attachment-id="<?php echo esc_attr( $item['id'] ); ?>"<?php echo $thumb_variation_attr; ?>>
 						<?php echo wp_get_attachment_image( $item['id'], 'woocommerce_thumbnail' ); ?>
 					</div>
 				<?php endif; ?>
@@ -900,13 +956,29 @@ class Product_Gallery extends Widget_Base {
 			array_unshift( $attachment_ids, $main_image_id );
 		}
 
+		// Collect variation images if pro feature is enabled.
+		$variation_map = array();
+		if ( $this->is_pro() && 'yes' === ( $settings['variation_images'] ?? '' ) && $product->is_type( 'variable' ) ) {
+			$variations = $product->get_available_variations();
+			foreach ( $variations as $variation ) {
+				$var_image_id = $variation['image_id'] ?? 0;
+				if ( $var_image_id && ! in_array( $var_image_id, $attachment_ids, true ) && ! isset( $variation_map[ $var_image_id ] ) ) {
+					$attachment_ids[]                  = $var_image_id;
+					$variation_map[ $var_image_id ] = $variation['variation_id'];
+				}
+				if ( $var_image_id && in_array( $var_image_id, $attachment_ids, true ) && ! isset( $variation_map[ $var_image_id ] ) ) {
+					$variation_map[ $var_image_id ] = $variation['variation_id'];
+				}
+			}
+		}
+
 		if ( empty( $attachment_ids ) && ! $has_video ) {
 			echo wc_placeholder_img();
 			return;
 		}
 
 		// Build gallery items with video.
-		$gallery_items = $this->build_gallery_items( $attachment_ids, $video_url, $video_position, $has_video );
+		$gallery_items = $this->build_gallery_items( $attachment_ids, $video_url, $video_position, $has_video, $variation_map );
 		$enable_lightbox = $this->is_pro() && 'yes' === ( $settings['enable_lightbox'] ?? 'yes' );
 		?>
 		<div class="mpd-gallery-grid" data-has-video="<?php echo esc_attr( $has_video ? 'yes' : 'no' ); ?>">
@@ -947,8 +1019,12 @@ class Product_Gallery extends Widget_Base {
 					<?php
 				else :
 					$full_url = wp_get_attachment_image_url( $item['id'], 'full' );
+					$grid_variation_attr = '';
+					if ( ! empty( $item['variation_id'] ) ) {
+						$grid_variation_attr = ' data-variation-id="' . esc_attr( $item['variation_id'] ) . '"';
+					}
 					?>
-					<div class="mpd-gallery-grid-item" data-type="image">
+					<div class="mpd-gallery-grid-item" data-type="image" data-attachment-id="<?php echo esc_attr( $item['id'] ); ?>"<?php echo $grid_variation_attr; ?>>
 						<?php
 						if ( $enable_lightbox ) {
 							printf(

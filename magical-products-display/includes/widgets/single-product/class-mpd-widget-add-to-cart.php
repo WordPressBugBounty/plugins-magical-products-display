@@ -87,7 +87,7 @@ class Add_To_Cart extends Widget_Base {
 	 * @return array Style dependencies.
 	 */
 	public function get_style_depends() {
-		return array( 'mpd-single-product' );
+		return array( 'mpd-single-product', 'mpd-wc-action-buttons' );
 	}
 
 	/**
@@ -194,16 +194,16 @@ class Add_To_Cart extends Widget_Base {
 
 		if ( ! $this->is_pro() ) {
 			$this->add_pro_notice( 'pro_features_notice', __( 'Quantity Style, Sticky Cart & More', 'magical-products-display' ) );
-		}
+		} else {
 			$this->add_control(
 				'quantity_style',
 				array(
 					'label'   => __( 'Quantity Style', 'magical-products-display' ),
 					'type'    => Controls_Manager::SELECT,
 					'options' => array(
-						'default' => __( 'Default', 'magical-products-display' ),
-						'modern'  => __( 'Modern (+/-)', 'magical-products-display' ),
-						'buttons' => __( 'Buttons', 'magical-products-display' ),
+						'default'  => __( 'Default', 'magical-products-display' ),
+						'modern'   => __( 'Modern (+/-)', 'magical-products-display' ),
+						'buttons'  => __( 'Buttons', 'magical-products-display' ),
 						'dropdown' => __( 'Dropdown', 'magical-products-display' ),
 					),
 					'default' => 'default',
@@ -336,6 +336,7 @@ class Add_To_Cart extends Widget_Base {
 					),
 				)
 			);
+		}
 
 		$this->end_controls_section();
 	}
@@ -944,6 +945,18 @@ class Add_To_Cart extends Widget_Base {
 			return;
 		}
 
+		// On multisite, the object cache can hold stale stock data from another blog.
+		// Clear the cache and re-fetch a fresh product instance from the current blog.
+		if ( is_multisite() ) {
+			$product_id = $product->get_id();
+			clean_post_cache( $product_id );
+			wp_cache_delete( 'wc_product_' . $product_id, 'products' );
+			$fresh = wc_get_product( $product_id );
+			if ( $fresh instanceof \WC_Product ) {
+				$product = $fresh;
+			}
+		}
+
 		$this->add_render_attribute( 'wrapper', 'class', 'mpd-add-to-cart' );
 
 		// Pro: Add sticky cart class.
@@ -999,6 +1012,7 @@ class Add_To_Cart extends Widget_Base {
 		$this->add_render_attribute( 'wrapper', 'data-product-id', $product->get_id() );
 		$this->add_render_attribute( 'wrapper', 'data-product-type', $product->get_type() );
 		$this->add_render_attribute( 'wrapper', 'data-show-view-cart', 'yes' );
+		$this->add_render_attribute( 'wrapper', 'data-nonce', wp_create_nonce( 'mpd_single_add_to_cart' ) );
 
 		$view_cart_text = ! empty( $settings['view_cart_text'] ) ? $settings['view_cart_text'] : __( 'View Cart', 'magical-products-display' );
 		$this->add_render_attribute( 'wrapper', 'data-view-cart-text', esc_attr( $view_cart_text ) );
