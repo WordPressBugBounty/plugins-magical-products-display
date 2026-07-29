@@ -142,24 +142,33 @@
 			}
 
 			var $stickyBar = $('<div class="mpd-sticky-cart-bar" style="display: none;"></div>');
-			
-			var html = '<div class="mpd-sticky-product-info">';
+
+			// Build via DOM methods instead of HTML string concatenation so title,
+			// image src, and button text are never parsed as HTML (M-05).
+			var $info = $('<div class="mpd-sticky-product-info"></div>');
 			if (productImage) {
-				html += '<div class="mpd-sticky-product-image"><img src="' + productImage + '" alt=""></div>';
+				$info.append(
+					$('<div class="mpd-sticky-product-image"></div>').append(
+						$('<img alt="">').attr('src', productImage)
+					)
+				);
 			}
-			html += '<div class="mpd-sticky-product-details">';
+			var $details = $('<div class="mpd-sticky-product-details"></div>');
 			if (productTitle) {
-				html += '<div class="mpd-sticky-product-title">' + productTitle + '</div>';
+				$details.append($('<div class="mpd-sticky-product-title"></div>').text(productTitle));
 			}
 			if (productPrice) {
-				html += '<div class="mpd-sticky-product-price">' + productPrice + '</div>';
+				// Price comes from WooCommerce-rendered markup already in the page DOM;
+				// re-insert only its text-bearing nodes via a detached container.
+				$details.append($('<div class="mpd-sticky-product-price"></div>').append($(productPrice)));
 			}
-			html += '</div></div>';
-			html += '<div class="mpd-sticky-add-to-cart">';
-			html += '<button type="button" class="button mpd-sticky-add-btn">' + $addToCartBtn.text() + '</button>';
-			html += '</div>';
+			$info.append($details);
 
-			$stickyBar.html(html);
+			var $cartArea = $('<div class="mpd-sticky-add-to-cart"></div>').append(
+				$('<button type="button" class="button mpd-sticky-add-btn"></button>').text($addToCartBtn.text())
+			);
+
+			$stickyBar.append($info).append($cartArea);
 			$('body').append($stickyBar);
 
 			// Handle sticky button click
@@ -377,6 +386,16 @@
 			var $form = $wrapper.find('form.cart');
 			var checkoutUrl = $wrapper.data('checkout-url') || '/checkout';
 
+			// Validate checkoutUrl is same-origin to prevent open redirect (H-04).
+			try {
+				var parsed = new URL(checkoutUrl, window.location.href);
+				if (parsed.origin !== window.location.origin) {
+					checkoutUrl = '/checkout';
+				}
+			} catch (e) {
+				checkoutUrl = '/checkout';
+			}
+
 			if ($btn.hasClass('mpd-loading')) return;
 
 			// Build form data for admin-ajax.php without add-to-cart to avoid WC's native handler adding first.
@@ -433,9 +452,21 @@
 			var cartUrl = $wrapper.data('cart-url') || '/cart';
 			var viewCartText = $wrapper.data('view-cart-text') || 'View Cart';
 
-			var $viewCartBtn = $('<a href="' + cartUrl + '" class="mpd-view-cart-btn">' +
-				'<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>' +
-				'<span>' + viewCartText + '</span></a>');
+			// Validate cartUrl is same-origin to prevent open redirect (H-04 / H-03).
+			try {
+				var parsed = new URL(cartUrl, window.location.href);
+				if (parsed.origin !== window.location.origin) {
+					cartUrl = '/cart';
+				}
+			} catch (e) {
+				cartUrl = '/cart';
+			}
+
+			var $svgIcon = $('<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>');
+			var $viewCartBtn = $('<a class="mpd-view-cart-btn"></a>')
+				.attr('href', cartUrl)
+				.append($svgIcon)
+				.append($('<span>').text(viewCartText));
 
 			$wrapper.append($viewCartBtn);
 		}

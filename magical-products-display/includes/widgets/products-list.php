@@ -2342,7 +2342,7 @@ class mgProducts_List extends \Elementor\Widget_Base
                                                 </a>
                                                 <?php if ($settings['mgpdel_adicons_show'] && get_option('mgppro_is_active', 'no') == 'yes') : ?>
                                                     <div class="mgp-exicons exicons-<?php echo esc_attr($settings['mgpdel_adicons_position']); ?>">
-                                                        <?php do_action('mgproducts_pro_advance_icons', $mgpdel_wishlist_show, $mgpdel_wishlist_text, $mgpdel_share_show, $mgpdel_share_text, $mgpdel_video_show, $mgpdel_video_text, $mgpdel_qrcode_show, $mgpdel_qrcode_text); ?>
+                                                        <?php do_action('mgshop_builder_pro_advance_icons', $mgpdel_wishlist_show, $mgpdel_wishlist_text, $mgpdel_share_show, $mgpdel_share_text, $mgpdel_video_show, $mgpdel_video_text, $mgpdel_qrcode_show, $mgpdel_qrcode_text); ?>
                                                     </div>
                                                 <?php endif; ?>
                                                 <?php $this->render_action_buttons_html($settings, 'on_image', 'mgpdel'); ?>

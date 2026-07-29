@@ -175,7 +175,26 @@ class Activator {
 		dbDelta( $sql );
 
 		// Store database version.
-		update_option( 'mpd_db_version', '1.0.0' );
+		update_option( 'mpd_db_version', MAGICAL_PRODUCTS_DISPLAY_DB_VERSION );
+	}
+
+	/**
+	 * Upgrade the database schema when the stored version is outdated.
+	 *
+	 * Safe to call on every request (e.g. from an `init` or upgrader hook);
+	 * dbDelta only runs when the stored version differs from
+	 * MAGICAL_PRODUCTS_DISPLAY_DB_VERSION.
+	 *
+	 * @since 2.0.5
+	 *
+	 * @return void
+	 */
+	public static function maybe_upgrade_db() {
+		if ( get_option( 'mpd_db_version' ) === MAGICAL_PRODUCTS_DISPLAY_DB_VERSION ) {
+			return;
+		}
+
+		self::create_tables();
 	}
 
 	/**
@@ -243,8 +262,10 @@ class Activator {
 	 * @return void
 	 */
 	private static function schedule_events() {
-		// Schedule license check (for pro version).
-		if ( ! wp_next_scheduled( 'mpd_daily_license_check' ) ) {
+		// Schedule license check only when the pro version is active —
+		// free installs have no callback for this hook, so the event
+		// would fire daily into the void.
+		if ( get_option( 'mgppro_is_active' ) && ! wp_next_scheduled( 'mpd_daily_license_check' ) ) {
 			wp_schedule_event( time(), 'daily', 'mpd_daily_license_check' );
 		}
 

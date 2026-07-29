@@ -179,13 +179,27 @@ class Performance {
 				$this->cache_dir = false;
 				return false;
 			}
-			// Add an index.php for security.
+		}
+
+		// Ensure protection files exist (also covers dirs created by older
+		// plugin versions that only wrote index.php).
+		if ( ! file_exists( $path . '/index.php' ) || ! file_exists( $path . '/.htaccess' ) ) {
 			global $wp_filesystem;
 			if ( ! function_exists( 'WP_Filesystem' ) ) {
 				require_once ABSPATH . 'wp-admin/includes/file.php';
 			}
 			if ( WP_Filesystem() ) {
-				$wp_filesystem->put_contents( $path . '/index.php', '<?php // Silence is golden.', FS_CHMOD_FILE );
+				if ( ! file_exists( $path . '/index.php' ) ) {
+					$wp_filesystem->put_contents( $path . '/index.php', '<?php // Silence is golden.', FS_CHMOD_FILE );
+				}
+				if ( ! file_exists( $path . '/.htaccess' ) ) {
+					// Block PHP execution inside the cache dir (Apache). Nginx ignores
+					// .htaccess but the dir only ever receives .css/.js we generate.
+					$htaccess  = "<Files *.php>\n";
+					$htaccess .= "\tRequire all denied\n";
+					$htaccess .= "</Files>\n";
+					$wp_filesystem->put_contents( $path . '/.htaccess', $htaccess, FS_CHMOD_FILE );
+				}
 			}
 		}
 
@@ -230,8 +244,9 @@ class Performance {
 		if ( 0 === strpos( $url_no_scheme, $content_url_no_scheme ) ) {
 			$relative = substr( $url_no_scheme, strlen( $content_url_no_scheme ) );
 			$local    = WP_CONTENT_DIR . str_replace( '/', DIRECTORY_SEPARATOR, $relative );
-			if ( file_exists( $local ) ) {
-				return $local;
+			$resolved = $this->resolve_safe_asset_path( $local, WP_CONTENT_DIR );
+			if ( false !== $resolved ) {
+				return $resolved;
 			}
 		}
 
@@ -242,12 +257,52 @@ class Performance {
 		if ( 0 === strpos( $url_no_scheme, $site_url_no_scheme ) ) {
 			$relative = substr( $url_no_scheme, strlen( $site_url_no_scheme ) );
 			$local    = ABSPATH . ltrim( str_replace( '/', DIRECTORY_SEPARATOR, $relative ), DIRECTORY_SEPARATOR );
-			if ( file_exists( $local ) ) {
-				return $local;
+			$resolved = $this->resolve_safe_asset_path( $local, ABSPATH );
+			if ( false !== $resolved ) {
+				return $resolved;
 			}
 		}
 
 		return false;
+	}
+
+	/**
+	 * Resolve an asset path and reject anything unsafe to minify.
+	 *
+	 * The resulting file is copied into the public uploads/mpd-cache
+	 * directory, so this must never resolve to anything but a real
+	 * .css/.js file inside the expected base directory. realpath()
+	 * defeats "../" traversal sequences; the extension allowlist stops
+	 * sensitive-but-in-webroot files (e.g. wp-config.php) from being
+	 * exposed through the cache.
+	 *
+	 * @since 2.0.5
+	 *
+	 * @param string $path Candidate local path mapped from the URL.
+	 * @param string $base Directory the path must live under.
+	 * @return string|false Canonical (realpath) file path, or false.
+	 */
+	private function resolve_safe_asset_path( $path, $base ) {
+		$real_path = realpath( $path );
+		$real_base = realpath( $base );
+
+		if ( false === $real_path || false === $real_base || ! is_file( $real_path ) ) {
+			return false;
+		}
+
+		// Must stay inside the base directory.
+		$base_prefix = rtrim( $real_base, DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR;
+		if ( 0 !== strpos( $real_path, $base_prefix ) ) {
+			return false;
+		}
+
+		// Only static css/js assets may enter the public cache.
+		$ext = strtolower( pathinfo( $real_path, PATHINFO_EXTENSION ) );
+		if ( ! in_array( $ext, array( 'css', 'js' ), true ) ) {
+			return false;
+		}
+
+		return $real_path;
 	}
 
 	/**

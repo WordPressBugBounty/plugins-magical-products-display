@@ -228,6 +228,10 @@ class PreLayout_Importer {
 			'show_arrows',
 			'show_dots',
 			'autoplay',
+			// Heading/title tag choices are structural, not demo content.
+			'title_tag',
+			'header_size',
+			'title_size',
 			
 			// Visibility and conditions.
 			'hide_on',
@@ -302,11 +306,21 @@ class PreLayout_Importer {
 
 		foreach ( $settings as $key => $value ) {
 			// Check if key should be removed.
+			// Keys ending with '_' are prefix-matched; all others require exact match.
 			$should_remove = false;
 			foreach ( $remove_keys as $remove_key ) {
-				if ( strpos( $key, $remove_key ) === 0 ) {
-					$should_remove = true;
-					break;
+				if ( '_' === substr( $remove_key, -1 ) ) {
+					// Prefix match for 'demo_', 'sample_', etc.
+					if ( strpos( $key, $remove_key ) === 0 ) {
+						$should_remove = true;
+						break;
+					}
+				} else {
+					// Exact match to avoid removing 'title_tag', 'text_align', etc.
+					if ( $key === $remove_key ) {
+						$should_remove = true;
+						break;
+					}
 				}
 			}
 

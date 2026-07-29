@@ -57,7 +57,8 @@
      */
     function loadTabContent($tab, $pane, containerId) {
         var categorySlug = $tab.data('category-slug');
-        var settings = $tab.data('settings');
+        var widgetId = $tab.data('widget-id');
+        var postId = parseInt($tab.data('post-id'), 10) || 0;
         var nonce = $tab.data('nonce');
         var tabId = $tab.attr('data-bs-target');
 
@@ -75,7 +76,8 @@
             data: {
                 action: 'mpd_load_tab_products',
                 category_slug: categorySlug,
-                settings: settings,
+                widget_id: widgetId,
+                post_id: postId,
                 nonce: nonce
             },
             success: function(response) {

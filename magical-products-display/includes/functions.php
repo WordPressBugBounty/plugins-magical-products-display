@@ -1014,6 +1014,19 @@ function mpd_apply_address_field_settings( $fields, $settings, $type ) {
  */
 if ( ! function_exists( 'mpd_copy_billing_to_shipping_on_order' ) ) {
 function mpd_copy_billing_to_shipping_on_order( $order, $data ) {
+    /**
+     * Allow themes/plugins to disable the billing→shipping copy behavior.
+     *
+     * @since 2.0.5
+     *
+     * @param bool     $enabled Whether to copy billing to empty shipping fields.
+     * @param WC_Order $order   The order being created.
+     * @param array    $data    Posted checkout data.
+     */
+    if ( ! apply_filters( 'mpd_copy_billing_to_shipping', true, $order, $data ) ) {
+        return;
+    }
+
     // Check if shipping to different address was NOT selected.
     $ship_to_different = isset( $data['ship_to_different_address'] ) && ! empty( $data['ship_to_different_address'] );
     

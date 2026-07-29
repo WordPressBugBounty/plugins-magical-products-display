@@ -3,7 +3,7 @@
  * Plugin Name:       Magical Shop Builder
  * Plugin URI:        https://wpthemespace.com/magical-shop-builder
  * Description:       Complete WooCommerce Shop Builder with Elementor - Build custom product pages, cart, checkout, my-account, Thank you page and more.
- * Version:           2.0.2
+ * Version:           2.0.5
  * Author:            Noor alam
  * Author URI:        https://wpthemespace.com
  * License:           GPL-2.0+
@@ -39,7 +39,7 @@ final class Magical_Shop_Builder {
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '2.0.2';
+	const VERSION = '2.0.5';
 
 	/**
 	 * Minimum Elementor Version
@@ -165,6 +165,10 @@ final class Magical_Shop_Builder {
 	 */
 	public function define_constants() {
 		define( 'MAGICAL_PRODUCTS_DISPLAY_VERSION', self::VERSION );
+		// Database schema version. Bump when the CREATE TABLE statement in
+		// Core\Activator::create_tables() changes; maybe_upgrade_db() re-runs
+		// dbDelta on mismatch with the stored 'mpd_db_version' option.
+		define( 'MAGICAL_PRODUCTS_DISPLAY_DB_VERSION', '1.0.0' );
 		define( 'MAGICAL_PRODUCTS_DISPLAY_FILE', __FILE__ );
 		define( 'MAGICAL_PRODUCTS_DISPLAY_DIR', plugin_dir_path( __FILE__ ) );
 		define( 'MAGICAL_PRODUCTS_DISPLAY_URL', plugins_url( '', MAGICAL_PRODUCTS_DISPLAY_FILE ) );
@@ -320,7 +324,7 @@ final class Magical_Shop_Builder {
 		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/traits/trait-mpd-action-buttons.php';
 
 		// Load all style & scripts.
-		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/assets-managment.php';
+		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/assets-management.php';
 
 		// Load legacy function file (for backward compatibility).
 		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/functions.php';
@@ -700,5 +704,11 @@ function magical_shop_builder() {
 // Initialize the plugin.
 magical_shop_builder();
 
-// Backward compatibility: Keep old class name accessible.
+/*
+ * Backward compatibility: keep the pre-2.0 class name accessible.
+ *
+ * @deprecated 2.0.0 Use Magical_Shop_Builder instead. This alias exists only
+ *             for third-party code that referenced the old class name and
+ *             will be removed in a future major release.
+ */
 class_alias( 'Magical_Shop_Builder', 'magicalProductsDisplay' );

@@ -161,7 +161,17 @@
         removeItem: function ($button, removeUrl) {
             var self = this;
             var $product = $button.closest('.mpd-mini-cart-product');
-            
+
+            // Validate removeUrl is same-origin before firing request (M-06).
+            try {
+                var parsed = new URL(removeUrl, window.location.href);
+                if (parsed.origin !== window.location.origin) {
+                    return;
+                }
+            } catch (e) {
+                return;
+            }
+
             // Add loading state
             $product.addClass('mpd-removing');
 

@@ -54,6 +54,10 @@ class Upgrader {
 		}
 
 		self::maybe_upgrade();
+
+		// Independent of the plugin-version check: re-run dbDelta whenever
+		// the stored schema version lags MAGICAL_PRODUCTS_DISPLAY_DB_VERSION.
+		Activator::maybe_upgrade_db();
 	}
 
 	/**

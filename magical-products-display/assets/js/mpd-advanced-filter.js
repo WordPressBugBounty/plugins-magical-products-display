@@ -19,8 +19,26 @@
          * Initialize
          */
         init: function () {
+            this.normalizeProductsGridFilters();
             this.bindEvents();
             this.initPriceSlider();
+        },
+
+        /**
+         * Products Grid can receive the shared filter markup from PRO hooks without
+         * the popup/sidebar mode class. Add it client-side so frontend CSS/JS works.
+         */
+        normalizeProductsGridFilters: function () {
+            $('.mgproductd-grid .mpd-advanced-filter').each(function () {
+                var $filter = $(this);
+
+                if (!$filter.hasClass('mpd-advanced-filter--normal') &&
+                    !$filter.hasClass('mpd-advanced-filter--inline') &&
+                    !$filter.hasClass('mpd-advanced-filter--sidebar') &&
+                    !$filter.hasClass('mpd-advanced-filter--popup')) {
+                    $filter.addClass('mpd-advanced-filter--popup');
+                }
+            });
         },
 
         /**

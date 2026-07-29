@@ -2683,9 +2683,8 @@ class mgProducts_Tab extends \Elementor\Widget_Base
 
         $mgpd_rand = wp_rand(253195, 56914658);
         $container_id = 'mpd-tabs-' . $mgpd_rand;
-        
-        // Prepare settings for AJAX
-        $ajax_settings = $this->prepare_ajax_settings($settings);
+        $document = \Elementor\Plugin::$instance->documents->get_current();
+        $post_id = $document ? $document->get_main_id() : get_the_ID();
 
         if ($bsktab_cats) :
 ?>
@@ -2746,7 +2745,8 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                                        <?php if ($ajax_load) : ?>
                                        data-ajax-load="yes"
                                        data-category-slug="<?php echo esc_attr($cat_slug); ?>"
-                                       data-settings='<?php echo esc_attr(wp_json_encode($ajax_settings)); ?>'
+                                                    data-widget-id="<?php echo esc_attr($this->get_id()); ?>"
+                                                    data-post-id="<?php echo esc_attr($post_id); ?>"
                                        data-nonce="<?php echo esc_attr(wp_create_nonce('mpd_tab_ajax_nonce')); ?>"
                                        <?php endif; ?>
                                     >
@@ -2875,7 +2875,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                                                                             </a>
                                                                             <?php if ($settings['mgpdeg_adicons_show'] && get_option('mgppro_is_active', 'no') == 'yes') : ?>
                                                                                 <div class="mgp-exicons exicons-<?php echo esc_attr($settings['mgpdeg_adicons_position']); ?>">
-                                                                                    <?php do_action('mgproducts_pro_advance_icons', $mgpdeg_wishlist_show, $mgpdeg_wishlist_text, $mgpdeg_share_show, $mgpdeg_share_text, $mgpdeg_video_show, $mgpdeg_video_text, $mgpdeg_qrcode_show, $mgpdeg_qrcode_text); ?>
+                                                                                    <?php do_action('mgshop_builder_pro_advance_icons', $mgpdeg_wishlist_show, $mgpdeg_wishlist_text, $mgpdeg_share_show, $mgpdeg_share_text, $mgpdeg_video_show, $mgpdeg_video_text, $mgpdeg_qrcode_show, $mgpdeg_qrcode_text); ?>
                                                                                 </div>
                                                                             <?php endif; ?>
                                                                             <?php $this->render_action_buttons_html($settings, 'on_image', 'mgpdt'); ?>
@@ -2926,57 +2926,6 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         <?php endif; ?>
 
     <?php
-    }
-
-    /**
-     * Prepare settings for AJAX
-     */
-    protected function prepare_ajax_settings($settings)
-    {
-        return array(
-            'bsktab_products_count' => $settings['bsktab_products_count'],
-            'mgpdeg_rownumber' => $settings['mgpdeg_rownumber'],
-            'mgpdeg_rownumber_tab' => $settings['mgpdeg_rownumber_tab'],
-            'mgpdeg_rownumber_mob' => $settings['mgpdeg_rownumber_mob'],
-            'mgpdeg_product_style' => $settings['mgpdeg_product_style'],
-            'mgpdeg_product_img_show' => $settings['mgpdeg_product_img_show'],
-            'mgpdeg_badge_show' => $settings['mgpdeg_badge_show'],
-            'mgpdeg_img_effects' => $settings['mgpdeg_img_effects'],
-            'mgpdeg_img_size' => $settings['mgpdeg_img_size'],
-            'mgpdeg_show_title' => $settings['mgpdeg_show_title'],
-            'mgpdeg_crop_title' => $settings['mgpdeg_crop_title'],
-            'mgpdeg_title_tag' => $settings['mgpdeg_title_tag'],
-            'mgpdeg_desc_show' => $settings['mgpdeg_desc_show'],
-            'mgpdeg_crop_desc' => $settings['mgpdeg_crop_desc'],
-            'mgpdeg_price_show' => $settings['mgpdeg_price_show'],
-            'mgpdeg_cart_btn' => $settings['mgpdeg_cart_btn'],
-            'mgpdeg_btn_type' => $settings['mgpdeg_btn_type'],
-            'mgpdeg_card_text' => $settings['mgpdeg_card_text'],
-            'mgpdeg_category_show' => $settings['mgpdeg_category_show'],
-            'mgpdeg_category_type' => $settings['mgpdeg_category_type'] ?? 'selected',
-            'mgpdeg_grid_categories' => $settings['mgpdeg_grid_categories'] ?? [],
-            'mgpdeg_ratting_show' => $settings['mgpdeg_ratting_show'],
-            'mgpdeg_badge_discount' => $settings['mgpdeg_badge_discount'],
-            'mgpdeg_badge_after_text' => $settings['mgpdeg_badge_after_text'],
-            'mgpdeg_badge_before_sign' => $settings['mgpdeg_badge_before_sign'],
-            'mgpdeg_img_flip_show' => $settings['mgpdeg_img_flip_show'],
-            'mgpdeg_adicons_show' => $settings['mgpdeg_adicons_show'],
-            'mgpdeg_adicons_position' => $settings['mgpdeg_adicons_position'],
-            'mgpdeg_wishlist_show' => $settings['mgpdeg_wishlist_show'] ?? '',
-            'mgpdeg_wishlist_text' => $settings['mgpdeg_wishlist_text'] ?? '',
-            'mgpdeg_share_show' => $settings['mgpdeg_share_show'],
-            'mgpdeg_share_text' => $settings['mgpdeg_share_text'],
-            'mgpdeg_qrcode_show' => $settings['mgpdeg_qrcode_show'],
-            'mgpdeg_qrcode_text' => $settings['mgpdeg_qrcode_text'],
-            'mgpdeg_video_show' => $settings['mgpdeg_video_show'],
-            'mgpdeg_video_text' => $settings['mgpdeg_video_text'],
-            'mgpdeg_stock_show' => $settings['mgpdeg_stock_show'] ?? '',
-            'mgpdeg_total_stock_show' => $settings['mgpdeg_total_stock_show'] ?? '',
-            'mgpdeg_stock_text' => $settings['mgpdeg_stock_text'] ?? '',
-            'mgpdeg_total_sold_show' => $settings['mgpdeg_total_sold_show'] ?? '',
-            'mgpdeg_sold_text' => $settings['mgpdeg_sold_text'] ?? '',
-            'mgpdeg_stock_slide_show' => $settings['mgpdeg_stock_slide_show'] ?? '',
-        );
     }
 
     /**

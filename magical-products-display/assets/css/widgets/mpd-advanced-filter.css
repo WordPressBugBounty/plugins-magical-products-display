@@ -154,6 +154,35 @@
     transition: all 0.3s ease;
 }
 
+.mgproductd-grid .mpd-advanced-filter:not(.mpd-advanced-filter--normal):not(.mpd-advanced-filter--inline):not(.mpd-advanced-filter--sidebar):not(.mpd-advanced-filter--popup) .mpd-advanced-filter__content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 500px;
+    max-width: 90vw;
+    max-height: 80vh;
+    background: #fff;
+    z-index: 9999;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.mgproductd-grid .mpd-advanced-filter.is-open:not(.mpd-advanced-filter--normal):not(.mpd-advanced-filter--inline):not(.mpd-advanced-filter--sidebar):not(.mpd-advanced-filter--popup) .mpd-advanced-filter__content {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
 /* Popup header - fixed at top */
 .mpd-advanced-filter--popup .mpd-advanced-filter__header {
     position: sticky;

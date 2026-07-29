@@ -3142,7 +3142,7 @@ class mgProducts_carousel extends \Elementor\Widget_Base
                                                     <?php if ($settings['mgpcar_adicons_show'] == 'yes') : ?>
                                                         <div class="mgp-exicons exicons-<?php echo esc_attr($settings['mgpcar_adicons_position']); ?>">
                                                             <?php if (get_option('mgppro_is_active', 'no') == 'yes') : ?>
-                                                                <?php do_action('mgproducts_pro_advance_icons', $mgpcar_wishlist_show, $mgpcar_wishlist_text, $mgpcar_share_show, $mgpcar_share_text, $mgpcar_video_show, $mgpcar_video_text, $mgpcar_qrcode_show, $mgpcar_qrcode_text); ?>
+                                                                <?php do_action('mgshop_builder_pro_advance_icons', $mgpcar_wishlist_show, $mgpcar_wishlist_text, $mgpcar_share_show, $mgpcar_share_text, $mgpcar_video_show, $mgpcar_video_text, $mgpcar_qrcode_show, $mgpcar_qrcode_text); ?>
                                                             <?php else : ?>
                                                                 <!-- Free Version Basic Icons -->
                                                                 <a href="<?php the_permalink(); ?>" class="mgp-adicon mgp-quickview-icon" title="<?php esc_attr_e('View Product', 'magical-products-display'); ?>">

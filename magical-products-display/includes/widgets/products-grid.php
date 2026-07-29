@@ -89,6 +89,7 @@ class mgProducts_Grid extends \Elementor\Widget_Base
                 'venobox.min',
                 'nouislider',
                 'mpd-global-widgets',
+                'mgf-filter-style'
             ];
         } else {
             $style  = [
@@ -3784,7 +3785,7 @@ if (get_option('mgppro_is_active', 'no') == 'yes') {
                                                 </a>
                                                 <?php if ($settings['mgpdeg_adicons_show'] && get_option('mgppro_is_active', 'no') == 'yes') : ?>
                                                     <div class="mgp-exicons exicons-<?php echo esc_attr($settings['mgpdeg_adicons_position']); ?>">
-                                                        <?php do_action('mgproducts_pro_advance_icons', $mgpdeg_wishlist_show, $mgpdeg_wishlist_text, $mgpdeg_share_show, $mgpdeg_share_text, $mgpdeg_video_show, $mgpdeg_video_text, $mgpdeg_qrcode_show, $mgpdeg_qrcode_text); ?>
+                                                        <?php do_action('mgshop_builder_pro_advance_icons', $mgpdeg_wishlist_show, $mgpdeg_wishlist_text, $mgpdeg_share_show, $mgpdeg_share_text, $mgpdeg_video_show, $mgpdeg_video_text, $mgpdeg_qrcode_show, $mgpdeg_qrcode_text); ?>
                                                     </div>
                                                 <?php endif; ?>
                                                 <?php $this->render_action_buttons($settings, 'on_image'); ?>

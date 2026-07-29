@@ -49,21 +49,7 @@ class MPD_Products_Archive_Ajax {
             return;
         }
 
-        // Parse query string to simulate $_GET for WooCommerce filters.
-        // Only allow known WC filter keys to prevent superglobal pollution.
-        if ( ! empty( $query_string ) ) {
-            $allowed_keys = array(
-                'orderby', 'order', 'min_price', 'max_price', 'product_cat',
-                'product_tag', 's', 'paged', 'rating_filter',
-            );
-            parse_str( $query_string, $parsed_query );
-            foreach ( $parsed_query as $key => $value ) {
-                $skey = sanitize_key( $key );
-                if ( in_array( $skey, $allowed_keys, true ) || 0 === strpos( $skey, 'filter_' ) || 0 === strpos( $skey, 'query_type_' ) ) {
-                    $_GET[ $skey ] = sanitize_text_field( wp_unslash( $value ) );
-                }
-            }
-        }
+        $request_filters = self::parse_request_filters( $query_string );
 
         // Get widget settings from Elementor
         $settings = self::get_widget_settings( $post_id, $widget_id );
@@ -79,7 +65,7 @@ class MPD_Products_Archive_Ajax {
         }
 
         // Build query args (page 1 for fresh filter results)
-        $args = self::build_query_args( $settings, 1 );
+        $args = self::build_query_args( $settings, 1, $request_filters );
         
         // Run query
         $query = new WP_Query( $args );
@@ -144,21 +130,7 @@ class MPD_Products_Archive_Ajax {
             return;
         }
 
-        // Parse query string to simulate $_GET for WooCommerce filters.
-        // Only allow known WC filter keys to prevent superglobal pollution.
-        if ( ! empty( $query_string ) ) {
-            $allowed_keys = array(
-                'orderby', 'order', 'min_price', 'max_price', 'product_cat',
-                'product_tag', 's', 'paged', 'rating_filter',
-            );
-            parse_str( $query_string, $parsed_query );
-            foreach ( $parsed_query as $key => $value ) {
-                $skey = sanitize_key( $key );
-                if ( in_array( $skey, $allowed_keys, true ) || 0 === strpos( $skey, 'filter_' ) || 0 === strpos( $skey, 'query_type_' ) ) {
-                    $_GET[ $skey ] = sanitize_text_field( wp_unslash( $value ) );
-                }
-            }
-        }
+        $request_filters = self::parse_request_filters( $query_string );
 
         // Get widget settings from Elementor
         $settings = self::get_widget_settings( $post_id, $widget_id );
@@ -174,7 +146,7 @@ class MPD_Products_Archive_Ajax {
         }
 
         // Build query args
-        $args = self::build_query_args( $settings, $page );
+        $args = self::build_query_args( $settings, $page, $request_filters );
 
         // Run query
         $query = new WP_Query( $args );
@@ -224,7 +196,7 @@ class MPD_Products_Archive_Ajax {
      * @return array Widget settings
      */
     private static function get_widget_settings( $post_id, $widget_id ) {
-        if ( ! class_exists( '\Elementor\Plugin' ) ) {
+        if ( ! self::is_public_widget_context( $post_id ) || ! class_exists( '\Elementor\Plugin' ) ) {
             return array();
         }
 
@@ -248,7 +220,11 @@ class MPD_Products_Archive_Ajax {
      */
     private static function find_widget_settings( $elements, $widget_id ) {
         foreach ( $elements as $element ) {
-            if ( isset( $element['id'] ) && $element['id'] === $widget_id ) {
+            if (
+                isset( $element['id'], $element['widgetType'] ) &&
+                $element['id'] === $widget_id &&
+                'mpd-products-archive' === $element['widgetType']
+            ) {
                 return isset( $element['settings'] ) ? $element['settings'] : array();
             }
 
@@ -264,22 +240,110 @@ class MPD_Products_Archive_Ajax {
     }
 
     /**
+     * Restrict anonymous access to published documents only.
+     * Logged-in editors can still use preview contexts.
+     *
+     * @param int $post_id Post ID.
+     * @return bool
+     */
+    private static function is_public_widget_context( $post_id ) {
+        $post = get_post( $post_id );
+
+        if ( ! $post ) {
+            return false;
+        }
+
+        if ( 'publish' === $post->post_status ) {
+            return true;
+        }
+
+        return is_user_logged_in() && current_user_can( 'edit_post', $post_id );
+    }
+
+    /**
+     * Parse and sanitize supported archive filters from the serialized query string.
+     *
+     * @param string $query_string Serialized query string.
+     * @return array
+     */
+    private static function parse_request_filters( $query_string ) {
+        if ( empty( $query_string ) ) {
+            return array();
+        }
+
+        parse_str( $query_string, $parsed_query );
+
+        if ( empty( $parsed_query ) || ! is_array( $parsed_query ) ) {
+            return array();
+        }
+
+        $allowed_keys = array(
+            'orderby',
+            'order',
+            'min_price',
+            'max_price',
+            'product_cat',
+            'product_tag',
+            'product_brand',
+            'rating_filter',
+            'stock_status',
+            'on_sale',
+            'featured',
+            's',
+            'paged',
+        );
+
+        $attribute_taxonomies = function_exists( 'wc_get_attribute_taxonomy_names' ) ? wc_get_attribute_taxonomy_names() : array();
+        $product_taxonomies   = get_object_taxonomies( 'product', 'names' );
+        $filters              = array();
+
+        foreach ( $parsed_query as $key => $value ) {
+            $skey = sanitize_key( $key );
+
+            if (
+                in_array( $skey, $allowed_keys, true ) ||
+                0 === strpos( $skey, 'filter_' ) ||
+                0 === strpos( $skey, 'query_type_' ) ||
+                in_array( $skey, $attribute_taxonomies, true ) ||
+                in_array( $skey, $product_taxonomies, true )
+            ) {
+                $filters[ $skey ] = self::sanitize_request_filter_value( $value );
+            }
+        }
+
+        return $filters;
+    }
+
+    /**
+     * Sanitize a parsed query-string value.
+     *
+     * @param mixed $value Filter value.
+     * @return mixed
+     */
+    private static function sanitize_request_filter_value( $value ) {
+        if ( is_array( $value ) ) {
+            return array_map( array( __CLASS__, 'sanitize_request_filter_value' ), $value );
+        }
+
+        return sanitize_text_field( wp_unslash( $value ) );
+    }
+
+    /**
      * Build query args from settings
      *
-     * @param array $settings Widget settings
-     * @param int   $page     Page number
+     * @param array $settings        Widget settings
+     * @param int   $page            Page number
+     * @param array $request_filters Parsed request filters
      * @return array Query args
      */
-    private static function build_query_args( $settings, $page ) {
-        // Nonce is verified in the calling methods: filter_products() and load_more_products().
-        // phpcs:disable WordPress.Security.NonceVerification.Recommended
+    private static function build_query_args( $settings, $page, $request_filters = array() ) {
         $posts_per_page = isset( $settings['posts_per_page'] ) ? absint( $settings['posts_per_page'] ) : 12;
         $orderby        = isset( $settings['orderby'] ) ? sanitize_text_field( $settings['orderby'] ) : 'menu_order';
         $order          = isset( $settings['order'] ) ? sanitize_text_field( $settings['order'] ) : 'ASC';
         
         // Check for orderby from query string (WooCommerce ordering)
-        if ( isset( $_GET['orderby'] ) ) {
-            $orderby = sanitize_text_field( wp_unslash( $_GET['orderby'] ) );
+        if ( isset( $request_filters['orderby'] ) ) {
+            $orderby = sanitize_text_field( $request_filters['orderby'] );
         }
 
         $args = array(
@@ -329,8 +393,8 @@ class MPD_Products_Archive_Ajax {
             $attribute_taxonomies = wc_get_attribute_taxonomies();
             foreach ( $attribute_taxonomies as $taxonomy ) {
                 $filter_name = 'filter_' . $taxonomy->attribute_name;
-                if ( isset( $_GET[ $filter_name ] ) ) {
-                    $filter_value = wc_clean( wp_unslash( $_GET[ $filter_name ] ) );
+                if ( isset( $request_filters[ $filter_name ] ) ) {
+                    $filter_value = wc_clean( $request_filters[ $filter_name ] );
                     $terms = is_array( $filter_value ) ? $filter_value : explode( ',', $filter_value );
                     
                     if ( ! empty( $terms ) ) {
@@ -346,31 +410,31 @@ class MPD_Products_Archive_Ajax {
         }
         
         // Apply category filter
-        if ( isset( $_GET['product_cat'] ) ) {
+        if ( isset( $request_filters['product_cat'] ) ) {
             $args['tax_query'][] = array(
                 'taxonomy' => 'product_cat',
                 'field'    => 'slug',
-                'terms'    => explode( ',', wc_clean( wp_unslash( $_GET['product_cat'] ) ) ),
+                'terms'    => explode( ',', wc_clean( $request_filters['product_cat'] ) ),
                 'operator' => 'IN',
             );
         }
 
         // Apply tag filter
-        if ( isset( $_GET['product_tag'] ) ) {
+        if ( isset( $request_filters['product_tag'] ) ) {
             $args['tax_query'][] = array(
                 'taxonomy' => 'product_tag',
                 'field'    => 'slug',
-                'terms'    => explode( ',', wc_clean( wp_unslash( $_GET['product_tag'] ) ) ),
+                'terms'    => explode( ',', wc_clean( $request_filters['product_tag'] ) ),
                 'operator' => 'IN',
             );
         }
 
         // Apply product_brand filter (custom brand taxonomy)
-        if ( isset( $_GET['product_brand'] ) ) {
+        if ( isset( $request_filters['product_brand'] ) ) {
             $args['tax_query'][] = array(
                 'taxonomy' => 'product_brand',
                 'field'    => 'slug',
-                'terms'    => explode( ',', wc_clean( wp_unslash( $_GET['product_brand'] ) ) ),
+                'terms'    => explode( ',', wc_clean( $request_filters['product_brand'] ) ),
                 'operator' => 'IN',
             );
         }
@@ -378,11 +442,11 @@ class MPD_Products_Archive_Ajax {
         // Apply attribute taxonomies from URL (pa_brand, pa_color, etc.)
         $attribute_taxonomies = wc_get_attribute_taxonomy_names();
         foreach ( $attribute_taxonomies as $taxonomy ) {
-            if ( isset( $_GET[ $taxonomy ] ) ) {
+            if ( isset( $request_filters[ $taxonomy ] ) ) {
                 $args['tax_query'][] = array(
                     'taxonomy' => $taxonomy,
                     'field'    => 'slug',
-                    'terms'    => explode( ',', wc_clean( wp_unslash( $_GET[ $taxonomy ] ) ) ),
+                    'terms'    => explode( ',', wc_clean( $request_filters[ $taxonomy ] ) ),
                     'operator' => 'IN',
                 );
             }
@@ -397,11 +461,11 @@ class MPD_Products_Archive_Ajax {
             if ( in_array( $taxonomy, $excluded_taxonomies, true ) || strpos( $taxonomy, 'pa_' ) === 0 ) {
                 continue;
             }
-            if ( isset( $_GET[ $taxonomy ] ) ) {
+            if ( isset( $request_filters[ $taxonomy ] ) ) {
                 $args['tax_query'][] = array(
                     'taxonomy' => $taxonomy,
                     'field'    => 'slug',
-                    'terms'    => explode( ',', wc_clean( wp_unslash( $_GET[ $taxonomy ] ) ) ),
+                    'terms'    => explode( ',', wc_clean( $request_filters[ $taxonomy ] ) ),
                     'operator' => 'IN',
                 );
             }
@@ -413,9 +477,9 @@ class MPD_Products_Archive_Ajax {
         }
         
         // Apply price filter from URL using WooCommerce native meta query
-        if ( isset( $_GET['min_price'] ) || isset( $_GET['max_price'] ) ) {
-            $min_price = isset( $_GET['min_price'] ) ? floatval( wc_clean( wp_unslash( $_GET['min_price'] ) ) ) : 0;
-            $max_price = isset( $_GET['max_price'] ) ? floatval( wc_clean( wp_unslash( $_GET['max_price'] ) ) ) : PHP_INT_MAX;
+        if ( isset( $request_filters['min_price'] ) || isset( $request_filters['max_price'] ) ) {
+            $min_price = isset( $request_filters['min_price'] ) ? floatval( wc_clean( $request_filters['min_price'] ) ) : 0;
+            $max_price = isset( $request_filters['max_price'] ) ? floatval( wc_clean( $request_filters['max_price'] ) ) : PHP_INT_MAX;
             
             // Use WooCommerce's native price meta query
             $args['meta_query']['price_filter'] = array(
@@ -427,8 +491,8 @@ class MPD_Products_Archive_Ajax {
         }
         
         // Apply rating filter
-        if ( isset( $_GET['rating_filter'] ) ) {
-            $rating = absint( wc_clean( wp_unslash( $_GET['rating_filter'] ) ) );
+        if ( isset( $request_filters['rating_filter'] ) ) {
+            $rating = absint( wc_clean( $request_filters['rating_filter'] ) );
             $args['meta_query']['rating_filter'] = array(
                 'key'     => '_wc_average_rating',
                 'value'   => $rating,
@@ -438,8 +502,8 @@ class MPD_Products_Archive_Ajax {
         }
 
         // Apply stock status filter
-        if ( isset( $_GET['stock_status'] ) ) {
-            $stock_status = wc_clean( wp_unslash( $_GET['stock_status'] ) );
+        if ( isset( $request_filters['stock_status'] ) ) {
+            $stock_status = wc_clean( $request_filters['stock_status'] );
             if ( 'instock' === $stock_status ) {
                 $args['meta_query']['stock_filter'] = array(
                     'key'     => '_stock_status',
@@ -462,7 +526,7 @@ class MPD_Products_Archive_Ajax {
         }
 
         // Apply on sale filter
-        if ( isset( $_GET['on_sale'] ) && 'yes' === wc_clean( wp_unslash( $_GET['on_sale'] ) ) ) {
+        if ( isset( $request_filters['on_sale'] ) && 'yes' === wc_clean( $request_filters['on_sale'] ) ) {
             $args['post__in'] = array_merge( 
                 isset( $args['post__in'] ) ? $args['post__in'] : array(), 
                 wc_get_product_ids_on_sale() 
@@ -474,7 +538,7 @@ class MPD_Products_Archive_Ajax {
         }
 
         // Apply featured filter
-        if ( isset( $_GET['featured'] ) && 'yes' === wc_clean( wp_unslash( $_GET['featured'] ) ) ) {
+        if ( isset( $request_filters['featured'] ) && 'yes' === wc_clean( $request_filters['featured'] ) ) {
             $args['tax_query'][] = array(
                 'taxonomy' => 'product_visibility',
                 'field'    => 'name',
@@ -482,7 +546,6 @@ class MPD_Products_Archive_Ajax {
                 'operator' => 'IN',
             );
         }
-        // phpcs:enable WordPress.Security.NonceVerification.Recommended
 
         return $args;
     }

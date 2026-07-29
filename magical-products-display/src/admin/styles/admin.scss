@@ -2068,6 +2068,77 @@ $transition: all 0.2s ease;
 }
 
 // ============================================
+// Template Type Selection (Step 1)
+// ============================================
+.mpd-template-type-selection {
+	h3 {
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: $text-primary;
+		margin: 0 0 16px;
+	}
+}
+
+.mpd-template-type-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+}
+
+.mpd-template-type-option {
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: 14px 16px 14px 44px;
+	background: $background-card;
+	border: 1.5px solid $border-color;
+	border-radius: $border-radius;
+	cursor: pointer;
+	transition: $transition;
+	font-size: 14px;
+	color: $text-primary;
+	font-weight: 500;
+	user-select: none;
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: 14px;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 20px;
+		height: 20px;
+		border: 2px solid $border-color;
+		border-radius: 50%;
+		transition: $transition;
+	}
+
+	&:hover {
+		border-color: $primary-light;
+		background: $primary-lighter;
+
+		&::before {
+			border-color: $primary-light;
+		}
+	}
+
+	&.is-selected {
+		border-color: $primary-color;
+		background: $primary-lighter;
+
+		&::before {
+			border-color: $primary-color;
+			background: $primary-color;
+			box-shadow: inset 0 0 0 4px $white;
+		}
+	}
+}
+
+.mpd-template-type-label {
+	font-size: 14px;
+}
+
+// ============================================
 // Toggle Control Override
 // ============================================
 .mpd-admin-wrap {

@@ -3,7 +3,7 @@ Contributors: nalam
 Donate link: https://wpthemespace.com/donation/
 Tags: woocommerce builder, elementor woocommerce, product page builder, checkout builder, shop builder
 Requires at least: 6.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: trunk
 WC requires at least: 8.0
@@ -385,6 +385,34 @@ Please use the WordPress.org support forum or contact us directly at [wpthemespa
 10. Advanced AJAX Search - Real-time product search with filters
 
 == Changelog ==
+
+= 2.0.5 - July 29, 2026 =
+* Fixed: Create New Template modal type selection grid missing CSS - added radio-button style with visual selected indicator
+* Fixed: Template modal type options now properly styled with hover/selected states
+* Fixed: Advance icon click failures and improved plugin stability
+* Fixed: Double add-to-cart on simple products
+* Fixed: Mini cart counter always in DOM; 400 error from double fragment refresh
+* Fixed: Mini cart view cart button not showing after AJAX add-to-cart
+* Fixed: Multisite stock cache contamination causing false out-of-stock
+* Fixed: Editor preview uses in-stock product fallback; busts multisite cache
+* Fixed: Product attributes heading selector updated to collapsible toggle
+* Fixed: Quick view close button padding
+* Fixed: Wishlist/compare button icon state (eicon-heart Unicode)
+* Fixed: Namespaced events in bindEvents() to prevent duplicate handlers on re-init
+* Fixed: Review form star rating fill direction
+* Fixed: Action buttons CSS dependency not loading on frontend
+* Improved: Add-to-cart widget JS refactored for better reliability
+* Improved: Mini cart and assets cleanup
+* Added: Plugin audit findings document
+* Fixed: Create New Template modal type selection grid missing CSS - no visual indicator for selected type; added radio-button style with proper hover/selected states
+
+= 2.0.3 - May 21, 2026 =
+* Tested with WordPress latest 7.0
+* Custom popover handler for advance icons
+* SVG icon replacements
+* Bootstrap conflict resolution
+* Updated CSS styling
+* Latest AJAX handlers and product widgets
 
 = 2.0.2 - May 1, 2026 =
 * Security: Added nonce verification to AJAX add-to-cart handler
