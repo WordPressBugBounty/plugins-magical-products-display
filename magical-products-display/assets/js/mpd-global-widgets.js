@@ -999,7 +999,6 @@
                 
                 if (productId && productId > 0) {
                     this.addToViewed(productId);
-                    console.log('MPD Recently Viewed: Tracked product ID', productId);
                 }
             }
         },
@@ -1048,7 +1047,6 @@
             // WooCommerce uses pipe | separator
             var cookieValue = viewed.join('|');
             this.setCookie(this.cookieName, cookieValue, 30);
-            console.log('MPD Recently Viewed: Cookie set', this.cookieName, '=', cookieValue);
         },
 
         getCookie: function(name) {

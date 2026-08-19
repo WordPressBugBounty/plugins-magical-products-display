@@ -1224,11 +1224,13 @@ class Empty_Cart extends Widget_Base {
 				<?php
 				while ( $products->have_posts() ) :
 					$products->the_post();
-					global $product;
+					$product = wc_get_product( get_the_ID() );
 
 					if ( ! $product || ! $product instanceof \WC_Product ) {
 						continue;
 					}
+
+					$GLOBALS['product'] = $product;
 					?>
 					<div class="mpd-suggestion-product">
 						<a href="<?php the_permalink(); ?>">

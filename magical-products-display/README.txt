@@ -386,6 +386,22 @@ Please use the WordPress.org support forum or contact us directly at [wpthemespa
 
 == Changelog ==
 
+= 2.0.6 - August 19, 2026 =
+* Fixed: Shop archive custom template pagination missing on frontend
+* Fixed: Lost Password confirmation message not showing issue
+* Improved: Modernized visual styling across Cart widgets with controlled 3-4px border radius
+* Improved: Overhauled Checkout page widgets (forms, payment methods, order review, notices)
+* Fixed: Checkout payment method radio button and label alignment on the same line
+* Fixed: Checkout & account notice icons spacing and left padding overlap
+* Fixed: Order review table prices right-aligned consistently
+* Improved: Modernized My Account page widgets (Navigation, Dashboard, Orders, Downloads, Addresses, Details, Login/Register)
+* Fixed: My Account navigation active item icon contrast and visibility in dark active state
+* Added: Icon active color control in My Account navigation widget
+* Fixed: My Account logout button oversized layout - converted to inline icon and text with compact sizing
+* Fixed: My Account details circular avatar formatting and spacing
+* Improved: My Account details save button positioned to the right with top margin spacing
+* Added: Responsive button alignment control in Account Details widget
+
 = 2.0.5 - July 29, 2026 =
 * Fixed: Create New Template modal type selection grid missing CSS - added radio-button style with visual selected indicator
 * Fixed: Template modal type options now properly styled with hover/selected states

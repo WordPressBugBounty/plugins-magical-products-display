@@ -1550,22 +1550,45 @@ class Products_Archive extends Widget_Base {
 		$use_current_query = 'yes' === $settings['use_current_query'];
 
 		// Get products.
-		if ( $use_current_query && ( is_shop() || is_product_taxonomy() || is_search() ) ) {
-			// Use WooCommerce's main query.
-			// When rendering inside an MPD template, Elementor replaces global
-			// $wp_query with the template post query. Use the saved original
-			// archive query from the renderer instead.
-			$renderer = \MPD\MagicalShopBuilder\Templates\Template_Renderer::instance();
-			$saved_query = $renderer->get_original_archive_query();
-			if ( $saved_query && $saved_query->have_posts() ) {
-				$products_query = $saved_query;
-			} else {
-				global $wp_query;
+		$renderer    = class_exists( '\MPD\MagicalShopBuilder\Templates\Template_Renderer' )
+			? \MPD\MagicalShopBuilder\Templates\Template_Renderer::instance()
+			: null;
+		$saved_query = $renderer ? $renderer->get_original_archive_query() : null;
+
+		// Verify if saved query actually contains products (e.g. on taxonomy archive pages).
+		$saved_has_products = false;
+		if ( $saved_query && $saved_query->have_posts() && ! empty( $saved_query->posts ) ) {
+			$first_post = $saved_query->posts[0];
+			if ( $first_post && 'product' === $first_post->post_type ) {
+				$saved_has_products = true;
+			}
+		}
+
+		if ( $use_current_query && $saved_has_products ) {
+			$products_query = clone $saved_query;
+			$products_query->rewind_posts();
+		} elseif ( $use_current_query && ( is_product_taxonomy() || ( is_search() && 'product' === get_query_var( 'post_type' ) ) ) ) {
+			global $wp_query;
+			if ( $wp_query && $wp_query->have_posts() && ! empty( $wp_query->posts ) && 'product' === $wp_query->posts[0]->post_type ) {
 				$products_query = $wp_query;
+			} else {
+				$products_query = $this->get_products_query( $settings );
 			}
 		} else {
-			// Build custom query.
+			// Build custom query (for Shop page, custom queries, or when main query is a page/non-product).
 			$products_query = $this->get_products_query( $settings );
+		}
+
+		// Set WooCommerce loop properties so sibling widgets (Pagination, Result Count) can read total pages.
+		if ( function_exists( 'wc_set_loop_prop' ) ) {
+			wc_set_loop_prop( 'total', $products_query->found_posts );
+			wc_set_loop_prop( 'total_pages', $products_query->max_num_pages );
+			wc_set_loop_prop( 'per_page', $products_query->get( 'posts_per_page' ) );
+			wc_set_loop_prop( 'current_page', max( 1, get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : ( get_query_var( 'page' ) ? absint( get_query_var( 'page' ) ) : 1 ) ) );
+		}
+
+		if ( $renderer && method_exists( $renderer, 'set_current_products_query' ) ) {
+			$renderer->set_current_products_query( $products_query );
 		}
 
 		$layout_class = 'mpd-products-archive__' . esc_attr( $settings['layout_type'] );
@@ -1617,11 +1640,15 @@ class Products_Archive extends Widget_Base {
 					<?php
 					while ( $products_query->have_posts() ) :
 						$products_query->the_post();
-						global $product;
+						$product_id = get_the_ID();
+						$product    = wc_get_product( $product_id );
 
 						if ( ! $product || ! $product instanceof \WC_Product ) {
 							continue;
 						}
+
+						// Setup global product for WooCommerce template functions.
+						$GLOBALS['product'] = $product;
 
 						$this->render_product_item( $product, $settings );
 					endwhile;
@@ -1649,12 +1676,15 @@ class Products_Archive extends Widget_Base {
 	 * @return \WP_Query Products query.
 	 */
 	protected function get_products_query( $settings ) {
+		$paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : ( get_query_var( 'page' ) ? absint( get_query_var( 'page' ) ) : 1 );
+
 		$args = array(
 			'post_type'      => 'product',
 			'post_status'    => 'publish',
 			'posts_per_page' => $settings['posts_per_page'],
 			'orderby'        => $settings['orderby'],
 			'order'          => $settings['order'],
+			'paged'          => $paged,
 		);
 
 		// Check for orderby from URL (WooCommerce ordering widget)

@@ -46,7 +46,7 @@ class Template_Renderer {
 	private $is_rendering = false;
 
 	/**
-	 * Original WooCommerce archive query.
+	 * Original WC archive query before Elementor override.
 	 *
 	 * Saved before Elementor's get_builder_content_for_display() runs,
 	 * which replaces the global $wp_query with the template post.
@@ -54,6 +54,13 @@ class Template_Renderer {
 	 * @var \WP_Query|null
 	 */
 	private $original_archive_query = null;
+
+	/**
+	 * Current products query for the rendered archive template.
+	 *
+	 * @var \WP_Query|null
+	 */
+	private $current_products_query = null;
 
 	/**
 	 * Get instance.
@@ -739,6 +746,29 @@ class Template_Renderer {
 	 */
 	public function get_original_archive_query() {
 		return $this->original_archive_query;
+	}
+
+	/**
+	 * Set current products query.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param \WP_Query|null $query Products query.
+	 * @return void
+	 */
+	public function set_current_products_query( $query ) {
+		$this->current_products_query = $query;
+	}
+
+	/**
+	 * Get current products query.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @return \WP_Query|null Current products query or null.
+	 */
+	public function get_current_products_query() {
+		return $this->current_products_query;
 	}
 
 	/**

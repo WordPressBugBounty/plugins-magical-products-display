@@ -260,7 +260,8 @@ class MPD_Products_Tab_Ajax
             $mgpteb_item_products = new WP_Query($args);
             if ($mgpteb_item_products->have_posts()) :
                 while ($mgpteb_item_products->have_posts()) : $mgpteb_item_products->the_post();
-                    global $product;
+                    $product = wc_get_product( get_the_ID() );
+                    $GLOBALS['product'] = $product;
             ?>
                     <div class="col-lg-<?php echo esc_attr($mgpdeg_rownumber); ?> col-md-<?php echo esc_attr($settings['mgpdeg_rownumber_tab']); ?> col-sm-<?php echo esc_attr($settings['mgpdeg_rownumber_mob']); ?>">
                         <div class="mgpde-shadow mgpde-card mgpdeg-card mb-4 mgpde-has-hover">
@@ -328,7 +329,11 @@ class MPD_Products_Tab_Ajax
     private static function render_product_content($settings)
     {
         global $product;
-        $rating_count = $product->get_rating_count();
+        if ( ! $product || ! $product instanceof \WC_Product ) {
+            $product = wc_get_product( get_the_ID() );
+            $GLOBALS['product'] = $product;
+        }
+        $rating_count = ( $product && $product instanceof \WC_Product ) ? $product->get_rating_count() : 0;
         $mgpdeg_product_style = $settings['mgpdeg_product_style'];
         $mgpdeg_show_title = $settings['mgpdeg_show_title'];
         $mgpdeg_crop_title = intval($settings['mgpdeg_crop_title']);

@@ -17,7 +17,7 @@
 	
 	background-color: var(--mpd-ec-bg);
 	padding: 25px;
-	border-radius: 12px;
+	border-radius: 4px;
 	margin-bottom: 30px;
 }
 
@@ -103,36 +103,49 @@
 }
 
 .mpd-express-demo-btn {
-	display: inline-flex;
+	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 8px;
-	padding: 12px 24px;
-	min-width: 180px;
-	border-radius: 6px;
-	font-size: 14px;
-	font-weight: 500;
-	cursor: default;
-	transition: transform 0.2s ease;
+	gap: 10px;
+	height: 48px;
+	padding: 0 25px;
+	border-radius: 4px;
+	font-size: 15px;
+	font-weight: 600;
+	cursor: pointer;
+	border: none;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+	min-width: 200px;
 }
 
 .mpd-express-demo-btn:hover {
+	opacity: 0.9;
 	transform: translateY(-1px);
 }
 
-/* PayPal Demo */
+.mpd-express-demo-btn svg {
+	height: 24px;
+	width: auto;
+}
+
+/* Demo Apple Pay */
+.mpd-express-demo-apple-pay {
+	background-color: #000000;
+	color: #ffffff;
+}
+
+/* Demo Google Pay */
+.mpd-express-demo-google-pay {
+	background-color: #000000;
+	color: #ffffff;
+}
+
+/* Demo PayPal */
 .mpd-express-demo-paypal {
-	background: #ffc439;
+	background-color: #ffc439;
 	color: #003087;
 }
 
-/* Apple Pay Demo */
-.mpd-express-demo-applepay {
-	background: #000;
-	color: #fff;
-}
-
-/* Google Pay Demo */
 .mpd-express-demo-googlepay {
 	background: #fff;
 	color: #3c4043;

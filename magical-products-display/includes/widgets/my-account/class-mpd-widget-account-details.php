@@ -427,6 +427,14 @@ class Account_Details extends Widget_Base {
 				'label'      => esc_html__( 'Border Radius', 'magical-products-display' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
+				'default'    => array(
+					'top'      => '50',
+					'right'    => '50',
+					'bottom'   => '50',
+					'left'     => '50',
+					'unit'     => '%',
+					'isLinked' => true,
+				),
 				'selectors'  => array(
 					'{{WRAPPER}} .mpd-account-details__avatar img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
@@ -452,6 +460,10 @@ class Account_Details extends Widget_Base {
 						'min' => 0,
 						'max' => 50,
 					),
+				),
+				'default'    => array(
+					'size' => 24,
+					'unit' => 'px',
 				),
 				'selectors'  => array(
 					'{{WRAPPER}} .mpd-account-details__avatar' => 'margin-bottom: {{SIZE}}{{UNIT}};',
@@ -643,6 +655,35 @@ class Account_Details extends Widget_Base {
 			array(
 				'label' => esc_html__( 'Save Button', 'magical-products-display' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'button_alignment',
+			array(
+				'label'     => esc_html__( 'Alignment', 'magical-products-display' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'magical-products-display' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'magical-products-display' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'magical-products-display' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'default'   => 'right',
+				'selectors' => array(
+					'{{WRAPPER}} .mpd-account-details form > p:last-of-type,
+					 {{WRAPPER}} .mpd-account-details .edit-account > p:last-of-type,
+					 {{WRAPPER}} .mpd-account-details .woocommerce-EditAccountForm > p:last-of-type,
+					 {{WRAPPER}} .mpd-account-details__submit' => 'text-align: {{VALUE}};',
+				),
 			)
 		);
 

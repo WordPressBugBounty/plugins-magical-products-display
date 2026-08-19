@@ -55,7 +55,7 @@ function mpd_get_pro_badge() {
  */
 if ( ! function_exists( 'mpd_get_version' ) ) {
 function mpd_get_version() {
-	return defined( 'MAGICAL_PRODUCTS_DISPLAY_VERSION' ) ? MAGICAL_PRODUCTS_DISPLAY_VERSION : '2.0.5';
+	return defined( 'MAGICAL_PRODUCTS_DISPLAY_VERSION' ) ? MAGICAL_PRODUCTS_DISPLAY_VERSION : '2.0.6';
 }
 }
 

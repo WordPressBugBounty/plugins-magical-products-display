@@ -1076,6 +1076,19 @@ class Account_Nav extends Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'icon_active_color',
+			array(
+				'label'     => esc_html__( 'Icon Active Color', 'magical-products-display' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mpd-account-nav__item--active .mpd-account-nav__icon' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mpd-account-nav__item--active .mpd-account-nav__icon svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .mpd-account-nav__item--active .mpd-account-nav__icon svg path' => 'fill: {{VALUE}};',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		// Avatar Style Section (Pro).

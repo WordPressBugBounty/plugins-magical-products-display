@@ -579,15 +579,33 @@ class Pagination extends Widget_Base {
 	 * @return void
 	 */
 	protected function render_widget( $settings ) {
-		global $wp_query;
-
-		$total   = isset( $wp_query->max_num_pages ) ? $wp_query->max_num_pages : 1;
-		$current = max( 1, get_query_var( 'paged' ) );
-
 		// Show demo pagination in editor for styling purposes.
 		if ( \Elementor\Plugin::instance()->editor->is_edit_mode() ) {
 			$this->render_editor_preview( $settings );
 			return;
+		}
+
+		$total   = 0;
+		$current = max( 1, get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : ( get_query_var( 'page' ) ? absint( get_query_var( 'page' ) ) : 1 ) );
+
+		// 1. Try WooCommerce loop property set by Products Archive widget.
+		if ( function_exists( 'wc_get_loop_prop' ) ) {
+			$total = absint( wc_get_loop_prop( 'total_pages', 0 ) );
+		}
+
+		// 2. Try Template_Renderer active products query.
+		if ( 0 === $total && class_exists( '\MPD\MagicalShopBuilder\Templates\Template_Renderer' ) ) {
+			$renderer       = \MPD\MagicalShopBuilder\Templates\Template_Renderer::instance();
+			$products_query = $renderer->get_current_products_query();
+			if ( $products_query && isset( $products_query->max_num_pages ) ) {
+				$total = absint( $products_query->max_num_pages );
+			}
+		}
+
+		// 3. Fallback to global $wp_query.
+		if ( 0 === $total ) {
+			global $wp_query;
+			$total = isset( $wp_query->max_num_pages ) ? absint( $wp_query->max_num_pages ) : 1;
 		}
 
 		if ( $total <= 1 ) {

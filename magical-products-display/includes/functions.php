@@ -122,9 +122,15 @@ if (!function_exists('mgproducts_display_wc_get_rating_html')) {
     function mgproducts_display_wc_get_rating_html($mgpde_class = '')
     {
         if (get_option('woocommerce_enable_review_rating') === 'no') {
-            return;
+            return '';
         }
         global $product;
+        if ( ! $product || ! $product instanceof \WC_Product ) {
+            $product = wc_get_product( get_the_ID() );
+        }
+        if ( ! $product || ! $product instanceof \WC_Product ) {
+            return '';
+        }
         $rating_count = $product->get_rating_count();
         $review_count = $product->get_review_count();
         $average      = $product->get_average_rating();
@@ -167,6 +173,12 @@ if (!function_exists('mgproducts_display_wc_empty_rating_html')) {
             return;
         }
         global $product;
+        if ( ! $product || ! $product instanceof \WC_Product ) {
+            $product = wc_get_product( get_the_ID() );
+        }
+        if ( ! $product || ! $product instanceof \WC_Product ) {
+            return;
+        }
         $rating_count = $product->get_rating_count();
         if ($rating_count < 1) {
         ?>
@@ -183,6 +195,12 @@ if (!function_exists('mgproducts_display_wc_rating_number')) {
             return;
         }
         global $product;
+        if ( ! $product || ! $product instanceof \WC_Product ) {
+            $product = wc_get_product( get_the_ID() );
+        }
+        if ( ! $product || ! $product instanceof \WC_Product ) {
+            return;
+        }
         $rating_count = $product->get_rating_count();
         if ($rating_count > 0) {
             $count_text = $rating_count . ' ' . $text;
@@ -267,9 +285,15 @@ function mgproducts_display_product_category($id = null, $taxonomy = 'product_ca
 }
 
 if ( ! function_exists( 'mgproducts_display_products_badge' ) ) {
-function mgproducts_display_products_badge()
+function mgproducts_display_products_badge( $product_id = null )
 {
     global $product;
+    if ( ! $product || ! $product instanceof \WC_Product ) {
+        $product = wc_get_product( $product_id ? $product_id : get_the_ID() );
+    }
+    if ( ! $product || ! $product instanceof \WC_Product ) {
+        return;
+    }
 
     if ($product->is_on_sale()) {
         ?>
@@ -282,8 +306,6 @@ function mgproducts_display_products_badge()
         <div class="mgp-display-badge">
             <?php esc_html_e('Featured!', 'magical-products-display'); ?>
         </div>
-
-
     <?php
     }
 }

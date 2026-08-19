@@ -228,7 +228,17 @@ class Result_Count extends Widget_Base {
 			$per_page = wc_get_loop_prop( 'per_page', 0 );
 		}
 
-		// Fallback to WP_Query if WooCommerce loop properties are not set.
+		// Fallback to Template_Renderer products query if WooCommerce loop properties are not set.
+		if ( 0 === $total && class_exists( '\MPD\MagicalShopBuilder\Templates\Template_Renderer' ) ) {
+			$renderer       = \MPD\MagicalShopBuilder\Templates\Template_Renderer::instance();
+			$products_query = $renderer->get_current_products_query();
+			if ( $products_query && isset( $products_query->found_posts ) ) {
+				$total    = absint( $products_query->found_posts );
+				$per_page = $products_query->get( 'posts_per_page' ) ? absint( $products_query->get( 'posts_per_page' ) ) : 12;
+			}
+		}
+
+		// Fallback to WP_Query.
 		if ( 0 === $total ) {
 			global $wp_query;
 			if ( is_shop() || is_product_taxonomy() || is_search() ) {
@@ -237,10 +247,13 @@ class Result_Count extends Widget_Base {
 			}
 		}
 
-		// If still 0, use WooCommerce default query.
-		if ( 0 === $total && function_exists( 'wc' ) ) {
-			$total    = wc()->query->get_main_query() ? wc()->query->get_main_query()->found_posts : 0;
-			$per_page = wc()->query->get_main_query() ? wc()->query->get_main_query()->query_vars['posts_per_page'] : get_option( 'posts_per_page' );
+		// Fallback to published products count.
+		if ( 0 === $total ) {
+			$counts   = wp_count_posts( 'product' );
+			$total    = isset( $counts->publish ) ? absint( $counts->publish ) : 0;
+			$per_page = function_exists( 'wc_get_default_products_per_row' )
+				? wc_get_default_products_per_row() * wc_get_default_product_rows_per_page()
+				: 12;
 		}
 
 		// Calculate first and last.

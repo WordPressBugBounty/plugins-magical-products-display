@@ -1445,6 +1445,25 @@ class Account_Login extends Widget_Base {
 	 * @return void
 	 */
 	private function render_lost_password_form( $settings ) {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		$reset_link_sent = isset( $_GET['reset-link-sent'] ) && 'true' === $_GET['reset-link-sent'];
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
+
+		// After successful password reset email, show confirmation instead of form.
+		if ( $reset_link_sent ) {
+			?>
+			<div class="woocommerce-message woocommerce-message--info" role="status">
+				<?php esc_html_e( 'Password reset email has been sent.', 'magical-products-display' ); ?>
+			</div>
+			<p>
+				<a href="<?php echo esc_url( wc_get_account_endpoint_url( 'dashboard' ) ); ?>" class="woocommerce-Button button">
+					<?php esc_html_e( 'Return to My Account', 'magical-products-display' ); ?>
+				</a>
+			</p>
+			<?php
+			return;
+		}
+
 		?>
 		<h2 class="mpd-account-login__title"><?php esc_html_e( 'Lost password', 'magical-products-display' ); ?></h2>
 

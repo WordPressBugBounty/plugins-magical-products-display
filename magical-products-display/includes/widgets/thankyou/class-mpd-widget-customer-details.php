@@ -1024,10 +1024,10 @@ class Customer_Details extends Widget_Base {
 		if ( $order_id ) {
 			$order = wc_get_order( $order_id );
 
-			// Verify order key for security.
+			// Verify order key for security or check customer/admin permissions.
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$order_key = isset( $_GET['key'] ) ? sanitize_text_field( wp_unslash( $_GET['key'] ) ) : '';
-			if ( $order && $order->get_order_key() === $order_key ) {
+			if ( $order && ( ( $order_key && $order->get_order_key() === $order_key ) || ( is_user_logged_in() && (int) $order->get_customer_id() === (int) get_current_user_id() ) || current_user_can( 'manage_woocommerce' ) ) ) {
 				return $order;
 			}
 		}

@@ -134,11 +134,11 @@ function mpd_check_condition( $condition, $value, $context = array() ) {
 			return true;
 
 		case 'product_type':
-			if ( ! isset( $context['product'] ) ) {
+			if ( ! isset( $context['product'] ) || ! $context['product'] instanceof \WC_Product ) {
 				global $product;
-				$context['product'] = $product;
+				$context['product'] = ( $product instanceof \WC_Product ) ? $product : wc_get_product( get_the_ID() );
 			}
-			if ( ! $context['product'] ) {
+			if ( ! $context['product'] || ! $context['product'] instanceof \WC_Product ) {
 				return false;
 			}
 			$types = is_array( $value ) ? $value : array( $value );
@@ -166,21 +166,21 @@ function mpd_check_condition( $condition, $value, $context = array() ) {
 			return in_array( (int) $context['product_id'], array_map( 'intval', $products ), true );
 
 		case 'product_in_stock':
-			if ( ! isset( $context['product'] ) ) {
+			if ( ! isset( $context['product'] ) || ! $context['product'] instanceof \WC_Product ) {
 				global $product;
-				$context['product'] = $product;
+				$context['product'] = ( $product instanceof \WC_Product ) ? $product : wc_get_product( get_the_ID() );
 			}
-			if ( ! $context['product'] ) {
+			if ( ! $context['product'] || ! $context['product'] instanceof \WC_Product ) {
 				return false;
 			}
 			return $context['product']->is_in_stock() === ( 'yes' === $value );
 
 		case 'product_on_sale':
-			if ( ! isset( $context['product'] ) ) {
+			if ( ! isset( $context['product'] ) || ! $context['product'] instanceof \WC_Product ) {
 				global $product;
-				$context['product'] = $product;
+				$context['product'] = ( $product instanceof \WC_Product ) ? $product : wc_get_product( get_the_ID() );
 			}
-			if ( ! $context['product'] ) {
+			if ( ! $context['product'] || ! $context['product'] instanceof \WC_Product ) {
 				return false;
 			}
 			return $context['product']->is_on_sale() === ( 'yes' === $value );

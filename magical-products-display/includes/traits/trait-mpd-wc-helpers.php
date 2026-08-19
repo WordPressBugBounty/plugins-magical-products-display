@@ -67,6 +67,11 @@ trait WC_Helpers {
 			}
 		}
 
+		// Fallback for single product pages where $post was switched to template post.
+		if ( ! $product_id && function_exists( 'is_singular' ) && is_singular( 'product' ) ) {
+			$product_id = get_queried_object_id();
+		}
+
 		if ( ! $product_id ) {
 			return false;
 		}

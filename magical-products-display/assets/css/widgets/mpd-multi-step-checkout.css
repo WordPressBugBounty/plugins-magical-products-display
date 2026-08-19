@@ -28,7 +28,7 @@
 	--msc-border: #E5E7EB;
 	--msc-bg: #ffffff;
 	--msc-bg-alt: #F9FAFB;
-	--msc-radius: 12px;
+	--msc-radius: 4px;
 	--msc-transition: 0.3s ease;
 	
 	position: relative;
@@ -243,7 +243,7 @@
    ============================================ */
 .mpd-msc-progress-pills .mpd-msc-steps {
 	background-color: var(--msc-bg-alt);
-	border-radius: 10px;
+	border-radius: 4px;
 	padding: 5px;
 	display: inline-flex;
 }
@@ -253,7 +253,7 @@
 	gap: 8px;
 	padding: 10px 20px;
 	background-color: transparent;
-	border-radius: 8px;
+	border-radius: 4px;
 	transition: all var(--msc-transition);
 	min-width: auto;
 }
@@ -284,7 +284,7 @@
 .mpd-msc-progress-arrows .mpd-msc-steps {
 	display: flex;
 	overflow: hidden;
-	border-radius: 8px;
+	border-radius: 4px;
 	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -304,12 +304,12 @@
 	margin-left: 0;
 	padding-left: 20px;
 	clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%);
-	border-radius: 8px 0 0 8px;
+	border-radius: 4px 0 0 4px;
 }
 
 .mpd-msc-progress-arrows .mpd-msc-step:last-child {
 	clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 15px 50%);
-	border-radius: 0 8px 8px 0;
+	border-radius: 0 4px 4px 0;
 }
 
 .mpd-msc-progress-arrows .mpd-msc-step.is-active,
@@ -479,7 +479,7 @@
 	padding: 12px 14px;
 	font-size: 15px;
 	border: 1px solid var(--msc-border);
-	border-radius: 8px;
+	border-radius: 4px;
 	background-color: var(--msc-bg);
 	color: var(--msc-text);
 	transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -553,7 +553,7 @@
 	margin: 20px 0;
 	padding: 16px;
 	background-color: var(--msc-bg-alt);
-	border-radius: 8px;
+	border-radius: 4px;
 }
 
 .mpd-multi-step-checkout #ship-to-different-address label {
@@ -572,7 +572,7 @@
 	margin-bottom: 25px;
 	padding: 15px 20px;
 	background-color: var(--msc-bg-alt);
-	border-radius: 8px;
+	border-radius: 4px;
 }
 
 .mpd-msc-login-text,
@@ -620,7 +620,7 @@
 	background-color: var(--msc-text);
 	color: #fff;
 	border: none;
-	border-radius: 8px;
+	border-radius: 4px;
 	font-weight: 500;
 	cursor: pointer;
 	transition: background-color var(--msc-transition);
@@ -658,7 +658,7 @@
 .mpd-msc-coupon-notice .woocommerce-message {
 	margin: 0 0 10px;
 	padding: 10px 15px;
-	border-radius: 6px;
+	border-radius: 4px;
 	font-size: 14px;
 	list-style: none;
 }
@@ -734,7 +734,7 @@
 	width: 50px;
 	height: 50px;
 	min-width: 50px;
-	border-radius: 8px;
+	border-radius: 4px;
 	overflow: hidden;
 	background-color: var(--msc-bg-alt);
 	display: flex;
@@ -868,11 +868,15 @@
 
 .mpd-msc-payment-wrapper .wc_payment_method {
 	margin-bottom: 12px;
-	padding: 16px;
+	padding: 16px 18px;
 	background-color: var(--msc-bg-alt);
-	border-radius: 8px;
-	border: 2px solid transparent;
+	border-radius: 4px;
+	border: 1px solid var(--msc-border);
 	transition: all var(--msc-transition);
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
 }
 
 .mpd-msc-payment-wrapper .wc_payment_method:has(input:checked) {
@@ -880,22 +884,28 @@
 	background-color: rgba(37, 99, 235, 0.05);
 }
 
+.mpd-msc-payment-wrapper .wc_payment_method input[type="radio"] {
+	accent-color: var(--msc-primary);
+	width: 16px;
+	height: 16px;
+	margin: 0 10px 0 0;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
 .mpd-msc-payment-wrapper .wc_payment_method label {
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	gap: 10px;
 	cursor: pointer;
-	font-weight: 500;
+	font-weight: 600;
 	margin: 0;
-}
-
-.mpd-msc-payment-wrapper .wc_payment_method input[type="radio"] {
-	accent-color: var(--msc-primary);
-	width: 18px;
-	height: 18px;
+	color: var(--msc-text);
+	flex: 1;
 }
 
 .mpd-msc-payment-wrapper .payment_box {
+	width: 100%;
 	margin-top: 12px;
 	padding-top: 12px;
 	border-top: 1px solid var(--msc-border);
@@ -949,7 +959,7 @@
 	font-size: 15px;
 	font-weight: 600;
 	border: none;
-	border-radius: 8px;
+	border-radius: 4px;
 	cursor: pointer;
 	transition: all var(--msc-transition);
 	text-decoration: none;
@@ -1053,7 +1063,7 @@
 	padding: 15px 20px 15px 50px;
 	background-color: #FEE2E2;
 	border: 1px solid var(--msc-danger);
-	border-radius: 8px;
+	border-radius: 4px;
 	color: var(--msc-danger);
 	list-style: none;
 }
@@ -1066,7 +1076,7 @@
 	margin-bottom: 20px;
 	background-color: #D1FAE5;
 	border: 1px solid var(--msc-success);
-	border-radius: 8px;
+	border-radius: 4px;
 	color: #065F46;
 }
 
@@ -1137,7 +1147,7 @@
 	.mpd-msc-progress-arrows .mpd-msc-step {
 		clip-path: none;
 		margin-left: 0;
-		border-radius: 8px;
+		border-radius: 4px;
 		margin-bottom: 5px;
 		padding: 12px 16px;
 	}
@@ -1183,7 +1193,7 @@
 	transform: none !important;
 	margin-bottom: 20px;
 	border: 1px dashed var(--msc-border);
-	border-radius: 8px;
+	border-radius: 4px;
 	position: relative;
 }
 
@@ -1196,7 +1206,7 @@
 	margin-bottom: 20px;
 	background: linear-gradient(135deg, #e8f4fd 0%, #d4ebfc 100%);
 	border: 1px solid #93c5fd;
-	border-radius: 8px;
+	border-radius: 4px;
 	color: #1e40af;
 	font-size: 13px;
 	line-height: 1.5;
