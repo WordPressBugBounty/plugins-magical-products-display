@@ -3,7 +3,7 @@ Contributors: nalam
 Donate link: https://wpthemespace.com/donation/
 Tags: woocommerce builder, elementor woocommerce, product page builder, checkout builder, shop builder
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: trunk
 WC requires at least: 8.0
