@@ -2689,7 +2689,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
         if ($bsktab_cats) :
 ?>
 
-            <div class="bsk-tabs no-load bsk-shadow mpdtabs-style<?php echo esc_attr($settings['mgpd_style']); ?> bsk-tab-<?php echo esc_attr($settings['mgpd_type']); ?><?php echo $ajax_load ? ' mpd-ajax-tabs' : ''; ?>" data-container-id="<?php echo esc_attr($container_id); ?>">
+            <div class="bsk-tabs no-load bsk-shadow mpdtabs-style<?php echo esc_attr($settings['mgpd_style']); ?> bsk-tab-<?php echo esc_attr($settings['mgpd_type']); ?><?php echo esc_attr( $ajax_load ? ' mpd-ajax-tabs' : '' ); ?>" data-container-id="<?php echo esc_attr($container_id); ?>">
 
                 <!-- Horijontal tab start -->
                 <?php if ($settings['mgpd_type'] == 'vertical') : ?>
@@ -2812,19 +2812,19 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                             <div id="bsktab<?php echo esc_attr($mgpd_rand . $index); ?>" class="tab-pane fade in <?php if ($index == 0) : ?>show active<?php endif; ?>" role="tabpanel" aria-labelledby="home-tab">
                                 <div <?php if ($settings['mgpd_attr_id']) : ?> id="<?php echo esc_attr($settings['mgpd_attr_id']); ?>" <?php endif; ?> class="mgp-unique<?php echo esc_attr($mgp_unque_num); ?> mgproductd mgpde-items style<?php echo esc_attr($mgpdeg_product_style); ?> mgproductd-grid <?php echo esc_attr($settings['mgpd_attr_calss']); ?>">
                                     
-                                    <?php if ($ajax_load && !$should_preload) : ?>
-                                        <!-- AJAX Loading Placeholder -->
-                                        <div class="mpd-tab-loader" style="display: flex; justify-content: center; align-items: center; padding: 40px;">
-                                            <?php echo $this->get_loader_svg($loader_type, $loader_color, $loader_size); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG markup ?>
-                                        </div>
-                                        <div class="mpd-tab-content-wrapper">
-                                            <!-- Content will be loaded via AJAX -->
-                                        </div>
-                                    <?php else : ?>
-                                        <!-- Preloaded Content -->
-                                        <div class="mpd-tab-loader" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
-                                            <?php echo $this->get_loader_svg($loader_type, $loader_color, $loader_size); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- SVG markup ?>
-                                        </div>
+                                     <?php if ($ajax_load && !$should_preload) : ?>
+                                         <!-- AJAX Loading Placeholder -->
+                                         <div class="mpd-tab-loader" style="display: flex; justify-content: center; align-items: center; padding: 40px;">
+                                             <?php echo wp_kses( $this->get_loader_svg($loader_type, $loader_color, $loader_size), mgproducts_display_get_allowed_svg_tags() ); ?>
+                                         </div>
+                                         <div class="mpd-tab-content-wrapper">
+                                             <!-- Content will be loaded via AJAX -->
+                                         </div>
+                                     <?php else : ?>
+                                         <!-- Preloaded Content -->
+                                         <div class="mpd-tab-loader" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;">
+                                             <?php echo wp_kses( $this->get_loader_svg($loader_type, $loader_color, $loader_size), mgproducts_display_get_allowed_svg_tags() ); ?>
+                                         </div>
                                         <div class="mpd-tab-content-wrapper mpd-tab-loaded">
                                             <div class="row">
                                                 <?php
@@ -3031,7 +3031,7 @@ class mgProducts_Tab extends \Elementor\Widget_Base
                     <?php
                     printf(
                         '<%1$s class="mgpde-ptitle">%2$s</%1$s>',
-                        mprd_validate_html_tag($mgpdeg_title_tag),
+                        tag_escape( mprd_validate_html_tag($mgpdeg_title_tag) ),
                         esc_html(wp_trim_words(get_the_title(), $mgpdeg_crop_title))
                     );
                     ?>

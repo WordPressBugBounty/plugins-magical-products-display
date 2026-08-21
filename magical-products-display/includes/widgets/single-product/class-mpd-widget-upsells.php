@@ -924,6 +924,8 @@ class Upsells extends Widget_Base {
 			$layout_mode = $settings['layout_mode'];
 		}
 
+		$placeholder_img = function_exists( 'wc_placeholder_img_src' ) ? wc_placeholder_img_src( 'woocommerce_thumbnail' ) : '';
+
 		// Demo product data.
 		$demo_products = array(
 			array(
@@ -931,42 +933,42 @@ class Upsells extends Widget_Base {
 				'price'    => '$149.99',
 				'sale'     => '$129.99',
 				'rating'   => 4.5,
-				'image'    => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop',
+				'image'    => $placeholder_img,
 			),
 			array(
 				'name'     => __( 'Smart Watch Pro', 'magical-products-display' ),
 				'price'    => '$299.99',
 				'sale'     => '',
 				'rating'   => 5,
-				'image'    => 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop',
+				'image'    => $placeholder_img,
 			),
 			array(
 				'name'     => __( 'Portable Bluetooth Speaker', 'magical-products-display' ),
 				'price'    => '$79.99',
 				'sale'     => '$59.99',
 				'rating'   => 4,
-				'image'    => 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=300&h=300&fit=crop',
+				'image'    => $placeholder_img,
 			),
 			array(
 				'name'     => __( 'Wireless Charging Pad', 'magical-products-display' ),
 				'price'    => '$39.99',
 				'sale'     => '',
 				'rating'   => 4.5,
-				'image'    => 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=300&h=300&fit=crop',
+				'image'    => $placeholder_img,
 			),
 			array(
 				'name'     => __( 'USB-C Hub Adapter', 'magical-products-display' ),
 				'price'    => '$69.99',
 				'sale'     => '$54.99',
 				'rating'   => 4,
-				'image'    => 'https://images.unsplash.com/photo-1625723044792-44de16ccb4e9?w=300&h=300&fit=crop',
+				'image'    => $placeholder_img,
 			),
 			array(
 				'name'     => __( 'Mechanical Keyboard', 'magical-products-display' ),
 				'price'    => '$129.99',
 				'sale'     => '',
 				'rating'   => 5,
-				'image'    => 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=300&h=300&fit=crop',
+				'image'    => $placeholder_img,
 			),
 		);
 
@@ -1018,7 +1020,11 @@ class Upsells extends Widget_Base {
 					<?php endif; ?>
 
 					<?php if ( 'yes' === ( $settings['show_rating'] ?? 'yes' ) && $product['rating'] ) : ?>
-						<div class="star-rating" role="img" aria-label="<?php printf( esc_attr__( 'Rated %s out of 5', 'magical-products-display' ), $product['rating'] ); ?>">
+						<?php
+						/* translators: %s: rating score */
+						$upsell_rating_label = sprintf( esc_attr__( 'Rated %s out of 5', 'magical-products-display' ), $product['rating'] );
+						?>
+						<div class="star-rating" role="img" aria-label="<?php echo esc_attr( $upsell_rating_label ); ?>">
 							<span style="width:<?php echo esc_attr( ( $product['rating'] / 5 ) * 100 ); ?>%"></span>
 						</div>
 					<?php endif; ?>
@@ -1265,7 +1271,7 @@ class Upsells extends Widget_Base {
 
 						<?php if ( 'yes' === ( $settings['show_rating'] ?? 'yes' ) && $upsell_product->get_average_rating() ) : ?>
 							<div class="mpd-product-rating">
-								<?php echo wc_get_rating_html( $upsell_product->get_average_rating(), $upsell_product->get_rating_count() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php echo wp_kses_post( wc_get_rating_html( $upsell_product->get_average_rating(), $upsell_product->get_rating_count() ) ); ?>
 							</div>
 						<?php endif; ?>
 
@@ -1278,26 +1284,28 @@ class Upsells extends Widget_Base {
 						<?php if ( 'yes' === ( $settings['show_add_to_cart'] ?? 'yes' ) ) : ?>
 							<div class="mpd-product-button">
 								<?php
-								echo apply_filters(
-									'woocommerce_loop_add_to_cart_link',
-									sprintf(
-										'<a href="%s" data-quantity="1" class="%s" %s>%s</a>',
-										esc_url( $upsell_product->add_to_cart_url() ),
-										esc_attr( implode( ' ', array_filter( array(
-											'button',
-											'mpd-add-to-cart',
-											$upsell_product->is_purchasable() && $upsell_product->is_in_stock() ? 'add_to_cart_button' : '',
-											$upsell_product->supports( 'ajax_add_to_cart' ) && $upsell_product->is_purchasable() && $upsell_product->is_in_stock() ? 'ajax_add_to_cart' : '',
-										) ) ) ),
-										wc_implode_html_attributes( array(
-											'data-product_id'  => $upsell_product->get_id(),
-											'data-product_sku' => $upsell_product->get_sku(),
-											'aria-label'       => $upsell_product->add_to_cart_description(),
-											'rel'              => 'nofollow',
-										) ),
-										esc_html( $upsell_product->add_to_cart_text() )
-									),
-									$upsell_product
+								echo wp_kses_post(
+									apply_filters(
+										'woocommerce_loop_add_to_cart_link',
+										sprintf(
+											'<a href="%s" data-quantity="1" class="%s" %s>%s</a>',
+											esc_url( $upsell_product->add_to_cart_url() ),
+											esc_attr( implode( ' ', array_filter( array(
+												'button',
+												'mpd-add-to-cart',
+												$upsell_product->is_purchasable() && $upsell_product->is_in_stock() ? 'add_to_cart_button' : '',
+												$upsell_product->supports( 'ajax_add_to_cart' ) && $upsell_product->is_purchasable() && $upsell_product->is_in_stock() ? 'ajax_add_to_cart' : '',
+											) ) ) ),
+											wc_implode_html_attributes( array(
+												'data-product_id'  => $upsell_product->get_id(),
+												'data-product_sku' => $upsell_product->get_sku(),
+												'aria-label'       => $upsell_product->add_to_cart_description(),
+												'rel'              => 'nofollow',
+											) ),
+											esc_html( $upsell_product->add_to_cart_text() )
+										),
+										$upsell_product
+									)
 								);
 								?>
 							</div>
@@ -1361,7 +1369,7 @@ class Upsells extends Widget_Base {
 							<?php endif; ?>
 
 							<?php if ( 'yes' === $settings['show_rating'] && $upsell_product->get_average_rating() ) : ?>
-								<?php echo wc_get_rating_html( $upsell_product->get_average_rating() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php echo wp_kses_post( wc_get_rating_html( $upsell_product->get_average_rating() ) ); ?>
 							<?php endif; ?>
 
 							<?php if ( 'yes' === $settings['show_price'] ) : ?>
@@ -1417,6 +1425,7 @@ class Upsells extends Widget_Base {
 						navigation: {
 							nextEl: swiperEl.querySelector('.swiper-button-next'),
 							prevEl: swiperEl.querySelector('.swiper-button-prev'),
+							clickable: true,
 						},
 						pagination: {
 							el: swiperEl.querySelector('.swiper-pagination'),
@@ -1485,7 +1494,7 @@ class Upsells extends Widget_Base {
 						<?php endif; ?>
 
 						<?php if ( 'yes' === $settings['show_rating'] && $upsell_product->get_average_rating() ) : ?>
-							<?php echo wc_get_rating_html( $upsell_product->get_average_rating() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<?php echo wp_kses_post( wc_get_rating_html( $upsell_product->get_average_rating() ) ); ?>
 						<?php endif; ?>
 
 						<?php if ( 'yes' === $settings['show_price'] ) : ?>

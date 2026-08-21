@@ -582,8 +582,10 @@ class Product_Reviews extends Widget_Base {
 			<div id="comments">
 				<h2 class="woocommerce-Reviews-title">
 					<?php
+					/* translators: 1: number of reviews, 2: product title */
+					$reviews_title = _n( '%1$s review for %2$s', '%1$s reviews for %2$s', $review_count, 'magical-products-display' );
 					printf(
-						esc_html( _n( '%1$s review for %2$s', '%1$s reviews for %2$s', $review_count, 'magical-products-display' ) ),
+						esc_html( $reviews_title ),
 						esc_html( $review_count ),
 						'<span>' . esc_html( $product->get_name() ) . '</span>'
 					);
@@ -606,12 +608,16 @@ class Product_Reviews extends Widget_Base {
 							<li class="review">
 								<div class="comment_container">
 									<?php if ( 'yes' === ( $settings['show_avatar'] ?? 'yes' ) ) : ?>
-										<?php echo get_avatar( $review->comment_author_email, 60 ); ?>
+										<?php echo wp_kses_post( get_avatar( $review->comment_author_email, 60 ) ); ?>
 									<?php endif; ?>
 									<div class="comment-text">
 										<?php if ( $rating ) : ?>
-											<div class="star-rating" role="img" aria-label="<?php printf( esc_attr__( 'Rated %d out of 5', 'magical-products-display' ), $rating ); ?>">
-												<?php echo wc_get_star_rating_html( $rating ); ?>
+											<?php
+											/* translators: %d: rating score */
+											$rating_label = sprintf( esc_attr__( 'Rated %d out of 5', 'magical-products-display' ), $rating );
+											?>
+											<div class="star-rating" role="img" aria-label="<?php echo esc_attr( $rating_label ); ?>">
+												<?php echo wp_kses_post( wc_get_star_rating_html( $rating ) ); ?>
 											</div>
 										<?php endif; ?>
 										<p class="meta">
@@ -645,6 +651,7 @@ class Product_Reviews extends Widget_Base {
 								if ( $review_count > 0 ) {
 									esc_html_e( 'Add a review', 'magical-products-display' );
 								} else {
+									/* translators: %s: product title */
 									printf( esc_html__( 'Be the first to review &ldquo;%s&rdquo;', 'magical-products-display' ), esc_html( $product->get_name() ) );
 								}
 								?>

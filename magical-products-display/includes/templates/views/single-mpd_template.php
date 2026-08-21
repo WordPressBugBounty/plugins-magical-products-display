@@ -329,21 +329,19 @@ if ( class_exists( '\Elementor\Plugin' ) ) {
 	
 	// Check if this post was built with Elementor. Use the parent post ID for content in case of revision.
 	if ( $mpd_elementor->documents->get( $mpd_content_post_id ) ) {
-		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor frontend rendered HTML
 		echo $mpd_elementor->frontend->get_builder_content_for_display( $mpd_content_post_id, true );
 	} else {
 		// Fallback: try the original post_id.
 		if ( $mpd_elementor->documents->get( $mpd_post_id ) ) {
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Elementor frontend rendered HTML
 			echo $mpd_elementor->frontend->get_builder_content_for_display( $mpd_post_id, true );
 		} else {
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo apply_filters( 'the_content', $post->post_content );
+			the_content();
 		}
 	}
 } else {
-	// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-	echo apply_filters( 'the_content', $post->post_content );
+	the_content();
 }
 
 wp_footer();

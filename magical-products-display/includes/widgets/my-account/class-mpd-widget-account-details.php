@@ -1174,7 +1174,7 @@ class Account_Details extends Widget_Base {
 
 			<?php if ( 'yes' === $settings['show_avatar'] ) : ?>
 				<div class="mpd-account-details__avatar">
-					<?php echo get_avatar( $current_user->ID, 96 ); ?>
+					<?php echo wp_kses_post( get_avatar( $current_user->ID, 96 ) ); ?>
 					<?php if ( $this->is_pro() && 'yes' === $settings['enable_avatar_upload'] ) : ?>
 						<div class="mpd-account-details__avatar-upload">
 							<button type="button" class="mpd-account-details__avatar-change">

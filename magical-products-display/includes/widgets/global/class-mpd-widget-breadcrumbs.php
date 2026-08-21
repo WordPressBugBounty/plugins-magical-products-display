@@ -480,13 +480,13 @@ class Breadcrumbs extends Widget_Base {
 					$name_attrs    = $schema_enabled ? ' itemprop="name"' : '';
 					$current_class = $is_last && 'yes' === $settings['show_current'] ? ' mpd-breadcrumbs__current' : '';
 					?>
-					<li class="mpd-breadcrumbs__item<?php echo esc_attr( $current_class ); ?>"<?php echo $item_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+					<li class="mpd-breadcrumbs__item<?php echo esc_attr( $current_class ); ?>"<?php echo wp_kses_post( $item_attrs ); ?>>
 						<?php if ( ! empty( $item['link'] ) && ! $is_last ) : ?>
-							<a href="<?php echo esc_url( $item['link'] ); ?>"<?php echo $link_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-								<span<?php echo $name_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo esc_html( $item['title'] ); ?></span>
+							<a href="<?php echo esc_url( $item['link'] ); ?>"<?php echo wp_kses_post( $link_attrs ); ?>>
+								<span<?php echo wp_kses_post( $name_attrs ); ?>><?php echo esc_html( $item['title'] ); ?></span>
 							</a>
 						<?php else : ?>
-							<span<?php echo $name_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>><?php echo esc_html( $item['title'] ); ?></span>
+							<span<?php echo wp_kses_post( $name_attrs ); ?>><?php echo esc_html( $item['title'] ); ?></span>
 						<?php endif; ?>
 
 						<?php if ( $schema_enabled ) : ?>
@@ -494,7 +494,7 @@ class Breadcrumbs extends Widget_Base {
 						<?php endif; ?>
 
 						<?php if ( ! $is_last ) : ?>
-							<span class="mpd-breadcrumbs__separator" aria-hidden="true"><?php echo $separator; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+							<span class="mpd-breadcrumbs__separator" aria-hidden="true"><?php echo wp_kses_post( $separator ); ?></span>
 						<?php endif; ?>
 					</li>
 				<?php endforeach; ?>
@@ -809,6 +809,7 @@ class Breadcrumbs extends Widget_Base {
 		// Search Results.
 		if ( is_search() ) {
 			$breadcrumbs[] = array(
+				/* translators: %s: search query */
 				'title' => sprintf( esc_html__( 'Search Results for: %s', 'magical-products-display' ), get_search_query() ),
 				'link'  => '',
 			);

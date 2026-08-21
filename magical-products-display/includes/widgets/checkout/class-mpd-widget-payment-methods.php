@@ -1033,7 +1033,12 @@ class Payment_Methods extends Widget_Base {
 				<input id="payment_method_paypal" type="radio" class="input-radio" name="payment_method" value="paypal" />
 				<label for="payment_method_paypal">
 					<?php esc_html_e( 'PayPal', 'magical-products-display' ); ?>
-					<img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal" style="max-height: 24px; margin-left: 10px; vertical-align: middle;" />
+					<span class="mpd-payment-method-icon" style="display: inline-flex; vertical-align: middle; margin-left: 8px;">
+						<svg xmlns="http://www.w3.org/2000/svg" width="55" height="16" viewBox="0 0 100 32" fill="none">
+							<path d="M12.2 4.2H4.5C3.9 4.2 3.4 4.6 3.3 5.2L0.2 25.1C0.1 25.6 0.5 26 1 26H5.2C5.8 26 6.3 25.6 6.4 25L7.6 17.5C7.7 16.9 8.2 16.5 8.8 16.5H11.5C16.2 16.5 19.3 14.2 20.1 9.6C20.5 7.4 19.8 5.7 18.5 4.8C16.9 3.8 14.6 4.2 12.2 4.2ZM14.6 9.8C14.2 12.3 12.3 12.3 10.4 12.3H8.3L9.3 6.2H11.2C12.6 6.2 13.9 6.2 14.4 7C14.7 7.6 14.8 8.6 14.6 9.8Z" fill="#003087"/>
+							<path d="M35.6 9.6H30.4C29.9 9.6 29.4 10 29.3 10.6L27.1 24.6C27 25.1 27.4 25.5 27.9 25.5H31.7C32.3 25.5 32.8 25.1 32.9 24.5L33.7 19.6C33.8 19 34.3 18.6 34.9 18.6H36.9C40.6 18.6 43 16.8 43.7 13.2C44 11.5 43.5 10.1 42.4 9.4C41.2 8.6 39.4 9.6 35.6 9.6ZM37.7 13.8C37.4 15.6 35.9 15.6 34.5 15.6H33.2L33.9 11.2H35.3C36.4 11.2 37.3 11.2 37.7 11.8C37.9 12.2 37.9 12.9 37.7 13.8Z" fill="#0079C1"/>
+						</svg>
+					</span>
 				</label>
 				<?php if ( 'yes' === $settings['show_descriptions'] ) : ?>
 					<div class="payment_box payment_method_paypal" style="display:none;">
@@ -1112,7 +1117,12 @@ class Payment_Methods extends Widget_Base {
 						<input id="payment_method_paypal" type="radio" class="input-radio" name="payment_method" value="paypal" />
 						<label for="payment_method_paypal">
 							<?php esc_html_e( 'PayPal', 'magical-products-display' ); ?>
-							<img src="https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-100px.png" alt="PayPal" style="max-height: 24px; margin-left: 10px; vertical-align: middle;" />
+							<span class="mpd-payment-method-icon" style="display: inline-flex; vertical-align: middle; margin-left: 8px;">
+								<svg xmlns="http://www.w3.org/2000/svg" width="55" height="16" viewBox="0 0 100 32" fill="none">
+									<path d="M12.2 4.2H4.5C3.9 4.2 3.4 4.6 3.3 5.2L0.2 25.1C0.1 25.6 0.5 26 1 26H5.2C5.8 26 6.3 25.6 6.4 25L7.6 17.5C7.7 16.9 8.2 16.5 8.8 16.5H11.5C16.2 16.5 19.3 14.2 20.1 9.6C20.5 7.4 19.8 5.7 18.5 4.8C16.9 3.8 14.6 4.2 12.2 4.2ZM14.6 9.8C14.2 12.3 12.3 12.3 10.4 12.3H8.3L9.3 6.2H11.2C12.6 6.2 13.9 6.2 14.4 7C14.7 7.6 14.8 8.6 14.6 9.8Z" fill="#003087"/>
+									<path d="M35.6 9.6H30.4C29.9 9.6 29.4 10 29.3 10.6L27.1 24.6C27 25.1 27.4 25.5 27.9 25.5H31.7C32.3 25.5 32.8 25.1 32.9 24.5L33.7 19.6C33.8 19 34.3 18.6 34.9 18.6H36.9C40.6 18.6 43 16.8 43.7 13.2C44 11.5 43.5 10.1 42.4 9.4C41.2 8.6 39.4 9.6 35.6 9.6ZM37.7 13.8C37.4 15.6 35.9 15.6 34.5 15.6H33.2L33.9 11.2H35.3C36.4 11.2 37.3 11.2 37.7 11.8C37.9 12.2 37.9 12.9 37.7 13.8Z" fill="#0079C1"/>
+								</svg>
+							</span>
 						</label>
 						<# if ( 'yes' === settings.show_descriptions ) { #>
 						<div class="payment_box payment_method_paypal" style="display:none;">

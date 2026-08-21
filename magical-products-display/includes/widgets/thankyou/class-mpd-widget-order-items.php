@@ -831,7 +831,7 @@ class Order_Items extends Widget_Base {
 						<span class="mpd-order-items-sku">
 							<?php
 							/* translators: %s: SKU */
-							echo esc_html( sprintf( __( 'SKU: %s', 'magical-products-display' ), $product->get_sku() ) );
+							echo esc_html( sprintf( esc_html__( 'SKU: %s', 'magical-products-display' ), $product->get_sku() ) );
 							?>
 						</span>
 					<?php endif; ?>

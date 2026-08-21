@@ -1727,7 +1727,7 @@ class Multi_Step_Checkout extends Widget_Base {
 			$wrapper_classes[] = 'is-editor-mode';
 		}
 		?>
-		<div class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>"<?php echo $data_string; ?>>
+		<div class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>"<?php echo wp_kses_post( $data_string ); ?>>
 			
 			<?php // Progress Indicator. ?>
 			<div class="mpd-msc-progress mpd-msc-progress-<?php echo esc_attr( $settings['progress_style'] ); ?>">
@@ -2659,7 +2659,7 @@ class Multi_Step_Checkout extends Widget_Base {
 										</span>
 									<?php elseif ( 'yes' !== $settings['show_product_images'] ) : ?>
 										<?php // Only show static qty if images disabled (filter adds it when images enabled). ?>
-										<span class="mpd-msc-product-qty"><?php echo sprintf( '× %d', $cart_item['quantity'] ); ?></span>
+										<span class="mpd-msc-product-qty"><?php echo esc_html( sprintf( '× %d', (int) $cart_item['quantity'] ) ); ?></span>
 									<?php endif; ?>
 								</td>
 								<td class="product-total">

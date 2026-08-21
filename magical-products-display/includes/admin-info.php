@@ -201,11 +201,19 @@ function mpd_display_pro_sales_notice() {
 					<span class="mpd-pro-notice__coupon-tag"><?php esc_html_e( 'LIMITED OFFER', 'magical-products-display' ); ?></span>
 					<span class="mpd-pro-notice__coupon-text">
 						<?php
-						printf(
-							/* translators: 1: discount percentage, 2: coupon code */
-							__( '%1$s OFF for the first 100 customers — use coupon %2$s at checkout!', 'magical-products-display' ),
-							'<strong>30%</strong>',
-							'<code class="mpd-pro-notice__code">msp100</code>'
+						echo wp_kses(
+							sprintf(
+								/* translators: 1: discount percentage, 2: coupon code */
+								__( '%1$s OFF for the first 100 customers — use coupon %2$s at checkout!', 'magical-products-display' ),
+								'<strong>30%</strong>',
+								'<code class="mpd-pro-notice__code">msp100</code>'
+							),
+							array(
+								'strong' => array(),
+								'code'   => array(
+									'class' => array(),
+								),
+							)
 						);
 						?>
 					</span>

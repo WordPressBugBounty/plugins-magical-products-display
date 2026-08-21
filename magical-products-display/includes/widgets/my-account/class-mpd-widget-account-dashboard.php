@@ -807,7 +807,7 @@ class Account_Dashboard extends Widget_Base {
 					<?php foreach ( $menu_items as $endpoint => $label ) : ?>
 						<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>" class="mpd-account-dashboard__quick-link">
 							<span class="mpd-account-dashboard__quick-link-icon">
-								<?php echo $this->get_endpoint_icon( $endpoint ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php echo wp_kses_post( $this->get_endpoint_icon( $endpoint ) ); ?>
 							</span>
 							<span class="mpd-account-dashboard__quick-link-text"><?php echo esc_html( $label ); ?></span>
 						</a>

@@ -1169,22 +1169,18 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 				?>
 					<div class="swiper-slide no-load">
 
-						<div <?php echo $this->get_render_attribute_string('wrapper'); ?>>
+						<div <?php $this->print_render_attribute_string('wrapper'); ?>>
 							<?php
 							if ($has_content) :
 								$key1 = $this->get_repeater_setting_key('testimonial_content', 'testicar_items', $index);
 								$this->add_render_attribute($key1, 'class', 'elementor-testimonial-content');
 								$this->add_inline_editing_attributes($key1);
-								/*
-				$this->add_render_attribute( 'testimonial_content', 'class', 'elementor-testimonial-content' );
-				$this->add_inline_editing_attributes( 'testimonial_content' );
-*/
 							?>
-								<div <?php echo $this->get_render_attribute_string($key1); ?>><?php echo esc_html($slide['testimonial_content']); ?></div>
+								<div <?php $this->print_render_attribute_string($key1); ?>><?php echo esc_html($slide['testimonial_content']); ?></div>
 							<?php endif; ?>
 
 							<?php if ($has_image || $has_name || $has_job) : ?>
-								<div <?php echo $this->get_render_attribute_string('meta'); ?>>
+								<div <?php $this->print_render_attribute_string('meta'); ?>>
 									<div class="elementor-testimonial-meta-inner">
 										<?php if ($has_image) : ?>
 											<div class="elementor-testimonial-image">
@@ -1205,19 +1201,15 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 													$key2 = $this->get_repeater_setting_key('testimonial_name', 'testicar_items', $index);
 													$this->add_render_attribute($key2, 'class', 'elementor-testimonial-name');
 													$this->add_inline_editing_attributes($key2, 'none');
-													/*
-							$this->add_render_attribute( 'testimonial_name', 'class', 'elementor-testimonial-name' );
-							$this->add_inline_editing_attributes( 'testimonial_name', 'none' );
-				*/
 													$testimonial_name_html = $slide['testimonial_name'];
 
 													if (!empty($slide['link']['url'])) :
 												?>
-														<a <?php echo $this->get_render_attribute_string($key2) . ' ' . $this->get_render_attribute_string('link'); ?>><?php echo wp_kses_post($testimonial_name_html); ?></a>
+														<a <?php $this->print_render_attribute_string($key2); ?> <?php $this->print_render_attribute_string('link'); ?>><?php echo wp_kses_post($testimonial_name_html); ?></a>
 													<?php
 													else :
 													?>
-														<div <?php echo $this->get_render_attribute_string($key2); ?>><?php echo wp_kses_post($testimonial_name_html); ?></div>
+														<div <?php $this->print_render_attribute_string($key2); ?>><?php echo wp_kses_post($testimonial_name_html); ?></div>
 												<?php
 													endif;
 												endif; ?>
@@ -1226,20 +1218,15 @@ class mgp_TestimonialCarousel extends \Elementor\Widget_Base
 													$key3 = $this->get_repeater_setting_key('testimonial_job', 'testicar_items', $index);
 													$this->add_render_attribute($key3, 'class', 'elementor-testimonial-job');
 													$this->add_inline_editing_attributes($key3, 'none');
-
-													/*
-							$this->add_render_attribute( 'testimonial_job', 'class', 'elementor-testimonial-job' );
-							$this->add_inline_editing_attributes( 'testimonial_job', 'none' );
-*/
 													$testimonial_job_html = $slide['testimonial_job'];
 
 													if (!empty($slide['link']['url'])) :
 												?>
-														<a <?php echo $this->get_render_attribute_string($key3) . ' ' . $this->get_render_attribute_string('link'); ?>><?php echo wp_kses_post($testimonial_job_html); ?></a>
+														<a <?php $this->print_render_attribute_string($key3); ?> <?php $this->print_render_attribute_string('link'); ?>><?php echo wp_kses_post($testimonial_job_html); ?></a>
 													<?php
 													else :
 													?>
-														<div <?php echo $this->get_render_attribute_string($key3); ?>><?php echo wp_kses_post($testimonial_job_html); ?></div>
+														<div <?php $this->print_render_attribute_string($key3); ?>><?php echo wp_kses_post($testimonial_job_html); ?></div>
 												<?php
 													endif;
 												endif; ?>

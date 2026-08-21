@@ -669,7 +669,7 @@ class Header_Cart extends Widget_Base {
 		$link_attrs = $link ? ' href="' . esc_url( $link ) . '"' : '';
 		?>
 		<div class="<?php echo esc_attr( implode( ' ', $container_classes ) ); ?>">
-			<<?php echo esc_html( $tag ); ?> class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>"<?php echo $link_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+			<<?php echo esc_html( $tag ); ?> class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>"<?php echo wp_kses_post( $link_attrs ); ?>>
 				<?php if ( 'yes' === $settings['show_subtotal'] && 'before' === $settings['subtotal_position'] ) : ?>
 					<span class="mpd-header-cart__subtotal mpd-header-cart__subtotal--before">
 						<?php echo wp_kses_post( $cart_subtotal ); ?>

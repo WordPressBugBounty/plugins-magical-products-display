@@ -438,7 +438,7 @@ abstract class Widget_Base extends \Elementor\Widget_Base {
 			esc_attr( $this->get_icon() ),
 			esc_html( $title ),
 			esc_html( $message ),
-			$preview_info
+			wp_kses_post( $preview_info )
 		);
 	}
 

@@ -282,7 +282,7 @@ class MPD_AJAX_Search_Handler {
     private function format_product_data($product_id) {
         $product = wc_get_product($product_id);
         
-        if (!$product || !$product->is_visible()) {
+        if (!$product || !$product->is_visible() || post_password_required($product_id)) {
             return null;
         }
 

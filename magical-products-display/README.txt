@@ -386,6 +386,13 @@ Please use the WordPress.org support forum or contact us directly at [wpthemespa
 
 == Changelog ==
 
+= 2.0.7 - August 21, 2026 =
+* Security: Enforce strict authorization, publication status, password protection, and catalog visibility checks in Quick View AJAX handler (mpd_quick_view)
+* Security: Add capability and status validation in Wishlist and Compare header AJAX endpoints
+* Security: Enforce publication status and password protection checks in AJAX Add to Cart endpoints
+* Security: Exclude password-protected products from AJAX Search results
+* Security: Comprehensive security and code quality review across all AJAX handlers
+
 = 2.0.6 - August 19, 2026 =
 * Fixed: Shop archive custom template pagination missing on frontend
 * Fixed: Lost Password confirmation message not showing issue

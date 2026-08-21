@@ -1536,7 +1536,7 @@ class Cross_Sells extends Widget_Base {
 
 			<?php if ( $show_image ) : ?>
 				<a href="<?php echo esc_url( $product->get_permalink() ); ?>" class="woocommerce-LoopProduct-link mpd-cross-sell-image-link">
-					<?php echo $product->get_image( $image_size ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php echo wp_kses_post( $product->get_image( $image_size ) ); ?>
 				</a>
 			<?php endif; ?>
 
@@ -1556,7 +1556,7 @@ class Cross_Sells extends Widget_Base {
 				<?php endif; ?>
 
 				<?php if ( $show_price ) : ?>
-					<span class="price"><?php echo $product->get_price_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+					<span class="price"><?php echo wp_kses_post( $product->get_price_html() ); ?></span>
 				<?php endif; ?>
 
 				<?php if ( $show_add_to_cart ) : ?>
@@ -1583,8 +1583,10 @@ class Cross_Sells extends Widget_Base {
 	 */
 	private function render_star_rating( $rating, $review_count = 0 ) {
 		$rating = floatval( $rating );
+		/* translators: %s: rating score */
+		$rating_title = sprintf( __( 'Rated %s out of 5', 'magical-products-display' ), $rating );
 		?>
-		<div class="mpd-star-rating" title="<?php echo esc_attr( sprintf( __( 'Rated %s out of 5', 'magical-products-display' ), $rating ) ); ?>">
+		<div class="mpd-star-rating" title="<?php echo esc_attr( $rating_title ); ?>">
 			<?php
 			for ( $i = 1; $i <= 5; $i++ ) {
 				if ( $i <= floor( $rating ) ) {

@@ -763,7 +763,7 @@ class Product_Attributes extends Widget_Base {
 						<?php \Elementor\Icons_Manager::render_icon( $toggle_icon, array( 'aria-hidden' => 'true' ) ); ?>
 					</span>
 				</button>
-				<div class="mpd-attributes-content"<?php echo $is_collapsed ? ' style="display: none;"' : ''; ?>>
+				<div class="mpd-attributes-content"<?php if ( $is_collapsed ) : ?> style="display: none;"<?php endif; ?>>
 				<?php
 			}
 

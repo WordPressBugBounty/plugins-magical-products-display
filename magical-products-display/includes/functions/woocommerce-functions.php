@@ -444,6 +444,15 @@ function mpd_ajax_add_to_cart() {
 		wp_send_json_error( array( 'message' => __( 'Product not found.', 'magical-products-display' ) ) );
 	}
 
+	$product_status = get_post_status( $product_id );
+	if ( 'publish' !== $product_status && ! current_user_can( 'edit_post', $product_id ) ) {
+		wp_send_json_error( array( 'message' => __( 'This product cannot be purchased.', 'magical-products-display' ) ) );
+	}
+
+	if ( post_password_required( $product_id ) ) {
+		wp_send_json_error( array( 'message' => __( 'This product is password protected.', 'magical-products-display' ) ) );
+	}
+
 	$added = WC()->cart->add_to_cart( $product_id, $quantity, $variation_id, $variations );
 
 	if ( $added ) {
@@ -508,9 +517,19 @@ function mpd_single_product_add_to_cart() {
 	}
 
 	$product_status    = get_post_status( $product_id );
+	if ( 'publish' !== $product_status && ! current_user_can( 'edit_post', $product_id ) ) {
+		wp_send_json( array( 'error' => true, 'notices' => esc_html__( 'This product cannot be purchased.', 'magical-products-display' ) ) );
+		return;
+	}
+
+	if ( post_password_required( $product_id ) ) {
+		wp_send_json( array( 'error' => true, 'notices' => esc_html__( 'This product is password protected.', 'magical-products-display' ) ) );
+		return;
+	}
+
 	$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $quantity, $variation_id, $variations );
 
-	if ( $passed_validation && 'publish' === $product_status && false !== WC()->cart->add_to_cart( $product_id, $quantity, $variation_id, $variations ) ) {
+	if ( $passed_validation && false !== WC()->cart->add_to_cart( $product_id, $quantity, $variation_id, $variations ) ) {
 		do_action( 'woocommerce_ajax_added_to_cart', $product_id );
 
 		if ( 'yes' === get_option( 'woocommerce_cart_redirect_after_add' ) ) {
@@ -578,55 +597,78 @@ function mpd_add_mini_cart_fragments( $fragments ) {
 	} else {
 		echo '<div class="mpd-mini-cart-products-wrap">';
 		echo '<div class="mpd-mini-cart-products">';
-		$count_items = 0;
+
+		$displayed = 0;
 		foreach ( $cart_items as $cart_item_key => $cart_item ) {
-			if ( ++$count_items > $max_items ) {
+			if ( $displayed >= $max_items ) {
 				break;
 			}
-			$product = $cart_item['data'];
-			if ( ! $product || ! $product instanceof \WC_Product ) {
+
+			$_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+
+			if ( ! $_product || ! $_product->exists() || $cart_item['quantity'] <= 0 ) {
 				continue;
 			}
-			$price     = WC()->cart->get_product_price( $product );
-			$quantity  = $cart_item['quantity'];
-			$thumbnail = $product->get_image( 'woocommerce_thumbnail' );
-			?>
-			<div class="mpd-mini-cart-product">
-				<div class="mpd-mini-cart-product-image">
-					<a href="<?php echo esc_url( $product->get_permalink() ); ?>"><?php echo wp_kses_post( $thumbnail ); ?></a>
-				</div>
-				<div class="mpd-mini-cart-product-details">
-					<h4 class="mpd-mini-cart-product-name">
-						<a href="<?php echo esc_url( $product->get_permalink() ); ?>"><?php echo esc_html( $product->get_name() ); ?></a>
-					</h4>
-					<span class="mpd-mini-cart-product-price"><?php echo wp_kses_post( $price ); ?> &times; <?php echo esc_html( $quantity ); ?></span>
-				</div>
-				<a href="<?php echo esc_url( wc_get_cart_remove_url( $cart_item_key ) ); ?>" class="mpd-mini-cart-remove" title="<?php esc_attr_e( 'Remove', 'magical-products-display' ); ?>">&times;</a>
-			</div>
-			<?php
+
+			$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
+			$product_name      = apply_filters( 'woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key );
+			$thumbnail         = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image( 'thumbnail' ), $cart_item, $cart_item_key );
+			$product_price     = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+
+			echo '<div class="mpd-mini-cart-item" data-cart-item-key="' . esc_attr( $cart_item_key ) . '">';
+
+			if ( empty( $product_permalink ) ) {
+				echo wp_kses_post( '<div class="mpd-mini-cart-item-thumb">' . $thumbnail . '</div>' );
+			} else {
+				echo wp_kses_post( '<a href="' . esc_url( $product_permalink ) . '" class="mpd-mini-cart-item-thumb">' . $thumbnail . '</a>' );
+			}
+
+			echo '<div class="mpd-mini-cart-item-details">';
+
+			if ( empty( $product_permalink ) ) {
+				echo '<span class="mpd-mini-cart-item-title">' . wp_kses_post( $product_name ) . '</span>';
+			} else {
+				echo '<a href="' . esc_url( $product_permalink ) . '" class="mpd-mini-cart-item-title">' . wp_kses_post( $product_name ) . '</a>';
+			}
+
+			echo '<span class="mpd-mini-cart-item-quantity">' . esc_html( $cart_item['quantity'] ) . ' &times; ' . wp_kses_post( $product_price ) . '</span>';
+			echo '</div>';
+
+			echo wp_kses_post( apply_filters(
+				'woocommerce_cart_item_remove_link',
+				sprintf(
+					'<a href="%s" class="mpd-mini-cart-item-remove remove remove_from_cart_button" aria-label="%s" data-product_id="%s" data-cart_item_key="%s" data-product_sku="%s">&times;</a>',
+					esc_url( wc_get_cart_remove_url( $cart_item_key ) ),
+					/* translators: %s is the product name */
+					esc_attr( sprintf( __( 'Remove %s from cart', 'magical-products-display' ), wp_strip_all_tags( $product_name ) ) ),
+					esc_attr( $cart_item['product_id'] ),
+					esc_attr( $cart_item_key ),
+					esc_attr( $_product->get_sku() )
+				),
+				$cart_item_key
+			) );
+
+			echo '</div>';
+			$displayed++;
 		}
-		if ( count( $cart_items ) > $max_items ) {
-			echo '<div class="mpd-mini-cart-more">' . sprintf(
-				/* translators: %d: number of additional items */
-				esc_html__( '+ %d more items', 'magical-products-display' ),
-				count( $cart_items ) - $max_items
-			) . '</div>';
-		}
+
 		echo '</div>';
 
-		echo '<div class="mpd-mini-cart-subtotal-row"><strong>' . esc_html__( 'Subtotal:', 'magical-products-display' ) . '</strong><span>' . wp_kses_post( $cart->get_cart_subtotal() ) . '</span></div>';
+		$remaining = count( $cart_items ) - $displayed;
+		if ( $remaining > 0 ) {
+			echo '<div class="mpd-mini-cart-more">';
+			/* translators: %d is the number of additional items in cart */
+			printf( esc_html__( '+%d more items in cart', 'magical-products-display' ), (int) $remaining );
+			echo '</div>';
+		}
 
-		echo '<div class="mpd-mini-cart-buttons">';
-		echo '<a href="' . esc_url( wc_get_cart_url() ) . '" class="button view-cart">' . esc_html__( 'View Cart', 'magical-products-display' ) . '</a>';
-		echo '<a href="' . esc_url( wc_get_checkout_url() ) . '" class="button checkout">' . esc_html__( 'Checkout', 'magical-products-display' ) . '</a>';
-		echo '</div>';
 		echo '</div>';
 	}
 	$fragments['.mpd-mini-cart-products-wrap'] = ob_get_clean();
 
 	return $fragments;
 }
-add_filter( 'woocommerce_add_to_cart_fragments', 'mpd_add_mini_cart_fragments' );
+add_filter( 'woocommerce_add_to_cart_fragments', 'mpd_add_mini_cart_fragments', 20 );
 }
 
 /**
@@ -670,6 +712,29 @@ function mpd_ajax_quick_view() {
 		wp_send_json_error( array( 'message' => __( 'Product not found.', 'magical-products-display' ) ) );
 	}
 
+	$post = get_post( $product_id );
+
+	if ( ! $post || ! in_array( $post->post_type, array( 'product', 'product_variation' ), true ) ) {
+		wp_send_json_error( array( 'message' => __( 'Invalid product.', 'magical-products-display' ) ) );
+	}
+
+	// Authorization & Post Status Check.
+	if ( 'publish' !== $post->post_status ) {
+		if ( ! current_user_can( 'read_post', $product_id ) && ! current_user_can( 'edit_post', $product_id ) ) {
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to view this product.', 'magical-products-display' ) ) );
+		}
+	}
+
+	// Password Protection Check.
+	if ( post_password_required( $post ) ) {
+		wp_send_json_error( array( 'message' => __( 'This product is password protected.', 'magical-products-display' ) ) );
+	}
+
+	// Catalog Visibility Check.
+	if ( ! $product->is_visible() && ! current_user_can( 'edit_post', $product_id ) ) {
+		wp_send_json_error( array( 'message' => __( 'This product is not visible.', 'magical-products-display' ) ) );
+	}
+
 	// Set up post data for template functions.
 	global $post;
 	$post = get_post( $product_id );
@@ -685,7 +750,7 @@ function mpd_ajax_quick_view() {
 			if ( $image_url ) {
 				echo '<img src="' . esc_url( $image_url ) . '" alt="' . esc_attr( $product->get_name() ) . '">';
 			} else {
-				echo wc_placeholder_img( 'large' );
+				echo wp_kses_post( wc_placeholder_img( 'large' ) );
 			}
 			?>
 		</div>
@@ -771,6 +836,28 @@ function mpd_ajax_get_wishlist_items() {
 		if ( ! $product ) {
 			continue;
 		}
+
+		$post = get_post( $product_id );
+		if ( ! $post || ! in_array( $post->post_type, array( 'product', 'product_variation' ), true ) ) {
+			continue;
+		}
+
+		// Authorization & Post Status Check.
+		if ( 'publish' !== $post->post_status ) {
+			if ( ! current_user_can( 'read_post', $product_id ) && ! current_user_can( 'edit_post', $product_id ) ) {
+				continue;
+			}
+		}
+
+		// Password Protection Check.
+		if ( post_password_required( $post ) ) {
+			continue;
+		}
+
+		// Catalog Visibility Check.
+		if ( ! $product->is_visible() && ! current_user_can( 'edit_post', $product_id ) ) {
+			continue;
+		}
 		
 		$thumbnail = $product->get_image( 'thumbnail', array( 'class' => 'mpd-header-wc-item-thumb' ) );
 		$title     = $product->get_name();
@@ -824,6 +911,28 @@ function mpd_ajax_get_compare_items() {
 	foreach ( $product_ids as $product_id ) {
 		$product = wc_get_product( $product_id );
 		if ( ! $product ) {
+			continue;
+		}
+
+		$post = get_post( $product_id );
+		if ( ! $post || ! in_array( $post->post_type, array( 'product', 'product_variation' ), true ) ) {
+			continue;
+		}
+
+		// Authorization & Post Status Check.
+		if ( 'publish' !== $post->post_status ) {
+			if ( ! current_user_can( 'read_post', $product_id ) && ! current_user_can( 'edit_post', $product_id ) ) {
+				continue;
+			}
+		}
+
+		// Password Protection Check.
+		if ( post_password_required( $post ) ) {
+			continue;
+		}
+
+		// Catalog Visibility Check.
+		if ( ! $product->is_visible() && ! current_user_can( 'edit_post', $product_id ) ) {
 			continue;
 		}
 		

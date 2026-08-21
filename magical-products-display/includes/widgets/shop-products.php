@@ -1036,7 +1036,7 @@ class mgProducts_Shop extends \Elementor\Widget_Base
 		<div class="mgpshop-products-wrapper">
 			<?php
 			// Execute WooCommerce shortcode
-			echo do_shortcode($shortcode_string);
+			echo wp_kses_post( do_shortcode($shortcode_string) );
 			?>
 		</div>
 		<?php

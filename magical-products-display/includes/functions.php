@@ -38,6 +38,107 @@ function mgproducts_display_get_allowed_html_tags()
 }
 }
 
+if ( ! function_exists( 'mgproducts_display_get_allowed_svg_tags' ) ) {
+function mgproducts_display_get_allowed_svg_tags()
+{
+    return [
+        'svg' => [
+            'class' => true,
+            'aria-hidden' => true,
+            'aria-labelledby' => true,
+            'role' => true,
+            'xmlns' => true,
+            'width' => true,
+            'height' => true,
+            'viewbox' => true,
+            'viewBox' => true,
+            'fill' => true,
+            'stroke' => true,
+            'stroke-width' => true,
+            'stroke-linecap' => true,
+            'stroke-linejoin' => true,
+            'style' => true,
+        ],
+        'g' => [
+            'fill' => true,
+            'transform' => true,
+        ],
+        'path' => [
+            'd' => true,
+            'fill' => true,
+            'stroke' => true,
+            'stroke-width' => true,
+            'stroke-linecap' => true,
+            'stroke-linejoin' => true,
+            'opacity' => true,
+            'transform' => true,
+        ],
+        'circle' => [
+            'cx' => true,
+            'cy' => true,
+            'r' => true,
+            'fill' => true,
+            'stroke' => true,
+            'stroke-width' => true,
+            'opacity' => true,
+            'transform' => true,
+        ],
+        'line' => [
+            'x1' => true,
+            'y1' => true,
+            'x2' => true,
+            'y2' => true,
+            'stroke' => true,
+            'stroke-width' => true,
+            'stroke-linecap' => true,
+            'stroke-linejoin' => true,
+        ],
+        'polyline' => [
+            'points' => true,
+            'stroke' => true,
+            'stroke-width' => true,
+            'stroke-linecap' => true,
+            'stroke-linejoin' => true,
+            'fill' => true,
+        ],
+        'rect' => [
+            'x' => true,
+            'y' => true,
+            'width' => true,
+            'height' => true,
+            'rx' => true,
+            'ry' => true,
+            'fill' => true,
+            'stroke' => true,
+            'stroke-width' => true,
+            'transform' => true,
+        ],
+        'animate' => [
+            'attributename' => true,
+            'attributeName' => true,
+            'values' => true,
+            'dur' => true,
+            'repeatcount' => true,
+            'repeatCount' => true,
+            'type' => true,
+            'from' => true,
+            'to' => true,
+            'begin' => true,
+        ],
+        'animatetransform' => [
+            'attributename' => true,
+            'attributeName' => true,
+            'type' => true,
+            'from' => true,
+            'to' => true,
+            'dur' => true,
+            'repeatcount' => true,
+            'repeatCount' => true,
+        ],
+    ];
+}
+}
+
 if ( ! function_exists( 'mgproducts_display_kses_tags' ) ) {
 function mgproducts_display_kses_tags($string = '')
 {
@@ -619,7 +720,7 @@ function mpd_refresh_order_review_ajax() {
     $html = ob_get_clean();
 
     // Return the HTML.
-    echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- WooCommerce template HTML
+    echo wp_kses_post( $html );
     wp_die();
 }
 add_action( 'wp_ajax_mpd_refresh_order_review', 'mpd_refresh_order_review_ajax' );

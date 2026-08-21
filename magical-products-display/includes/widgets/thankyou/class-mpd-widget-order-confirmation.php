@@ -810,9 +810,11 @@ class Order_Confirmation extends Widget_Base {
 						<?php
 						$title_text = $settings['title_text'];
 						if ( $dynamic_name && $customer_name ) {
+							/* translators: %s: customer name */
+							$thank_you_text = sprintf( __( 'Thank you, %s', 'magical-products-display' ), $customer_name );
 							$title_text = str_replace(
 								array( '{customer_name}', 'Thank you' ),
-								array( $customer_name, sprintf( __( 'Thank you, %s', 'magical-products-display' ), $customer_name ) ),
+								array( $customer_name, $thank_you_text ),
 								$title_text
 							);
 						}

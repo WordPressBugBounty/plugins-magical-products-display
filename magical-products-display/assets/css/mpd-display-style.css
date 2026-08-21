@@ -1224,3 +1224,34 @@ div#mgpdeg-items .swiper-container {
 .mgpc-pcarousel[data-effect="fade"] .swiper-slide-active {
   opacity: 1 !important;
 }
+
+/* Global View Cart Default Styling */
+.mgproductd a.added_to_cart:not(.mgpdeg-cart-link a.added_to_cart),
+.mgproduct-des1 a.added_to_cart,
+.mgpde-card a.added_to_cart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #334155;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.mgproductd a.added_to_cart:not(.mgpdeg-cart-link a.added_to_cart):hover,
+.mgproduct-des1 a.added_to_cart:hover,
+.mgpde-card a.added_to_cart:hover {
+  color: #ffffff;
+  background: #0f172a;
+  border-color: #0f172a;
+  box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}

@@ -818,8 +818,14 @@ class Product_Stock extends Widget_Base {
 				<div class="mpd-stock-progress-fill" style="width: <?php echo esc_attr( $percentage ); ?>%;"></div>
 			</div>
 			<div class="mpd-stock-progress-text">
-				<span class="mpd-stock-available"><?php echo esc_html( sprintf( __( '%d available', 'magical-products-display' ), $stock_qty ) ); ?></span>
-				<span class="mpd-stock-sold-count"><?php echo esc_html( sprintf( __( '%d sold', 'magical-products-display' ), $sold_count ) ); ?></span>
+				<?php
+				/* translators: %d: available stock quantity */
+				$avail_text = sprintf( __( '%d available', 'magical-products-display' ), $stock_qty );
+				/* translators: %d: sold product quantity */
+				$sold_text = sprintf( __( '%d sold', 'magical-products-display' ), $sold_count );
+				?>
+				<span class="mpd-stock-available"><?php echo esc_html( $avail_text ); ?></span>
+				<span class="mpd-stock-sold-count"><?php echo esc_html( $sold_text ); ?></span>
 			</div>
 		</div>
 		<?php
@@ -850,6 +856,7 @@ class Product_Stock extends Widget_Base {
 		// Show a note in editor if stock is above threshold.
 		$editor_note = '';
 		if ( $is_editor && $stock_qty > $threshold ) {
+			/* translators: %d: stock threshold */
 			$editor_note = ' <small style="opacity: 0.7;">(' . sprintf( __( 'Preview only - shows when stock ≤ %d', 'magical-products-display' ), $threshold ) . ')</small>';
 		}
 		?>

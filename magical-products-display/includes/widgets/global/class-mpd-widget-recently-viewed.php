@@ -866,7 +866,7 @@ class Recently_Viewed extends Widget_Base {
 			<?php if ( 'yes' === $settings['show_image'] ) : ?>
 				<div class="mpd-recently-viewed__product-image">
 					<a href="<?php echo esc_url( $product->get_permalink() ); ?>">
-						<?php echo $product->get_image( $settings['image_size'] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php echo wp_kses_post( $product->get_image( $settings['image_size'] ) ); ?>
 					</a>
 				</div>
 			<?php endif; ?>
@@ -885,8 +885,10 @@ class Recently_Viewed extends Widget_Base {
 						<?php
 						$rating = $product->get_average_rating();
 						$rating_percent = ( $rating / 5 ) * 100;
+						/* translators: %s: rating score */
+						$rating_aria = sprintf( __( 'Rated %s out of 5', 'magical-products-display' ), $rating );
 						?>
-						<div class="star-rating" role="img" aria-label="<?php echo esc_attr( sprintf( __( 'Rated %s out of 5', 'magical-products-display' ), $rating ) ); ?>">
+						<div class="star-rating" role="img" aria-label="<?php echo esc_attr( $rating_aria ); ?>">
 							<span style="width:<?php echo esc_attr( $rating_percent ); ?>%"></span>
 						</div>
 					</div>
@@ -894,7 +896,7 @@ class Recently_Viewed extends Widget_Base {
 
 				<?php if ( 'yes' === $settings['show_price'] ) : ?>
 					<div class="mpd-recently-viewed__price">
-						<?php echo $product->get_price_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php echo wp_kses_post( $product->get_price_html() ); ?>
 					</div>
 				<?php endif; ?>
 

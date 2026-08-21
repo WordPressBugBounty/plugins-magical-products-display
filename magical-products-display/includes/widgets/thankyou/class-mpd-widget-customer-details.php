@@ -858,7 +858,7 @@ class Customer_Details extends Widget_Base {
 			<?php if ( $show_map_link || $show_copy_button ) : ?>
 				<div class="mpd-address-actions">
 					<?php if ( $show_map_link ) : ?>
-						<a href="https://www.google.com/maps/search/?api=1&query=<?php echo rawurlencode( $address_text ); ?>" target="_blank" class="mpd-map-link">
+						<a href="<?php echo esc_url( 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $address_text ) ); ?>" target="_blank" class="mpd-map-link">
 							<span class="dashicons dashicons-location"></span> <?php esc_html_e( 'View on Map', 'magical-products-display' ); ?>
 						</a>
 					<?php endif; ?>
@@ -937,7 +937,7 @@ class Customer_Details extends Widget_Base {
 			<?php if ( $show_map_link || $show_copy_button ) : ?>
 				<div class="mpd-address-actions">
 					<?php if ( $show_map_link ) : ?>
-						<a href="https://www.google.com/maps/search/?api=1&query=<?php echo rawurlencode( $address_text ); ?>" target="_blank" class="mpd-map-link">
+						<a href="<?php echo esc_url( 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $address_text ) ); ?>" target="_blank" class="mpd-map-link">
 							<span class="dashicons dashicons-location"></span> <?php esc_html_e( 'View on Map', 'magical-products-display' ); ?>
 						</a>
 					<?php endif; ?>

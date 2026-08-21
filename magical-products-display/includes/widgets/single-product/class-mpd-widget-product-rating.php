@@ -757,7 +757,7 @@ class Product_Rating extends Widget_Base {
 						if ( $this->is_pro() && ! empty( $settings['rating_icon'] ) ) {
 							$this->render_custom_stars( $average, $settings['rating_icon'] );
 						} else {
-							echo wc_get_rating_html( $average, $rating_count ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							echo wp_kses_post( wc_get_rating_html( $average, $rating_count ) );
 						}
 					}
 

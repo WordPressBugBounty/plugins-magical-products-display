@@ -961,7 +961,7 @@ class Header_Wishlist_Compare extends Widget_Base {
 					$wishlist_attrs .= ' rel="nofollow"';
 				}
 				?>
-				<<?php echo esc_html( $wishlist_tag ); ?> class="mpd-header-wc-item mpd-header-wishlist" data-type="wishlist"<?php echo $wishlist_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+				<<?php echo esc_html( $wishlist_tag ); ?> class="mpd-header-wc-item mpd-header-wishlist" data-type="wishlist"<?php echo wp_kses_post( $wishlist_attrs ); ?>>
 					<div class="mpd-header-wc-icon-wrap">
 						<i class="eicon-heart-o" aria-hidden="true"></i>
 						<?php if ( $show_count ) : ?>
@@ -1002,7 +1002,7 @@ class Header_Wishlist_Compare extends Widget_Base {
 					$compare_attrs .= ' rel="nofollow"';
 				}
 				?>
-				<<?php echo esc_html( $compare_tag ); ?> class="mpd-header-wc-item mpd-header-compare" data-type="compare"<?php echo $compare_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+				<<?php echo esc_html( $compare_tag ); ?> class="mpd-header-wc-item mpd-header-compare" data-type="compare"<?php echo wp_kses_post( $compare_attrs ); ?>>
 					<div class="mpd-header-wc-icon-wrap">
 						<i class="eicon-exchange" aria-hidden="true"></i>
 						<?php if ( $show_count ) : ?>

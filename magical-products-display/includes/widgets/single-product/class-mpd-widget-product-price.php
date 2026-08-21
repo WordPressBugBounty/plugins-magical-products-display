@@ -521,7 +521,9 @@ class Product_Price extends Widget_Base {
 				if ( 'percentage' === $discount_format ) {
 					echo '<span class="mpd-discount-badge">-50%</span>';
 				} else {
-					printf( '<span class="mpd-discount-badge">%s</span>', esc_html( sprintf( __( 'Save %s', 'magical-products-display' ), $currency_symbol . '50.00' ) ) );
+					/* translators: %s: discount amount */
+					$demo_save_text = sprintf( __( 'Save %s', 'magical-products-display' ), $currency_symbol . '50.00' );
+					printf( '<span class="mpd-discount-badge">%s</span>', esc_html( $demo_save_text ) );
 				}
 			}
 			?>
@@ -580,6 +582,7 @@ class Product_Price extends Widget_Base {
 		if ( 'percentage' === $discount_format ) {
 			$badge_text = '-20%';
 		} else {
+			/* translators: %s: discount amount */
 			$badge_text = sprintf( __( 'Save %s', 'magical-products-display' ), $currency_symbol . '10.00' );
 		}
 		?>

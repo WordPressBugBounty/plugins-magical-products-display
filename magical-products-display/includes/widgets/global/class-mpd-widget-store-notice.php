@@ -681,7 +681,7 @@ class Store_Notice extends Widget_Base {
 			$data_attrs .= ' data-expired-message="' . esc_attr( $settings['countdown_expired_message'] ) . '"';
 		}
 		?>
-		<div class="<?php echo esc_attr( $wrapper_class ); ?>" role="alert"<?php echo $data_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+		<div class="<?php echo esc_attr( $wrapper_class ); ?>" role="alert"<?php echo wp_kses_post( $data_attrs ); ?>>
 			<div class="mpd-store-notice__content">
 				<?php if ( 'yes' === $settings['show_icon'] && ! empty( $settings['notice_icon']['value'] ) ) : ?>
 					<span class="mpd-store-notice__icon">
@@ -693,9 +693,7 @@ class Store_Notice extends Widget_Base {
 					<?php if ( $is_expired && 'message' === $settings['countdown_expired_action'] ) : ?>
 						<?php echo esc_html( $settings['countdown_expired_message'] ); ?>
 					<?php elseif ( ! empty( $settings['notice_link']['url'] ) ) : ?>
-						<a href="<?php echo esc_url( $settings['notice_link']['url'] ); ?>"
-						<?php echo $settings['notice_link']['is_external'] ? ' target="_blank"' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static attribute ?>
-						<?php echo $settings['notice_link']['nofollow'] ? ' rel="nofollow"' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static attribute ?>>
+						<a href="<?php echo esc_url( $settings['notice_link']['url'] ); ?>"<?php echo ! empty( $settings['notice_link']['is_external'] ) ? ' target="_blank"' : ''; ?><?php echo ! empty( $settings['notice_link']['nofollow'] ) ? ' rel="nofollow"' : ''; ?>>
 							<?php echo wp_kses_post( $notice_text ); ?>
 						</a>
 					<?php else : ?>

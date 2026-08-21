@@ -2044,7 +2044,7 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
         <?php endif; ?>
         <?php if ($settings['mpdpr_icon_type'] == 'image') : ?>
             <figure class="mpd-pricing-img">
-                <?php echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'mpdpr_thumbnail', 'mpdpr_type_image'); ?>
+                <?php echo wp_kses_post( \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'mpdpr_thumbnail', 'mpdpr_type_image') ); ?>
             </figure>
         <?php endif;
     }
@@ -2066,12 +2066,12 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
 
         <?php if ($settings['mpdpr_desc_show']) : ?>
             <div class="mpdpr-desc">
-                <p <?php echo $this->get_render_attribute_string('mpdpr_desc'); ?>> <?php echo wp_kses_post($mpdpr_desc); ?></p>
+                <p <?php $this->print_render_attribute_string('mpdpr_desc'); ?>> <?php echo wp_kses_post($mpdpr_desc); ?></p>
             </div>
         <?php endif; ?>
         <?php if ($settings['mpdpr_features_show']) : ?>
             <div class="bpto-bottom mpd-feature">
-                <h3 <?php echo $this->get_render_attribute_string('mpdpr_ftitle'); ?>><?php echo wp_kses_post($mpdpr_ftitle); ?></h3>
+                <h3 <?php $this->print_render_attribute_string('mpdpr_ftitle'); ?>><?php echo wp_kses_post($mpdpr_ftitle); ?></h3>
                 <ul class="mpdpr-list">
                     <?php foreach ($mpdpr_list_items as $item) : ?>
 
@@ -2114,19 +2114,19 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
                     $this->set_render_attribute('mpdpr_link', 'rel', 'nofollow');
                 }
             ?>
-                <a <?php echo $this->get_render_attribute_string('mpdpr_link'); ?>>
+                <a <?php $this->print_render_attribute_string('mpdpr_link'); ?>>
                     <?php if ($mpdpr_icon_position == 'left') : ?>
                         <span class="left">
                             <?php \Elementor\Icons_Manager::render_icon($settings['mpdpr_btn_selected_icon']); ?></span>
 
                     <?php endif; ?>
-                    <span <?php echo $this->get_render_attribute_string('mpdpr_btntitle'); ?>><?php echo mgproducts_kses_tags($mpdpr_btntitle); ?></span>
+                    <span <?php $this->print_render_attribute_string('mpdpr_btntitle'); ?>><?php echo wp_kses( $mpdpr_btntitle, mgproducts_display_get_allowed_html_tags() ); ?></span>
                     <?php if ($mpdpr_icon_position == 'right') : ?>
                         <span class="right"><?php \Elementor\Icons_Manager::render_icon($settings['mpdpr_btn_selected_icon']); ?></span>
                     <?php endif; ?>
                 </a>
             <?php else : ?>
-                <a <?php echo $this->get_render_attribute_string('mpdpr_link'); ?>><span <?php echo $this->get_render_attribute_string('mpdpr_btntitle'); ?>><?php echo mgproducts_kses_tags($mpdpr_btntitle); ?></span></a>
+                <a <?php $this->print_render_attribute_string('mpdpr_link'); ?>><span <?php $this->print_render_attribute_string('mpdpr_btntitle'); ?>><?php echo wp_kses( $mpdpr_btntitle, mgproducts_display_get_allowed_html_tags() ); ?></span></a>
             <?php endif; ?>
         </div>
     <?php
@@ -2146,9 +2146,9 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
 
         printf(
             '<%1$s %2$s>%3$s</%1$s>',
-            mprd_validate_html_tag($mpdpr_title_tag),
-            $this->get_render_attribute_string('mpdpr_title'),
-            mgproducts_kses_tags($mpdpr_title)
+            esc_attr( mprd_validate_html_tag($mpdpr_title_tag) ),
+            wp_kses_post( $this->get_render_attribute_string('mpdpr_title') ),
+            wp_kses( $mpdpr_title, mgproducts_display_get_allowed_html_tags() )
         );
     } // end title 
     // Subtitle output
@@ -2165,9 +2165,9 @@ class mgProduct_Pricing_Table extends \Elementor\Widget_Base
 
         printf(
             '<%1$s %2$s>%3$s</%1$s>',
-            mprd_validate_html_tag($mpdpr_subtitle_tag),
-            $this->get_render_attribute_string('mpdpr_subtitle'),
-            mgproducts_kses_tags($mpdpr_subtitle)
+            esc_attr( mprd_validate_html_tag($mpdpr_subtitle_tag) ),
+            wp_kses_post( $this->get_render_attribute_string('mpdpr_subtitle') ),
+            wp_kses( $mpdpr_subtitle, mgproducts_display_get_allowed_html_tags() )
         );
     } // end subtitle 
 

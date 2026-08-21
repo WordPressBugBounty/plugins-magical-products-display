@@ -1634,7 +1634,7 @@ class Products_Archive extends Widget_Base {
 			$container_attr_string .= ' ' . esc_attr( $attr ) . '="' . esc_attr( $value ) . '"';
 		}
 		?>
-		<div<?php echo $container_attr_string; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+		<div<?php echo wp_kses_post( $container_attr_string ); ?>>
 			<?php if ( $products_query->have_posts() ) : ?>
 				<div class="<?php echo esc_attr( $layout_class ); ?>">
 					<?php
@@ -2000,7 +2000,7 @@ class Products_Archive extends Widget_Base {
 				<?php endif; ?>
 
 				<?php if ( 'yes' === $settings['show_add_to_cart'] ) : ?>
-					<div class="mpd-products-archive__add-to-cart<?php echo \Elementor\Plugin::$instance->editor->is_edit_mode() ? ' mpd-editor-mode' : ''; ?>">
+					<div class="mpd-products-archive__add-to-cart<?php echo esc_attr( \Elementor\Plugin::$instance->editor->is_edit_mode() ? ' mpd-editor-mode' : '' ); ?>">
 						<?php woocommerce_template_loop_add_to_cart(); ?>
 					</div>
 				<?php endif; ?>

@@ -809,7 +809,7 @@ class Category_Filter extends Widget_Base {
 	protected function render_list( $categories, $settings, $current_cat, $depth = 0 ) {
 		$max_depth = absint( $settings['max_depth'] );
 		?>
-		<ul class="mpd-category-filter__list<?php echo 0 === $depth ? '' : ' mpd-category-filter__children'; ?>">
+		<ul class="mpd-category-filter__list<?php echo esc_attr( 0 === $depth ? '' : ' mpd-category-filter__children' ); ?>">
 			<?php foreach ( $categories as $category ) : ?>
 				<?php
 				$is_current = $current_cat && $current_cat->term_id === $category->term_id;
@@ -915,7 +915,7 @@ class Category_Filter extends Widget_Base {
 	protected function render_tree( $categories, $settings, $current_cat, $depth = 0 ) {
 		$max_depth = absint( $settings['max_depth'] );
 		?>
-		<ul class="mpd-category-filter__list mpd-category-filter__list--tree<?php echo 0 === $depth ? '' : ' mpd-category-filter__children'; ?>">
+		<ul class="mpd-category-filter__list mpd-category-filter__list--tree<?php echo esc_attr( 0 === $depth ? '' : ' mpd-category-filter__children' ); ?>">
 			<?php foreach ( $categories as $category ) : ?>
 				<?php
 				$is_current = $current_cat && $current_cat->term_id === $category->term_id;

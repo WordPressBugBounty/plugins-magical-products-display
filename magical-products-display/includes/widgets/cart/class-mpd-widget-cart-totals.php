@@ -787,10 +787,12 @@ class Cart_Totals extends Widget_Base {
 					?>
 					<div class="mpd-free-shipping-notice">
 						<?php
-						printf(
-							/* translators: %s: amount remaining for free shipping */
-							esc_html__( 'Spend %s more for free shipping!', 'magical-products-display' ),
-							wc_price( $remaining )
+						echo wp_kses_post(
+							sprintf(
+								/* translators: %s: amount remaining for free shipping */
+								esc_html__( 'Spend %s more for free shipping!', 'magical-products-display' ),
+								wc_price( $remaining )
+							)
 						);
 						?>
 						<div class="mpd-free-shipping-progress">
@@ -854,7 +856,7 @@ class Cart_Totals extends Widget_Base {
 							foreach ( $cart->get_tax_totals() as $code => $tax ) {
 								?>
 								<tr class="tax-rate tax-rate-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-									<th><?php echo esc_html( $tax->label ) . $estimated_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></th>
+									<th><?php echo esc_html( $tax->label ) . wp_kses_post( $estimated_text ); ?></th>
 									<td data-title="<?php echo esc_attr( $tax->label ); ?>"><?php echo wp_kses_post( $tax->formatted_amount ); ?></td>
 								</tr>
 								<?php
@@ -862,7 +864,7 @@ class Cart_Totals extends Widget_Base {
 						} else {
 							?>
 							<tr class="tax-total">
-								<th><?php echo esc_html( WC()->countries->tax_or_vat() ) . $estimated_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></th>
+								<th><?php echo esc_html( WC()->countries->tax_or_vat() ) . wp_kses_post( $estimated_text ); ?></th>
 								<td data-title="<?php echo esc_attr( WC()->countries->tax_or_vat() ); ?>"><?php wc_cart_totals_taxes_total_html(); ?></td>
 							</tr>
 							<?php
@@ -892,7 +894,7 @@ class Cart_Totals extends Widget_Base {
 					<div class="mpd-cart-savings">
 						<span class="mpd-savings-icon">🎉</span>
 						<span class="mpd-savings-text"><?php echo esc_html( $savings_text ); ?>: </span>
-						<span class="mpd-savings-amount"><?php echo wc_price( $savings ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+						<span class="mpd-savings-amount"><?php echo wp_kses_post( wc_price( $savings ) ); ?></span>
 					</div>
 					<?php
 				}
@@ -991,10 +993,12 @@ class Cart_Totals extends Widget_Base {
 					?>
 					<div class="mpd-free-shipping-notice">
 						<?php
-						printf(
-							/* translators: %s: amount remaining for free shipping */
-							esc_html__( 'Spend %s more for free shipping!', 'magical-products-display' ),
-							wc_price( $remaining )
+						echo wp_kses_post(
+							sprintf(
+								/* translators: %s: amount remaining for free shipping */
+								esc_html__( 'Spend %s more for free shipping!', 'magical-products-display' ),
+								wc_price( $remaining )
+							)
 						);
 						?>
 						<div class="mpd-free-shipping-progress">

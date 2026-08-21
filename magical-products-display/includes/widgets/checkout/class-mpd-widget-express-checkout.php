@@ -1067,7 +1067,7 @@ class Express_Checkout extends Widget_Base {
 						</em>
 					</p>
 				<?php elseif ( $has_buttons ) : ?>
-					<?php echo $express_buttons; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php echo wp_kses_post( $express_buttons ); ?>
 				<?php else : ?>
 					<p class="mpd-express-fallback"><?php echo esc_html( $settings['fallback_message'] ); ?></p>
 				<?php endif; ?>

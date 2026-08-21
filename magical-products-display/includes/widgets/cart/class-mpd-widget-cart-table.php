@@ -1353,9 +1353,9 @@ class Cart_Table extends Widget_Base {
 											$thumbnail = apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image( $thumbnail_size ), $cart_item, $cart_item_key );
 
 											if ( ! $product_permalink ) {
-												echo $thumbnail; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+												echo wp_kses_post( $thumbnail );
 											} else {
-												printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+												printf( '<a href="%s">%s</a>', esc_url( $product_permalink ), wp_kses_post( $thumbnail ) );
 											}
 											?>
 										</td>
@@ -1372,7 +1372,7 @@ class Cart_Table extends Widget_Base {
 										do_action( 'woocommerce_after_cart_item_name', $cart_item, $cart_item_key );
 
 										// Meta data.
-										echo wc_get_formatted_cart_item_data( $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										echo wp_kses_post( wc_get_formatted_cart_item_data( $cart_item ) );
 
 										// SKU.
 										if ( $show_sku && $_product->get_sku() ) {
@@ -1402,7 +1402,7 @@ class Cart_Table extends Widget_Base {
 
 									<td class="product-price" data-title="<?php esc_attr_e( 'Price', 'magical-products-display' ); ?>">
 										<?php
-										echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										echo wp_kses_post( apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key ) );
 										?>
 									</td>
 
@@ -1427,7 +1427,7 @@ class Cart_Table extends Widget_Base {
 												$_product
 											);
 
-											echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+											echo wp_kses_post( apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ) );
 											?>
 										</td>
 									<?php endif; ?>
@@ -1435,7 +1435,7 @@ class Cart_Table extends Widget_Base {
 									<?php if ( $show_subtotal ) : ?>
 										<td class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'magical-products-display' ); ?>">
 											<?php
-											echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+											echo wp_kses_post( apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key ) );
 											?>
 										</td>
 									<?php endif; ?>
@@ -1685,7 +1685,7 @@ class Cart_Table extends Widget_Base {
 
 								<?php if ( $show_thumbnail ) : ?>
 									<td class="product-thumbnail">
-										<?php echo $product->get_image( 'woocommerce_thumbnail' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+										<?php echo wp_kses_post( $product->get_image( 'woocommerce_thumbnail' ) ); ?>
 									</td>
 								<?php endif; ?>
 
@@ -1713,18 +1713,18 @@ class Cart_Table extends Widget_Base {
 								</td>
 
 								<td class="product-price" data-title="<?php esc_attr_e( 'Price', 'magical-products-display' ); ?>">
-									<?php echo $product->get_price_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									<?php echo wp_kses_post( $product->get_price_html() ); ?>
 								</td>
 
 								<?php if ( $show_quantity ) : ?>
 									<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'magical-products-display' ); ?>">
-										<?php echo $this->render_editor_quantity_input( $quantity_style, $sample_qty ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+										<?php echo wp_kses_post( $this->render_editor_quantity_input( $quantity_style, $sample_qty ) ); ?>
 									</td>
 								<?php endif; ?>
 
 								<?php if ( $show_subtotal ) : ?>
 									<td class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'magical-products-display' ); ?>">
-										<?php echo wc_price( (float) $product->get_price() * $sample_qty ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+										<?php echo wp_kses_post( wc_price( (float) $product->get_price() * $sample_qty ) ); ?>
 									</td>
 								<?php endif; ?>
 							</tr>

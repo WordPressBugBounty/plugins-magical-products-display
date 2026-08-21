@@ -791,7 +791,7 @@ class Product_Navigation extends Widget_Base {
 						<h4 class="mpd-nav-popup-title"><?php echo esc_html( $nav_product->get_name() ); ?></h4>
 						<?php if ( $nav_product->get_average_rating() ) : ?>
 							<div class="mpd-nav-popup-rating">
-								<?php echo wc_get_rating_html( $nav_product->get_average_rating(), $nav_product->get_rating_count() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php echo wp_kses_post( wc_get_rating_html( $nav_product->get_average_rating(), $nav_product->get_rating_count() ) ); ?>
 							</div>
 						<?php endif; ?>
 						<div class="mpd-nav-popup-price">

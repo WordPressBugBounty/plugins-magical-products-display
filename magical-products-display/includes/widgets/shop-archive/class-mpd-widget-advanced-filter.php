@@ -1899,7 +1899,7 @@ class Advanced_Filter extends Widget_Base {
 		$needs_toggle = in_array( $display_style, array( 'popup', 'sidebar' ), true );
 		$filter_title = ! empty( $settings['filter_title'] ) ? $settings['filter_title'] : esc_html__( 'Filter Products', 'magical-products-display' );
 		?>
-		<div class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>"<?php echo $data_attrs_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+		<div class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>"<?php echo wp_kses_post( $data_attrs_html ); ?>>
 			<?php if ( $needs_toggle ) : ?>
 				<button type="button" class="mpd-advanced-filter__toggle">
 					<?php if ( 'left' === $settings['icon_position'] && ! empty( $settings['toggle_button_icon']['value'] ) ) : ?>
@@ -2033,7 +2033,7 @@ class Advanced_Filter extends Widget_Base {
 
 					if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) :
 						?>
-						<div class="mpd-inline-dropdown<?php echo ! empty( $current_cat ) ? ' has-selection' : ''; ?>" data-filter="product_cat">
+						<div class="mpd-inline-dropdown<?php echo esc_attr( ! empty( $current_cat ) ? ' has-selection' : '' ); ?>" data-filter="product_cat">
 							<button type="button" class="mpd-inline-dropdown__trigger">
 								<span class="mpd-inline-dropdown__label"><?php echo esc_html( $settings['category_filter_title'] ); ?></span>
 								<svg class="mpd-inline-dropdown__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2042,7 +2042,7 @@ class Advanced_Filter extends Widget_Base {
 							</button>
 							<div class="mpd-inline-dropdown__content">
 								<ul class="mpd-inline-dropdown__list">
-									<li class="mpd-inline-dropdown__item<?php echo empty( $current_cat ) ? ' is-active' : ''; ?>">
+									<li class="mpd-inline-dropdown__item<?php echo esc_attr( empty( $current_cat ) ? ' is-active' : '' ); ?>">
 										<a href="#" data-value=""><?php esc_html_e( 'All Categories', 'magical-products-display' ); ?></a>
 									</li>
 									<?php foreach ( $categories as $category ) : ?>
@@ -2074,7 +2074,7 @@ class Advanced_Filter extends Widget_Base {
 
 					if ( ! empty( $tags ) && ! is_wp_error( $tags ) ) :
 						?>
-						<div class="mpd-inline-dropdown<?php echo ! empty( $current_tag ) ? ' has-selection' : ''; ?>" data-filter="product_tag">
+						<div class="mpd-inline-dropdown<?php echo esc_attr( ! empty( $current_tag ) ? ' has-selection' : '' ); ?>" data-filter="product_tag">
 							<button type="button" class="mpd-inline-dropdown__trigger">
 								<span class="mpd-inline-dropdown__label"><?php echo esc_html( $settings['tags_filter_title'] ); ?></span>
 								<svg class="mpd-inline-dropdown__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2083,7 +2083,7 @@ class Advanced_Filter extends Widget_Base {
 							</button>
 							<div class="mpd-inline-dropdown__content">
 								<ul class="mpd-inline-dropdown__list">
-									<li class="mpd-inline-dropdown__item<?php echo empty( $current_tag ) ? ' is-active' : ''; ?>">
+									<li class="mpd-inline-dropdown__item<?php echo esc_attr( empty( $current_tag ) ? ' is-active' : '' ); ?>">
 										<a href="#" data-value=""><?php esc_html_e( 'All Tags', 'magical-products-display' ); ?></a>
 									</li>
 									<?php foreach ( $tags as $tag ) : ?>
@@ -2117,7 +2117,7 @@ class Advanced_Filter extends Widget_Base {
 
 					if ( ! empty( $brands ) && ! is_wp_error( $brands ) ) :
 						?>
-						<div class="mpd-inline-dropdown<?php echo ! empty( $current_brand ) ? ' has-selection' : ''; ?>" data-filter="<?php echo esc_attr( $taxonomy ); ?>">
+						<div class="mpd-inline-dropdown<?php echo esc_attr( ! empty( $current_brand ) ? ' has-selection' : '' ); ?>" data-filter="<?php echo esc_attr( $taxonomy ); ?>">
 							<button type="button" class="mpd-inline-dropdown__trigger">
 								<span class="mpd-inline-dropdown__label"><?php echo esc_html( $settings['brand_filter_title'] ); ?></span>
 								<svg class="mpd-inline-dropdown__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2126,7 +2126,7 @@ class Advanced_Filter extends Widget_Base {
 							</button>
 							<div class="mpd-inline-dropdown__content">
 								<ul class="mpd-inline-dropdown__list">
-									<li class="mpd-inline-dropdown__item<?php echo empty( $current_brand ) ? ' is-active' : ''; ?>">
+									<li class="mpd-inline-dropdown__item<?php echo esc_attr( empty( $current_brand ) ? ' is-active' : '' ); ?>">
 										<a href="#" data-value=""><?php esc_html_e( 'All', 'magical-products-display' ); ?></a>
 									</li>
 									<?php foreach ( $brands as $brand ) : ?>
@@ -2150,7 +2150,7 @@ class Advanced_Filter extends Widget_Base {
 				// Stock filter dropdown.
 				if ( 'yes' === $settings['show_stock_filter'] ) :
 					?>
-					<div class="mpd-inline-dropdown<?php echo ! empty( $current_stock ) ? ' has-selection' : ''; ?>" data-filter="stock_status">
+					<div class="mpd-inline-dropdown<?php echo esc_attr( ! empty( $current_stock ) ? ' has-selection' : '' ); ?>" data-filter="stock_status">
 						<button type="button" class="mpd-inline-dropdown__trigger">
 							<span class="mpd-inline-dropdown__label"><?php echo esc_html( $settings['stock_filter_title'] ); ?></span>
 							<svg class="mpd-inline-dropdown__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2159,13 +2159,13 @@ class Advanced_Filter extends Widget_Base {
 						</button>
 						<div class="mpd-inline-dropdown__content">
 							<ul class="mpd-inline-dropdown__list">
-								<li class="mpd-inline-dropdown__item<?php echo empty( $current_stock ) ? ' is-active' : ''; ?>">
+								<li class="mpd-inline-dropdown__item<?php echo esc_attr( empty( $current_stock ) ? ' is-active' : '' ); ?>">
 									<a href="#" data-value=""><?php esc_html_e( 'All', 'magical-products-display' ); ?></a>
 								</li>
-								<li class="mpd-inline-dropdown__item<?php echo 'instock' === $current_stock ? ' is-active' : ''; ?>">
+								<li class="mpd-inline-dropdown__item<?php echo esc_attr( 'instock' === $current_stock ? ' is-active' : '' ); ?>">
 									<a href="#" data-value="instock"><?php esc_html_e( 'In Stock', 'magical-products-display' ); ?></a>
 								</li>
-								<li class="mpd-inline-dropdown__item<?php echo 'outofstock' === $current_stock ? ' is-active' : ''; ?>">
+								<li class="mpd-inline-dropdown__item<?php echo esc_attr( 'outofstock' === $current_stock ? ' is-active' : '' ); ?>">
 									<a href="#" data-value="outofstock"><?php esc_html_e( 'Out of Stock', 'magical-products-display' ); ?></a>
 								</li>
 							</ul>
@@ -2177,7 +2177,7 @@ class Advanced_Filter extends Widget_Base {
 				<?php // Rating filter dropdown.
 				if ( 'yes' === $settings['show_rating_filter'] ) :
 					?>
-					<div class="mpd-inline-dropdown<?php echo ! empty( $current_rating ) ? ' has-selection' : ''; ?>" data-filter="rating_filter">
+					<div class="mpd-inline-dropdown<?php echo esc_attr( ! empty( $current_rating ) ? ' has-selection' : '' ); ?>" data-filter="rating_filter">
 						<button type="button" class="mpd-inline-dropdown__trigger">
 							<span class="mpd-inline-dropdown__label"><?php echo esc_html( $settings['rating_filter_title'] ); ?></span>
 							<svg class="mpd-inline-dropdown__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2186,18 +2186,22 @@ class Advanced_Filter extends Widget_Base {
 						</button>
 						<div class="mpd-inline-dropdown__content">
 							<ul class="mpd-inline-dropdown__list">
-								<li class="mpd-inline-dropdown__item<?php echo empty( $current_rating ) ? ' is-active' : ''; ?>">
+								<li class="mpd-inline-dropdown__item<?php echo esc_attr( empty( $current_rating ) ? ' is-active' : '' ); ?>">
 									<a href="#" data-value=""><?php esc_html_e( 'All Ratings', 'magical-products-display' ); ?></a>
 								</li>
 								<?php for ( $rating = 5; $rating >= 1; $rating-- ) : ?>
-									<li class="mpd-inline-dropdown__item<?php echo (int) $current_rating === $rating ? ' is-active' : ''; ?>">
+									<li class="mpd-inline-dropdown__item<?php echo esc_attr( (int) $current_rating === $rating ? ' is-active' : '' ); ?>">
 										<a href="#" data-value="<?php echo esc_attr( $rating ); ?>">
 											<span class="mpd-inline-dropdown__stars">
 												<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
 													<span class="star <?php echo esc_attr( $i <= $rating ? 'filled' : 'empty' ); ?>">★</span>
 												<?php endfor; ?>
 											</span>
-											<span class="mpd-inline-dropdown__rating-text"><?php echo esc_html( sprintf( __( '%d & up', 'magical-products-display' ), $rating ) ); ?></span>
+											<?php
+											/* translators: %d: star rating */
+											$rating_up_text = sprintf( __( '%d & up', 'magical-products-display' ), $rating );
+											?>
+											<span class="mpd-inline-dropdown__rating-text"><?php echo esc_html( $rating_up_text ); ?></span>
 										</a>
 									</li>
 								<?php endfor; ?>
@@ -2211,7 +2215,7 @@ class Advanced_Filter extends Widget_Base {
 				if ( 'yes' === $settings['show_featured_filter'] ) :
 					$featured_title = $settings['featured_filter_title'] ?? esc_html__( 'Featured', 'magical-products-display' );
 					?>
-					<button type="button" class="mpd-inline-toggle<?php echo 'yes' === $current_featured ? ' is-active' : ''; ?>" data-filter="featured" data-value="<?php echo 'yes' === $current_featured ? '' : 'yes'; ?>">
+					<button type="button" class="mpd-inline-toggle<?php echo esc_attr( 'yes' === $current_featured ? ' is-active' : '' ); ?>" data-filter="featured" data-value="<?php echo esc_attr( 'yes' === $current_featured ? '' : 'yes' ); ?>">
 						<span class="mpd-inline-toggle__icon">★</span>
 						<span class="mpd-inline-toggle__label"><?php echo esc_html( $featured_title ); ?></span>
 						<input type="hidden" name="featured" value="<?php echo esc_attr( $current_featured ); ?>">
@@ -2222,7 +2226,7 @@ class Advanced_Filter extends Widget_Base {
 				if ( 'yes' === $settings['show_sale_filter'] ) :
 					$sale_title = $settings['sale_filter_title'] ?? esc_html__( 'On Sale', 'magical-products-display' );
 					?>
-					<button type="button" class="mpd-inline-toggle<?php echo 'yes' === $current_sale ? ' is-active' : ''; ?>" data-filter="on_sale" data-value="<?php echo 'yes' === $current_sale ? '' : 'yes'; ?>">
+					<button type="button" class="mpd-inline-toggle<?php echo esc_attr( 'yes' === $current_sale ? ' is-active' : '' ); ?>" data-filter="on_sale" data-value="<?php echo esc_attr( 'yes' === $current_sale ? '' : 'yes' ); ?>">
 						<span class="mpd-inline-toggle__icon">%</span>
 						<span class="mpd-inline-toggle__label"><?php echo esc_html( $sale_title ); ?></span>
 						<input type="hidden" name="on_sale" value="<?php echo esc_attr( $current_sale ); ?>">
@@ -2255,7 +2259,7 @@ class Advanced_Filter extends Widget_Base {
 		$sidebar_position     = $settings['sidebar_position'] ?? 'left';
 		$filter_title         = ! empty( $settings['filter_title'] ) ? $settings['filter_title'] : esc_html__( 'Filter Products', 'magical-products-display' );
 		?>
-		<div class="mpd-advanced-filter mpd-advanced-filter--responsive"<?php echo $data_attrs_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+		<div class="mpd-advanced-filter mpd-advanced-filter--responsive"<?php echo wp_kses_post( $data_attrs_html ); ?>>
 			<?php
 			// Desktop Layout.
 			if ( 'inline' === $display_style ) {
@@ -2415,7 +2419,7 @@ class Advanced_Filter extends Widget_Base {
 
 				if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) :
 					?>
-					<div class="mpd-inline-dropdown<?php echo ! empty( $current_cat ) ? ' has-selection' : ''; ?>" data-filter="product_cat">
+					<div class="mpd-inline-dropdown<?php echo esc_attr( ! empty( $current_cat ) ? ' has-selection' : '' ); ?>" data-filter="product_cat">
 						<button type="button" class="mpd-inline-dropdown__trigger">
 							<span class="mpd-inline-dropdown__label"><?php echo esc_html( $settings['category_filter_title'] ); ?></span>
 							<svg class="mpd-inline-dropdown__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2424,7 +2428,7 @@ class Advanced_Filter extends Widget_Base {
 						</button>
 						<div class="mpd-inline-dropdown__content">
 							<ul class="mpd-inline-dropdown__list">
-								<li class="mpd-inline-dropdown__item<?php echo empty( $current_cat ) ? ' is-active' : ''; ?>">
+								<li class="mpd-inline-dropdown__item<?php echo esc_attr( empty( $current_cat ) ? ' is-active' : '' ); ?>">
 									<a href="#" data-value=""><?php esc_html_e( 'All Categories', 'magical-products-display' ); ?></a>
 								</li>
 								<?php foreach ( $categories as $category ) : ?>
@@ -2456,7 +2460,7 @@ class Advanced_Filter extends Widget_Base {
 
 				if ( ! empty( $tags ) && ! is_wp_error( $tags ) ) :
 					?>
-					<div class="mpd-inline-dropdown<?php echo ! empty( $current_tag ) ? ' has-selection' : ''; ?>" data-filter="product_tag">
+					<div class="mpd-inline-dropdown<?php echo esc_attr( ! empty( $current_tag ) ? ' has-selection' : '' ); ?>" data-filter="product_tag">
 						<button type="button" class="mpd-inline-dropdown__trigger">
 							<span class="mpd-inline-dropdown__label"><?php echo esc_html( $settings['tags_filter_title'] ?? esc_html__( 'Tags', 'magical-products-display' ) ); ?></span>
 							<svg class="mpd-inline-dropdown__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2465,7 +2469,7 @@ class Advanced_Filter extends Widget_Base {
 						</button>
 						<div class="mpd-inline-dropdown__content">
 							<ul class="mpd-inline-dropdown__list">
-								<li class="mpd-inline-dropdown__item<?php echo empty( $current_tag ) ? ' is-active' : ''; ?>">
+								<li class="mpd-inline-dropdown__item<?php echo esc_attr( empty( $current_tag ) ? ' is-active' : '' ); ?>">
 									<a href="#" data-value=""><?php esc_html_e( 'All Tags', 'magical-products-display' ); ?></a>
 								</li>
 								<?php foreach ( $tags as $tag ) : ?>
@@ -2501,7 +2505,7 @@ class Advanced_Filter extends Widget_Base {
 
 					if ( ! empty( $brands ) && ! is_wp_error( $brands ) ) :
 						?>
-						<div class="mpd-inline-dropdown<?php echo ! empty( $current_brand ) ? ' has-selection' : ''; ?>" data-filter="<?php echo esc_attr( $brand_taxonomy ); ?>">
+						<div class="mpd-inline-dropdown<?php echo esc_attr( ! empty( $current_brand ) ? ' has-selection' : '' ); ?>" data-filter="<?php echo esc_attr( $brand_taxonomy ); ?>">
 							<button type="button" class="mpd-inline-dropdown__trigger">
 								<span class="mpd-inline-dropdown__label"><?php echo esc_html( $settings['brand_filter_title'] ?? esc_html__( 'Brand', 'magical-products-display' ) ); ?></span>
 								<svg class="mpd-inline-dropdown__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2510,7 +2514,7 @@ class Advanced_Filter extends Widget_Base {
 							</button>
 							<div class="mpd-inline-dropdown__content">
 								<ul class="mpd-inline-dropdown__list">
-									<li class="mpd-inline-dropdown__item<?php echo empty( $current_brand ) ? ' is-active' : ''; ?>">
+									<li class="mpd-inline-dropdown__item<?php echo esc_attr( empty( $current_brand ) ? ' is-active' : '' ); ?>">
 										<a href="#" data-value=""><?php esc_html_e( 'All Brands', 'magical-products-display' ); ?></a>
 									</li>
 									<?php foreach ( $brands as $brand ) : ?>
@@ -2554,7 +2558,7 @@ class Advanced_Filter extends Widget_Base {
 			<?php // Stock filter dropdown.
 			if ( 'yes' === $settings['show_stock_filter'] ) :
 				?>
-				<div class="mpd-inline-dropdown<?php echo ! empty( $current_stock ) ? ' has-selection' : ''; ?>" data-filter="stock_status">
+				<div class="mpd-inline-dropdown<?php echo esc_attr( ! empty( $current_stock ) ? ' has-selection' : '' ); ?>" data-filter="stock_status">
 					<button type="button" class="mpd-inline-dropdown__trigger">
 						<span class="mpd-inline-dropdown__label"><?php echo esc_html( $settings['stock_filter_title'] ?? esc_html__( 'Availability', 'magical-products-display' ) ); ?></span>
 						<svg class="mpd-inline-dropdown__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2563,13 +2567,13 @@ class Advanced_Filter extends Widget_Base {
 					</button>
 					<div class="mpd-inline-dropdown__content">
 						<ul class="mpd-inline-dropdown__list">
-							<li class="mpd-inline-dropdown__item<?php echo empty( $current_stock ) ? ' is-active' : ''; ?>">
+							<li class="mpd-inline-dropdown__item<?php echo esc_attr( empty( $current_stock ) ? ' is-active' : '' ); ?>">
 								<a href="#" data-value=""><?php esc_html_e( 'All', 'magical-products-display' ); ?></a>
 							</li>
-							<li class="mpd-inline-dropdown__item<?php echo 'instock' === $current_stock ? ' is-active' : ''; ?>">
+							<li class="mpd-inline-dropdown__item<?php echo esc_attr( 'instock' === $current_stock ? ' is-active' : '' ); ?>">
 								<a href="#" data-value="instock"><?php esc_html_e( 'In Stock', 'magical-products-display' ); ?></a>
 							</li>
-							<li class="mpd-inline-dropdown__item<?php echo 'outofstock' === $current_stock ? ' is-active' : ''; ?>">
+							<li class="mpd-inline-dropdown__item<?php echo esc_attr( 'outofstock' === $current_stock ? ' is-active' : '' ); ?>">
 								<a href="#" data-value="outofstock"><?php esc_html_e( 'Out of Stock', 'magical-products-display' ); ?></a>
 							</li>
 						</ul>
@@ -2581,7 +2585,7 @@ class Advanced_Filter extends Widget_Base {
 			<?php // Rating filter dropdown.
 			if ( 'yes' === $settings['show_rating_filter'] ) :
 				?>
-				<div class="mpd-inline-dropdown<?php echo ! empty( $current_rating ) ? ' has-selection' : ''; ?>" data-filter="rating_filter">
+				<div class="mpd-inline-dropdown<?php echo esc_attr( ! empty( $current_rating ) ? ' has-selection' : '' ); ?>" data-filter="rating_filter">
 					<button type="button" class="mpd-inline-dropdown__trigger">
 						<span class="mpd-inline-dropdown__label"><?php echo esc_html( $settings['rating_filter_title'] ?? esc_html__( 'Rating', 'magical-products-display' ) ); ?></span>
 						<svg class="mpd-inline-dropdown__icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2590,18 +2594,22 @@ class Advanced_Filter extends Widget_Base {
 					</button>
 					<div class="mpd-inline-dropdown__content">
 						<ul class="mpd-inline-dropdown__list">
-							<li class="mpd-inline-dropdown__item<?php echo empty( $current_rating ) ? ' is-active' : ''; ?>">
+							<li class="mpd-inline-dropdown__item<?php echo esc_attr( empty( $current_rating ) ? ' is-active' : '' ); ?>">
 								<a href="#" data-value=""><?php esc_html_e( 'All Ratings', 'magical-products-display' ); ?></a>
 							</li>
 							<?php for ( $rating = 5; $rating >= 1; $rating-- ) : ?>
-								<li class="mpd-inline-dropdown__item<?php echo (int) $current_rating === $rating ? ' is-active' : ''; ?>">
+								<li class="mpd-inline-dropdown__item<?php echo esc_attr( (int) $current_rating === $rating ? ' is-active' : '' ); ?>">
 									<a href="#" data-value="<?php echo esc_attr( $rating ); ?>">
 										<span class="mpd-inline-dropdown__stars">
 											<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
 												<span class="star <?php echo esc_attr( $i <= $rating ? 'filled' : 'empty' ); ?>">★</span>
 											<?php endfor; ?>
 										</span>
-										<span class="mpd-inline-dropdown__rating-text"><?php echo esc_html( sprintf( __( '%d & up', 'magical-products-display' ), $rating ) ); ?></span>
+										<?php
+										/* translators: %d: star rating */
+										$rating_up_text_2 = sprintf( __( '%d & up', 'magical-products-display' ), $rating );
+										?>
+										<span class="mpd-inline-dropdown__rating-text"><?php echo esc_html( $rating_up_text_2 ); ?></span>
 									</a>
 								</li>
 							<?php endfor; ?>
@@ -2615,7 +2623,7 @@ class Advanced_Filter extends Widget_Base {
 			if ( 'yes' === $settings['show_featured_filter'] ) :
 				$featured_title = $settings['featured_filter_title'] ?? esc_html__( 'Featured', 'magical-products-display' );
 				?>
-				<button type="button" class="mpd-inline-toggle<?php echo 'yes' === $current_featured ? ' is-active' : ''; ?>" data-filter="featured" data-value="<?php echo 'yes' === $current_featured ? '' : 'yes'; ?>">
+				<button type="button" class="mpd-inline-toggle<?php echo esc_attr( 'yes' === $current_featured ? ' is-active' : '' ); ?>" data-filter="featured" data-value="<?php echo esc_attr( 'yes' === $current_featured ? '' : 'yes' ); ?>">
 					<span class="mpd-inline-toggle__icon">★</span>
 					<span class="mpd-inline-toggle__label"><?php echo esc_html( $featured_title ); ?></span>
 					<input type="hidden" name="featured" value="<?php echo esc_attr( $current_featured ); ?>">
@@ -2626,7 +2634,7 @@ class Advanced_Filter extends Widget_Base {
 			if ( 'yes' === $settings['show_sale_filter'] ) :
 				$sale_title = $settings['sale_filter_title'] ?? esc_html__( 'On Sale', 'magical-products-display' );
 				?>
-				<button type="button" class="mpd-inline-toggle<?php echo 'yes' === $current_sale ? ' is-active' : ''; ?>" data-filter="on_sale" data-value="<?php echo 'yes' === $current_sale ? '' : 'yes'; ?>">
+				<button type="button" class="mpd-inline-toggle<?php echo esc_attr( 'yes' === $current_sale ? ' is-active' : '' ); ?>" data-filter="on_sale" data-value="<?php echo esc_attr( 'yes' === $current_sale ? '' : 'yes' ); ?>">
 					<span class="mpd-inline-toggle__icon">%</span>
 					<span class="mpd-inline-toggle__label"><?php echo esc_html( $sale_title ); ?></span>
 					<input type="hidden" name="on_sale" value="<?php echo esc_attr( $current_sale ); ?>">
@@ -2770,7 +2778,7 @@ class Advanced_Filter extends Widget_Base {
 					$selected_cats = ! empty( $current_cat ) ? explode( ',', $current_cat ) : array();
 					foreach ( $categories as $category ) :
 						?>
-						<div class="mpd-advanced-filter__item <?php echo in_array( $category->slug, $selected_cats, true ) ? 'is-active' : ''; ?>">
+						<div class="mpd-advanced-filter__item <?php echo esc_attr( in_array( $category->slug, $selected_cats, true ) ? 'is-active' : '' ); ?>">
 							<label>
 								<input type="checkbox" name="product_cat[]" value="<?php echo esc_attr( $category->slug ); ?>" class="mpd-advanced-filter__checkbox" <?php checked( in_array( $category->slug, $selected_cats, true ) ); ?>>
 								<?php echo esc_html( $category->name ); ?>
@@ -2849,7 +2857,7 @@ class Advanced_Filter extends Widget_Base {
 					$selected_tags = ! empty( $current_tag ) ? explode( ',', $current_tag ) : array();
 					foreach ( $tags as $tag ) :
 						?>
-						<div class="mpd-advanced-filter__item <?php echo in_array( $tag->slug, $selected_tags, true ) ? 'is-active' : ''; ?>">
+						<div class="mpd-advanced-filter__item <?php echo esc_attr( in_array( $tag->slug, $selected_tags, true ) ? 'is-active' : '' ); ?>">
 							<label>
 								<input type="checkbox" name="product_tag[]" value="<?php echo esc_attr( $tag->slug ); ?>" class="mpd-advanced-filter__checkbox" <?php checked( in_array( $tag->slug, $selected_tags, true ) ); ?>>
 								<?php echo esc_html( $tag->name ); ?>
@@ -2945,7 +2953,7 @@ class Advanced_Filter extends Widget_Base {
 					$selected_brands = ! empty( $current_brand ) ? explode( ',', $current_brand ) : array();
 					foreach ( $brands as $brand ) :
 						?>
-						<div class="mpd-advanced-filter__item <?php echo in_array( $brand->slug, $selected_brands, true ) ? 'is-active' : ''; ?>">
+						<div class="mpd-advanced-filter__item <?php echo esc_attr( in_array( $brand->slug, $selected_brands, true ) ? 'is-active' : '' ); ?>">
 							<label>
 								<input type="checkbox" name="<?php echo esc_attr( $taxonomy ); ?>[]" value="<?php echo esc_attr( $brand->slug ); ?>" class="mpd-advanced-filter__checkbox" <?php checked( in_array( $brand->slug, $selected_brands, true ) ); ?>>
 								<?php echo esc_html( $brand->name ); ?>
@@ -3025,7 +3033,7 @@ class Advanced_Filter extends Widget_Base {
 						<div class="price_label" style="<?php echo esc_attr( $is_editor ? '' : 'display:none;' ); ?>">
 							<?php esc_html_e( 'Price:', 'magical-products-display' ); ?>
 							<?php if ( $is_editor ) : ?>
-								<span class="from"><?php echo wc_price( $min_price ); ?></span> &mdash; <span class="to"><?php echo wc_price( $max_price ); ?></span>
+								<span class="from"><?php echo wp_kses_post( wc_price( $min_price ) ); ?></span> &mdash; <span class="to"><?php echo wp_kses_post( wc_price( $max_price ) ); ?></span>
 							<?php else : ?>
 								<span class="from"></span> &mdash; <span class="to"></span>
 							<?php endif; ?>
@@ -3108,19 +3116,19 @@ class Advanced_Filter extends Widget_Base {
 			<h4 class="mpd-advanced-filter__section-title"><?php echo esc_html( $settings['stock_filter_title'] ); ?></h4>
 
 			<div class="mpd-advanced-filter__list mpd-advanced-filter__list--checkbox">
-				<div class="mpd-advanced-filter__item <?php echo 'instock' === $current_stock ? 'is-active' : ''; ?>">
+				<div class="mpd-advanced-filter__item <?php echo esc_attr( 'instock' === $current_stock ? 'is-active' : '' ); ?>">
 					<label>
 						<input type="radio" name="stock_status" value="instock" class="mpd-advanced-filter__radio" <?php checked( $current_stock, 'instock' ); ?>>
 						<?php echo esc_html( $settings['stock_in_stock_text'] ); ?>
 					</label>
 				</div>
-				<div class="mpd-advanced-filter__item <?php echo 'outofstock' === $current_stock ? 'is-active' : ''; ?>">
+				<div class="mpd-advanced-filter__item <?php echo esc_attr( 'outofstock' === $current_stock ? 'is-active' : '' ); ?>">
 					<label>
 						<input type="radio" name="stock_status" value="outofstock" class="mpd-advanced-filter__radio" <?php checked( $current_stock, 'outofstock' ); ?>>
 						<?php echo esc_html( $settings['stock_out_of_stock_text'] ); ?>
 					</label>
 				</div>
-				<div class="mpd-advanced-filter__item <?php echo 'onbackorder' === $current_stock ? 'is-active' : ''; ?>">
+				<div class="mpd-advanced-filter__item <?php echo esc_attr( 'onbackorder' === $current_stock ? 'is-active' : '' ); ?>">
 					<label>
 						<input type="radio" name="stock_status" value="onbackorder" class="mpd-advanced-filter__radio" <?php checked( $current_stock, 'onbackorder' ); ?>>
 						<?php echo esc_html( $settings['stock_on_backorder_text'] ); ?>
@@ -3214,7 +3222,7 @@ class Advanced_Filter extends Widget_Base {
 									esc_html_e( '5 stars', 'magical-products-display' );
 								} else {
 									/* translators: %d: star rating */
-									printf( esc_html__( '%d stars & up', 'magical-products-display' ), $rating );
+									printf( esc_html__( '%d stars & up', 'magical-products-display' ), (int) $rating );
 								}
 								?>
 							</span>

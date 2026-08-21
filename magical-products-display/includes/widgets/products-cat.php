@@ -1048,9 +1048,9 @@ class mgProducts_cats extends \Elementor\Widget_Base
                                         <a href="<?php echo esc_url($cat_link); ?>">
                                             <?php
                                             if (!empty($mpdc_icat_img['url']) || !empty($mpdc_icat_img['id'])) {
-                                                echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($cat_items, 'thumbnail', 'mpdc_icat_img');
+                                                echo wp_kses_post( \Elementor\Group_Control_Image_Size::get_attachment_image_html($cat_items, 'thumbnail', 'mpdc_icat_img') );
                                             } elseif (($default_img === 'default.png' || $default_img === 'default.svg') && (!empty($mpdc_default_img['url']) || !empty($mpdc_default_img['id']))) {
-                                                echo \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'mpdc_default_img');
+                                                echo wp_kses_post( \Elementor\Group_Control_Image_Size::get_attachment_image_html($settings, 'thumbnail', 'mpdc_default_img') );
                                             } else {
                                                 echo '<img src="' . esc_url($thumb_url) . '" alt="' . esc_attr__('Porduct Category ', 'magical-products-display') . esc_attr($term_name) . '">';
                                             }

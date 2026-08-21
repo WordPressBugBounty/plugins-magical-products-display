@@ -1492,7 +1492,7 @@ class Account_Nav extends Widget_Base {
 			);
 		}
 		?>
-		<nav class="<?php echo esc_attr( implode( ' ', $nav_classes ) ); ?>"<?php echo $logout_data . $sticky_data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+		<nav class="<?php echo esc_attr( implode( ' ', $nav_classes ) ); ?>"<?php echo wp_kses_post( $logout_data . $sticky_data ); ?>>
 			<?php
 			// Pro feature: User Avatar.
 			if ( $this->is_pro() && 'yes' === $settings['show_avatar'] ) {
@@ -1524,11 +1524,11 @@ class Account_Nav extends Widget_Base {
 						<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>" class="<?php echo esc_attr( $link_class ); ?>">
 							<?php if ( 'yes' === $settings['show_icons'] ) : ?>
 								<span class="mpd-account-nav__icon">
-									<?php echo $this->get_item_icon( $endpoint, $settings ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									<?php echo wp_kses_post( $this->get_item_icon( $endpoint, $settings ) ); ?>
 								</span>
 							<?php endif; ?>
 							<span class="mpd-account-nav__text"><?php echo esc_html( $label ); ?></span>
-							<?php echo $badge_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<?php echo wp_kses_post( $badge_html ); ?>
 						</a>
 						<?php
 						// Pro feature: Active indicator.
@@ -1581,7 +1581,7 @@ class Account_Nav extends Widget_Base {
 		?>
 		<div class="<?php echo esc_attr( implode( ' ', $section_classes ) ); ?>">
 			<div class="mpd-account-nav__avatar">
-				<?php echo $avatar_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo wp_kses_post( $avatar_html ); ?>
 			</div>
 			<?php if ( 'yes' === $settings['show_username'] || 'yes' === $settings['show_email'] ) : ?>
 				<div class="mpd-account-nav__user-info">

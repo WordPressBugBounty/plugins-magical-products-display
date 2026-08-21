@@ -230,7 +230,7 @@ class MPD_Layout_Post_Type {
 
 			case 'is_pro':
 				$is_pro = get_post_meta( $post_id, '_mpd_is_pro', true );
-				echo $is_pro ? '<span class="dashicons dashicons-yes" style="color:#46b450;"></span>' : '<span class="dashicons dashicons-no-alt" style="color:#dc3232;"></span>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static HTML
+				echo wp_kses_post( $is_pro ? '<span class="dashicons dashicons-yes" style="color:#46b450;"></span>' : '<span class="dashicons dashicons-no-alt" style="color:#dc3232;"></span>' );
 				break;
 		}
 	}
