@@ -3,7 +3,7 @@
  * Plugin Name:       Magical Shop Builder
  * Plugin URI:        https://wpthemespace.com/magical-shop-builder
  * Description:       Complete WooCommerce Shop Builder with Elementor - Build custom product pages, cart, checkout, my-account, Thank you page and more.
- * Version:           2.0.7
+ * Version:           2.1.0
  * Author:            Noor alam
  * Author URI:        https://wpthemespace.com
  * License:           GPL-2.0+
@@ -39,7 +39,7 @@ final class Magical_Shop_Builder {
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '2.0.7';
+	const VERSION = '2.1.0';
 
 	/**
 	 * Minimum Elementor Version
@@ -297,14 +297,13 @@ final class Magical_Shop_Builder {
 		$old_pro_plugin_slug = 'magical-products-display-pro/magical-products-display-pro.php';
 		$current_pro_state   = get_option( 'mgppro_is_active', 'no' );
 		$new_pro_state       = 'no';
-		$active_plugins      = apply_filters( 'active_plugins', get_option( 'active_plugins' ) );
+		$active_plugins      = (array) apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) );
 
-		if (
-			in_array( $pro_plugin_slug, $active_plugins, true ) ||
-			in_array( $old_pro_plugin_slug, $active_plugins, true ) ||
-			'yes' === get_option( 'mgppro_has_valid_lic' ) ||
-			'yes' === get_option( 'space_has_pro' )
-		) {
+		$has_pro_plugin = in_array( $pro_plugin_slug, $active_plugins, true ) || in_array( $old_pro_plugin_slug, $active_plugins, true );
+		$has_valid_lic  = ( 'yes' === get_option( 'mgppro_has_valid_lic', 'no' ) );
+
+		// Pro is active ONLY if the Pro plugin is active AND has a valid license.
+		if ( $has_pro_plugin && $has_valid_lic ) {
 			$new_pro_state = 'yes';
 		}
 
@@ -322,6 +321,7 @@ final class Magical_Shop_Builder {
 		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/traits/trait-mpd-product-query.php';
 		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/traits/trait-mpd-wc-helpers.php';
 		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/traits/trait-mpd-action-buttons.php';
+		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/traits/trait-mpd-cart-drawer-controls.php';
 
 		// Load all style & scripts.
 		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/assets-management.php';
@@ -354,6 +354,9 @@ final class Magical_Shop_Builder {
 
 		// Initialize Performance optimizations.
 		$this->init_performance();
+
+		// Initialize Cart Drawer (Off-Canvas).
+		$this->init_cart_drawer();
 
 		// Initialize Elementor integration (widgets & categories).
 		$this->init_elementor();
@@ -685,6 +688,28 @@ final class Magical_Shop_Builder {
 
 		$performance = new \MPD\MagicalShopBuilder\Frontend\Performance();
 		$performance->init();
+	}
+
+	/**
+	 * Initialize Cart Drawer.
+	 *
+	 * Sets up the off-canvas sliding cart drawer with live quantity updates,
+	 * item removal, and free shipping progress.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @access private
+	 */
+	private function init_cart_drawer() {
+		// Only run on frontend or during AJAX requests.
+		if ( is_admin() && ! wp_doing_ajax() ) {
+			return;
+		}
+
+		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/frontend/class-mpd-cart-drawer.php';
+
+		$cart_drawer = \MPD\MagicalShopBuilder\Frontend\Cart_Drawer::instance();
+		$cart_drawer->init();
 	}
 }
 

@@ -32,7 +32,17 @@ trait Pro_Lock {
 	 * @return bool Whether pro is active.
 	 */
 	protected function is_pro() {
-		return 'yes' === get_option( 'mgppro_is_active', 'no' );
+		if ( class_exists( '\MPD\MagicalShopBuilder\Core\Pro' ) ) {
+			return \MPD\MagicalShopBuilder\Core\Pro::is_active();
+		}
+		$pro_plugin_slug     = 'magical-shop-builder-pro/magical-shop-builder-pro.php';
+		$old_pro_plugin_slug = 'magical-products-display-pro/magical-products-display-pro.php';
+		$active_plugins      = (array) apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) );
+
+		$has_pro_plugin = in_array( $pro_plugin_slug, $active_plugins, true ) || in_array( $old_pro_plugin_slug, $active_plugins, true );
+		$has_valid_lic  = ( 'yes' === get_option( 'mgppro_has_valid_lic', 'no' ) );
+
+		return (bool) apply_filters( 'mpd_is_pro_active', $has_pro_plugin && $has_valid_lic );
 	}
 
 	/**

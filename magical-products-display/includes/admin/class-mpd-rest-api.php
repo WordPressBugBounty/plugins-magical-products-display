@@ -1134,6 +1134,12 @@ class REST_API {
 				'category'    => 'single-product',
 				'is_pro'      => false,
 			),
+			'sticky-add-to-cart' => array(
+				'name'        => __( 'Sticky Add to Cart', 'magical-products-display' ),
+				'description' => __( 'Floating persistent add to cart bar for single product pages.', 'magical-products-display' ),
+				'category'    => 'single-product',
+				'is_pro'      => false,
+			),
 
 			// Cart widgets (Phase 5).
 			'cart-table'        => array(
@@ -1387,6 +1393,12 @@ class REST_API {
 			'testimonial-carousel' => array(
 				'name'        => __( 'Testimonial Carousel', 'magical-products-display' ),
 				'description' => __( 'Display testimonials in a carousel.', 'magical-products-display' ),
+				'category'    => 'global',
+				'is_pro'      => false,
+			),
+			'free-shipping-bar' => array(
+				'name'        => __( 'Free Shipping Bar', 'magical-products-display' ),
+				'description' => __( 'Dynamic free shipping progress bar with real-time cart recalculation.', 'magical-products-display' ),
 				'category'    => 'global',
 				'is_pro'      => false,
 			),

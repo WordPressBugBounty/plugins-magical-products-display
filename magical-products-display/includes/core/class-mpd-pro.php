@@ -44,10 +44,16 @@ class Pro {
 	 */
 	public static function is_active() {
 		if ( null === self::$is_pro ) {
-			// Use existing option name - DO NOT CHANGE.
-			self::$is_pro = ( 'yes' === get_option( 'mgppro_is_active', 'no' ) );
+			$pro_plugin_slug     = 'magical-shop-builder-pro/magical-shop-builder-pro.php';
+			$old_pro_plugin_slug = 'magical-products-display-pro/magical-products-display-pro.php';
+			$active_plugins      = (array) apply_filters( 'active_plugins', get_option( 'active_plugins', array() ) );
+
+			$has_pro_plugin = in_array( $pro_plugin_slug, $active_plugins, true ) || in_array( $old_pro_plugin_slug, $active_plugins, true );
+			$has_valid_lic  = ( 'yes' === get_option( 'mgppro_has_valid_lic', 'no' ) );
+
+			self::$is_pro = $has_pro_plugin && $has_valid_lic;
 		}
-		return self::$is_pro;
+		return (bool) apply_filters( 'mpd_is_pro_active', self::$is_pro );
 	}
 
 	/**
@@ -77,6 +83,7 @@ class Pro {
 		// an external object cache (Redis/Memcached) keep serving the stale
 		// value after license activation/deactivation.
 		wp_cache_delete( 'mgppro_is_active', 'options' );
+		wp_cache_delete( 'mgppro_has_valid_lic', 'options' );
 		wp_cache_delete( 'alloptions', 'options' );
 		return self::is_active();
 	}

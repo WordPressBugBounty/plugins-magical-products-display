@@ -88,13 +88,14 @@ The original powerful widgets that made Magical Products Display famous:
 
 * **✨ Awesome Product List** - Magazine-style product lists with advanced styling options.
 
-### 🛍️ Single Product Page Widgets (16 Widgets)
+### 🛍️ Single Product Page Widgets (17 Widgets)
 Build completely custom single product pages:
 
 * **Product Title** - Display and style product titles with typography controls
 * **Product Price** - Show regular and sale prices with custom styling
 * **Product Gallery** - Advanced gallery with zoom, lightbox, and thumbnails
 * **Add to Cart** - Customizable add to cart button with quantity selector
+* **Sticky Add to Cart** - Floating persistent add to cart bar with image, title, price, quantity spinner, and 1-click checkout
 * **Product Description** - Full product description with styling options
 * **Short Description** - Product excerpt/summary display
 * **Product Meta** - Show SKU, categories, and tags
@@ -159,10 +160,11 @@ Create stunning shop and category pages:
 * **Category Filter** - Filter by product categories
 * **Advanced Filter** - Combined multi-filter widget
 
-### 🌐 Global Widgets (7 Widgets)
+### 🌐 Global Widgets (8 Widgets)
 Use anywhere on your site:
 
 * **Header Cart** - Mini cart for site headers
+* **Free Shipping Bar** - Dynamic free shipping progress bar with real-time cart recalculation
 * **Breadcrumbs** - WooCommerce breadcrumb navigation
 * **Store Notice** - Site-wide store announcements
 * **Recently Viewed** - Products customer has viewed
@@ -385,6 +387,19 @@ Please use the WordPress.org support forum or contact us directly at [wpthemespa
 10. Advanced AJAX Search - Real-time product search with filters
 
 == Changelog ==
+
+= 2.1.0 - September 30, 2026 =
+* New: Off-Canvas Sliding Cart Drawer (Slide-In Cart) with smooth hardware-accelerated animations, backdrop blur, live AJAX quantity adjustment (+/-), one-click item removal, and auto-open on add to cart.
+* New: Sticky Add to Cart Bar widget for Single Product pages with desktop/mobile visibility controls, thumbnail, title, price, live quantity spinner, and rating.
+* New [Pro]: Direct Variation Selection inside Sticky Add to Cart Bar with live attribute dropdowns, instant price/image switching, and direct 1-click variation add to cart.
+* New [Pro]: In-Drawer Coupon Code Box with live AJAX application, instant discount calculation, and applied coupon tags management.
+* New [Pro]: Free Shipping Progress Goal Bar inside Off-Canvas Cart Drawer with zone detection and dynamic fragment recalculation.
+* New: Standalone Free Shipping Progress Bar widget with automatic WooCommerce Shipping Zone threshold detection or custom threshold and live progress fill.
+* New: Granular Show/Hide controls for every Cart Drawer component directly inside Mini Cart and Header Cart Elementor widgets.
+* Fixed: Sticky Add to Cart Bar rating stars now render standalone Unicode star icons cleanly in both Elementor editor preview and frontend, eliminating raw accessibility text leakage.
+* Improved: 100% compatibility verified with latest WooCommerce (8.0 through 9.5+) and Elementor (3.15+ through 4.0 Atomic Architecture).
+* Improved: Modernized CSS without Bootstrap dependencies for all newly introduced conversion components.
+* Security: Full nonce verification and sanitization on all Cart Drawer AJAX endpoints (quantity update, item removal, coupon apply/remove).
 
 = 2.0.7 - August 21, 2026 =
 * Security: Enforce strict authorization, publication status, password protection, and catalog visibility checks in Quick View AJAX handler (mpd_quick_view)

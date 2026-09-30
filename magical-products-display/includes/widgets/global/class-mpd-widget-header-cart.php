@@ -30,6 +30,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Header_Cart extends Widget_Base {
 
+	use \MPD\MagicalShopBuilder\Traits\Cart_Drawer_Controls;
+
 	/**
 	 * Widget category.
 	 *
@@ -74,7 +76,7 @@ class Header_Cart extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return array( 'cart', 'header', 'mini cart', 'basket', 'icon', 'woocommerce', 'shop' );
+		return array( 'cart', 'header', 'mini cart', 'drawer', 'basket', 'icon', 'woocommerce', 'shop' );
 	}
 
 	/**
@@ -85,7 +87,7 @@ class Header_Cart extends Widget_Base {
 	 * @return array Style dependencies.
 	 */
 	public function get_style_depends() {
-		return array( 'mpd-global-widgets' );
+		return array( 'mpd-global-widgets', 'mpd-cart-drawer' );
 	}
 
 	/**
@@ -96,7 +98,7 @@ class Header_Cart extends Widget_Base {
 	 * @return array Script dependencies.
 	 */
 	public function get_script_depends() {
-		return array( 'wc-cart-fragments', 'mpd-global-widgets' );
+		return array( 'wc-cart-fragments', 'mpd-global-widgets', 'mpd-cart-drawer' );
 	}
 
 	/**
@@ -183,14 +185,34 @@ class Header_Cart extends Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'cart_action',
+			array(
+				'label'   => esc_html__( 'Click Action', 'magical-products-display' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => array(
+					'drawer'   => esc_html__( 'Off-Canvas Cart Drawer (Side Slide)', 'magical-products-display' ),
+					'dropdown' => esc_html__( 'Dropdown Preview', 'magical-products-display' ),
+					'link'     => esc_html__( 'Cart Page Link', 'magical-products-display' ),
+				),
+				'default' => 'drawer',
+			)
+		);
+
 		$this->end_controls_section();
+
+		// Cart Drawer Section.
+		$this->register_cart_drawer_content_controls();
 
 		// Dropdown Section.
 		$this->start_controls_section(
 			'section_dropdown',
 			array(
-				'label' => esc_html__( 'Dropdown', 'magical-products-display' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
+				'label'     => esc_html__( 'Dropdown', 'magical-products-display' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'cart_action' => 'dropdown',
+				),
 			)
 		);
 
@@ -274,8 +296,11 @@ class Header_Cart extends Widget_Base {
 		$this->start_controls_section(
 			'section_link',
 			array(
-				'label' => esc_html__( 'Link', 'magical-products-display' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
+				'label'     => esc_html__( 'Link', 'magical-products-display' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'cart_action' => 'link',
+				),
 			)
 		);
 
@@ -554,6 +579,7 @@ class Header_Cart extends Widget_Base {
 				'label'     => esc_html__( 'Dropdown', 'magical-products-display' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
+					'cart_action'   => 'dropdown',
 					'show_dropdown' => 'yes',
 				),
 			)
@@ -633,6 +659,9 @@ class Header_Cart extends Widget_Base {
 		);
 
 		$this->end_controls_section();
+
+		// Cart Drawer Style Sections.
+		$this->register_cart_drawer_style_controls();
 	}
 
 	/**
@@ -648,28 +677,40 @@ class Header_Cart extends Widget_Base {
 			return;
 		}
 
+		$cart_action   = $this->get_cart_action( $settings );
 		$cart_count    = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
 		$cart_subtotal = WC()->cart ? WC()->cart->get_cart_subtotal() : '';
 
 		// Get link.
 		$link = $this->get_cart_link( $settings );
+		if ( 'drawer' === $cart_action ) {
+			$link = wc_get_cart_url();
+		}
 
 		// Wrapper classes.
 		$wrapper_classes = array( 'mpd-header-cart__wrapper' );
 
-		// Container classes - includes dropdown settings
+		// Container classes - includes dropdown settings.
 		$container_classes = array( 'mpd-header-cart' );
-		if ( 'yes' === $settings['show_dropdown'] ) {
+		if ( 'dropdown' === $cart_action && 'yes' === $settings['show_dropdown'] ) {
 			$container_classes[] = 'mpd-header-cart--has-dropdown';
 			$container_classes[] = 'mpd-header-cart--trigger-' . esc_attr( $settings['dropdown_trigger'] );
 			$container_classes[] = 'mpd-header-cart--position-' . esc_attr( $settings['dropdown_position'] );
 		}
 
+		$container_attrs = '';
+		if ( 'drawer' === $cart_action && isset( $settings['drawer_auto_open'] ) && 'no' === $settings['drawer_auto_open'] ) {
+			$container_attrs .= ' data-mpd-drawer-auto-open="no"';
+		}
+
 		$tag        = $link ? 'a' : 'div';
 		$link_attrs = $link ? ' href="' . esc_url( $link ) . '"' : '';
+		if ( 'drawer' === $cart_action ) {
+			$link_attrs .= ' data-mpd-cart-toggle="drawer"';
+		}
 		?>
-		<div class="<?php echo esc_attr( implode( ' ', $container_classes ) ); ?>">
-			<<?php echo esc_html( $tag ); ?> class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>"<?php echo wp_kses_post( $link_attrs ); ?>>
+		<div class="<?php echo esc_attr( implode( ' ', $container_classes ) ); ?>"<?php echo $container_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+			<<?php echo esc_html( $tag ); ?> class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>"<?php echo $link_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 				<?php if ( 'yes' === $settings['show_subtotal'] && 'before' === $settings['subtotal_position'] ) : ?>
 					<span class="mpd-header-cart__subtotal mpd-header-cart__subtotal--before">
 						<?php echo wp_kses_post( $cart_subtotal ); ?>
@@ -701,7 +742,7 @@ class Header_Cart extends Widget_Base {
 				<?php endif; ?>
 			</<?php echo esc_html( $tag ); ?>>
 
-			<?php if ( 'yes' === $settings['show_dropdown'] ) : ?>
+			<?php if ( 'dropdown' === $cart_action && 'yes' === $settings['show_dropdown'] ) : ?>
 				<div class="mpd-header-cart__dropdown widget_shopping_cart">
 					<div class="mpd-header-cart__dropdown-content widget_shopping_cart_content">
 						<?php

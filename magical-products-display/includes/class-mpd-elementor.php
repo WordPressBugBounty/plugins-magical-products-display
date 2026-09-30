@@ -265,6 +265,7 @@ class MPD_Elementor {
 			'class-mpd-widget-product-attributes.php'        => 'Product_Attributes',
 			'class-mpd-widget-product-navigation.php'        => 'Product_Navigation',
 			'action-buttons-widget.php'                      => 'Action_Buttons',
+			'class-mpd-widget-sticky-add-to-cart.php'        => 'Sticky_Add_To_Cart',
 		);
 
 		$this->safe_register_widgets(
@@ -417,6 +418,7 @@ class MPD_Elementor {
 			'class-mpd-widget-comparison.php'              => 'Product_Comparison',
 			'class-mpd-widget-wishlist.php'                => 'Wishlist',
 			'class-mpd-widget-header-wishlist-compare.php' => 'Header_Wishlist_Compare',
+			'class-mpd-widget-free-shipping-bar.php'       => 'Free_Shipping_Bar',
 		);
 
 		$this->safe_register_widgets(

@@ -30,6 +30,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Mini_Cart extends Widget_Base {
 
+	use \MPD\MagicalShopBuilder\Traits\Cart_Drawer_Controls;
+
 	/**
 	 * Widget category.
 	 *
@@ -85,7 +87,7 @@ class Mini_Cart extends Widget_Base {
 	 * @return array Widget keywords.
 	 */
 	public function get_keywords() {
-		return array( 'mini cart', 'cart', 'basket', 'shopping', 'header', 'magical-products-display' );
+		return array( 'mini cart', 'cart', 'basket', 'shopping', 'header', 'drawer', 'magical-products-display' );
 	}
 
 	/**
@@ -96,7 +98,7 @@ class Mini_Cart extends Widget_Base {
 	 * @return array Style dependencies.
 	 */
 	public function get_style_depends() {
-		return array( 'mpd-cart-widgets' );
+		return array( 'mpd-cart-widgets', 'mpd-cart-drawer' );
 	}
 
 	/**
@@ -107,7 +109,7 @@ class Mini_Cart extends Widget_Base {
 	 * @return array Script dependencies.
 	 */
 	public function get_script_depends() {
-		return array( 'mpd-mini-cart' );
+		return array( 'mpd-mini-cart', 'mpd-cart-drawer' );
 	}
 
 	/**
@@ -223,14 +225,34 @@ class Mini_Cart extends Widget_Base {
 			)
 		);
 
+		$this->add_control(
+			'cart_action',
+			array(
+				'label'   => __( 'Click Action', 'magical-products-display' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => array(
+					'drawer'   => __( 'Off-Canvas Cart Drawer (Side Slide)', 'magical-products-display' ),
+					'dropdown' => __( 'Dropdown Preview', 'magical-products-display' ),
+					'link'     => __( 'Cart Page Link', 'magical-products-display' ),
+				),
+				'default' => 'drawer',
+			)
+		);
+
 		$this->end_controls_section();
+
+		// Cart Drawer Section.
+		$this->register_cart_drawer_content_controls();
 
 		// Dropdown Section.
 		$this->start_controls_section(
 			'section_dropdown',
 			array(
-				'label' => __( 'Cart Dropdown', 'magical-products-display' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
+				'label'     => __( 'Cart Dropdown', 'magical-products-display' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'cart_action' => 'dropdown',
+				),
 			)
 		);
 
@@ -724,6 +746,7 @@ class Mini_Cart extends Widget_Base {
 				'label'     => __( 'Dropdown', 'magical-products-display' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
+					'cart_action'   => 'dropdown',
 					'show_dropdown' => 'yes',
 				),
 			)
@@ -783,8 +806,12 @@ class Mini_Cart extends Widget_Base {
 		$this->start_controls_section(
 			'section_product_style',
 			array(
-				'label' => __( 'Product Item', 'magical-products-display' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'label'     => __( 'Product Item', 'magical-products-display' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'cart_action'   => 'dropdown',
+					'show_dropdown' => 'yes',
+				),
 			)
 		);
 
@@ -872,6 +899,7 @@ class Mini_Cart extends Widget_Base {
 				'label'     => __( 'Buttons', 'magical-products-display' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
+					'cart_action'   => 'dropdown',
 					'show_dropdown' => 'yes',
 				),
 			)
@@ -985,6 +1013,9 @@ class Mini_Cart extends Widget_Base {
 		);
 
 		$this->end_controls_section();
+
+		// Cart Drawer Style Sections.
+		$this->register_cart_drawer_style_controls();
 	}
 
 	/**
@@ -1013,6 +1044,7 @@ class Mini_Cart extends Widget_Base {
 	 * @return void
 	 */
 	private function render_mini_cart( $settings ) {
+		$cart_action     = $this->get_cart_action( $settings );
 		$cart            = WC()->cart;
 		$cart_count      = $cart ? $cart->get_cart_contents_count() : 0;
 		$cart_subtotal   = $cart ? $cart->get_cart_subtotal() : wc_price( 0 );
@@ -1034,9 +1066,19 @@ class Mini_Cart extends Widget_Base {
 		if ( $floating_cart ) {
 			$wrapper_class .= ' mpd-mini-cart-floating mpd-floating-' . $floating_pos;
 		}
+
+		$wrapper_attrs = '';
+		if ( 'drawer' === $cart_action && isset( $settings['drawer_auto_open'] ) && 'no' === $settings['drawer_auto_open'] ) {
+			$wrapper_attrs .= ' data-mpd-drawer-auto-open="no"';
+		}
+
+		$toggle_attrs = 'href="' . esc_url( $cart_url ) . '" class="mpd-mini-cart-toggle"';
+		if ( 'drawer' === $cart_action ) {
+			$toggle_attrs .= ' data-mpd-cart-toggle="drawer"';
+		}
 		?>
-		<div class="<?php echo esc_attr( $wrapper_class ); ?>">
-			<a href="<?php echo esc_url( $cart_url ); ?>" class="mpd-mini-cart-toggle">
+		<div class="<?php echo esc_attr( $wrapper_class ); ?>"<?php echo $wrapper_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
+			<a <?php echo $toggle_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 				<?php if ( 'text' !== $settings['icon_type'] ) : ?>
 					<span class="mpd-mini-cart-icon">
 						<?php if ( 'icon' === $settings['icon_type'] && ! empty( $settings['cart_icon']['value'] ) ) : ?>
@@ -1062,13 +1104,13 @@ class Mini_Cart extends Widget_Base {
 				<?php endif; ?>
 			</a>
 
-			<?php if ( $show_dropdown && 'dropdown' === $cart_style ) : ?>
+			<?php if ( 'dropdown' === $cart_action && $show_dropdown ) : ?>
 				<div class="mpd-mini-cart-dropdown mpd-dropdown-<?php echo esc_attr( $settings['dropdown_position'] ); ?>">
 					<?php $this->render_cart_dropdown( $settings, $cart ); ?>
 				</div>
 			<?php endif; ?>
 
-			<?php if ( $this->is_pro() && 'slide_out' === $cart_style ) : ?>
+			<?php if ( 'dropdown' === $cart_action && $this->is_pro() && 'slide_out' === $cart_style ) : ?>
 				<?php
 				$panel_class = 'mpd-mini-cart-panel';
 				$panel_class .= ' mpd-panel-' . ( isset( $settings['slide_direction'] ) ? $settings['slide_direction'] : 'right' );
