@@ -91,6 +91,17 @@ class Free_Shipping_Bar extends Widget_Base {
 	}
 
 	/**
+	 * Get script dependencies.
+	 *
+	 * @since 2.1.0
+	 *
+	 * @return array Script handles.
+	 */
+	public function get_script_depends() {
+		return array( 'mpd-free-shipping-bar' );
+	}
+
+	/**
 	 * Register content controls.
 	 *
 	 * @since 2.1.0
@@ -201,6 +212,47 @@ class Free_Shipping_Bar extends Widget_Base {
 				'default'     => __( 'Free shipping on orders over {threshold}!', 'magical-products-display' ),
 				'description' => esc_html__( 'Displayed when cart has 0 items.', 'magical-products-display' ),
 				'rows'        => 2,
+			)
+		);
+
+		$this->end_controls_section();
+
+		// Pro Features Section.
+		$this->start_controls_section(
+			'section_pro_fsb_features',
+			array(
+				'label' => $this->pro_label( esc_html__( 'Pro Bar Features', 'magical-products-display' ) ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		if ( ! $this->is_pro() ) {
+			$this->add_pro_notice( 'pro_fsb_notice', esc_html__( 'Confetti Celebration Animation & Multi-Tier Reward Goals', 'magical-products-display' ) );
+		}
+
+		$this->add_control(
+			'enable_confetti',
+			array(
+				'label'        => $this->pro_label( esc_html__( 'Confetti Goal Celebration', 'magical-products-display' ) ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'magical-products-display' ),
+				'label_off'    => esc_html__( 'No', 'magical-products-display' ),
+				'return_value' => 'yes',
+				'default'      => '',
+				'description'  => esc_html__( 'Burst celebratory confetti animation when customer hits the free shipping threshold.', 'magical-products-display' ),
+			)
+		);
+
+		$this->add_control(
+			'enable_multi_tier',
+			array(
+				'label'        => $this->pro_label( esc_html__( 'Multi-Tier Reward Goals', 'magical-products-display' ) ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'magical-products-display' ),
+				'label_off'    => esc_html__( 'No', 'magical-products-display' ),
+				'return_value' => 'yes',
+				'default'      => '',
+				'description'  => esc_html__( 'Unlock tiered rewards (Tier 1: Free Shipping, Tier 2: Free Mystery Gift).', 'magical-products-display' ),
 			)
 		);
 
@@ -437,10 +489,12 @@ class Free_Shipping_Bar extends Widget_Base {
 
 		// Calculate threshold.
 		$threshold = 0;
-		if ( 'custom' === $settings['threshold_source'] ) {
+		if ( 'custom' === ( $settings['threshold_source'] ?? '' ) ) {
 			$threshold = ! empty( $settings['custom_threshold'] ) ? (float) $settings['custom_threshold'] : 50;
-		} else {
+		} elseif ( class_exists( 'MPD\MagicalShopBuilder\Frontend\Cart_Drawer' ) ) {
 			$threshold = Cart_Drawer::get_free_shipping_threshold();
+		} else {
+			$threshold = 50;
 		}
 
 		if ( $threshold <= 0 ) {
@@ -472,15 +526,18 @@ class Free_Shipping_Bar extends Widget_Base {
 			$raw_msg
 		);
 
+		$is_pro        = $this->is_pro();
+		$confetti_attr = ( $is_pro && ! empty( $settings['enable_confetti'] ) && 'yes' === $settings['enable_confetti'] ) ? 'yes' : 'no';
 		?>
 		<div class="mpd-fsb-container <?php echo esc_attr( $is_achieved ? 'is-achieved' : '' ); ?>"
 			data-threshold="<?php echo esc_attr( $threshold ); ?>"
-			data-msg-remaining="<?php echo esc_attr( $settings['msg_remaining'] ); ?>"
-			data-msg-achieved="<?php echo esc_attr( $settings['msg_achieved'] ); ?>"
-			data-msg-empty="<?php echo esc_attr( $settings['msg_empty'] ); ?>">
+			data-confetti="<?php echo esc_attr( $confetti_attr ); ?>"
+			data-msg-remaining="<?php echo esc_attr( $settings['msg_remaining'] ?? '' ); ?>"
+			data-msg-achieved="<?php echo esc_attr( $settings['msg_achieved'] ?? '' ); ?>"
+			data-msg-empty="<?php echo esc_attr( $settings['msg_empty'] ?? '' ); ?>">
 
 			<div class="mpd-fsb-header">
-				<?php if ( 'yes' === $settings['show_icon'] && ! empty( $settings['shipping_icon']['value'] ) ) : ?>
+				<?php if ( 'yes' === ( $settings['show_icon'] ?? '' ) && ! empty( $settings['shipping_icon']['value'] ) ) : ?>
 					<span class="mpd-fsb-icon" aria-hidden="true">
 						<?php Icons_Manager::render_icon( $settings['shipping_icon'] ); ?>
 					</span>

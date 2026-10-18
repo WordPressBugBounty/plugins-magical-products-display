@@ -390,6 +390,89 @@ trait Cart_Drawer_Controls {
 			)
 		);
 
+		// In-Drawer Cross-Sells (Pro).
+		$this->add_control(
+			'drawer_heading_cross_sells',
+			array(
+				'label'     => method_exists( $this, 'pro_label' ) ? $this->pro_label( esc_html__( 'In-Drawer Cross-Sells', 'magical-products-display' ) ) : esc_html__( 'In-Drawer Cross-Sells', 'magical-products-display' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		if ( method_exists( $this, 'is_pro' ) && ! $this->is_pro() && method_exists( $this, 'add_pro_notice' ) ) {
+			$this->add_pro_notice( 'drawer_pro_cs_notice', esc_html__( 'In-Drawer Recommendations & 1-Click Upsells', 'magical-products-display' ) );
+		}
+
+		$this->add_control(
+			'drawer_show_cross_sells',
+			array(
+				'label'        => method_exists( $this, 'pro_label' ) ? $this->pro_label( esc_html__( 'Show Cross-Sells', 'magical-products-display' ) ) : esc_html__( 'Show Cross-Sells', 'magical-products-display' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Show', 'magical-products-display' ),
+				'label_off'    => esc_html__( 'Hide', 'magical-products-display' ),
+				'return_value' => 'yes',
+				'default'      => ( method_exists( $this, 'pro_default' ) ? $this->pro_default( 'yes' ) : '' ),
+				'description'  => esc_html__( 'Displays recommended products inside the cart drawer for instant 1-click upsells.', 'magical-products-display' ),
+				'selectors_dictionary' => array(
+					'yes' => 'display: block;',
+					''    => 'display: none !important;',
+				),
+				'selectors'    => array(
+					'body #mpd-cart-drawer .mpd-drawer-cross-sells-wrap' => '{{VALUE}}',
+				),
+			)
+		);
+
+		// Cart Urgency Countdown Timer (Pro).
+		$this->add_control(
+			'drawer_heading_timer',
+			array(
+				'label'     => method_exists( $this, 'pro_label' ) ? $this->pro_label( esc_html__( 'Cart Urgency Countdown Timer', 'magical-products-display' ) ) : esc_html__( 'Cart Urgency Countdown Timer', 'magical-products-display' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		if ( method_exists( $this, 'is_pro' ) && ! $this->is_pro() && method_exists( $this, 'add_pro_notice' ) ) {
+			$this->add_pro_notice( 'drawer_pro_timer_notice', esc_html__( 'Cart Reservation Urgency Countdown Timer (FOMO Booster)', 'magical-products-display' ) );
+		}
+
+		$this->add_control(
+			'drawer_show_timer',
+			array(
+				'label'        => method_exists( $this, 'pro_label' ) ? $this->pro_label( esc_html__( 'Show Reservation Timer', 'magical-products-display' ) ) : esc_html__( 'Show Reservation Timer', 'magical-products-display' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Show', 'magical-products-display' ),
+				'label_off'    => esc_html__( 'Hide', 'magical-products-display' ),
+				'return_value' => 'yes',
+				'default'      => ( method_exists( $this, 'pro_default' ) ? $this->pro_default( 'yes' ) : '' ),
+				'description'  => esc_html__( 'Displays a cart reservation urgency timer at the top of the drawer.', 'magical-products-display' ),
+				'selectors_dictionary' => array(
+					'yes' => 'display: block;',
+					''    => 'display: none !important;',
+				),
+				'selectors'    => array(
+					'body #mpd-cart-drawer .mpd-cart-drawer-timer-wrap' => '{{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'drawer_timer_minutes',
+			array(
+				'label'     => esc_html__( 'Timer Duration (Minutes)', 'magical-products-display' ),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 10,
+				'min'       => 1,
+				'max'       => 60,
+				'step'      => 1,
+				'condition' => array(
+					'drawer_show_timer' => 'yes',
+				),
+			)
+		);
+
 		// Empty Cart State.
 		$this->add_control(
 			'drawer_heading_empty_state',

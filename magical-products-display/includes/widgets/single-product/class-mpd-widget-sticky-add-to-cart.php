@@ -560,7 +560,20 @@ class Sticky_Add_To_Cart extends Widget_Base {
 	 * @return void
 	 */
 	protected function render_widget( $settings ) {
+		if ( ! $this->is_woocommerce_active() ) {
+			$this->render_wc_required_notice();
+			return;
+		}
+
 		$product = $this->get_current_product();
+
+		if ( ! $product && ! empty( $settings['product_id'] ) ) {
+			$product = wc_get_product( absint( $settings['product_id'] ) );
+		}
+
+		if ( ! $product ) {
+			$product = $this->get_preview_product();
+		}
 
 		if ( ! $product ) {
 			$this->render_editor_placeholder(

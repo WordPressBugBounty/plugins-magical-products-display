@@ -97,6 +97,7 @@ class mpdAssetsManagement
         wp_register_style('mpd-cart-drawer', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/widgets/mpd-cart-drawer.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
         wp_register_style('mpd-sticky-add-to-cart', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/widgets/mpd-sticky-add-to-cart.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
         wp_register_style('mpd-free-shipping-bar', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/widgets/mpd-free-shipping-bar.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
+        wp_register_style('mpd-one-page-checkout', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/widgets/mpd-one-page-checkout.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
 
         // --- Shared / library styles (also in frontend_widget_styles, registered early as safety net) ---
         // These must be registered before the template renderer parses widget deps at priority 8.
@@ -153,6 +154,7 @@ class mpdAssetsManagement
         wp_register_script('mpd-cart-drawer', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets/mpd-cart-drawer.js', array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script('mpd-sticky-add-to-cart', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets/mpd-sticky-add-to-cart.js', array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script('mpd-free-shipping-bar', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets/mpd-free-shipping-bar.js', array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
+        wp_register_script('mpd-one-page-checkout', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets/mpd-one-page-checkout.js', array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
     }
     
     public static function frontend_widget_styles()
@@ -255,6 +257,16 @@ class mpdAssetsManagement
                     'added' => esc_html__('Added!', 'magical-products-display'),
                 ),
             ));
+
+            // Localize One-Page Checkout and Order Bump scripts.
+            wp_localize_script('mpd-one-page-checkout', 'mpdOPCParams', array(
+                'ajaxUrl' => admin_url('admin-ajax.php'),
+                'nonce'   => wp_create_nonce('mpd_funnel_nonce'),
+                'i18n'    => array(
+                    'updating' => esc_html__('Updating checkout...', 'magical-products-display'),
+                    'error'    => esc_html__('Something went wrong. Please try again.', 'magical-products-display'),
+                ),
+            ));
         }
     }
     /**
@@ -324,6 +336,7 @@ class mpdAssetsManagement
             'mpd-cart-drawer',
             'mpd-sticky-add-to-cart',
             'mpd-free-shipping-bar',
+            'mpd-one-page-checkout',
         );
 
         foreach ( $styles as $handle ) {

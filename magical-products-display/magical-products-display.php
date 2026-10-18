@@ -3,7 +3,7 @@
  * Plugin Name:       Magical Shop Builder
  * Plugin URI:        https://wpthemespace.com/magical-shop-builder
  * Description:       Complete WooCommerce Shop Builder with Elementor - Build custom product pages, cart, checkout, my-account, Thank you page and more.
- * Version:           2.1.0
+ * Version:           2.1.1
  * Author:            Noor alam
  * Author URI:        https://wpthemespace.com
  * License:           GPL-2.0+
@@ -39,7 +39,7 @@ final class Magical_Shop_Builder {
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '2.1.0';
+	const VERSION = '2.1.1';
 
 	/**
 	 * Minimum Elementor Version
@@ -357,6 +357,9 @@ final class Magical_Shop_Builder {
 
 		// Initialize Cart Drawer (Off-Canvas).
 		$this->init_cart_drawer();
+
+		// Initialize Funnel & Direct Checkout Engine.
+		$this->init_funnel_checkout();
 
 		// Initialize Elementor integration (widgets & categories).
 		$this->init_elementor();
@@ -701,15 +704,21 @@ final class Magical_Shop_Builder {
 	 * @access private
 	 */
 	private function init_cart_drawer() {
-		// Only run on frontend or during AJAX requests.
-		if ( is_admin() && ! wp_doing_ajax() ) {
-			return;
-		}
-
 		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/frontend/class-mpd-cart-drawer.php';
 
 		$cart_drawer = \MPD\MagicalShopBuilder\Frontend\Cart_Drawer::instance();
 		$cart_drawer->init();
+	}
+
+	/**
+	 * Initialize Funnel & Direct Checkout Engine.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @access private
+	 */
+	private function init_funnel_checkout() {
+		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/frontend/class-mpd-funnel-checkout.php';
 	}
 }
 

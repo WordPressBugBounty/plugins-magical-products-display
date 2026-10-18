@@ -5,7 +5,7 @@ Tags: woocommerce builder, elementor woocommerce, product page builder, checkout
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: trunk
+Stable tag: 2.1.1
 WC requires at least: 8.0
 WC tested up to: 9.5
 License: GPLv2 or later
@@ -119,9 +119,11 @@ Create conversion-optimized cart pages:
 * **Mini Cart** - Compact cart for headers and sidebars
 * **Empty Cart** - Custom empty cart message and call-to-action
 
-### 💳 Checkout Page Widgets (10 Widgets)
+### 💳 Checkout Page Widgets (12 Widgets)
 Build streamlined checkout experiences:
 
+* **One-Page Checkout (Funnel Builder)** - All-in-one high-converting checkout landing page widget with direct buy, skip cart, Quick COD mode, and live order bump
+* **Order Bump** - Standalone in-checkout bump offer widget with live cart calculation, custom discounts, and animations
 * **Billing Form** - Customizable billing address fields
 * **Shipping Form** - Shipping address form with styling options
 * **Order Review** - Order summary with product details
@@ -388,6 +390,24 @@ Please use the WordPress.org support forum or contact us directly at [wpthemespa
 
 == Changelog ==
 
+= 2.1.1 - October 18, 2026 =
+* New: One-Page Checkout (Funnel Builder) widget for high-converting direct landing page sales funnels.
+* New: Direct Buy & Skip-Cart URL engine (?mpd_buy_now=ID&qty=N) automatically adding the target product and redirecting to frictionless checkout.
+* New: Quick COD Mode (Minimal Checkout) reducing abandoned carts by presenting only Full Name, Phone, and Delivery Address.
+* New: Integrated Order Bump (Checkout Upsell) box with custom discount pricing, badge, thumbnail, and live cart calculation.
+* New: Standalone Order Bump widget for standard Elementor checkout templates.
+* New [Pro]: Pro Quantity Deals & Bundles (Buy 1, Buy 2 Save 10%, Buy 3 Save 20%) to boost Average Order Value.
+* New [Pro]: Terms & Conditions and Privacy Policy Customizer with Show/Hide switches, custom disclaimer text, and 1-click terms requirement bypass for frictionless COD landing pages.
+* New [Pro]: Custom Thank You Page Redirect to send buyers to dedicated confirmation/upsell pages upon order completion.
+* Fixed: Quantity (+/-) duplicate increment issue in Cart Drawer and One-Page Checkout.
+* Fixed: Order Summary review table padding, borders, and price text alignment.
+* Fixed: Place Order button and payment gateways rendering discrepancy between Elementor editor preview and frontend.
+* Fixed: Missing Class reference in Free Shipping Bar widget.
+* Fixed: WC cart uninitialized notice inside Elementor editor preview.
+* Improved: Comprehensive defensive checks across all widgets for empty cart, missing WooCommerce, and deleted products.
+* Improved: Admin sales notice banner updated with latest conversion features and refreshed dismissal tracking (v2).
+* Improved: Prevented headers already sent notices during session setup.
+
 = 2.1.0 - September 30, 2026 =
 * New: Off-Canvas Sliding Cart Drawer (Slide-In Cart) with smooth hardware-accelerated animations, backdrop blur, live AJAX quantity adjustment (+/-), one-click item removal, and auto-open on add to cart.
 * New: Sticky Add to Cart Bar widget for Single Product pages with desktop/mobile visibility controls, thumbnail, title, price, live quantity spinner, and rating.
@@ -397,6 +417,11 @@ Please use the WordPress.org support forum or contact us directly at [wpthemespa
 * New: Standalone Free Shipping Progress Bar widget with automatic WooCommerce Shipping Zone threshold detection or custom threshold and live progress fill.
 * New: Granular Show/Hide controls for every Cart Drawer component directly inside Mini Cart and Header Cart Elementor widgets.
 * Fixed: Sticky Add to Cart Bar rating stars now render standalone Unicode star icons cleanly in both Elementor editor preview and frontend, eliminating raw accessibility text leakage.
+* Added: Elementor style controls for Rating Stars (Star Size, Filled Color, and Empty Color) in Sticky Add to Cart Bar.
+* Fixed: Cart Drawer counter badge position displacement outside the drawer caused by CSS class collision; badge locked inline next to drawer title.
+* Fixed: Cart Drawer items flex layout container height collapse in narrow or docked-inspector viewports by enforcing flex-shrink and min-height constraints.
+* Cleaned up: Removed redundant cart drawer settings from admin panel and consolidated all controls into visual Elementor widget settings.
+* Improved: Removed duplicate script enqueue and localization runs for cart drawer assets.
 * Improved: 100% compatibility verified with latest WooCommerce (8.0 through 9.5+) and Elementor (3.15+ through 4.0 Atomic Architecture).
 * Improved: Modernized CSS without Bootstrap dependencies for all newly introduced conversion components.
 * Security: Full nonce verification and sanitization on all Cart Drawer AJAX endpoints (quantity update, item removal, coupon apply/remove).
@@ -731,6 +756,9 @@ Please use the WordPress.org support forum or contact us directly at [wpthemespa
 * Initial release
 
 == Upgrade Notice ==
+
+= 2.1.1 =
+New One-Page Checkout (Funnel Builder), In-Checkout Order Bumps, Off-Canvas Cart Drawer, and Free Shipping Bar. Update recommended for new conversion features and bug fixes.
 
 = 2.0.0 =
 🎉 MAJOR UPDATE! Magical Products Display is now Magical Shop Builder with 60+ widgets and a complete WooCommerce template builder. All existing features preserved - upgrade safely!

@@ -128,6 +128,10 @@ class Cart_Drawer {
 		add_action( 'wp_ajax_nopriv_mpd_drawer_apply_coupon', array( $this, 'ajax_apply_coupon' ) );
 		add_action( 'wp_ajax_mpd_drawer_remove_coupon', array( $this, 'ajax_remove_coupon' ) );
 		add_action( 'wp_ajax_nopriv_mpd_drawer_remove_coupon', array( $this, 'ajax_remove_coupon' ) );
+
+		// AJAX endpoint for in-drawer cross-sells.
+		add_action( 'wp_ajax_mpd_drawer_add_cross_sell', array( $this, 'ajax_add_cross_sell' ) );
+		add_action( 'wp_ajax_nopriv_mpd_drawer_add_cross_sell', array( $this, 'ajax_add_cross_sell' ) );
 	}
 
 	/**
@@ -271,6 +275,18 @@ class Cart_Drawer {
 				</div>
 			<?php endif; ?>
 
+			<?php
+			$show_timer = self::is_pro() && apply_filters( 'mpd_drawer_show_timer', true );
+			if ( $show_timer && ! empty( $cart_items ) ) :
+			?>
+				<div class="mpd-cart-drawer-timer-wrap">
+					<div class="mpd-cart-drawer-timer-bar">
+						<span class="mpd-timer-fire">🔥</span>
+						<span class="mpd-timer-text"><?php esc_html_e( 'Cart items are reserved for', 'magical-products-display' ); ?> <strong class="mpd-timer-clock">10:00</strong> <?php esc_html_e( 'mins!', 'magical-products-display' ); ?></span>
+					</div>
+				</div>
+			<?php endif; ?>
+
 			<?php if ( empty( $cart_items ) ) : ?>
 				<div class="mpd-cart-drawer-empty">
 					<div class="mpd-cart-drawer-empty-icon">
@@ -348,6 +364,43 @@ class Cart_Drawer {
 						</div>
 					<?php endforeach; ?>
 				</div>
+
+				<?php
+				$show_cross_sells = apply_filters( 'mpd_drawer_show_cross_sells', self::is_pro() );
+				if ( $show_cross_sells && ! empty( $cart_items ) ) :
+					$cross_sell_ids = $this->get_drawer_cross_sells( 3 );
+					if ( ! empty( $cross_sell_ids ) ) :
+				?>
+					<div class="mpd-drawer-cross-sells-wrap">
+						<div class="mpd-drawer-cross-sells-header">
+							<span class="mpd-drawer-cs-badge">✨</span>
+							<span class="mpd-drawer-cs-title"><?php esc_html_e( 'You May Also Like', 'magical-products-display' ); ?></span>
+						</div>
+						<div class="mpd-drawer-cross-sells-list">
+							<?php foreach ( $cross_sell_ids as $cs_id ) :
+								$cs_product = wc_get_product( $cs_id );
+								if ( ! $cs_product || ! $cs_product->is_purchasable() || ! $cs_product->is_in_stock() ) {
+									continue;
+								}
+								$cs_price = $cs_product->get_price_html();
+							?>
+								<div class="mpd-drawer-cs-item" data-product-id="<?php echo esc_attr( $cs_id ); ?>">
+									<div class="mpd-drawer-cs-thumb">
+										<?php echo wp_kses_post( $cs_product->get_image( 'thumbnail' ) ); ?>
+									</div>
+									<div class="mpd-drawer-cs-info">
+										<h5 class="mpd-drawer-cs-name"><?php echo esc_html( $cs_product->get_name() ); ?></h5>
+										<span class="mpd-drawer-cs-price"><?php echo wp_kses_post( $cs_price ); ?></span>
+									</div>
+									<button type="button" class="mpd-drawer-cs-add-btn" data-product-id="<?php echo esc_attr( $cs_id ); ?>" aria-label="<?php esc_attr_e( 'Add to Cart', 'magical-products-display' ); ?>">
+										<span class="mpd-cs-btn-text">+ <?php esc_html_e( 'Add', 'magical-products-display' ); ?></span>
+										<span class="mpd-cs-spinner" style="display:none;"><i class="eicon-loading eicon-animation-spin" aria-hidden="true"></i></span>
+									</button>
+								</div>
+							<?php endforeach; ?>
+						</div>
+					</div>
+				<?php endif; endif; ?>
 
 				<div class="mpd-cart-drawer-footer">
 					<?php if ( $show_coupon_box ) : ?>
@@ -653,5 +706,110 @@ class Cart_Drawer {
 		} else {
 			wp_send_json_error( array( 'message' => esc_html__( 'Unable to remove coupon.', 'magical-products-display' ) ) );
 		}
+	}
+
+	/**
+	 * Get cross-sell product IDs for cart drawer.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @param int $limit Maximum number of products.
+	 * @return int[]
+	 */
+	public function get_drawer_cross_sells( $limit = 3 ) {
+		if ( ! function_exists( 'WC' ) || ! is_object( WC()->cart ) || WC()->cart->is_empty() ) {
+			return array();
+		}
+
+		$cross_sells = WC()->cart->get_cross_sells();
+		$in_cart     = array();
+		foreach ( WC()->cart->get_cart() as $cart_item ) {
+			$in_cart[] = $cart_item['product_id'];
+			if ( ! empty( $cart_item['variation_id'] ) ) {
+				$in_cart[] = $cart_item['variation_id'];
+			}
+		}
+
+		// Filter out items already in cart.
+		$cross_sells = array_values( array_diff( $cross_sells, $in_cart ) );
+
+		// If no explicit cross-sells assigned or fewer than limit, fallback to recent published simple products.
+		if ( count( $cross_sells ) < $limit ) {
+			$needed   = $limit - count( $cross_sells );
+			$fallback = wc_get_products( array(
+				'status'       => 'publish',
+				'stock_status' => 'instock',
+				'limit'        => $needed + 4,
+				'exclude'      => array_merge( $cross_sells, $in_cart ),
+				'orderby'      => 'date',
+				'order'        => 'DESC',
+			) );
+
+			foreach ( $fallback as $p ) {
+				if ( $p->is_type( 'simple' ) && $p->is_purchasable() ) {
+					$cross_sells[] = $p->get_id();
+				}
+				if ( count( $cross_sells ) >= $limit ) {
+					break;
+				}
+			}
+		}
+
+		return array_slice( $cross_sells, 0, $limit );
+	}
+
+	/**
+	 * AJAX handler: Add cross-sell product to cart from inside drawer.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @return void
+	 */
+	public function ajax_add_cross_sell() {
+		check_ajax_referer( 'mpd_cart_drawer_nonce', 'nonce' );
+
+		if ( ! function_exists( 'WC' ) || ! WC()->cart ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Cart unavailable.', 'magical-products-display' ) ) );
+		}
+
+		$product_id = isset( $_POST['product_id'] ) ? absint( $_POST['product_id'] ) : 0;
+		if ( ! $product_id ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Invalid product ID.', 'magical-products-display' ) ) );
+		}
+
+		$product = wc_get_product( $product_id );
+		if ( ! $product || ! $product->is_purchasable() || ! $product->is_in_stock() ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Product is not available for purchase.', 'magical-products-display' ) ) );
+		}
+
+		$cart_item_key = WC()->cart->add_to_cart( $product_id, 1 );
+
+		if ( ! $cart_item_key ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Could not add product to cart.', 'magical-products-display' ) ) );
+		}
+
+		WC()->cart->calculate_totals();
+
+		// Save session.
+		if ( is_object( WC()->session ) && method_exists( WC()->session, 'set' ) ) {
+			WC()->session->set( 'cart', WC()->cart->get_cart_for_session() );
+		}
+
+		ob_start();
+		$this->render_drawer_content();
+		$drawer_html = ob_get_clean();
+
+		$count = WC()->cart->get_cart_contents_count();
+
+		wp_send_json_success( array(
+			'count'       => $count,
+			'subtotal'    => WC()->cart->get_cart_subtotal(),
+			'drawer_html' => $drawer_html,
+			'fragments'   => apply_filters( 'woocommerce_add_to_cart_fragments', array(
+				'.mpd-cart-drawer-content-wrap' => '<div class="mpd-cart-drawer-content-wrap">' . $drawer_html . '</div>',
+				'.mpd-cart-drawer-count-badge'  => '<span class="mpd-cart-drawer-count-badge mpd-mini-cart-counter">' . esc_html( $count ) . '</span>',
+			) ),
+			'cart_hash'   => WC()->cart->get_cart_hash(),
+		) );
 	}
 }

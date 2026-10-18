@@ -1,0 +1,907 @@
+/**
+ * One-Page Direct Checkout & Order Bump Styles
+ *
+ * @package Magical_Shop_Builder
+ * @since   2.2.0
+ */
+
+.mpd-opc-wrapper {
+	background-color: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	padding: 24px;
+	box-sizing: border-box;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+	margin: 0 auto;
+}
+
+/* Grid Layout */
+.mpd-opc-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.mpd-opc-layout-2col .mpd-opc-grid {
+	display: grid;
+	grid-template-columns: 1.15fr 0.85fr;
+	gap: 32px;
+	align-items: start;
+}
+
+@media (max-width: 900px) {
+	.mpd-opc-layout-2col .mpd-opc-grid {
+		grid-template-columns: 1fr;
+		gap: 24px;
+	}
+}
+
+/* Section Headings */
+.mpd-opc-section-heading {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 18px;
+	font-weight: 700;
+	color: #0f172a;
+	margin: 0 0 16px;
+	padding-bottom: 8px;
+	border-bottom: 2px solid #f1f5f9;
+}
+
+.mpd-opc-step-num {
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	background-color: #2271b1;
+	color: #ffffff;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 13px;
+	font-weight: 700;
+	flex-shrink: 0;
+}
+
+/* Product Summary Card */
+.mpd-opc-product-card {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	background-color: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	padding: 14px 18px;
+	margin-bottom: 24px;
+	box-sizing: border-box;
+}
+
+.mpd-opc-product-thumb {
+	width: 56px;
+	height: 56px;
+	border-radius: 6px;
+	overflow: hidden;
+	flex-shrink: 0;
+	background-color: #ffffff;
+	border: 1px solid #cbd5e1;
+}
+
+.mpd-opc-product-thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.mpd-opc-product-details {
+	flex: 1;
+	min-width: 0;
+}
+
+.mpd-opc-product-name {
+	font-size: 15px;
+	font-weight: 600;
+	color: #0f172a;
+	margin: 0 0 4px;
+	line-height: 1.3;
+}
+
+.mpd-opc-product-price {
+	font-size: 16px;
+	font-weight: 700;
+	color: #2271b1;
+}
+
+.mpd-opc-product-price del {
+	font-size: 13px;
+	color: #94a3b8;
+	margin-right: 6px;
+}
+
+.mpd-opc-product-price ins {
+	text-decoration: none;
+	color: #2271b1;
+}
+
+/* Quantity Selector in Product Card */
+.mpd-opc-qty-wrap {
+	display: inline-flex;
+	align-items: center;
+	border: 1px solid #cbd5e1;
+	border-radius: 6px;
+	overflow: hidden;
+	background-color: #ffffff;
+	height: 36px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+	flex-shrink: 0;
+}
+
+.mpd-opc-qty-btn {
+	background: #f8fafc;
+	border: none;
+	width: 32px;
+	height: 100%;
+	font-size: 16px;
+	font-weight: 700;
+	color: #334155;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: background-color 0.15s ease, color 0.15s ease;
+	user-select: none;
+	-webkit-user-select: none;
+	padding: 0;
+}
+
+.mpd-opc-qty-btn:hover {
+	background-color: #e2e8f0;
+	color: #0f172a;
+}
+
+.mpd-opc-qty-btn:active {
+	background-color: #cbd5e1;
+}
+
+.mpd-opc-qty-input {
+	width: 44px;
+	height: 100%;
+	border: none;
+	border-left: 1px solid #cbd5e1;
+	border-right: 1px solid #cbd5e1;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 700;
+	color: #0f172a;
+	padding: 0;
+	-moz-appearance: textfield;
+	background-color: #ffffff;
+}
+
+.mpd-opc-qty-input::-webkit-outer-spin-button,
+.mpd-opc-qty-input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Billing Section Fields */
+.mpd-opc-billing-section .woocommerce-billing-fields__field-wrapper,
+.mpd-opc-billing-section .woocommerce-additional-fields__field-wrapper {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 12px;
+}
+
+.mpd-opc-billing-section .form-row {
+	margin: 0 0 12px !important;
+	padding: 0 !important;
+	width: 100% !important;
+}
+
+.mpd-opc-billing-section label {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	color: #334155;
+	margin-bottom: 6px;
+}
+
+.mpd-opc-billing-section input.input-text,
+.mpd-opc-billing-section textarea,
+.mpd-opc-billing-section select {
+	width: 100% !important;
+	height: 44px;
+	padding: 8px 14px !important;
+	border: 1px solid #cbd5e1 !important;
+	border-radius: 6px !important;
+	background-color: #ffffff !important;
+	font-size: 14px !important;
+	color: #0f172a !important;
+	box-sizing: border-box !important;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.mpd-opc-billing-section textarea {
+	height: 70px !important;
+	resize: vertical;
+}
+
+.mpd-opc-billing-section input.input-text:focus,
+.mpd-opc-billing-section textarea:focus,
+.mpd-opc-billing-section select:focus {
+	border-color: #2271b1 !important;
+	outline: none !important;
+	box-shadow: 0 0 0 3px rgba(34, 113, 177, 0.15) !important;
+}
+
+/* Order Bump Box */
+.mpd-opc-bump-box {
+	background-color: #fffbeb;
+	border: 2px dashed #f59e0b;
+	border-radius: 8px;
+	position: relative;
+	margin-bottom: 24px;
+	transition: all 0.25s ease;
+	box-sizing: border-box;
+}
+
+.mpd-opc-bump-box.is-bump-active {
+	background-color: #fef3c7;
+	border-color: #d97706;
+	box-shadow: 0 4px 14px rgba(217, 119, 6, 0.15);
+}
+
+.mpd-opc-bump-badge {
+	position: absolute;
+	top: -11px;
+	left: 16px;
+	background-color: #d97706;
+	color: #ffffff;
+	font-size: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.6px;
+	padding: 2px 10px;
+	border-radius: 12px;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.mpd-opc-bump-content {
+	padding: 18px 16px 14px;
+}
+
+.mpd-opc-bump-checkbox-label {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+	margin-bottom: 8px;
+	user-select: none;
+}
+
+.mpd-opc-bump-checkbox {
+	width: 20px;
+	height: 20px;
+	accent-color: #d97706;
+	cursor: pointer;
+	flex-shrink: 0;
+}
+
+.mpd-opc-bump-title {
+	font-size: 14px;
+	color: #92400e;
+	line-height: 1.3;
+}
+
+.mpd-bump-price-highlight {
+	color: #b45309;
+	font-weight: 700;
+}
+
+.mpd-opc-bump-body {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	padding-left: 30px;
+}
+
+.mpd-opc-bump-thumb {
+	width: 44px;
+	height: 44px;
+	border-radius: 4px;
+	overflow: hidden;
+	flex-shrink: 0;
+	background-color: #ffffff;
+	border: 1px solid #fde68a;
+}
+
+.mpd-opc-bump-thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.mpd-opc-bump-desc {
+	font-size: 12px;
+	line-height: 1.45;
+	color: #78350f;
+	margin: 0;
+}
+
+/* Standalone Order Bump Wrapper */
+.mpd-standalone-bump-wrap {
+	margin-bottom: 20px;
+}
+
+/* Order Review & Payment Section */
+.mpd-opc-review-section {
+	background-color: #ffffff !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 12px !important;
+	padding: 24px !important;
+	box-sizing: border-box !important;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Order Review Table */
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table {
+	width: 100% !important;
+	border-collapse: separate !important;
+	border-spacing: 0 !important;
+	margin-bottom: 24px !important;
+	background-color: #ffffff !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 8px !important;
+	overflow: hidden !important;
+}
+
+/* Reset all cells to avoid theme background/border overrides */
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table th,
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table td {
+	padding: 14px 18px !important;
+	border-top: none !important;
+	border-left: none !important;
+	border-right: none !important;
+	border-bottom: 1px solid #f1f5f9 !important;
+	font-size: 14px !important;
+	line-height: 1.5 !important;
+	background-color: #ffffff !important;
+	box-sizing: border-box !important;
+}
+
+/* Table Header */
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table thead th {
+	background-color: #f8fafc !important;
+	color: #475569 !important;
+	font-size: 12px !important;
+	font-weight: 700 !important;
+	text-transform: uppercase !important;
+	letter-spacing: 0.5px !important;
+	padding: 14px 18px !important;
+	border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table thead th.product-name {
+	text-align: left !important;
+}
+
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table thead th.product-total {
+	text-align: right !important;
+}
+
+/* Table Body */
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tbody td.product-name {
+	text-align: left !important;
+	color: #1e293b !important;
+	font-weight: 500 !important;
+}
+
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tbody td.product-name .product-quantity {
+	color: #64748b !important;
+	font-weight: 600 !important;
+	margin-left: 4px !important;
+}
+
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tbody td.product-total {
+	text-align: right !important;
+	font-weight: 600 !important;
+	color: #0f172a !important;
+	white-space: nowrap !important;
+}
+
+/* Table Footer - Override theme grey backgrounds */
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tfoot tr th {
+	text-align: left !important;
+	font-weight: 600 !important;
+	color: #475569 !important;
+	background-color: #ffffff !important;
+	border-bottom: 1px solid #f1f5f9 !important;
+}
+
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tfoot tr td {
+	text-align: right !important;
+	font-weight: 600 !important;
+	color: #0f172a !important;
+	background-color: #ffffff !important;
+	border-bottom: 1px solid #f1f5f9 !important;
+	white-space: nowrap !important;
+}
+
+/* Shipping row in review order */
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tfoot tr.woocommerce-shipping-totals td {
+	text-align: right !important;
+	font-weight: 500 !important;
+	color: #334155 !important;
+}
+
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tfoot tr.woocommerce-shipping-totals ul#shipping_method {
+	list-style: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	text-align: right !important;
+}
+
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tfoot tr.woocommerce-shipping-totals ul#shipping_method li {
+	margin: 4px 0 !important;
+	text-align: right !important;
+}
+
+/* Order Total Row - Highlighted */
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tfoot tr.order-total th,
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tfoot tr.order-total td {
+	background-color: #f8fafc !important;
+	border-top: 2px solid #e2e8f0 !important;
+	border-bottom: none !important;
+	padding: 16px 18px !important;
+}
+
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tfoot tr.order-total th {
+	font-size: 15px !important;
+	font-weight: 700 !important;
+	color: #0f172a !important;
+	text-align: left !important;
+}
+
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tfoot tr.order-total td {
+	font-size: 18px !important;
+	font-weight: 800 !important;
+	color: #16a34a !important;
+	text-align: right !important;
+}
+
+.mpd-opc-review-section table.woocommerce-checkout-review-order-table tfoot tr.order-total td .amount {
+	color: #16a34a !important;
+}
+
+/* Payment Methods inside OPC */
+.mpd-opc-review-section #payment {
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+}
+
+.mpd-opc-review-section #payment ul.payment_methods {
+	padding: 0 !important;
+	margin: 0 0 20px !important;
+	list-style: none !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 6px !important;
+	overflow: hidden !important;
+	background-color: #ffffff !important;
+}
+
+.mpd-opc-review-section #payment ul.payment_methods li {
+	padding: 12px 16px !important;
+	border-bottom: 1px solid #e2e8f0 !important;
+	margin: 0 !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	color: #1e293b !important;
+}
+
+.mpd-opc-review-section #payment ul.payment_methods li:last-child {
+	border-bottom: none !important;
+}
+
+.mpd-opc-review-section #payment ul.payment_methods li input[type="radio"] {
+	margin-right: 8px !important;
+	accent-color: #2271b1 !important;
+}
+
+.mpd-opc-review-section #payment div.payment_box {
+	background-color: #f1f5f9 !important;
+	padding: 12px 14px !important;
+	margin: 10px 0 0 0 !important;
+	border-radius: 4px !important;
+	font-size: 13px !important;
+	color: #475569 !important;
+	line-height: 1.4 !important;
+}
+
+.mpd-opc-review-section #payment div.payment_box::before {
+	display: none !important;
+}
+
+/* Terms & Conditions / Privacy Policy in OPC */
+.mpd-opc-review-section .woocommerce-terms-and-conditions-wrapper {
+	margin: 16px 0 16px 0 !important;
+	padding: 0 !important;
+	border: none !important;
+	background: transparent !important;
+}
+
+.mpd-opc-review-section .woocommerce-privacy-policy-text,
+.mpd-opc-review-section .woocommerce-privacy-policy-text p {
+	font-size: 13px;
+	line-height: 1.5;
+	color: #64748b;
+	margin: 0 0 12px 0;
+}
+
+.mpd-opc-review-section .woocommerce-privacy-policy-text a,
+.mpd-opc-review-section .woocommerce-terms-and-conditions-wrapper a {
+	color: #2563eb;
+	text-decoration: underline;
+	font-weight: 500;
+	transition: color 0.15s ease;
+}
+
+.mpd-opc-review-section .woocommerce-privacy-policy-text a:hover,
+.mpd-opc-review-section .woocommerce-terms-and-conditions-wrapper a:hover {
+	color: #1d4ed8;
+}
+
+.mpd-opc-review-section .woocommerce-terms-and-conditions-wrapper p.form-row {
+	margin: 0 0 16px 0 !important;
+	padding: 0 !important;
+	background: transparent !important;
+}
+
+.mpd-opc-review-section .woocommerce-terms-and-conditions-wrapper label.checkbox {
+	display: flex !important;
+	align-items: flex-start !important;
+	gap: 8px !important;
+	font-size: 13px !important;
+	line-height: 1.4 !important;
+	color: #334155;
+	cursor: pointer !important;
+	margin: 0 !important;
+}
+
+.mpd-opc-review-section .woocommerce-terms-and-conditions-wrapper input[type="checkbox"] {
+	margin-top: 2px !important;
+	width: 16px;
+	height: 16px;
+	accent-color: #16a34a;
+	cursor: pointer !important;
+	flex-shrink: 0 !important;
+}
+
+.mpd-opc-review-section .woocommerce-terms-and-conditions-checkbox-text {
+	flex: 1 !important;
+}
+
+.mpd-opc-review-section .woocommerce-terms-and-conditions-wrapper abbr.required {
+	color: #ef4444 !important;
+	text-decoration: none !important;
+	font-weight: 700 !important;
+}
+
+/* Visibility Control Classes */
+.mpd-opc-wrapper.mpd-hide-privacy .woocommerce-privacy-policy-text,
+.mpd-hide-privacy .woocommerce-privacy-policy-text {
+	display: none !important;
+}
+
+.mpd-opc-wrapper.mpd-hide-terms .woocommerce-terms-and-conditions-wrapper .validate-required,
+.mpd-opc-wrapper.mpd-hide-terms .woocommerce-terms-and-conditions-wrapper p.form-row,
+.mpd-hide-terms .woocommerce-terms-and-conditions-wrapper .validate-required,
+.mpd-hide-terms .woocommerce-terms-and-conditions-wrapper p.form-row {
+	display: none !important;
+}
+
+.mpd-opc-wrapper.mpd-hide-privacy.mpd-hide-terms .woocommerce-terms-and-conditions-wrapper,
+.mpd-hide-privacy.mpd-hide-terms .woocommerce-terms-and-conditions-wrapper {
+	display: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+/* Submit Button */
+.mpd-opc-review-section button#place_order,
+.mpd-opc-submit-btn {
+	width: 100% !important;
+	background-color: #16a34a !important;
+	color: #ffffff !important;
+	border: 1px solid #16a34a !important;
+	border-radius: 8px !important;
+	padding: 16px 24px !important;
+	font-size: 16px !important;
+	font-weight: 700 !important;
+	cursor: pointer !important;
+	text-align: center !important;
+	transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease !important;
+	box-shadow: 0 4px 14px rgba(22, 163, 74, 0.25) !important;
+}
+
+.mpd-opc-review-section button#place_order:hover,
+.mpd-opc-submit-btn:hover {
+	background-color: #15803d !important;
+	border-color: #15803d !important;
+	color: #ffffff !important;
+	transform: translateY(-1px) !important;
+	box-shadow: 0 6px 18px rgba(22, 163, 74, 0.35) !important;
+}
+
+/* Pulsating CTA Animation */
+.mpd-pulse-active .mpd-opc-review-section button#place_order {
+	animation: mpdButtonPulse 2s infinite;
+}
+
+@keyframes mpdButtonPulse {
+	0% {
+		box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5);
+	}
+	70% {
+		box-shadow: 0 0 0 12px rgba(22, 163, 74, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+	}
+}
+
+/* Guarantee Subtext */
+.mpd-opc-guarantee {
+	text-align: center;
+	font-size: 12px;
+	color: #64748b;
+	margin-top: 12px;
+	line-height: 1.4;
+}
+
+/* ==========================================================================
+   Pro Feature: 2-Step Modern Checkout
+   ========================================================================== */
+.mpd-opc-step-nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 24px;
+	background: #f8fafc;
+	padding: 12px 20px;
+	border-radius: 12px;
+	border: 1px solid #e2e8f0;
+}
+
+.mpd-opc-step-tab {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	cursor: pointer;
+	color: #64748b;
+	font-size: 14px;
+	font-weight: 600;
+	transition: all 0.2s ease;
+}
+
+.mpd-opc-step-tab.active {
+	color: #0f172a;
+}
+
+.mpd-opc-tab-num {
+	width: 28px;
+	height: 28px;
+	border-radius: 50%;
+	background: #e2e8f0;
+	color: #64748b;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 13px;
+	font-weight: 700;
+	transition: all 0.2s ease;
+}
+
+.mpd-opc-step-tab.active .mpd-opc-tab-num {
+	background: #16a34a;
+	color: #ffffff;
+	box-shadow: 0 2px 8px rgba(22, 163, 74, 0.3);
+}
+
+.mpd-opc-tab-connector {
+	flex: 0 0 60px;
+	height: 2px;
+	background: #cbd5e1;
+	margin: 0 16px;
+}
+
+/* 2-Step Visibility Logic */
+.mpd-opc-2step-mode .mpd-opc-step-2-content {
+	display: none;
+}
+
+.mpd-opc-2step-mode.step-2-active .mpd-opc-step-1-content {
+	display: none;
+}
+
+.mpd-opc-2step-mode.step-2-active .mpd-opc-step-2-content {
+	display: block;
+	animation: mpdFadeIn 0.25s ease-in-out;
+}
+
+@keyframes mpdFadeIn {
+	from { opacity: 0; transform: translateY(4px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+.mpd-opc-next-step-wrap {
+	margin-top: 24px;
+}
+
+.mpd-opc-step-next-btn {
+	width: 100%;
+	background-color: #0284c7;
+	color: #ffffff;
+	border: none;
+	border-radius: 8px;
+	padding: 15px 24px;
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+	text-align: center;
+	transition: background-color 0.2s ease, transform 0.15s ease;
+	box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+}
+
+.mpd-opc-step-next-btn:hover {
+	background-color: #0369a1;
+	transform: translateY(-1px);
+}
+
+.mpd-opc-prev-step-wrap {
+	margin-bottom: 16px;
+}
+
+.mpd-opc-step-prev-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #64748b;
+	text-decoration: none;
+	transition: color 0.15s ease;
+}
+
+.mpd-opc-step-prev-link:hover {
+	color: #0284c7;
+}
+
+/* ==========================================================================
+   Pro Feature: Quantity Package Deals Cards
+   ========================================================================== */
+.mpd-opc-deals-wrap {
+	margin-bottom: 20px;
+}
+
+.mpd-opc-deals-title {
+	font-size: 14px;
+	font-weight: 700;
+	color: #1e293b;
+	margin: 0 0 10px 0;
+}
+
+.mpd-opc-deals-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+}
+
+@media (max-width: 600px) {
+	.mpd-opc-deals-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.mpd-opc-deal-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding: 14px 12px;
+	background: #ffffff;
+	border: 2px solid #e2e8f0;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	text-align: center;
+}
+
+.mpd-opc-deal-card input[type="radio"] {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.mpd-opc-deal-card:hover {
+	border-color: #cbd5e1;
+}
+
+.mpd-opc-deal-card.selected {
+	border-color: #16a34a;
+	background: #f0fdf4;
+	box-shadow: 0 2px 8px rgba(22, 163, 74, 0.15);
+}
+
+.mpd-deal-details {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.mpd-deal-qty {
+	font-size: 13px;
+	font-weight: 700;
+	color: #0f172a;
+}
+
+.mpd-deal-price {
+	font-size: 14px;
+	font-weight: 600;
+	color: #16a34a;
+}
+
+.mpd-deal-badge {
+	position: absolute;
+	top: -9px;
+	left: 50%;
+	transform: translateX(-50%);
+	font-size: 10px;
+	font-weight: 800;
+	padding: 2px 8px;
+	border-radius: 10px;
+	white-space: nowrap;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.mpd-deal-badge.popular {
+	background: #0284c7;
+	color: #ffffff;
+}
+
+.mpd-deal-badge.best-value {
+	background: #e11d48;
+	color: #ffffff;
+}
+
+/* ==========================================================================
+   Pro Feature: Order Bump Animations (Pulse & Pointer)
+   ========================================================================== */
+.mpd-bump-pulse {
+	animation: mpdBumpPulse 2s infinite ease-in-out;
+}
+
+@keyframes mpdBumpPulse {
+	0% {
+		box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5);
+	}
+	70% {
+		box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+	}
+}
+
+.mpd-bump-arrow-pointer {
+	display: inline-block;
+	font-size: 18px;
+	margin-right: 6px;
+	animation: mpdPointBounce 1s infinite alternate ease-in-out;
+}
+
+@keyframes mpdPointBounce {
+	from { transform: translateX(0); }
+	to { transform: translateX(6px); }
+}

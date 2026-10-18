@@ -141,6 +141,14 @@
 				var couponCode = $(this).attr('data-coupon') || $(this).data('coupon');
 				self.removeCoupon(couponCode);
 			});
+
+			// Add In-Drawer Cross-Sell item.
+			$(document).on('click', '#mpd-cart-drawer .mpd-drawer-cs-add-btn', function (e) {
+				e.preventDefault();
+				var $btn = $(this);
+				var productId = $btn.data('product-id') || $btn.attr('data-product-id');
+				self.addCrossSell(productId, $btn);
+			});
 		},
 
 		open: function () {
@@ -152,6 +160,26 @@
 			this.isOpen = true;
 			$container.addClass('is-open mpd-cart-drawer--open').attr('aria-hidden', 'false');
 			$('body').addClass('mpd-cart-drawer-active');
+			this.startTimer();
+		},
+
+		startTimer: function () {
+			var self = this;
+			var $clock = $('.mpd-timer-clock');
+			if (!$clock.length || self.timerInterval) return;
+
+			var totalSeconds = 600; // 10 minutes default
+			self.timerInterval = setInterval(function () {
+				if (totalSeconds <= 0) {
+					clearInterval(self.timerInterval);
+					$clock.text('00:00');
+					return;
+				}
+				totalSeconds--;
+				var m = Math.floor(totalSeconds / 60);
+				var s = totalSeconds % 60;
+				$clock.text((m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s));
+			}, 1000);
 		},
 
 		close: function () {
@@ -376,6 +404,61 @@
 						$newMsg.removeClass('is-error').addClass('is-success').text(res.data.message || 'Coupon removed.').show();
 						$(document.body).trigger('removed_coupon_in_cart', [couponCode]);
 					}
+				}
+			});
+		},
+
+		addCrossSell: function (productId, $btn) {
+			var self = this;
+			var params = window.mpdCartDrawer || {};
+			var ajaxUrl = params.ajaxUrl || (window.woocommerce_params ? window.woocommerce_params.ajax_url : '/wp-admin/admin-ajax.php');
+			var nonce = params.nonce || '';
+
+			if (!productId || $btn.prop('disabled')) {
+				return;
+			}
+
+			$btn.prop('disabled', true);
+			$btn.find('.mpd-cs-btn-text').hide();
+			$btn.find('.mpd-cs-spinner').show();
+
+			$.ajax({
+				url: ajaxUrl,
+				type: 'POST',
+				data: {
+					action: 'mpd_drawer_add_cross_sell',
+					nonce: nonce,
+					product_id: productId
+				},
+				success: function (res) {
+					if (res && res.success && res.data) {
+						if (res.data.drawer_html) {
+							self.getContentWrap().html(res.data.drawer_html);
+						}
+						if (typeof res.data.count !== 'undefined') {
+							$('#mpd-cart-drawer .mpd-cart-drawer-count-badge, .mpd-mini-cart-counter, .cart-customlocation .count').text(res.data.count);
+						}
+						if (res.data.fragments) {
+							$.each(res.data.fragments, function (key, value) {
+								if (key !== '.mpd-cart-drawer-content-wrap') {
+									$(key).replaceWith(value);
+								}
+							});
+						}
+						$(document.body).trigger('added_to_cart', [res.data.fragments, res.data.cart_hash]);
+					} else {
+						$btn.prop('disabled', false);
+						$btn.find('.mpd-cs-btn-text').show();
+						$btn.find('.mpd-cs-spinner').hide();
+						if (res && res.data && res.data.message) {
+							alert(res.data.message);
+						}
+					}
+				},
+				error: function () {
+					$btn.prop('disabled', false);
+					$btn.find('.mpd-cs-btn-text').show();
+					$btn.find('.mpd-cs-spinner').hide();
 				}
 			});
 		}

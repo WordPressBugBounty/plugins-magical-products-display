@@ -326,6 +326,8 @@ class MPD_Elementor {
 			'class-mpd-widget-checkout-login.php'      => 'Checkout_Login',
 			'class-mpd-widget-multi-step-checkout.php' => 'Multi_Step_Checkout',
 			'class-mpd-widget-express-checkout.php'    => 'Express_Checkout',
+			'class-mpd-widget-one-page-checkout.php'   => 'One_Page_Checkout',
+			'class-mpd-widget-order-bump.php'          => 'Order_Bump',
 		);
 
 		$this->safe_register_widgets(

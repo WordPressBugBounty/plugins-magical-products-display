@@ -155,8 +155,12 @@ function mpd_display_pro_sales_notice() {
 		}
 	}
 
-	// Re-show after 15 days.
-	$dismissed_date = get_option( 'mpd_pro_notice_dismissed' );
+	// Re-show after 15 days (v2 notice).
+	$user_id        = get_current_user_id();
+	$dismissed_date = get_user_meta( $user_id, 'mpd_pro_notice_dismissed_v2', true );
+	if ( empty( $dismissed_date ) ) {
+		$dismissed_date = get_option( 'mpd_pro_notice_dismissed_v2' );
+	}
 	if ( ! empty( $dismissed_date ) ) {
 		$days = round( ( time() - strtotime( $dismissed_date ) ) / DAY_IN_SECONDS );
 		if ( $days < 15 ) {
@@ -179,20 +183,20 @@ function mpd_display_pro_sales_notice() {
 				<div class="mpd-pro-notice__badge"><?php esc_html_e( 'PRO', 'magical-products-display' ); ?></div>
 				<div class="mpd-pro-notice__text">
 					<h3><?php esc_html_e( 'Unlock the Full Power of Magical Shop Builder', 'magical-products-display' ); ?></h3>
-					<p><?php esc_html_e( 'Build custom Shop, Archive, Cart, Checkout & Thank You pages with Elementor — most widgets include Pro features. 50+ premium widgets to skyrocket your conversions.', 'magical-products-display' ); ?></p>
+					<p><?php esc_html_e( 'Build high-converting Funnels, One-Page Checkout, Order Bumps, Cart Drawer, Shop, Archive & Thank You pages with Elementor. 50+ premium widgets & Pro features to skyrocket your sales.', 'magical-products-display' ); ?></p>
 				</div>
 			</div>
 
 			<!-- Features grid -->
 			<div class="mpd-pro-notice__features">
-				<span>✦ <?php esc_html_e( 'Custom Shop & Archive Pages', 'magical-products-display' ); ?></span>
-				<span>✦ <?php esc_html_e( 'Cart & Checkout Builder', 'magical-products-display' ); ?></span>
+				<span>✦ <?php esc_html_e( 'One-Page Checkout & Funnels', 'magical-products-display' ); ?></span>
+				<span>✦ <?php esc_html_e( 'In-Checkout Order Bumps', 'magical-products-display' ); ?></span>
+				<span>✦ <?php esc_html_e( 'Interactive Cart Drawer', 'magical-products-display' ); ?></span>
+				<span>✦ <?php esc_html_e( 'Free Shipping Progress Bar', 'magical-products-display' ); ?></span>
+				<span>✦ <?php esc_html_e( 'Sticky Add to Cart Bar', 'magical-products-display' ); ?></span>
+				<span>✦ <?php esc_html_e( 'Custom Shop & Cart Builder', 'magical-products-display' ); ?></span>
 				<span>✦ <?php esc_html_e( 'Thank You Page Builder', 'magical-products-display' ); ?></span>
-				<span>✦ <?php esc_html_e( 'Advanced Product Filters', 'magical-products-display' ); ?></span>
-				<span>✦ <?php esc_html_e( 'Countdown & Offer Timers', 'magical-products-display' ); ?></span>
-				<span>✦ <?php esc_html_e( 'Product Hotspots', 'magical-products-display' ); ?></span>
-				<span>✦ <?php esc_html_e( 'Live Product Ticker', 'magical-products-display' ); ?></span>
-				<span>✦ <?php esc_html_e( 'Compare & Wishlist', 'magical-products-display' ); ?></span>
+				<span>✦ <?php esc_html_e( 'Advanced Filters & Wishlist', 'magical-products-display' ); ?></span>
 			</div>
 
 			<!-- Bottom: coupon + CTA -->
@@ -258,7 +262,12 @@ function mpd_ajax_dismiss_pro_notice() {
 		wp_send_json_error();
 	}
 
-	update_option( 'mpd_pro_notice_dismissed', gmdate( 'Y-m-d H:i:s' ) );
+	$now     = gmdate( 'Y-m-d H:i:s' );
+	$user_id = get_current_user_id();
+	if ( $user_id ) {
+		update_user_meta( $user_id, 'mpd_pro_notice_dismissed_v2', $now );
+	}
+	update_option( 'mpd_pro_notice_dismissed_v2', $now );
 	wp_send_json_success();
 }
 add_action( 'wp_ajax_mpd_dismiss_pro_notice', 'mpd_ajax_dismiss_pro_notice' );

@@ -46,6 +46,10 @@ trait WC_Helpers {
 	 * @return \WC_Product|false The product object or false.
 	 */
 	protected function get_current_product() {
+		if ( ! $this->is_woocommerce_active() || ! function_exists( 'wc_get_product' ) ) {
+			return false;
+		}
+
 		global $product;
 
 		// Check if we're in Elementor editor mode.
@@ -111,6 +115,10 @@ trait WC_Helpers {
 	 * @return \WC_Product|false The preview product or false.
 	 */
 	protected function get_preview_product() {
+		if ( ! $this->is_woocommerce_active() || ! function_exists( 'wc_get_products' ) || ! function_exists( 'wc_get_product' ) ) {
+			return false;
+		}
+
 		// First, check if a preview product is set in the template settings.
 		$preview_product_id = $this->get_preview_product_id();
 
@@ -228,7 +236,7 @@ trait WC_Helpers {
 		$rating_count = $product->get_rating_count();
 		$average      = $product->get_average_rating();
 
-		if ( $rating_count > 0 ) {
+		if ( $rating_count > 0 && function_exists( 'wc_get_rating_html' ) ) {
 			$rating_html = wc_get_rating_html( $average, $rating_count );
 			
 			if ( ! empty( $class ) ) {
@@ -391,7 +399,7 @@ trait WC_Helpers {
 				esc_url( $product->add_to_cart_url() ),
 				esc_attr( isset( $args['quantity'] ) ? $args['quantity'] : 1 ),
 				esc_attr( isset( $args['class'] ) ? $args['class'] : 'button' ),
-				isset( $args['attributes'] ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
+				isset( $args['attributes'] ) && function_exists( 'wc_implode_html_attributes' ) ? wc_implode_html_attributes( $args['attributes'] ) : '',
 				esc_html( $product->add_to_cart_text() )
 			),
 			$product,
@@ -463,7 +471,7 @@ trait WC_Helpers {
 
 		if ( $image_id ) {
 			$html = wp_get_attachment_image( $image_id, $size, false, $attr );
-		} else {
+		} elseif ( function_exists( 'wc_placeholder_img' ) ) {
 			$html = wc_placeholder_img( $size, $attr );
 		}
 

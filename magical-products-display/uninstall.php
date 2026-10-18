@@ -35,6 +35,7 @@ $options_to_delete = array(
 	'mpd_welcome_notice_version',
 	'mpd_menu_notice_version',
 	'mpd_pro_notice_dismissed',
+	'mpd_pro_notice_dismissed_v2',
 	'mpd_plugin_suggestion_dismissed1',
 	// Keep existing option names for backward compatibility.
 	'mgppro_is_active',
