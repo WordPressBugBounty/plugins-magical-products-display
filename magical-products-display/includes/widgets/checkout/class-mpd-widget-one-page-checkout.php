@@ -1551,7 +1551,7 @@ class One_Page_Checkout extends Widget_Base {
 								<input type="checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox" name="terms" <?php checked( $is_checked, true ); ?> id="terms" />
 								<span class="woocommerce-terms-and-conditions-checkbox-text"><?php echo wp_kses_post( $terms_html ); ?></span>
 								<?php if ( $is_required ) : ?>
-									&nbsp;<abbr class="required" title="<?php esc_attr_e( 'required', 'woocommerce' ); ?>">*</abbr>
+									&nbsp;<abbr class="required" title="<?php esc_attr_e( 'required', 'magical-products-display' ); ?>">*</abbr>
 								<?php endif; ?>
 							</label>
 						</p>

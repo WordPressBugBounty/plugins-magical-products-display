@@ -1,0 +1,166 @@
+/**
+ * Magical Shop Builder - Trust Badges & Guarantee Icons Widget CSS
+ *
+ * @package Magical_Shop_Builder
+ * @version 2.1.1
+ */
+
+.mpd-trust-badges-wrapper {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.mpd-trust-badges-header {
+	margin-bottom: 14px;
+}
+
+.mpd-trust-badges-title {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0 0 4px;
+	font-size: 15px;
+	font-weight: 600;
+	color: #1e293b;
+	line-height: 1.4;
+}
+
+.mpd-trust-badges-title-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: #10b981;
+}
+
+.mpd-trust-badges-title-icon svg {
+	width: 18px;
+	height: 18px;
+	fill: currentColor;
+}
+
+.mpd-trust-badges-subtitle {
+	margin: 0;
+	font-size: 13px;
+	color: #64748b;
+	line-height: 1.5;
+}
+
+/* Badges list container */
+.mpd-trust-badges-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* Alignments */
+.mpd-trust-badges--align-center .mpd-trust-badges-header,
+.mpd-trust-badges--align-center .mpd-trust-badges-list {
+	justify-content: center;
+	text-align: center;
+}
+
+.mpd-trust-badges--align-left .mpd-trust-badges-header,
+.mpd-trust-badges--align-left .mpd-trust-badges-list {
+	justify-content: flex-start;
+	text-align: left;
+}
+
+.mpd-trust-badges--align-right .mpd-trust-badges-header,
+.mpd-trust-badges--align-right .mpd-trust-badges-list {
+	justify-content: flex-end;
+	text-align: right;
+}
+
+/* Badge Item */
+.mpd-trust-badge-item {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	text-decoration: none;
+}
+
+.mpd-trust-badge-link {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	text-decoration: none;
+	color: inherit;
+}
+
+/* Badge Card */
+.mpd-trust-badge-card {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	overflow: hidden;
+	border-radius: 4px;
+	transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, filter 0.25s ease, opacity 0.25s ease;
+}
+
+.mpd-trust-badge-card svg {
+	display: block;
+	width: auto;
+	height: var(--mpd-badge-height, 34px);
+	max-width: 100%;
+	object-fit: contain;
+}
+
+.mpd-trust-badge-card img {
+	display: block;
+	width: auto;
+	height: var(--mpd-badge-height, 34px);
+	max-width: 100%;
+	object-fit: contain;
+}
+
+/* Hover Animations */
+.mpd-trust-badges--hover-scale .mpd-trust-badge-card:hover {
+	transform: scale(1.08);
+}
+
+.mpd-trust-badges--hover-lift .mpd-trust-badge-card:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Style Presets */
+/* Grayscale */
+.mpd-trust-badges--grayscale .mpd-trust-badge-card {
+	filter: grayscale(100%);
+	opacity: 0.8;
+}
+
+.mpd-trust-badges--grayscale .mpd-trust-badge-card:hover {
+	filter: grayscale(0%);
+	opacity: 1;
+}
+
+/* Outlined Box */
+.mpd-trust-badges--outline .mpd-trust-badge-card {
+	border: 1px solid #e2e8f0;
+	background: #ffffff;
+	padding: 4px 6px;
+}
+
+/* Soft Card */
+.mpd-trust-badges--card .mpd-trust-badge-card {
+	background: #ffffff;
+	border: 1px solid #f1f5f9;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+	padding: 4px 6px;
+}
+
+/* Badge Label */
+.mpd-trust-badge-label {
+	margin-top: 4px;
+	font-size: 11px;
+	font-weight: 500;
+	color: #64748b;
+	text-align: center;
+	line-height: 1.2;
+}

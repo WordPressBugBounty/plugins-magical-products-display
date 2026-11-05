@@ -77,21 +77,27 @@ class Loader {
 			'MPD\\MagicalShopBuilder\\Admin\\REST_API'               => 'admin/class-mpd-rest-api.php',
 			'MPD\\MagicalShopBuilder\\Admin\\Settings'               => 'admin/class-mpd-settings.php',
 			'MPD\\MagicalShopBuilder\\Admin\\Product_Video_Metabox'  => 'admin/class-mpd-product-video-metabox.php',
-			
+
 			// Core classes.
 			'MPD\\MagicalShopBuilder\\Core\\Activator'     => 'core/class-mpd-activator.php',
 			'MPD\\MagicalShopBuilder\\Core\\Deactivator'   => 'core/class-mpd-deactivator.php',
 			'MPD\\MagicalShopBuilder\\Core\\Upgrader'      => 'core/class-mpd-upgrader.php',
 			'MPD\\MagicalShopBuilder\\Core\\I18n'          => 'core/class-mpd-i18n.php',
 			'MPD\\MagicalShopBuilder\\Core\\Pro'           => 'core/class-mpd-pro.php',
-			
+
 			// Template classes.
 			'MPD\\MagicalShopBuilder\\Templates\\Template_Builder'    => 'templates/class-mpd-template-builder.php',
 			'MPD\\MagicalShopBuilder\\Templates\\Template_Conditions' => 'templates/class-mpd-template-conditions.php',
 			'MPD\\MagicalShopBuilder\\Templates\\Template_Renderer'   => 'templates/class-mpd-template-renderer.php',
 			'MPD\\MagicalShopBuilder\\Templates\\Template_Manager'    => 'templates/class-mpd-template-manager.php',
 			'MPD\\MagicalShopBuilder\\Templates\\Template_Document'   => 'templates/class-mpd-template-document.php',
-			
+
+			// Frontend classes.
+			'MPD\\MagicalShopBuilder\\Frontend\\Preloader'      => 'frontend/class-mpd-preloader.php',
+			'MPD\\MagicalShopBuilder\\Frontend\\Performance'    => 'frontend/class-mpd-performance.php',
+			'MPD\\MagicalShopBuilder\\Frontend\\Cart_Drawer'    => 'frontend/class-mpd-cart-drawer.php',
+			'MPD\\MagicalShopBuilder\\Frontend\\Funnel_Checkout' => 'frontend/class-mpd-funnel-checkout.php',
+
 			// Widget base classes.
 			'MPD\\MagicalShopBuilder\\Widgets\\Base\\Widget_Base'     => 'widgets/base/class-mpd-widget-base.php',
 		);

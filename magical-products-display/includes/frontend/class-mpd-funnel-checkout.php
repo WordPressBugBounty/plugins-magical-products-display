@@ -6,7 +6,7 @@
  * order bump toggling, and quick COD checkout field management.
  *
  * @package Magical_Shop_Builder
- * @since   2.2.0
+ * @since   2.1.1
  */
 
 namespace MPD\MagicalShopBuilder\Frontend;
@@ -72,6 +72,9 @@ class Funnel_Checkout {
 		// AJAX: Update OPC Product Quantity or Variation.
 		add_action( 'wp_ajax_mpd_opc_update_product', array( $this, 'ajax_update_product' ) );
 		add_action( 'wp_ajax_nopriv_mpd_opc_update_product', array( $this, 'ajax_update_product' ) );
+
+		// Re-validate bump prices against server-side OPC settings before totals.
+		add_action( 'woocommerce_before_calculate_totals', array( $this, 'validate_bump_prices' ), 5, 1 );
 
 		// Quick COD Mode Field Filtering.
 		add_filter( 'woocommerce_checkout_fields', array( $this, 'filter_quick_cod_fields' ), 999 );
@@ -155,6 +158,40 @@ class Funnel_Checkout {
 	}
 
 	/**
+	 * Resolve the server-side bump price for a given bump product.
+	 *
+	 * The client-supplied custom_price is never trusted directly. We
+	 * look up the price from the active OPC widget settings rendered on
+	 * the current page (stored server-side via set_active_opc_settings()).
+	 * If no OPC settings are active, we also accept the bump product's
+	 * regular WooCommerce price (no custom discount). Returns null when
+	 * no reliable price can be determined, meaning the regular product
+	 * price applies.
+	 *
+	 * @param int $bump_id Bump product ID.
+	 * @param \WC_Product $product Bump product object.
+	 * @return float|null Server-verified bump price or null for regular price.
+	 */
+	private static function resolve_bump_price( $bump_id, $product ) {
+		$settings = self::get_active_opc_settings();
+
+		if ( is_array( $settings ) && ! empty( $settings['bump_product_id'] ) && (int) $settings['bump_product_id'] === (int) $bump_id ) {
+			if ( ! empty( $settings['bump_custom_price'] ) ) {
+				$price = (float) $settings['bump_custom_price'];
+				if ( $price >= 0 ) {
+					return $price;
+				}
+			}
+			return null;
+		}
+
+		// No active OPC context for this bump product — fall back to the
+		// product's regular price. Any client-supplied custom price is ignored.
+		$regular = $product ? (float) $product->get_price() : 0;
+		return $regular > 0 ? $regular : null;
+	}
+
+	/**
 	 * Handle direct buy now URL parameter.
 	 *
 	 * E.g., https://example.com/checkout/?mpd_buy_now=42&qty=2
@@ -179,6 +216,14 @@ class Funnel_Checkout {
 		$qty          = isset( $_GET['qty'] ) ? max( 1, absint( $_GET['qty'] ) ) : 1;
 		$variation_id = isset( $_GET['variation_id'] ) ? absint( $_GET['variation_id'] ) : 0;
 		$clear_cart   = ! isset( $_GET['keep_cart'] );
+
+		// Validate variation belongs to this parent product.
+		if ( $variation_id > 0 ) {
+			$variation = wc_get_product( $variation_id );
+			if ( ! $variation || ! $variation instanceof \WC_Product_Variation || (int) $variation->get_parent_id() !== (int) $product_id || ! $variation->is_purchasable() || ! $variation->is_in_stock() ) {
+				return;
+			}
+		}
 
 		if ( $clear_cart ) {
 			WC()->cart->empty_cart();
@@ -210,7 +255,6 @@ class Funnel_Checkout {
 
 		$bump_id      = isset( $_POST['bump_id'] ) ? absint( $_POST['bump_id'] ) : 0;
 		$action_type  = isset( $_POST['action_type'] ) ? sanitize_key( $_POST['action_type'] ) : 'add';
-		$custom_price = isset( $_POST['custom_price'] ) && '' !== $_POST['custom_price'] ? (float) sanitize_text_field( wp_unslash( $_POST['custom_price'] ) ) : null;
 
 		if ( ! $bump_id ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Invalid offer product.', 'magical-products-display' ) ) );
@@ -220,6 +264,11 @@ class Funnel_Checkout {
 		if ( ! $product || ! $product->is_purchasable() || ! $product->is_in_stock() ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Offer product is currently unavailable.', 'magical-products-display' ) ) );
 		}
+
+		// Resolve price server-side from OPC widget settings. Client
+		// supplied custom_price is intentionally ignored to prevent
+		// price tampering (e.g. adding a bump product at $0.01).
+		$custom_price = self::resolve_bump_price( $bump_id, $product );
 
 		// Find if bump item is already in cart.
 		$existing_cart_key = '';
@@ -299,6 +348,13 @@ class Funnel_Checkout {
 		$product = wc_get_product( $variation_id > 0 ? $variation_id : $product_id );
 		if ( ! $product || ! $product->is_purchasable() || ! $product->is_in_stock() ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Product is currently unavailable.', 'magical-products-display' ) ) );
+		}
+
+		// Validate variation belongs to this parent product.
+		if ( $variation_id > 0 ) {
+			if ( ! $product instanceof \WC_Product_Variation || (int) $product->get_parent_id() !== (int) $product_id ) {
+				wp_send_json_error( array( 'message' => esc_html__( 'Product is currently unavailable.', 'magical-products-display' ) ) );
+			}
 		}
 
 		// Keep any existing order bump products if clearing cart.
@@ -388,6 +444,63 @@ class Funnel_Checkout {
 		foreach ( $cart_obj->get_cart() as $cart_item ) {
 			if ( ! empty( $cart_item['mpd_is_order_bump'] ) && isset( $cart_item['mpd_bump_custom_price'] ) ) {
 				$cart_item['data']->set_price( (float) $cart_item['mpd_bump_custom_price'] );
+			}
+		}
+	}
+
+	/**
+	 * Re-validate stored bump prices against server-side OPC settings.
+	 *
+	 * Defense-in-depth: cart item data can be tampered with via session
+	 * manipulation or stale client-set values. On every totals
+	 * calculation, overwrite any stored bump price that does not match
+	 * the price resolved from the active OPC widget settings. If there
+	 * is no active OPC context, reset to the product's regular price.
+	 *
+	 * @param \WC_Cart $cart_obj Cart object.
+	 * @return void
+	 */
+	public function validate_bump_prices( $cart_obj ) {
+		if ( ! $cart_obj || ! method_exists( $cart_obj, 'get_cart' ) ) {
+			return;
+		}
+
+		$settings = self::get_active_opc_settings();
+		$has_opc  = is_array( $settings ) && ! empty( $settings['bump_product_id'] );
+
+		foreach ( $cart_obj->get_cart() as $cart_item_key => $cart_item ) {
+			if ( empty( $cart_item['mpd_is_order_bump'] ) ) {
+				continue;
+			}
+
+			$bump_id = (int) ( $cart_item['product_id'] ?? 0 );
+			if ( ! $bump_id ) {
+				continue;
+			}
+
+			$product = isset( $cart_item['data'] ) && is_object( $cart_item['data'] ) ? $cart_item['data'] : wc_get_product( $bump_id );
+			if ( ! $product ) {
+				continue;
+			}
+
+			if ( $has_opc && (int) $settings['bump_product_id'] === $bump_id ) {
+				$verified = self::resolve_bump_price( $bump_id, $product );
+				// Store verified price back into cart item data via filter-free update.
+				if ( null !== $verified ) {
+					$cart_obj->cart_contents[ $cart_item_key ]['mpd_bump_custom_price'] = $verified;
+				} else {
+					unset( $cart_obj->cart_contents[ $cart_item_key ]['mpd_bump_custom_price'] );
+				}
+			} elseif ( ! $has_opc && isset( $cart_item['mpd_bump_custom_price'] ) ) {
+				// No OPC context — a stored custom price cannot be trusted.
+				// Keep the cart item but drop the custom price so regular
+				// product pricing applies on this calculation.
+				$regular = (float) $product->get_price();
+				if ( $regular > 0 ) {
+					$cart_obj->cart_contents[ $cart_item_key ]['mpd_bump_custom_price'] = $regular;
+				} else {
+					unset( $cart_obj->cart_contents[ $cart_item_key ]['mpd_bump_custom_price'] );
+				}
 			}
 		}
 	}
@@ -672,5 +785,7 @@ class Funnel_Checkout {
 	}
 }
 
-// Initialize on plugins_loaded.
+// Backwards-compatible initializer: get_instance() is a singleton, so
+// calling it here (on woocommerce_init) plus explicitly from the main
+// plugin's init_funnel_checkout() does not double-register hooks.
 add_action( 'woocommerce_init', array( __NAMESPACE__ . '\\Funnel_Checkout', 'get_instance' ) );

@@ -15,8 +15,12 @@ class MPD_AJAX_Search_Handler {
     public function __construct() {
         add_action('wp_ajax_mpd_ajax_search', array($this, 'handle_search_request'));
         add_action('wp_ajax_nopriv_mpd_ajax_search', array($this, 'handle_search_request'));
-        
-        // Rate limiting cleanup
+
+        // Rate limiting cleanup — schedule once on init, not per-request.
+        add_action('init', array($this, 'schedule_cleanup'), 20);
+    }
+
+    public function schedule_cleanup() {
         add_action('mpd_cleanup_rate_limits', array($this, 'cleanup_rate_limits'));
         if (!wp_next_scheduled('mpd_cleanup_rate_limits')) {
             wp_schedule_event(time(), 'hourly', 'mpd_cleanup_rate_limits');
@@ -421,17 +425,21 @@ class MPD_AJAX_Search_Handler {
      */
     public function cleanup_rate_limits() {
         global $wpdb;
-        
-        // Delete expired rate limit transients
-        $wpdb->query(
-            $wpdb->prepare(
-                "DELETE FROM {$wpdb->options} 
-                 WHERE option_name LIKE %s 
-                 AND option_value < %d",
-                '_transient_timeout_mpd_rate_limit_%',
-                time()
-            )
+
+        // Delete expired rate limit transients (single-site + multisite).
+        $patterns = array(
+            '_transient_timeout_mpd_rate_limit_',
+            '_site_transient_timeout_mpd_rate_limit_',
         );
+        foreach ( $patterns as $pattern ) {
+            $wpdb->query(
+                $wpdb->prepare(
+                    "DELETE FROM {$wpdb->options} WHERE option_name LIKE %s AND option_value < %d", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+                    $wpdb->esc_like( $pattern ) . '%',
+                    current_time( 'timestamp' )
+                )
+            );
+        }
     }
 }
 

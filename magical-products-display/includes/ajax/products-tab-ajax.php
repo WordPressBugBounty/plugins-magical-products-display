@@ -74,6 +74,12 @@ class MPD_Products_Tab_Ajax
             $key = sanitize_key($key);
             if (is_array($value)) {
                 $sanitized[$key] = self::sanitize_settings($value);
+            } elseif (is_bool($value)) {
+                $sanitized[$key] = (bool) $value;
+            } elseif (is_int($value)) {
+                $sanitized[$key] = (int) $value;
+            } elseif (is_float($value)) {
+                $sanitized[$key] = (float) $value;
             } else {
                 $sanitized[$key] = sanitize_text_field($value);
             }
@@ -333,7 +339,6 @@ class MPD_Products_Tab_Ajax
             $product = wc_get_product( get_the_ID() );
             $GLOBALS['product'] = $product;
         }
-        $rating_count = ( $product && $product instanceof \WC_Product ) ? $product->get_rating_count() : 0;
         $mgpdeg_product_style = $settings['mgpdeg_product_style'];
         $mgpdeg_show_title = $settings['mgpdeg_show_title'];
         $mgpdeg_crop_title = intval($settings['mgpdeg_crop_title']);

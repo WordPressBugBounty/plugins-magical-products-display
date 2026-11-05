@@ -151,6 +151,9 @@ class Activator {
 	 * @return void
 	 */
 	private static function create_tables() {
+		// NOTE: Template conditions are stored in postmeta
+		// (_mpd_template_conditions). This table is kept for backward
+		// compatibility with older installs but is not used at runtime.
 		global $wpdb;
 
 		$charset_collate = $wpdb->get_charset_collate();

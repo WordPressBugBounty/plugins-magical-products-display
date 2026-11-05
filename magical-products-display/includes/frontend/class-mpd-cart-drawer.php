@@ -482,7 +482,7 @@ class Cart_Drawer {
 			wc_load_cart();
 		}
 
-		if ( ! $nonce_verified && ( ! is_object( WC()->session ) || ! WC()->session->has_session() ) ) {
+		if ( ! $nonce_verified ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Security check failed. Please refresh the page.', 'magical-products-display' ) ) );
 		}
 
@@ -542,7 +542,7 @@ class Cart_Drawer {
 			wc_load_cart();
 		}
 
-		if ( ! $nonce_verified && ( ! is_object( WC()->session ) || ! WC()->session->has_session() ) ) {
+		if ( ! $nonce_verified ) {
 			wp_send_json_error( array( 'message' => esc_html__( 'Security check failed. Please refresh the page.', 'magical-products-display' ) ) );
 		}
 

@@ -271,7 +271,14 @@ class REST_API {
 	 * @return bool|WP_Error
 	 */
 	public function check_admin_permission() {
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_mpd_templates' ) ) {
+			return new WP_Error(
+				'rest_forbidden',
+				__( 'You do not have permission to access this resource.', 'magical-products-display' ),
+				array( 'status' => 403 )
+			);
+		}
+		if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'edit_mpd_templates' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
 				__( 'You do not have permission to access this resource.', 'magical-products-display' ),
@@ -334,14 +341,20 @@ class REST_API {
 	 * @return WP_REST_Response
 	 */
 	public function get_templates( $request ) {
-		$type = $request->get_param( 'type' );
-		
+		$type           = $request->get_param( 'type' );
+		$page           = max( 1, absint( $request->get_param( 'page' ) ) );
+		$per_page_param = $request->get_param( 'per_page' );
+		$per_page       = $per_page_param ? max( 1, min( 100, absint( $per_page_param ) ) ) : -1;
+
 		$args = array(
 			'post_type'      => 'mpd_template',
-			'posts_per_page' => -1,
+			'posts_per_page' => $per_page,
+			'paged'          => $page,
 			'post_status'    => 'publish',
 			'orderby'        => 'title',
 			'order'          => 'ASC',
+			'fields'         => 'ids',
+			'no_found_rows'  => false,
 		);
 
 		if ( $type ) {
@@ -353,14 +366,22 @@ class REST_API {
 			);
 		}
 
-		$templates = get_posts( $args );
-		$data      = array();
+		$query = new \WP_Query( $args );
+		$data  = array();
 
-		foreach ( $templates as $template ) {
+		foreach ( $query->posts as $template_id ) {
+			$template = get_post( $template_id );
+			if ( ! $template ) {
+				continue;
+			}
 			$data[] = $this->prepare_template_for_response( $template );
 		}
 
-		return new WP_REST_Response( $data, 200 );
+		$response = new WP_REST_Response( $data, 200 );
+		$response->header( 'X-WP-Total', (int) $query->found_posts );
+		$response->header( 'X-WP-TotalPages', (int) $query->max_num_pages );
+
+		return $response;
 	}
 
 	/**
@@ -404,7 +425,17 @@ class REST_API {
 			$layout = 'elementor_canvas';
 		}
 
-		if ( empty( $title ) || empty( $type ) ) {
+		// Validate template type against allow-list.
+		$allowed_types = array( 'single-product', 'archive-product', 'cart', 'checkout', 'my-account', 'empty-cart', 'thankyou' );
+		if ( empty( $type ) || ! in_array( $type, $allowed_types, true ) ) {
+			return new WP_Error(
+				'invalid_type',
+				__( 'Invalid template type.', 'magical-products-display' ),
+				array( 'status' => 400 )
+			);
+		}
+
+		if ( empty( $title ) ) {
 			return new WP_Error(
 				'missing_params',
 				__( 'Title and type are required.', 'magical-products-display' ),
@@ -485,6 +516,9 @@ class REST_API {
 			update_post_meta( $id, '_mpd_template_type', sanitize_key( $type ) );
 		}
 
+		// Invalidate template cache so changes are visible immediately.
+		\MPD\MagicalShopBuilder\Templates\Template_Manager::instance()->flush_template_cache();
+
 		$template = get_post( $id );
 
 		return new WP_REST_Response(
@@ -518,6 +552,8 @@ class REST_API {
 		}
 
 		wp_delete_post( $id, true );
+
+		\MPD\MagicalShopBuilder\Templates\Template_Manager::instance()->flush_template_cache();
 
 		return new WP_REST_Response(
 			array(
@@ -578,7 +614,7 @@ class REST_API {
 		}
 
 		$conditions = $request->get_param( 'conditions' );
-		
+
 		if ( ! is_array( $conditions ) ) {
 			$conditions = array();
 		}
@@ -594,6 +630,8 @@ class REST_API {
 		}
 
 		update_post_meta( $id, '_mpd_template_conditions', $sanitized );
+
+		\MPD\MagicalShopBuilder\Templates\Template_Manager::instance()->flush_template_cache();
 
 		return new WP_REST_Response(
 			array(
@@ -666,6 +704,8 @@ class REST_API {
 
 		$new_template = get_post( $new_post_id );
 
+		\MPD\MagicalShopBuilder\Templates\Template_Manager::instance()->flush_template_cache();
+
 		return new WP_REST_Response(
 			array(
 				'success'  => true,
@@ -722,26 +762,20 @@ class REST_API {
 		$enabled       = get_option( 'mpd_enabled_widgets', array() );
 		$known_widgets = get_option( 'mpd_known_widgets', array() );
 
-		// If no widgets have been configured yet (fresh install), enable all by default.
+		// Fresh install: enable all by default (in-memory only — writes
+		// happen on the next explicit update_widgets() call).
 		if ( empty( $known_widgets ) ) {
 			$enabled       = array_keys( $widgets );
 			$known_widgets = array_keys( $widgets );
-			update_option( 'mpd_known_widgets', $known_widgets );
 		} else {
-			// For existing installations, check if there are truly new widgets (not in known list).
-			// Enable them by default (except Pro widgets for free users).
 			$all_widget_ids = array_keys( $widgets );
 			$new_widgets    = array_diff( $all_widget_ids, $known_widgets );
-			
-			// Add new non-Pro widgets as enabled and mark them as known.
-			if ( ! empty( $new_widgets ) ) {
-				foreach ( $new_widgets as $widget_id ) {
-					if ( isset( $widgets[ $widget_id ] ) && ! $widgets[ $widget_id ]['is_pro'] ) {
-						$enabled[] = $widget_id;
-					}
-					$known_widgets[] = $widget_id;
+
+			foreach ( $new_widgets as $widget_id ) {
+				if ( isset( $widgets[ $widget_id ] ) && ! $widgets[ $widget_id ]['is_pro'] ) {
+					$enabled[] = $widget_id;
 				}
-				update_option( 'mpd_known_widgets', $known_widgets );
+				$known_widgets[] = $widget_id;
 			}
 		}
 
@@ -977,6 +1011,7 @@ class REST_API {
 			'type'       => $type ? $type : 'single-product',
 			'layout'     => $layout ? $layout : 'elementor_canvas',
 			'conditions' => is_array( $conditions ) ? $conditions : array(),
+			'priority'   => absint( get_post_meta( $template->ID, '_mpd_template_priority', true ) ),
 			'editUrl'    => add_query_arg(
 				array(
 					'post'   => $template->ID,
@@ -992,6 +1027,11 @@ class REST_API {
 
 	/**
 	 * Get available widgets.
+	 *
+	 * NOTE: This list is intentionally maintained alongside
+	 * includes/class-mpd-elementor.php registration. When adding a new
+	 * Elementor widget, add an entry here too (and vice versa) so the
+	 * admin dashboard toggle stays in sync with the Elementor panel.
 	 *
 	 * @since 2.0.0
 	 *
@@ -1413,26 +1453,53 @@ class REST_API {
 	 * @return array
 	 */
 	private function get_settings_args() {
-		return array(
-			'general'       => array(
-				'type' => 'object',
-			),
-			'single_product' => array(
-				'type' => 'object',
-			),
-			'cart_checkout' => array(
-				'type' => 'object',
-			),
-			'my_account'    => array(
-				'type' => 'object',
-			),
-			'performance'   => array(
-				'type' => 'object',
-			),
-			'preloader'     => array(
-				'type' => 'object',
-			),
+		$object_arg = array(
+			'type'              => 'object',
+			'sanitize_callback' => array( $this, 'sanitize_settings_object' ),
 		);
+		return array(
+			'general'        => $object_arg,
+			'single_product' => $object_arg,
+			'cart_checkout'  => $object_arg,
+			'my_account'     => $object_arg,
+			'performance'    => $object_arg,
+			'preloader'      => $object_arg,
+		);
+	}
+
+	/**
+	 * Sanitize a nested settings object defensively.
+	 *
+	 * Keeps only scalar values and one level of arrays, sanitized
+	 * with sanitize_text_field / sanitize_key. Prevents arbitrary
+	 * nested objects from reaching the option write.
+	 *
+	 * @param mixed $value Settings object.
+	 * @return array
+	 */
+	public function sanitize_settings_object( $value ) {
+		if ( ! is_array( $value ) ) {
+			return array();
+		}
+
+		$sanitized = array();
+		foreach ( $value as $key => $item ) {
+			$key = sanitize_key( $key );
+			if ( is_array( $item ) ) {
+				$nested = array();
+				foreach ( $item as $nkey => $nval ) {
+					$nkey = sanitize_key( $nkey );
+					$nested[ $nkey ] = is_scalar( $nval ) ? sanitize_text_field( (string) $nval ) : '';
+				}
+				$sanitized[ $key ] = $nested;
+			} elseif ( is_bool( $item ) ) {
+				$sanitized[ $key ] = $item;
+			} elseif ( is_scalar( $item ) ) {
+				$sanitized[ $key ] = sanitize_text_field( (string) $item );
+			}
+		}
+
+		return $sanitized;
 	}
 
 	/**
@@ -1517,11 +1584,27 @@ class REST_API {
 			'status'       => array( 'wc-completed', 'wc-processing' ),
 			'date_created' => '>=' . $this->get_date_after( $period ),
 			'return'       => 'ids',
+			'limit'        => 1,
+			'orderby'      => 'date',
+			'order'        => 'ASC',
 		);
 
 		$orders = wc_get_orders( $args );
 
-		return count( $orders );
+		if ( is_array( $orders ) && isset( $orders['total'] ) ) {
+			return (int) $orders['total'];
+		}
+
+		// Fallback: legacy wc_get_orders may return an array of IDs.
+		if ( is_array( $orders ) ) {
+			return count( $orders );
+		}
+
+		if ( is_object( $orders ) && method_exists( $orders, 'get_total' ) ) {
+			return (int) $orders->get_total();
+		}
+
+		return 0;
 	}
 
 	/**
@@ -1537,16 +1620,33 @@ class REST_API {
 			return 0;
 		}
 
+		// Cap the query to avoid loading every order into memory on
+		// large stores. Revenue is an approximation capped at 1000 orders.
 		$args = array(
 			'status'       => array( 'wc-completed', 'wc-processing' ),
 			'date_created' => '>=' . $this->get_date_after( $period ),
+			'return'       => 'ids',
+			'limit'        => 1000,
+			'paginate'     => true,
+			'page'         => 1,
 		);
 
-		$orders  = wc_get_orders( $args );
-		$revenue = 0;
+		$result = wc_get_orders( $args );
 
-		foreach ( $orders as $order ) {
-			$revenue += (float) $order->get_total();
+		if ( is_array( $result ) && isset( $result['orders'] ) ) {
+			$order_ids = $result['orders'];
+		} elseif ( is_array( $result ) ) {
+			$order_ids = $result;
+		} else {
+			return 0;
+		}
+
+		$revenue = 0;
+		foreach ( $order_ids as $order_id ) {
+			$order = function_exists( 'wc_get_order' ) ? wc_get_order( $order_id ) : null;
+			if ( $order ) {
+				$revenue += (float) $order->get_total();
+			}
 		}
 
 		return round( $revenue, 2 );

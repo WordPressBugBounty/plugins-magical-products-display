@@ -18,6 +18,8 @@ class mpdAssetsManagement
         add_action('wp_enqueue_scripts', [__CLASS__, 'register_widget_scripts'], 5);
         add_action('elementor/frontend/after_enqueue_styles', [__CLASS__, 'frontend_widget_styles']);
         add_action("elementor/frontend/after_enqueue_scripts", [__CLASS__, 'frontend_widget_scripts']);
+        // Fallback localization for non-Elementor pages (custom templates, OPC/Funnel pages).
+        add_action('wp_enqueue_scripts', [__CLASS__, 'localize_frontend_scripts'], 20);
         add_action('admin_enqueue_scripts', [__CLASS__, 'admin_scripts']);
         add_action('elementor/editor/after_enqueue_styles', [__CLASS__, 'editor_widget_styles']);
         add_action('elementor/preview/enqueue_styles', [__CLASS__, 'preview_widget_styles']);
@@ -55,7 +57,14 @@ class mpdAssetsManagement
         // Enqueue the script
         wp_enqueue_script('mpd-global-widgets');
     }
-
+    
+    /**
+     * Register widget styles early so get_style_depends() works on frontend.
+     * This must run before Elementor processes widget dependencies.
+     *
+     * @since 2.0.0
+     * @return void
+     */
     /**
      * Enqueue sliding cart drawer assets globally on frontend.
      *
@@ -74,14 +83,7 @@ class mpdAssetsManagement
             wp_enqueue_script('mpd-cart-drawer');
         }
     }
-    
-    /**
-     * Register widget styles early so get_style_depends() works on frontend.
-     * This must run before Elementor processes widget dependencies.
-     *
-     * @since 2.0.0
-     * @return void
-     */
+
     public static function register_widget_styles()
     {
         // --- Page-type specific widget styles ---
@@ -98,6 +100,7 @@ class mpdAssetsManagement
         wp_register_style('mpd-sticky-add-to-cart', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/widgets/mpd-sticky-add-to-cart.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
         wp_register_style('mpd-free-shipping-bar', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/widgets/mpd-free-shipping-bar.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
         wp_register_style('mpd-one-page-checkout', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/widgets/mpd-one-page-checkout.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
+        wp_register_style('mpd-trust-badges', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'css/widgets/mpd-trust-badges.css', array(), MAGICAL_PRODUCTS_DISPLAY_VERSION, 'all');
 
         // --- Shared / library styles (also in frontend_widget_styles, registered early as safety net) ---
         // These must be registered before the template renderer parses widget deps at priority 8.
@@ -133,7 +136,12 @@ class mpdAssetsManagement
         if (!wp_script_is('swiper', 'registered')) {
             wp_register_script('swiper', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/swiper.min.js', array('jquery'), '8.4.7', true);
         }
-        wp_register_script('mg-swiper', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/swiper.min.js', array('jquery'), '8.4.7', true);
+        // mg-swiper is an alias pointing at the same handle — widgets that
+        // depend on it reuse the single 'swiper' registration instead of
+        // loading the library twice.
+        if (!wp_script_is('mg-swiper', 'registered')) {
+            wp_register_script('mg-swiper', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/swiper.min.js', array('jquery', 'swiper'), '8.4.7', true);
+        }
         wp_register_script('mgproducts-script', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/main-scripts.js', array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script('mgproducts-slider', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets-active/products-slider-active.js', array('jquery'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
         wp_register_script('mgproducts-carousel', MAGICAL_PRODUCTS_DISPLAY_ASSETS . 'js/widgets-active/products-carousel-active.js', array('jquery', 'swiper'), MAGICAL_PRODUCTS_DISPLAY_VERSION, true);
@@ -172,19 +180,32 @@ class mpdAssetsManagement
             wp_enqueue_style('mpd-cart-drawer');
         }
     }
-    public static function frontend_widget_scripts()
+    /**
+     * Fallback localization so AJAX objects/nonces exist on pages where
+     * the Elementor frontend hook does not fire (custom templates, OPC).
+     * Safe to call multiple times — wp_localize_script() overwrites.
+     */
+    public static function localize_frontend_scripts()
     {
-        // All script handles are already registered in register_widget_scripts().
-        // This method only adds localization data and enqueues the main script.
+        self::localize_add_to_cart();
+        self::localize_global_widgets();
+        self::localize_tab_ajax();
+        self::localize_ajax_search();
+        self::localize_shop_archive();
+        self::localize_checkout_widgets();
+        self::localize_my_account_widgets();
+    }
 
-        // Localize Add to Cart script here (not at registration) so nonce is always fresh,
-        // even on pages served from a full-page cache.
+    private static function localize_add_to_cart()
+    {
         wp_localize_script( 'mpd-add-to-cart', 'mpd_add_to_cart_params', array(
             'ajax_url' => admin_url( 'admin-ajax.php' ),
             'nonce'    => wp_create_nonce( 'mpd_single_add_to_cart' ),
         ) );
+    }
 
-        // Localize Global Widgets script (Wishlist, Comparison, Header Cart, Recently Viewed).
+    private static function localize_global_widgets()
+    {
         wp_localize_script('mpd-global-widgets', 'mpdGlobalWidgets', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('mpd_global_widgets_nonce'),
@@ -200,24 +221,27 @@ class mpdAssetsManagement
                 'alreadyInComparison' => esc_html__('Already in comparison', 'magical-products-display'),
             )
         ));
-        
-        // Enqueue main script.
-        wp_enqueue_script('mgproducts-script');
-        
-        // Localize Products Tab AJAX script.
+    }
+
+    private static function localize_tab_ajax()
+    {
         wp_localize_script('mpd-products-tab-ajax', 'mpdTabAjax', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('mpd_tab_ajax_nonce')
         ));
-        
-        // Localize AJAX Search script.
+    }
+
+    private static function localize_ajax_search()
+    {
         wp_localize_script('mpd-ajax-search', 'mpdAjaxSearch', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'shopUrl' => class_exists('WooCommerce') ? get_permalink(wc_get_page_id('shop')) : home_url('/shop/'),
             'currencySymbol' => class_exists('WooCommerce') ? get_woocommerce_currency_symbol() : '$'
         ));
-        
-        // Localize Shop Archive script.
+    }
+
+    private static function localize_shop_archive()
+    {
         wp_localize_script('mpd-shop-archive', 'mpdShopArchive', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('mpd_shop_archive_nonce'),
@@ -229,14 +253,18 @@ class mpdAssetsManagement
                 'noProducts' => esc_html__('No products found matching your criteria.', 'magical-products-display'),
             )
         ));
-        
-        // Localize Checkout Widgets script.
+    }
+
+    private static function localize_checkout_widgets()
+    {
         wp_localize_script('mpd-checkout-widgets', 'mpd_checkout_params', array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce'    => wp_create_nonce('mpd-checkout-nonce'),
         ));
-        
-        // Localize My Account Widgets script.
+    }
+
+    private static function localize_my_account_widgets()
+    {
         wp_localize_script('mpd-my-account-widgets', 'mpdMyAccountWidgets', array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce'   => wp_create_nonce('mpd_my_account_nonce'),
@@ -247,27 +275,18 @@ class mpdAssetsManagement
                 'fileTooLarge'    => esc_html__('File is too large. Maximum size is 2MB.', 'magical-products-display'),
             )
         ));
+    }
 
-        // Localize Sticky Add to Cart script if WooCommerce is active.
-        if (class_exists('WooCommerce')) {
-            wp_localize_script('mpd-sticky-add-to-cart', 'mpdStickyCartParams', array(
-                'ajaxUrl' => admin_url('admin-ajax.php'),
-                'nonce'   => wp_create_nonce('mpd_single_add_to_cart'),
-                'i18n'    => array(
-                    'added' => esc_html__('Added!', 'magical-products-display'),
-                ),
-            ));
+    public static function frontend_widget_scripts()
+    {
+        // All script handles are already registered in register_widget_scripts().
+        // Localization is handled by localize_frontend_scripts() on wp_enqueue_scripts
+        // so it works on non-Elementor pages too. Re-localize here to ensure
+        // fresh nonces when Elementor frontend hook fires.
+        self::localize_frontend_scripts();
 
-            // Localize One-Page Checkout and Order Bump scripts.
-            wp_localize_script('mpd-one-page-checkout', 'mpdOPCParams', array(
-                'ajaxUrl' => admin_url('admin-ajax.php'),
-                'nonce'   => wp_create_nonce('mpd_funnel_nonce'),
-                'i18n'    => array(
-                    'updating' => esc_html__('Updating checkout...', 'magical-products-display'),
-                    'error'    => esc_html__('Something went wrong. Please try again.', 'magical-products-display'),
-                ),
-            ));
-        }
+        // Enqueue main script.
+        wp_enqueue_script('mgproducts-script');
     }
     /**
      * Init admin js
@@ -337,6 +356,7 @@ class mpdAssetsManagement
             'mpd-sticky-add-to-cart',
             'mpd-free-shipping-bar',
             'mpd-one-page-checkout',
+            'mpd-trust-badges',
         );
 
         foreach ( $styles as $handle ) {

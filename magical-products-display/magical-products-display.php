@@ -3,7 +3,7 @@
  * Plugin Name:       Magical Shop Builder
  * Plugin URI:        https://wpthemespace.com/magical-shop-builder
  * Description:       Complete WooCommerce Shop Builder with Elementor - Build custom product pages, cart, checkout, my-account, Thank you page and more.
- * Version:           2.1.1
+ * Version:           2.1.2
  * Author:            Noor alam
  * Author URI:        https://wpthemespace.com
  * License:           GPL-2.0+
@@ -39,7 +39,7 @@ final class Magical_Shop_Builder {
 	 *
 	 * @var string The plugin version.
 	 */
-	const VERSION = '2.1.1';
+	const VERSION = '2.1.2';
 
 	/**
 	 * Minimum Elementor Version
@@ -121,6 +121,11 @@ final class Magical_Shop_Builder {
 		
 		add_action( 'init', array( $this, 'i18n' ) );
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
+
+		// Load AI Marketing Expert notice in admin.
+		if ( is_admin() ) {
+			require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'libs/aime-notice/aime-notice.php';
+		}
 
 		// Register custom cron schedules (must be available on every load for WP-Cron to work).
 		add_filter( 'cron_schedules', array( '\MPD\MagicalShopBuilder\Core\Activator', 'add_cron_schedules' ) );
@@ -719,6 +724,7 @@ final class Magical_Shop_Builder {
 	 */
 	private function init_funnel_checkout() {
 		require_once MAGICAL_PRODUCTS_DISPLAY_DIR . 'includes/frontend/class-mpd-funnel-checkout.php';
+		\MPD\MagicalShopBuilder\Frontend\Funnel_Checkout::get_instance();
 	}
 }
 

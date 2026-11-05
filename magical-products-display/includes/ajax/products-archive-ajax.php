@@ -355,6 +355,11 @@ class MPD_Products_Archive_Ajax {
             'order'          => $order,
         );
 
+        // Apply search query when provided (was parsed but never applied).
+        if ( ! empty( $request_filters['s'] ) ) {
+            $args['s'] = sanitize_text_field( $request_filters['s'] );
+        }
+
         // Handle special orderby cases
         if ( 'price' === $orderby ) {
             $args['meta_key'] = '_price';
@@ -480,8 +485,10 @@ class MPD_Products_Archive_Ajax {
         if ( isset( $request_filters['min_price'] ) || isset( $request_filters['max_price'] ) ) {
             $min_price = isset( $request_filters['min_price'] ) ? floatval( wc_clean( $request_filters['min_price'] ) ) : 0;
             $max_price = isset( $request_filters['max_price'] ) ? floatval( wc_clean( $request_filters['max_price'] ) ) : PHP_INT_MAX;
-            
-            // Use WooCommerce's native price meta query
+
+            // NOTE: _price reflects current display price. Variable products
+            // whose variation prices fall outside the range may be missed.
+            // This matches WooCommerce core behaviour outside the lookup tables.
             $args['meta_query']['price_filter'] = array(
                 'key'     => '_price',
                 'value'   => array( $min_price, $max_price ),

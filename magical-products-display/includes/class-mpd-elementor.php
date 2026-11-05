@@ -421,6 +421,7 @@ class MPD_Elementor {
 			'class-mpd-widget-wishlist.php'                => 'Wishlist',
 			'class-mpd-widget-header-wishlist-compare.php' => 'Header_Wishlist_Compare',
 			'class-mpd-widget-free-shipping-bar.php'       => 'Free_Shipping_Bar',
+			'class-mpd-widget-trust-badges.php'            => 'Trust_Badges',
 		);
 
 		$this->safe_register_widgets(

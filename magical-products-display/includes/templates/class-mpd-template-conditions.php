@@ -729,7 +729,7 @@ class Template_Conditions {
 	public function ajax_get_condition_options() {
 		check_ajax_referer( 'mpd_admin_nonce', 'nonce' );
 
-		if ( ! current_user_can( 'manage_options' ) ) {
+		if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_mpd_templates' ) ) {
 			wp_send_json_error( __( 'Permission denied.', 'magical-products-display' ) );
 		}
 

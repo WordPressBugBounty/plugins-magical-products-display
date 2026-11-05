@@ -2,8 +2,7 @@
 /**
  * Magical Shop Builder — Admin Notices
  *
- * 1. New-menu pointer notice  (Elementor-style "new home" banner)
- * 2. Pro upgrade / sales notice (white, animated, coupon, AJAX dismiss, 15-day reshow)
+ * Pro upgrade / sales notice (white, animated, coupon, AJAX dismiss, 15-day reshow)
  *
  * @package Magical_Shop_Builder
  * @since   2.0.0
@@ -14,124 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /* =========================================================================
- * 1. Menu Tooltip Notice — anchored to sidebar menu item (like Elementor)
- * ========================================================================= */
-
-if ( ! function_exists( 'mpd_display_menu_tooltip' ) ) {
-function mpd_display_menu_tooltip() {
-
-	if ( ! current_user_can( 'manage_options' ) ) {
-		return;
-	}
-
-	$current_version = defined( 'MAGICAL_PRODUCTS_DISPLAY_VERSION' )
-		? MAGICAL_PRODUCTS_DISPLAY_VERSION
-		: '2.0.0';
-
-	// Already dismissed for this version.
-	if ( get_option( 'mpd_menu_notice_version', '' ) === $current_version ) {
-		return;
-	}
-
-	wp_enqueue_style( 'admin-info-style' );
-
-	$dashboard_url = admin_url( 'admin.php?page=magical-shop-builder' );
-	$nonce         = wp_create_nonce( 'mpd_dismiss_menu_notice' );
-	?>
-	<div id="mpd-menu-tooltip" class="mpd-menu-tooltip" style="display:none" data-nonce="<?php echo esc_attr( $nonce ); ?>">
-		<div class="mpd-menu-tooltip__arrow"></div>
-		<div class="mpd-menu-tooltip__header">
-			<span class="mpd-menu-tooltip__icon">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-			</span>
-			<strong><?php esc_html_e( 'Magical Shop Builder has a new home', 'magical-products-display' ); ?></strong>
-		</div>
-		<div class="mpd-menu-tooltip__body">
-			<p>
-				<?php esc_html_e( 'Magical Products Display is now Magical Shop Builder. Build and grow your store with everything you need in one place.', 'magical-products-display' ); ?>
-				<a href="<?php echo esc_url( $dashboard_url ); ?>"><?php esc_html_e( 'Learn more', 'magical-products-display' ); ?></a>
-			</p>
-			<a href="<?php echo esc_url( $dashboard_url ); ?>" class="mpd-menu-tooltip__gotit"><?php esc_html_e( 'Got it', 'magical-products-display' ); ?></a>
-		</div>
-		<button type="button" class="mpd-menu-tooltip__dismiss" aria-label="<?php esc_attr_e( 'Dismiss', 'magical-products-display' ); ?>">
-			<span class="dashicons dashicons-dismiss"></span> <?php esc_html_e( 'Dismiss', 'magical-products-display' ); ?>
-		</button>
-	</div>
-
-	<script>
-	jQuery(function($){
-		var $tooltip = $('#mpd-menu-tooltip');
-		var $menuItem = $('#toplevel_page_magical-shop-builder');
-
-		if (!$menuItem.length || !$tooltip.length) return;
-
-		// Position the tooltip next to the menu item using getBoundingClientRect
-		// so it works correctly with position:fixed and scrolling
-		function positionTooltip() {
-			var rect = $menuItem[0].getBoundingClientRect();
-			var sidebarWidth = $('#adminmenuback').width() || $menuItem.closest('#adminmenuwrap').width() || 160;
-			var tooltipHeight = $tooltip.outerHeight();
-			var viewportHeight = $(window).height();
-			var topPos = rect.top + Math.round(rect.height / 2) - 50;
-
-			// Keep tooltip within viewport bounds
-			if (topPos + tooltipHeight > viewportHeight - 10) {
-				topPos = viewportHeight - tooltipHeight - 10;
-			}
-			if (topPos < 10) {
-				topPos = 10;
-			}
-
-			$tooltip.css({
-				top: topPos,
-				left: sidebarWidth + 12
-			}).show();
-		}
-
-		// Small delay so sidebar is fully rendered
-		setTimeout(positionTooltip, 300);
-		$(window).on('resize.mpdTooltip', positionTooltip);
-		$('#adminmenuwrap, window').on('scroll.mpdTooltip', positionTooltip);
-		$(document).on('scroll.mpdTooltip', positionTooltip);
-
-		// Dismiss
-		$tooltip.on('click', '.mpd-menu-tooltip__dismiss, .mpd-menu-tooltip__gotit', function(e) {
-			e.preventDefault();
-			$.post(ajaxurl, {action:'mpd_dismiss_menu_notice', nonce: $tooltip.data('nonce')});
-			$tooltip.addClass('mpd-menu-tooltip--out');
-			$(window).off('resize.mpdTooltip');
-			$('#adminmenuwrap, window').off('scroll.mpdTooltip');
-			$(document).off('scroll.mpdTooltip');
-			setTimeout(function(){ $tooltip.remove(); }, 400);
-		});
-	});
-	</script>
-	<?php
-}
-add_action( 'admin_footer', 'mpd_display_menu_tooltip' );
-}
-
-/**
- * AJAX: dismiss menu notice.
- */
-if ( ! function_exists( 'mpd_ajax_dismiss_menu_notice' ) ) {
-function mpd_ajax_dismiss_menu_notice() {
-	check_ajax_referer( 'mpd_dismiss_menu_notice', 'nonce' );
-
-	if ( ! current_user_can( 'manage_options' ) ) {
-		wp_send_json_error();
-	}
-
-	$ver = defined( 'MAGICAL_PRODUCTS_DISPLAY_VERSION' ) ? MAGICAL_PRODUCTS_DISPLAY_VERSION : '2.0.0';
-	update_option( 'mpd_menu_notice_version', $ver );
-	wp_send_json_success();
-}
-add_action( 'wp_ajax_mpd_dismiss_menu_notice', 'mpd_ajax_dismiss_menu_notice' );
-}
-
-
-/* =========================================================================
- * 2. Pro Sales Notice — white, animated, coupon, urgency, AJAX dismiss
+ * Pro Sales Notice — white, animated, coupon, urgency, AJAX dismiss
  * ========================================================================= */
 
 if ( ! function_exists( 'mpd_display_pro_sales_notice' ) ) {

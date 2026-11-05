@@ -79,12 +79,13 @@ class Pro {
 	 */
 	public static function refresh_status() {
 		self::$is_pro = null;
-		// Drop the persistent object-cache entry too, otherwise sites with
-		// an external object cache (Redis/Memcached) keep serving the stale
-		// value after license activation/deactivation.
+		// Drop the persistent object-cache entries too, otherwise sites
+		// with an external object cache (Redis/Memcached) keep serving
+		// the stale value after license activation/deactivation.
+		// Do NOT clear 'alloptions' — that forces a full autoload re-query
+		// site-wide and is very expensive on large sites.
 		wp_cache_delete( 'mgppro_is_active', 'options' );
 		wp_cache_delete( 'mgppro_has_valid_lic', 'options' );
-		wp_cache_delete( 'alloptions', 'options' );
 		return self::is_active();
 	}
 

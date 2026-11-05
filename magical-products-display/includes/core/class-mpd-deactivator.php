@@ -32,9 +32,10 @@ class Deactivator {
 	public static function deactivate() {
 		self::clear_scheduled_events();
 		self::clear_transients();
-		
-		// Flush rewrite rules.
-		flush_rewrite_rules();
+
+		// Defer rewrite flush to next init — calling flush_rewrite_rules()
+		// directly during deactivation can fail on some hosts.
+		update_option( 'mpd_flush_rewrite_rules', true );
 	}
 
 	/**
@@ -45,16 +46,18 @@ class Deactivator {
 	 * @return void
 	 */
 	private static function clear_scheduled_events() {
-		// Clear license check event.
-		$timestamp = wp_next_scheduled( 'mpd_daily_license_check' );
-		if ( $timestamp ) {
-			wp_unschedule_event( $timestamp, 'mpd_daily_license_check' );
-		}
+		$events = array(
+			'mpd_daily_license_check',
+			'mpd_weekly_cleanup',
+			'mpd_cleanup_rate_limits',
+		);
 
-		// Clear weekly cleanup event.
-		$timestamp = wp_next_scheduled( 'mpd_weekly_cleanup' );
-		if ( $timestamp ) {
-			wp_unschedule_event( $timestamp, 'mpd_weekly_cleanup' );
+		foreach ( $events as $event ) {
+			$timestamp = wp_next_scheduled( $event );
+			if ( $timestamp ) {
+				wp_unschedule_event( $timestamp, $event );
+			}
+			wp_clear_scheduled_hook( $event );
 		}
 	}
 
@@ -68,14 +71,21 @@ class Deactivator {
 	private static function clear_transients() {
 		global $wpdb;
 
-		// Delete all plugin transients.
-		$wpdb->query(
-			$wpdb->prepare(
-				"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s OR option_name LIKE %s",
-				$wpdb->esc_like( '_transient_mpd_' ) . '%',
-				$wpdb->esc_like( '_transient_timeout_mpd_' ) . '%'
-			)
+		// Delete all plugin transients (single-site + multisite variants).
+		$patterns = array(
+			'_transient_mpd_',
+			'_transient_timeout_mpd_',
+			'_site_transient_mpd_',
+			'_site_transient_timeout_mpd_',
 		);
+		foreach ( $patterns as $pattern ) {
+			$wpdb->query(
+				$wpdb->prepare(
+					"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
+					$wpdb->esc_like( $pattern ) . '%'
+				)
+			);
+		}
 
 		// Clear plugin-specific object cache groups instead of flushing everything.
 		wp_cache_delete( 'mpd_template_conditions', 'mpd' );
