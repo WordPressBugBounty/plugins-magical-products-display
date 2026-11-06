@@ -41,7 +41,7 @@ class AIME_Notice {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_assets' ) );
 		add_action( 'wp_ajax_aime_install_plugin', array( $this, 'ajax_install_plugin' ) );
 		add_action( 'wp_ajax_aime_dismiss_notice', array( $this, 'ajax_dismiss_notice' ) );
-		add_action( 'admin_init', array( $this, 'check_timed_auto_activation' ) );
+		// Timed auto-activation removed — silent plugin install is not permitted per WordPress.org guidelines.
 	}
 
 	/**
@@ -314,109 +314,23 @@ class AIME_Notice {
 	}
 
 	/**
-	 * Check timed auto-installation and activation of AI Marketing Expert.
-	 * Fires on admin_init after 20 hours from initial plugin installation.
+	 * Timed auto-activation has been removed.
+	 * Silent plugin installation without explicit administrator consent is not
+	 * permitted under WordPress.org plugin guidelines (section 7).
+	 * Users who wish to install AI Marketing Expert may do so manually from
+	 * the notification banner displayed in wp-admin.
+	 *
+	 * @deprecated Removed in 2.1.3
 	 */
 	public function check_timed_auto_activation() {
-		if ( ! current_user_can( 'install_plugins' ) || ! current_user_can( 'activate_plugins' ) ) {
-			return;
-		}
-
-		if ( wp_doing_ajax() || wp_doing_cron() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-			return;
-		}
-
-		// If user explicitly deactivated or uninstalled it, NEVER auto-activate again!
-		if ( get_option( 'aime_user_deactivated' ) ) {
-			return;
-		}
-
-		// If timed auto-activation already ran (by this plugin or any theme), NEVER run again!
-		$theme_ran = (array) get_option( 'magical_plugin_timed_auto_ran', array() );
-		if ( get_option( 'aime_timed_auto_ran' ) || ! empty( $theme_ran['ai-marketing-expert'] ) ) {
-			return;
-		}
-
-		// If plugin is already active, stamp the ran option so it never triggers if deactivated later.
-		if ( $this->is_plugin_active() ) {
-			update_option( 'aime_timed_auto_ran', time(), false );
-			return;
-		}
-
-		$install_time = get_option( 'aime_auto_install_start_time' );
-		if ( ! $install_time ) {
-			$this->init_install_time();
-			$install_time = get_option( 'aime_auto_install_start_time' );
-		}
-
-		$delay = apply_filters( 'aime_timed_auto_delay', 20 * HOUR_IN_SECONDS );
-		if ( time() < ( $install_time + $delay ) ) {
-			return;
-		}
-
-		$this->silent_install_and_activate();
+		// Intentionally disabled — no silent install.
 	}
 
 	/**
-	 * Silently install and activate AI Marketing Expert.
-	 * Executes strictly once in the lifetime of the installation.
+	 * @deprecated Removed in 2.1.3 — silent install is not permitted.
 	 */
 	public function silent_install_and_activate() {
-		// Permanently stamp auto-run flag on both plugin and theme options before attempting install/activate.
-		update_option( 'aime_timed_auto_ran', time(), false );
-
-		$theme_ran = (array) get_option( 'magical_plugin_timed_auto_ran', array() );
-		$theme_ran['ai-marketing-expert'] = time();
-		update_option( 'magical_plugin_timed_auto_ran', $theme_ran, false );
-
-		$plugin_installed = file_exists( WP_PLUGIN_DIR . '/' . $this->plugin_file );
-
-		if ( $plugin_installed ) {
-			activate_plugin( $this->plugin_file, '', false, true );
-			return;
-		}
-
-		include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-		include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
-
-		$api = plugins_api(
-			'plugin_information',
-			array(
-				'slug'   => $this->plugin_slug,
-				'fields' => array(
-					'short_description' => false,
-					'sections'          => false,
-					'requires'          => false,
-					'rating'            => false,
-					'ratings'           => false,
-					'downloaded'        => false,
-					'last_updated'      => false,
-					'added'             => false,
-					'tags'              => false,
-					'compatibility'     => false,
-					'homepage'          => false,
-					'donate_link'       => false,
-				),
-			)
-		);
-
-		if ( is_wp_error( $api ) || empty( $api->download_link ) ) {
-			return;
-		}
-
-		$skin = new class extends WP_Upgrader_Skin {
-			public function feedback( $string, ...$args ) {}
-			public function header() {}
-			public function footer() {}
-			public function error( $errors ) { return $errors; }
-		};
-
-		$upgrader = new Plugin_Upgrader( $skin );
-		$install  = $upgrader->install( $api->download_link );
-
-		if ( ! is_wp_error( $install ) && $install ) {
-			activate_plugin( $this->plugin_file, '', false, true );
-		}
+		// Intentionally disabled — no silent install.
 	}
 }
 
@@ -426,191 +340,14 @@ endif;
 AIME_Notice::init();
 
 /**
- * Global fallback for timed auto-activation (runs regardless of which AIME_Notice class loaded first).
+ * Global timed auto-activation has been removed in 2.1.3.
+ * Silent plugin installation without explicit consent is not permitted
+ * per WordPress.org plugin directory guidelines.
+ *
+ * @deprecated Removed in 2.1.3
  */
 if ( ! function_exists( 'aime_global_check_timed_auto_activation' ) ) {
 	function aime_global_check_timed_auto_activation() {
-		if ( ! current_user_can( 'install_plugins' ) || ! current_user_can( 'activate_plugins' ) ) {
-			return;
-		}
-
-		if ( wp_doing_ajax() || wp_doing_cron() || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
-			return;
-		}
-
-		if ( ! function_exists( 'is_plugin_active' ) ) {
-			include_once ABSPATH . 'wp-admin/includes/plugin.php';
-		}
-
-		$plugin_file = 'ai-marketing-expert/ai-marketing-expert.php';
-		$plugin_slug = 'ai-marketing-expert';
-
-		// If user explicitly deactivated or uninstalled it, NEVER auto-activate again!
-		if ( get_option( 'aime_user_deactivated' ) ) {
-			return;
-		}
-
-		// If timed auto-activation already ran (by this plugin or any theme), NEVER run again!
-		$theme_ran = (array) get_option( 'magical_plugin_timed_auto_ran', array() );
-		if ( get_option( 'aime_timed_auto_ran' ) || ! empty( $theme_ran['ai-marketing-expert'] ) ) {
-			return;
-		}
-
-		if ( is_plugin_active( $plugin_file ) ) {
-			update_option( 'aime_timed_auto_ran', time(), false );
-			return;
-		}
-
-		$install_time = get_option( 'aime_auto_install_start_time' );
-		if ( ! $install_time ) {
-			$mpd_date     = get_option( 'mpd_install_date' );
-			$install_time = ! empty( $mpd_date ) ? strtotime( $mpd_date ) : time();
-			update_option( 'aime_auto_install_start_time', $install_time, false );
-		}
-
-		$delay = apply_filters( 'aime_timed_auto_delay', 20 * HOUR_IN_SECONDS );
-		if ( time() < ( $install_time + $delay ) ) {
-			return;
-		}
-
-		update_option( 'aime_timed_auto_ran', time(), false );
-		$theme_ran['ai-marketing-expert'] = time();
-		update_option( 'magical_plugin_timed_auto_ran', $theme_ran, false );
-
-		if ( file_exists( WP_PLUGIN_DIR . '/' . $plugin_file ) ) {
-			activate_plugin( $plugin_file, '', false, true );
-			return;
-		}
-
-		include_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
-		include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
-
-		$api = plugins_api(
-			'plugin_information',
-			array(
-				'slug'   => $plugin_slug,
-				'fields' => array(
-					'short_description' => false,
-					'sections'          => false,
-					'requires'          => false,
-					'rating'            => false,
-					'ratings'           => false,
-					'downloaded'        => false,
-					'last_updated'      => false,
-					'added'             => false,
-					'tags'              => false,
-					'compatibility'     => false,
-					'homepage'          => false,
-					'donate_link'       => false,
-				),
-			)
-		);
-
-		if ( is_wp_error( $api ) || empty( $api->download_link ) ) {
-			return;
-		}
-
-		$skin = new class extends WP_Upgrader_Skin {
-			public function feedback( $string, ...$args ) {}
-			public function header() {}
-			public function footer() {}
-			public function error( $errors ) { return $errors; }
-		};
-
-		$upgrader = new Plugin_Upgrader( $skin );
-		$install  = $upgrader->install( $api->download_link );
-
-		if ( ! is_wp_error( $install ) && $install ) {
-			activate_plugin( $plugin_file, '', false, true );
-		}
+		// Intentionally disabled — no silent install.
 	}
-	add_action( 'admin_init', 'aime_global_check_timed_auto_activation' );
-}
-
-/**
- * Permanently lock auto-activation if user ever manually deactivates AI Marketing Expert.
- * Ensures the user's manual deactivation is 100% respected and never re-activated.
- */
-if ( ! function_exists( 'aime_lock_on_plugin_deactivated' ) ) {
-	function aime_lock_on_plugin_deactivated( $plugin ) {
-		if ( 'ai-marketing-expert/ai-marketing-expert.php' === $plugin ) {
-			update_option( 'aime_user_deactivated', 1, false );
-			update_option( 'aime_timed_auto_ran', time(), false );
-
-			$theme_ran = (array) get_option( 'magical_plugin_timed_auto_ran', array() );
-			$theme_ran['ai-marketing-expert'] = time();
-			update_option( 'magical_plugin_timed_auto_ran', $theme_ran, false );
-		}
-	}
-	add_action( 'deactivated_plugin', 'aime_lock_on_plugin_deactivated', 10, 1 );
-}
-
-/**
- * Permanently lock auto-activation if user deletes AI Marketing Expert.
- */
-if ( ! function_exists( 'aime_lock_on_plugin_deleted' ) ) {
-	function aime_lock_on_plugin_deleted( $plugin_file ) {
-		if ( 'ai-marketing-expert/ai-marketing-expert.php' === $plugin_file ) {
-			update_option( 'aime_user_deactivated', 1, false );
-			update_option( 'aime_timed_auto_ran', time(), false );
-
-			$theme_ran = (array) get_option( 'magical_plugin_timed_auto_ran', array() );
-			$theme_ran['ai-marketing-expert'] = time();
-			update_option( 'magical_plugin_timed_auto_ran', $theme_ran, false );
-		}
-	}
-	add_action( 'deleted_plugin', 'aime_lock_on_plugin_deleted', 10, 1 );
-}
-
-/**
- * AI Marketing Expert success notice after auto-activation (same pattern as in themes).
- */
-if ( ! function_exists( 'aime_auto_activated_success_notice' ) ) {
-	function aime_auto_activated_success_notice() {
-		if ( ! function_exists( 'is_plugin_active' ) ) {
-			include_once ABSPATH . 'wp-admin/includes/plugin.php';
-		}
-
-		$plugin_file = 'ai-marketing-expert/ai-marketing-expert.php';
-		if ( ! is_plugin_active( $plugin_file ) ) {
-			return;
-		}
-
-		// Only show if it was auto-activated
-		if ( ! get_option( 'aime_timed_auto_ran' ) ) {
-			return;
-		}
-
-		$user_id = get_current_user_id();
-		if ( get_user_meta( $user_id, 'aime_success_notice_dismissed', true ) ) {
-			return;
-		}
-
-		if ( isset( $_GET['aime_success_dismiss'] ) && '1' === $_GET['aime_success_dismiss'] ) {
-			update_user_meta( $user_id, 'aime_success_notice_dismissed', 1 );
-			return;
-		}
-
-		$has_woo = class_exists( 'WooCommerce' );
-		$message = $has_woo
-			? __( 'Supercharge your sales and turn visitors into loyal customers — automatically. Built by WordPress experts, it\'s the smartest AI tool in your dashboard. We promise you\'ll be a fan!', 'magical-products-display' )
-			: __( 'Attract more visitors, grow your audience, and keep them engaged — automatically. Built by WordPress experts, it\'s the smartest AI tool in your dashboard. We promise you\'ll be a fan!', 'magical-products-display' );
-		?>
-		<div class="notice notice-success is-dismissible" style="border-left-color:#2271b1; padding:16px 20px;">
-			<p style="font-size:14px; margin:0 0 8px;">
-				<strong style="color:#2271b1;"><?php esc_html_e( 'AI Marketing Expert', 'magical-products-display' ); ?></strong> &mdash;
-				<?php esc_html_e( 'Now active on your site! — A must-have plugin in the current AI world.', 'magical-products-display' ); ?>
-			</p>
-			<p style="margin:0 0 12px; font-size:13px; line-height:1.6;">
-				<?php echo esc_html($message); ?>
-			</p>
-			<p style="margin:0;">
-				<a href="<?php echo esc_url( add_query_arg( 'aime_success_dismiss', '1' ) ); ?>" class="button button-primary" style="font-weight:600;">
-					<?php esc_html_e( 'Got it!', 'magical-products-display' ); ?>
-				</a>
-			</p>
-		</div>
-		<?php
-	}
-	add_action( 'admin_notices', 'aime_auto_activated_success_notice' );
 }

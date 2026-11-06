@@ -5,7 +5,7 @@ Tags: woocommerce builder, elementor woocommerce, product page builder, checkout
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 WC requires at least: 8.0
 WC tested up to: 9.5
 License: GPLv2 or later
@@ -386,6 +386,10 @@ Please use the WordPress.org support forum or contact us directly at [wpthemespa
 
 == Changelog ==
 
+= 2.1.3 - November 5, 2026 =
+* Security: Removed silent automatic installation and activation of a secondary plugin (AI Marketing Expert) that occurred 20 hours after plugin activation without explicit user consent. Per WordPress.org guidelines, plugin installation always requires direct administrator action.
+* Security: Archive and load-more AJAX endpoints now enforce a maximum of 100 products per request, preventing potential denial-of-service attacks via unbounded catalog queries.
+* Security: REST API permission checks are now route-specific — template read/write/delete endpoints use graduated capability checks (manage_mpd_templates, edit_mpd_templates, delete_mpd_templates) while settings, widgets, stats, and license endpoints require manage_options exclusively, preventing Shop Managers from accessing site-level configuration.
 = 2.1.2 - November 5, 2026 =
 * Security: Fixed Cart Drawer AJAX nonce bypass that allowed quantity/item removal requests without valid CSRF token when a WooCommerce session existed.
 * Security: Fixed Order Bump price tampering vulnerability; custom price from client is now ignored and resolved server-side from widget settings.

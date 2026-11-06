@@ -43,6 +43,8 @@ class MPD_Products_Archive_Ajax {
         $post_id        = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
         $query_string   = isset( $_POST['query_string'] ) ? sanitize_text_field( wp_unslash( $_POST['query_string'] ) ) : '';
         $posts_per_page = isset( $_POST['posts_per_page'] ) ? absint( $_POST['posts_per_page'] ) : 12;
+        // Cap posts_per_page to prevent resource exhaustion (DoS) on large catalogs.
+        $posts_per_page = min( $posts_per_page, 100 );
 
         if ( empty( $widget_id ) || empty( $post_id ) ) {
             wp_send_json_error( array( 'message' => __( 'Invalid widget parameters', 'magical-products-display' ) ) );
@@ -124,6 +126,8 @@ class MPD_Products_Archive_Ajax {
         $post_id        = isset( $_POST['post_id'] ) ? absint( $_POST['post_id'] ) : 0;
         $query_string   = isset( $_POST['query_string'] ) ? sanitize_text_field( wp_unslash( $_POST['query_string'] ) ) : '';
         $posts_per_page = isset( $_POST['posts_per_page'] ) ? absint( $_POST['posts_per_page'] ) : 0;
+        // Cap posts_per_page to prevent resource exhaustion (DoS) on large catalogs.
+        $posts_per_page = $posts_per_page > 0 ? min( $posts_per_page, 100 ) : 0;
 
         if ( empty( $widget_id ) || empty( $post_id ) ) {
             wp_send_json_error( array( 'message' => __( 'Invalid widget parameters', 'magical-products-display' ) ) );

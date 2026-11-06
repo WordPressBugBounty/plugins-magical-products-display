@@ -113,12 +113,12 @@ class REST_API {
 				array(
 					'methods'             => WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'get_templates' ),
-					'permission_callback' => array( $this, 'check_admin_permission' ),
+					'permission_callback' => array( $this, 'check_template_read_permission' ),
 				),
 				array(
 					'methods'             => WP_REST_Server::CREATABLE,
 					'callback'            => array( $this, 'create_template' ),
-					'permission_callback' => array( $this, 'check_admin_permission' ),
+					'permission_callback' => array( $this, 'check_template_write_permission' ),
 					'args'                => $this->get_template_args(),
 				),
 			)
@@ -132,7 +132,7 @@ class REST_API {
 				array(
 					'methods'             => WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'get_template' ),
-					'permission_callback' => array( $this, 'check_admin_permission' ),
+					'permission_callback' => array( $this, 'check_template_read_permission' ),
 					'args'                => array(
 						'id' => array(
 							'required'          => true,
@@ -145,13 +145,13 @@ class REST_API {
 				array(
 					'methods'             => WP_REST_Server::EDITABLE,
 					'callback'            => array( $this, 'update_template' ),
-					'permission_callback' => array( $this, 'check_admin_permission' ),
+					'permission_callback' => array( $this, 'check_template_write_permission' ),
 					'args'                => $this->get_template_args(),
 				),
 				array(
 					'methods'             => WP_REST_Server::DELETABLE,
 					'callback'            => array( $this, 'delete_template' ),
-					'permission_callback' => array( $this, 'check_admin_permission' ),
+					'permission_callback' => array( $this, 'check_template_delete_permission' ),
 				),
 			)
 		);
@@ -164,12 +164,12 @@ class REST_API {
 				array(
 					'methods'             => WP_REST_Server::READABLE,
 					'callback'            => array( $this, 'get_template_conditions' ),
-					'permission_callback' => array( $this, 'check_admin_permission' ),
+					'permission_callback' => array( $this, 'check_template_read_permission' ),
 				),
 				array(
 					'methods'             => WP_REST_Server::CREATABLE,
 					'callback'            => array( $this, 'update_template_conditions' ),
-					'permission_callback' => array( $this, 'check_admin_permission' ),
+					'permission_callback' => array( $this, 'check_template_write_permission' ),
 				),
 			)
 		);
@@ -181,7 +181,7 @@ class REST_API {
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
 				'callback'            => array( $this, 'duplicate_template' ),
-				'permission_callback' => array( $this, 'check_admin_permission' ),
+				'permission_callback' => array( $this, 'check_template_write_permission' ),
 			)
 		);
 
@@ -192,7 +192,7 @@ class REST_API {
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
 				'callback'            => array( $this, 'update_template_priority' ),
-				'permission_callback' => array( $this, 'check_admin_permission' ),
+				'permission_callback' => array( $this, 'check_template_write_permission' ),
 				'args'                => array(
 					'priority' => array(
 						'required'          => true,
@@ -271,14 +271,8 @@ class REST_API {
 	 * @return bool|WP_Error
 	 */
 	public function check_admin_permission() {
-		if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'manage_mpd_templates' ) ) {
-			return new WP_Error(
-				'rest_forbidden',
-				__( 'You do not have permission to access this resource.', 'magical-products-display' ),
-				array( 'status' => 403 )
-			);
-		}
-		if ( ! current_user_can( 'manage_options' ) && ! current_user_can( 'edit_mpd_templates' ) ) {
+		// Settings, widgets, stats, and license endpoints require site administrator.
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return new WP_Error(
 				'rest_forbidden',
 				__( 'You do not have permission to access this resource.', 'magical-products-display' ),
@@ -286,6 +280,57 @@ class REST_API {
 			);
 		}
 		return true;
+	}
+
+	/**
+	 * Permission: read templates (manage_options OR manage_mpd_templates).
+	 *
+	 * @since 2.1.3
+	 * @return bool|WP_Error
+	 */
+	public function check_template_read_permission() {
+		if ( current_user_can( 'manage_options' ) || current_user_can( 'manage_mpd_templates' ) ) {
+			return true;
+		}
+		return new WP_Error(
+			'rest_forbidden',
+			__( 'You do not have permission to access this resource.', 'magical-products-display' ),
+			array( 'status' => 403 )
+		);
+	}
+
+	/**
+	 * Permission: create/update templates (manage_options OR edit_mpd_templates).
+	 *
+	 * @since 2.1.3
+	 * @return bool|WP_Error
+	 */
+	public function check_template_write_permission() {
+		if ( current_user_can( 'manage_options' ) || current_user_can( 'edit_mpd_templates' ) ) {
+			return true;
+		}
+		return new WP_Error(
+			'rest_forbidden',
+			__( 'You do not have permission to access this resource.', 'magical-products-display' ),
+			array( 'status' => 403 )
+		);
+	}
+
+	/**
+	 * Permission: delete templates (manage_options OR delete_mpd_templates).
+	 *
+	 * @since 2.1.3
+	 * @return bool|WP_Error
+	 */
+	public function check_template_delete_permission() {
+		if ( current_user_can( 'manage_options' ) || current_user_can( 'delete_mpd_templates' ) ) {
+			return true;
+		}
+		return new WP_Error(
+			'rest_forbidden',
+			__( 'You do not have permission to access this resource.', 'magical-products-display' ),
+			array( 'status' => 403 )
+		);
 	}
 
 	/**
